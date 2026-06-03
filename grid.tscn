@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://cell.tscn" id="2_bghhw"]
 [ext_resource type="Script" uid="uid://b2s5nlvj2kgfh" path="res://DropSlot.gd" id="3_bghhw"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
+[ext_resource type="Script" uid="uid://27mj06jcgvfj" path="res://file_parser.gd" id="5_fqc2p"]
 
 [node name="Control" type="Control" unique_id=815162351]
 layout_mode = 3
@@ -225,3 +226,6 @@ layout_mode = 2
 
 [node name="Tile25" parent="Tiles" unique_id=1156430888 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
+
+[node name="Node" type="Node" parent="." unique_id=1383846307]
+script = ExtResource("5_fqc2p")
