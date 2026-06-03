@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ciooiwey7meeq"]
+
+[ext_resource type="Script" uid="uid://b2s5nlvj2kgfh" path="res://DropSlot.gd" id="1_yh0nt"]
+
+[node name="Cell" type="PanelContainer" unique_id=674933640]
+size_flags_horizontal = 3
+script = ExtResource("1_yh0nt")
