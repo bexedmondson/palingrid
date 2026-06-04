@@ -1,8 +1,10 @@
 extends Node
 
-@export var tileHolder : DropSlot
+@export var tileHolder : TileDock
 @export var slots : Array[DropSlot]
 @export var tiles : Array[DropTile]
+@export var wordScene : InstancePlaceholder
+@export var score : Label
 
 var lineSlotIndexes = [[0, 1, 2, 3, 4], 
 [5, 6, 7, 8, 9], 
@@ -20,6 +22,7 @@ var lineSlotIndexes = [[0, 1, 2, 3, 4],
 var test_letter_set = ["s","p","a","n","s","m","n","r","a","t","a","u","i","o","o","r","n","l","p","p","t","r","a","p","s"]
 
 var valid_words = []
+var wordInstanceMap = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,6 +43,7 @@ func _ready() -> void:
 	file.close()
 
 func update(slot: DropSlot):
+	var words = []
 	for line in lineSlotIndexes:
 		#if middle slot empty, no words possible in this line so can early exit this check
 		var c = slots[line[2]].letter()
@@ -53,6 +57,7 @@ func update(slot: DropSlot):
 		var lastChunk : String = c+d+e
 		print(lastChunk)
 		if (!lastChunk.contains("-") && valid_words.has(lastChunk.to_lower())):
+			words.append(lastChunk)
 			print("----yay that's a word!")
 		if (b == "-"):
 			continue
@@ -60,15 +65,21 @@ func update(slot: DropSlot):
 		var firstChunk : String = a+b+c
 		print(firstChunk)
 		if (!firstChunk.contains("-") && valid_words.has(firstChunk.to_lower())):
+			words.append(firstChunk)
 			print("----yay that's a word!")
 		if (d == "-"):
 			continue
 			
-			
+		var middleChunk : String = b+c+d
+		print(middleChunk)
+		if (!middleChunk.contains("-") && valid_words.has(middleChunk.to_lower())):
+			words.append(middleChunk)
+			print("----yay that's a word!")
 		
 		var lastChunkLong : String = b+c+d+e
 		print(lastChunkLong)
 		if (!lastChunkLong.contains("-") && valid_words.has(lastChunkLong.to_lower())):
+			words.append(lastChunkLong)
 			print("----yay that's a word!")
 		if (a == "-"):
 			continue
@@ -76,6 +87,7 @@ func update(slot: DropSlot):
 		var firstChunkLong : String = a+b+c+d
 		print(firstChunkLong)
 		if (!firstChunkLong.contains("-") && valid_words.has(firstChunkLong.to_lower())):
+			words.append(firstChunkLong)
 			print("----yay that's a word!")
 		if (e == "-"):
 			continue
@@ -83,8 +95,29 @@ func update(slot: DropSlot):
 		var linestring: String = a+b+c+d+e
 		print(linestring)
 		if (valid_words.has(linestring.to_lower())):
+			words.append(linestring)
 			print("----yay that's a word!")
-		
+	
+	for wordInstance in wordInstanceMap:
+		if !words.has(wordInstance):
+			wordInstanceMap[wordInstance].queue_free()
+			wordInstanceMap.erase(wordInstance)
+	
+	for word in words:
+		make_word(word)
+	
+	var total = 0
+	for word in wordInstanceMap:
+		total += wordInstanceMap[word].get_points()
+	
+	score.text = "SCORE: " + str(total)
+
+func make_word(word: String):
+	if word in wordInstanceMap:
+		return
+	var wordInstance : Word = wordScene.create_instance()
+	wordInstance.set_word(word)
+	wordInstanceMap[word] = wordInstance
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

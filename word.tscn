@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bl407o8b0kftt"]
+
+[ext_resource type="Script" uid="uid://bajtllaqyewf3" path="res://Word.gd" id="1_3q3ku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vp38"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+
+[node name="WordPanel" type="PanelContainer" unique_id=2012203541 node_paths=PackedStringArray("word", "points")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vp38")
+script = ExtResource("1_3q3ku")
+word = NodePath("Label")
+points = NodePath("Label2")
+
+[node name="Label" type="Label" parent="." unique_id=192951436]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "WORDS"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1627767265]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "3 pts"
+horizontal_alignment = 2
+vertical_alignment = 1
