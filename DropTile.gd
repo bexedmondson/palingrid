@@ -1,6 +1,7 @@
 class_name DropTile extends Control
 
-signal dragged_away(card: DropTile)
+signal dragged_away(tile: DropTile)
+signal swapped(tileToAdd: DropTile, tileToRemove: DropTile)
 
 @export var letter_label: Label
 

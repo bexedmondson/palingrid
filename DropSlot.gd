@@ -9,25 +9,40 @@ var slotTile: DropTile
 
 func dragged_away(tile: DropTile) -> void:
 	tile.dragged_away.disconnect(dragged_away)
-	container.remove_child(tile)
+	tile.swapped.disconnect(swapped_for)
 	slotTile = null
+	tile_changed.emit(self)
+
+func swapped_for(oldTile: DropTile, newTile: DropTile) -> void:
+	oldTile.dragged_away.disconnect(dragged_away)
+	oldTile.swapped.disconnect(swapped_for)
+	
+	add_tile(newTile)
+	slotTile = newTile
 	tile_changed.emit(self)
 
 func setup_tile(tile: DropTile) -> void:
 	tile.dragged_away.connect(dragged_away)
+	tile.swapped.connect(swapped_for)
 
 func add_tile(tile: DropTile) -> void:
 	tile.dragged_away.connect(dragged_away)
-	container.add_child(tile)
+	tile.swapped.connect(swapped_for)
+	tile.reparent(container)
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return slotTile == null
+	return true
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var tile: DropTile = data as DropTile
-	tile.dragged_away.emit(tile)
-	add_tile(tile)
-	slotTile = tile
+	var newTile: DropTile = data as DropTile
+	
+	if (slotTile != null):
+		var tileRemoved = slotTile
+		slotTile.dragged_away.emit(slotTile)
+		newTile.swapped.emit(newTile, tileRemoved)
+	
+	add_tile(newTile)
+	slotTile = newTile
 	tile_changed.emit(self)
 
 func letter():

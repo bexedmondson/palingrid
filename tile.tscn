@@ -7,6 +7,7 @@ custom_minimum_size = Vector2(60, 60)
 scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 script = ExtResource("1_n3f48")
 letter_label = NodePath("Label")
 
