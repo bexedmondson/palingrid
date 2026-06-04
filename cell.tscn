@@ -9,7 +9,27 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Cell" type="PanelContainer" unique_id=674933640]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwrgs"]
+bg_color = Color(0.69803923, 0.63529414, 0.28235295, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Cell" type="PanelContainer" unique_id=674933640 node_paths=PackedStringArray("circle")]
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_yh0nt")
 script = ExtResource("1_yh0nt")
+circle = NodePath("Panel")
+
+[node name="Panel" type="Panel" parent="." unique_id=209722210]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gwrgs")

@@ -56,76 +56,60 @@ func _ready() -> void:
 		valid_words.append(line)
 	file.close()
 
+var dash = "-"
+
 func update(slot: DropSlot):
-	var words = []
+	var words = {}
 	for line in lineSlotIndexes:
-		print(str(line))
+		#print(str(line))
+		var l2 = line[2]
 		#if middle slot empty, no words possible in this line so can early exit this check
-		var c = slots[line[2]].letter()
-		if (c == "-"):
+		var c = slots[l2].letter()
+		if (c == dash):
 			continue
-		var a = slots[line[0]].letter()
-		var b = slots[line[1]].letter()
+			
+		var l0 = line[0]
+		var a = slots[l0].letter()
+		var l1 = line[1]
+		var b = slots[l1].letter()
 		
-		#check_chunk(a+b+c, words)
 		var chunk : String = a+b+c
-		print(chunk)
-		if (!chunk.contains("-")):
-			if (valid_words.has(chunk)):
-				words.append(chunk)
-				print("----yay that's a word!")
-			chunk = chunk.reverse()
-			if (valid_words.has(chunk)):
-				words.append(chunk)
-				print("----yay that's a word!")
+		check_chunk(chunk, [l0,l1,l2], words)
 		
 		if (line.size() < 4):
 			continue
 		
-		var d = slots[line[3]].letter()
-		if (d == "-"):
+		var l3 = line[3]
+		var d = slots[l3].letter()
+		if (d == dash):
 			continue
 		
 		chunk = b+c+d
-		print(chunk)
-		if (!chunk.contains("-") && valid_words.has(chunk)):
-			words.append(chunk)
-			print("----yay that's a word!")
+		check_chunk(chunk, [l1,l2,l3], words)
 		
 		chunk = a+b+c+d
-		print(chunk)
-		if (!chunk.contains("-") && valid_words.has(chunk)):
-			words.append(chunk)
-			print("----yay that's a word!")
+		check_chunk(chunk, [l0,l1,l2,l3], words)
 		
 		if (line.size() < 5):
 			continue
 		
-		var e = slots[line[4]].letter()
-		if (e == "-"):
+		var l4 = line[4]
+		var e = slots[l4].letter()
+		if (e == dash):
 			continue
 		
-		var lastChunk : String = c+d+e
-		print(lastChunk)
-		if (!lastChunk.contains("-") && valid_words.has(lastChunk)):
-			words.append(lastChunk)
-			print("----yay that's a word!")
-		if (b == "-"):
+		chunk = c+d+e
+		check_chunk(chunk, [l2,l3,l4], words)
+		if (b == dash):
 			continue
 		
-		var lastChunkLong : String = b+c+d+e
-		print(lastChunkLong)
-		if (!lastChunkLong.contains("-") && valid_words.has(lastChunkLong)):
-			words.append(lastChunkLong)
-			print("----yay that's a word!")
-		if (a == "-"):
+		chunk = b+c+d+e
+		check_chunk(chunk, [l1,l2,l3,l4], words)
+		if (a == dash):
 			continue
 		
-		var linestring: String = a+b+c+d+e
-		print(linestring)
-		if (valid_words.has(linestring)):
-			words.append(linestring)
-			print("----yay that's a word!")
+		chunk = a+b+c+d+e
+		check_chunk(chunk, [l0,l1,l2,l3,l4], words)
 	
 	for wordInstance in wordInstanceMap:
 		if !words.has(wordInstance):
@@ -133,7 +117,7 @@ func update(slot: DropSlot):
 			wordInstanceMap.erase(wordInstance)
 	
 	for word in words:
-		make_word(word)
+		make_word(word, words[word])
 	
 	var total = 0
 	for word in wordInstanceMap:
@@ -141,25 +125,25 @@ func update(slot: DropSlot):
 	
 	score.text = "SCORE: " + str(total)
 
-func check_chunk(chunk: String, words: Array):
-	print(chunk)
-	if (chunk.contains("-")):
+func check_chunk(chunk: String, indexes: Array[int], words: Dictionary):
+	#print(chunk)
+	if (chunk.contains(dash)):
 		return
 	if (valid_words.has(chunk)):
-		words.append(chunk)
-		print("----yay that's a word!")
+		words[chunk] = indexes
+		#print("----yay that's a word!")
 	chunk = chunk.reverse()
 	if (valid_words.has(chunk)):
-		words.append(chunk)
+		words[chunk] = indexes
 		print("----yay that's a word!")
 
-func make_word(word: String):
+func make_word(word: String, indexes: Array[int]):
 	if word in wordInstanceMap:
 		return
 	var wordInstance : Word = wordScene.create_instance()
-	wordInstance.set_word(word)
+	wordInstance.set_word(word, indexes, self)
 	wordInstanceMap[word] = wordInstance
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func highlight(indexes):
+	for index in indexes:
+		slots[index].highlight()

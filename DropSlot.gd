@@ -2,6 +2,8 @@ class_name DropSlot extends Control
 
 signal tile_changed(slot: DropSlot)
 
+@export var circle: Control
+
 var slotTile: DropTile
 
 func dragged_away(tile: DropTile) -> void:
@@ -31,3 +33,12 @@ func letter():
 	if (slotTile == null):
 		return "-"
 	return slotTile.letter().to_lower()
+
+var tween: Tween
+func highlight():
+	if (tween == null || !tween.is_valid()):
+		tween = create_tween()
+		tween.tween_property(circle, "modulate:a", 0, 0.5).from(1.0)
+	if (tween.is_running()):
+		tween.stop()
+	tween.play()

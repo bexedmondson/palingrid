@@ -10,10 +10,16 @@ content_margin_bottom = 5.0
 bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
 
 [node name="WordPanel" type="PanelContainer" unique_id=2012203541 node_paths=PackedStringArray("word", "points")]
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_5vp38")
 script = ExtResource("1_3q3ku")
 word = NodePath("Label")
 points = NodePath("Label2")
+
+[node name="Button" type="Button" parent="." unique_id=2126095860]
+layout_mode = 2
+mouse_filter = 1
+flat = true
 
 [node name="Label" type="Label" parent="." unique_id=192951436]
 layout_mode = 2
@@ -31,3 +37,5 @@ theme_override_font_sizes/font_size = 20
 text = "3 pts"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
