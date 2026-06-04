@@ -13,15 +13,19 @@ bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_5vp38")
 script = ExtResource("1_3q3ku")
-word = NodePath("Label")
-points = NodePath("Label2")
+word = NodePath("HBoxContainer/Label")
+points = NodePath("HBoxContainer/Label2")
 
 [node name="Button" type="Button" parent="." unique_id=2126095860]
 layout_mode = 2
 mouse_filter = 1
 flat = true
 
-[node name="Label" type="Label" parent="." unique_id=192951436]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2096122044]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=192951436]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 1
@@ -29,7 +33,7 @@ theme_override_font_sizes/font_size = 24
 text = "WORDS"
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="." unique_id=1627767265]
+[node name="Label2" type="Label" parent="HBoxContainer" unique_id=1627767265]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 1

@@ -22,6 +22,9 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [node name="Cell" type="PanelContainer" unique_id=674933640 node_paths=PackedStringArray("circle")]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_yh0nt")
 script = ExtResource("1_yh0nt")
