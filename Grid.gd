@@ -135,7 +135,7 @@ func check_chunk(chunk: String, indexes: Array[int], words: Dictionary):
 	chunk = chunk.reverse()
 	if (valid_words.has(chunk)):
 		words[chunk] = indexes
-		print("----yay that's a word!")
+		#print("----yay that's a word!")
 
 func make_word(word: String, indexes: Array[int]):
 	if word in wordInstanceMap:
