@@ -3,21 +3,25 @@ extends Node
 
 @export_tool_button("parse") var parseAction = parse 
 func parse() -> void:
-	var file = FileAccess.open("res://wordlist-20210729.txt", FileAccess.READ)
-	var lines = 0
-	var small = 0
-	var count =0
-	while (file.get_position() <file.get_length()):
-		count += 1
-		var line = file.get_line()
-		lines +=1
-		if (line.length() > 4 && line.length() <8):
-			small+=1
-			print(line)
-		if (count % 10000 == 0):
-			print("10000: small: ", small)
-	print("lines ", lines, ", small ", small)
-	file.close()
+	var small = {}
+	
+	var files = ["res://british-english", "res://american-english"]
+	
+	for path in files:
+		var file = FileAccess.open(path, FileAccess.READ)
+		while (file.get_position() <file.get_length()):
+			var line = file.get_line()
+			if (line.length() > 2 && line.length() <6 && !line.contains("'")):
+				small[line] = null
+				print(line)
+		file.close()
+	
+	var smallFile = FileAccess.open("res://small.txt", FileAccess.WRITE)
+	for s in small:
+		smallFile.store_line(s)
+		
+	smallFile.close()
+	
 	pass
 
 # Called when the node enters the scene tree for the first time.

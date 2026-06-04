@@ -1,5 +1,9 @@
 class_name DropSlot extends Control
 
+signal tile_changed(slot: DropSlot)
+
+var slotTile: DropTile
+
 func dragged_away(tile: DropTile) -> void:
 	tile.dragged_away.disconnect(dragged_away)
 	remove_child(tile)
@@ -15,6 +19,13 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return true
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var card: DropTile = data as DropTile
-	card.dragged_away.emit(card)
-	add_tile(card)
+	var tile: DropTile = data as DropTile
+	tile.dragged_away.emit(tile)
+	add_tile(tile)
+	slotTile = tile
+	tile_changed.emit(self)
+
+func letter():
+	if (slotTile == null):
+		return "-"
+	return slotTile.letter()

@@ -13,3 +13,9 @@ func get_preview() -> Control:
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	set_drag_preview(get_preview())
 	return self
+	
+func set_letter(letter: String):
+	letter_label.text = letter.to_upper()
+
+func letter():
+	return letter_label.text
