@@ -11,7 +11,7 @@ func parse() -> void:
 		var file = FileAccess.open(path, FileAccess.READ)
 		while (file.get_position() <file.get_length()):
 			var line = file.get_line()
-			if (line.length() > 2 && line.length() <6 && !line.contains("'")):
+			if (line.length() > 2 && line.length() < 6 && !line.contains("'")):
 				small[line] = null
 				print(line)
 		file.close()
