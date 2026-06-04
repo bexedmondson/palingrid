@@ -41,248 +41,257 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fqc2p")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1014013927]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=384962350]
 layout_mode = 2
-theme_override_constants/h_separation = 50
-theme_override_constants/v_separation = 50
 
-[node name="GridMarginContainer" type="MarginContainer" parent="HFlowContainer" unique_id=1056585952]
+[node name="HFlowContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=311959715]
 layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="GridAspectRatioContainer" type="AspectRatioContainer" parent="HFlowContainer/GridMarginContainer" unique_id=728211041]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HFlowContainer" unique_id=420867560]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 50
+
+[node name="GridMarginContainer" type="MarginContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer" unique_id=1056585952]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridAspectRatioContainer" type="AspectRatioContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer" unique_id=728211041]
 layout_mode = 2
 stretch_mode = 1
 
-[node name="Grid" type="MarginContainer" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("tileHolder", "slots", "tiles", "wordScene", "score")]
+[node name="Grid" type="MarginContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("tileHolder", "slots", "tiles", "wordScene", "score")]
 layout_mode = 2
 script = ExtResource("1_sle3t")
 tileHolder = NodePath("../../../TileDockPanel/Tiles")
 slots = [NodePath("VBoxContainer/Row/Cell"), NodePath("VBoxContainer/Row/Cell2"), NodePath("VBoxContainer/Row/Cell3"), NodePath("VBoxContainer/Row/Cell4"), NodePath("VBoxContainer/Row/Cell5"), NodePath("VBoxContainer/Row2/Cell"), NodePath("VBoxContainer/Row2/Cell2"), NodePath("VBoxContainer/Row2/Cell3"), NodePath("VBoxContainer/Row2/Cell4"), NodePath("VBoxContainer/Row2/Cell5"), NodePath("VBoxContainer/Row3/Cell"), NodePath("VBoxContainer/Row3/Cell2"), NodePath("VBoxContainer/Row3/Cell3"), NodePath("VBoxContainer/Row3/Cell4"), NodePath("VBoxContainer/Row3/Cell5"), NodePath("VBoxContainer/Row4/Cell"), NodePath("VBoxContainer/Row4/Cell2"), NodePath("VBoxContainer/Row4/Cell3"), NodePath("VBoxContainer/Row4/Cell4"), NodePath("VBoxContainer/Row4/Cell5"), NodePath("VBoxContainer/Row5/Cell"), NodePath("VBoxContainer/Row5/Cell2"), NodePath("VBoxContainer/Row5/Cell3"), NodePath("VBoxContainer/Row5/Cell4"), NodePath("VBoxContainer/Row5/Cell5")]
 tiles = [NodePath("../../../TileDockPanel/Tiles/Tile"), NodePath("../../../TileDockPanel/Tiles/Tile2"), NodePath("../../../TileDockPanel/Tiles/Tile3"), NodePath("../../../TileDockPanel/Tiles/Tile4"), NodePath("../../../TileDockPanel/Tiles/Tile5"), NodePath("../../../TileDockPanel/Tiles/Tile6"), NodePath("../../../TileDockPanel/Tiles/Tile7"), NodePath("../../../TileDockPanel/Tiles/Tile8"), NodePath("../../../TileDockPanel/Tiles/Tile9"), NodePath("../../../TileDockPanel/Tiles/Tile10"), NodePath("../../../TileDockPanel/Tiles/Tile11"), NodePath("../../../TileDockPanel/Tiles/Tile12"), NodePath("../../../TileDockPanel/Tiles/Tile13"), NodePath("../../../TileDockPanel/Tiles/Tile14"), NodePath("../../../TileDockPanel/Tiles/Tile15"), NodePath("../../../TileDockPanel/Tiles/Tile16"), NodePath("../../../TileDockPanel/Tiles/Tile17"), NodePath("../../../TileDockPanel/Tiles/Tile18"), NodePath("../../../TileDockPanel/Tiles/Tile19"), NodePath("../../../TileDockPanel/Tiles/Tile20"), NodePath("../../../TileDockPanel/Tiles/Tile21"), NodePath("../../../TileDockPanel/Tiles/Tile22"), NodePath("../../../TileDockPanel/Tiles/Tile23"), NodePath("../../../TileDockPanel/Tiles/Tile24"), NodePath("../../../TileDockPanel/Tiles/Tile25")]
-wordScene = NodePath("../../../MarginContainer/ScoreVBoxContainer/ScrollContainer/VBoxContainer/WordPanel")
-score = NodePath("../../../MarginContainer/ScoreVBoxContainer/TotalLabel")
+wordScene = NodePath("../../../../MarginContainer/ScoreVBoxContainer/ScrollContainer/VBoxContainer/WordPanel")
+score = NodePath("../../../../MarginContainer/ScoreVBoxContainer/TotalLabel")
 
-[node name="Panel" type="Panel" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=1960453266]
+[node name="Panel" type="Panel" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=1960453266]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_fqc2p")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=34194217]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=34194217]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Row" type="HBoxContainer" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=598198550]
+[node name="Row" type="HBoxContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=598198550]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 instance=ExtResource("2_bghhw")]
+[node name="Cell" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Tile" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell" unique_id=1042171115 instance=ExtResource("3_fqc2p")]
-layout_mode = 0
-
-[node name="Cell2" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 instance=ExtResource("2_bghhw")]
+[node name="Cell2" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell3" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 instance=ExtResource("2_bghhw")]
+[node name="Cell3" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell4" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 instance=ExtResource("2_bghhw")]
+[node name="Cell4" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell5" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 instance=ExtResource("2_bghhw")]
+[node name="Cell5" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Row2" type="HBoxContainer" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=11786437]
+[node name="Row2" type="HBoxContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=11786437]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 instance=ExtResource("2_bghhw")]
+[node name="Cell" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell2" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 instance=ExtResource("2_bghhw")]
+[node name="Cell2" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell3" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 instance=ExtResource("2_bghhw")]
+[node name="Cell3" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell4" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 instance=ExtResource("2_bghhw")]
+[node name="Cell4" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell5" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 instance=ExtResource("2_bghhw")]
+[node name="Cell5" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Row3" type="HBoxContainer" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=277426052]
+[node name="Row3" type="HBoxContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=277426052]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 instance=ExtResource("2_bghhw")]
+[node name="Cell" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell2" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 instance=ExtResource("2_bghhw")]
+[node name="Cell2" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell3" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 instance=ExtResource("2_bghhw")]
+[node name="Cell3" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell4" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 instance=ExtResource("2_bghhw")]
+[node name="Cell4" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell5" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 instance=ExtResource("2_bghhw")]
+[node name="Cell5" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Row4" type="HBoxContainer" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1018981240]
+[node name="Row4" type="HBoxContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1018981240]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 instance=ExtResource("2_bghhw")]
+[node name="Cell" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell2" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 instance=ExtResource("2_bghhw")]
+[node name="Cell2" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell3" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 instance=ExtResource("2_bghhw")]
+[node name="Cell3" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell4" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 instance=ExtResource("2_bghhw")]
+[node name="Cell4" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell5" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 instance=ExtResource("2_bghhw")]
+[node name="Cell5" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Row5" type="HBoxContainer" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1458008159]
+[node name="Row5" type="HBoxContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1458008159]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 instance=ExtResource("2_bghhw")]
+[node name="Cell" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell2" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 instance=ExtResource("2_bghhw")]
+[node name="Cell2" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell3" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 instance=ExtResource("2_bghhw")]
+[node name="Cell3" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell4" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 instance=ExtResource("2_bghhw")]
+[node name="Cell4" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="Cell5" parent="HFlowContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 instance=ExtResource("2_bghhw")]
+[node name="Cell5" parent="ScrollContainer/HFlowContainer/VBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 instance=ExtResource("2_bghhw")]
 layout_mode = 2
 
-[node name="TileDockPanel" type="PanelContainer" parent="HFlowContainer" unique_id=939378106]
+[node name="TileDockPanel" type="PanelContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer" unique_id=939378106]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_g2qvd")
 
-[node name="Tiles" type="GridContainer" parent="HFlowContainer/TileDockPanel" unique_id=1399449826]
+[node name="Tiles" type="HFlowContainer" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel" unique_id=1101630964]
 custom_minimum_size = Vector2(0.135, 0)
 layout_mode = 2
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
-columns = 4
+alignment = 1
 script = ExtResource("3_bghhw")
 
-[node name="Tile" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=723670457 instance=ExtResource("3_fqc2p")]
+[node name="Tile" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=723670457 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile2" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1463121450 instance=ExtResource("3_fqc2p")]
+[node name="Tile2" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1463121450 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile3" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=947134029 instance=ExtResource("3_fqc2p")]
+[node name="Tile3" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=947134029 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile4" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1953381486 instance=ExtResource("3_fqc2p")]
+[node name="Tile4" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1953381486 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile5" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=2123812368 instance=ExtResource("3_fqc2p")]
+[node name="Tile5" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=2123812368 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile6" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1194733076 instance=ExtResource("3_fqc2p")]
+[node name="Tile6" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1194733076 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile7" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=893445152 instance=ExtResource("3_fqc2p")]
+[node name="Tile7" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=893445152 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile8" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=437237139 instance=ExtResource("3_fqc2p")]
+[node name="Tile8" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=437237139 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile9" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1482847350 instance=ExtResource("3_fqc2p")]
+[node name="Tile9" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1482847350 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile10" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1455093455 instance=ExtResource("3_fqc2p")]
+[node name="Tile10" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1455093455 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile11" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1285912586 instance=ExtResource("3_fqc2p")]
+[node name="Tile11" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1285912586 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile12" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=753452829 instance=ExtResource("3_fqc2p")]
+[node name="Tile12" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=753452829 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile13" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=178434238 instance=ExtResource("3_fqc2p")]
+[node name="Tile13" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=178434238 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile14" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1225045827 instance=ExtResource("3_fqc2p")]
+[node name="Tile14" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1225045827 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile15" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=888061142 instance=ExtResource("3_fqc2p")]
+[node name="Tile15" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=888061142 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile16" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=413422064 instance=ExtResource("3_fqc2p")]
+[node name="Tile16" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=413422064 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile17" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=906399512 instance=ExtResource("3_fqc2p")]
+[node name="Tile17" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=906399512 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile18" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=673589112 instance=ExtResource("3_fqc2p")]
+[node name="Tile18" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=673589112 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile19" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=282961456 instance=ExtResource("3_fqc2p")]
+[node name="Tile19" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=282961456 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile20" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=2108475761 instance=ExtResource("3_fqc2p")]
+[node name="Tile20" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=2108475761 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile21" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1761087001 instance=ExtResource("3_fqc2p")]
+[node name="Tile21" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1761087001 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile22" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=971932350 instance=ExtResource("3_fqc2p")]
+[node name="Tile22" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=971932350 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile23" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1467639409 instance=ExtResource("3_fqc2p")]
+[node name="Tile23" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1467639409 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile24" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=581289634 instance=ExtResource("3_fqc2p")]
+[node name="Tile24" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=581289634 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="Tile25" parent="HFlowContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("3_fqc2p")]
+[node name="Tile25" parent="ScrollContainer/HFlowContainer/VBoxContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HFlowContainer" unique_id=708401108]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/HFlowContainer" unique_id=708401108]
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="ScoreVBoxContainer" type="VBoxContainer" parent="HFlowContainer/MarginContainer" unique_id=1727399492]
+[node name="ScoreVBoxContainer" type="VBoxContainer" parent="ScrollContainer/HFlowContainer/MarginContainer" unique_id=1727399492]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TotalLabel" type="Label" parent="HFlowContainer/MarginContainer/ScoreVBoxContainer" unique_id=1348282677]
+[node name="TotalLabel" type="Label" parent="ScrollContainer/HFlowContainer/MarginContainer/ScoreVBoxContainer" unique_id=1348282677]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "SCORE: 0"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HFlowContainer/MarginContainer/ScoreVBoxContainer" unique_id=1601090332]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/HFlowContainer/MarginContainer/ScoreVBoxContainer" unique_id=1601090332]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
@@ -290,9 +299,9 @@ vertical_scroll_mode = 4
 scroll_deadzone = 10
 scroll_hint_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HFlowContainer/MarginContainer/ScoreVBoxContainer/ScrollContainer" unique_id=1668258416]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HFlowContainer/MarginContainer/ScoreVBoxContainer/ScrollContainer" unique_id=1668258416]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="WordPanel" parent="HFlowContainer/MarginContainer/ScoreVBoxContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
+[node name="WordPanel" parent="ScrollContainer/HFlowContainer/MarginContainer/ScoreVBoxContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
 layout_mode = 2
