@@ -8,12 +8,14 @@ signal tile_changed(slot: DropSlot)
 var slotTile: DropTile
 
 func dragged_away(tile: DropTile) -> void:
+	print(str(tile) + " draggedaway " + str(self) + " current " + str(slotTile))
 	tile.dragged_away.disconnect(dragged_away)
 	tile.swapped.disconnect(swapped_for)
 	slotTile = null
 	tile_changed.emit(self)
 
 func swapped_for(oldTile: DropTile, newTile: DropTile) -> void:
+	print(str(oldTile) + " old, " + str(newTile) + "new, swap " + str(self) + " current " + str(slotTile))
 	oldTile.dragged_away.disconnect(dragged_away)
 	oldTile.swapped.disconnect(swapped_for)
 	
@@ -26,6 +28,7 @@ func setup_tile(tile: DropTile) -> void:
 	tile.swapped.connect(swapped_for)
 
 func add_tile(tile: DropTile) -> void:
+	print(str(tile) + " add " + str(self) + " current " + str(slotTile))
 	tile.dragged_away.connect(dragged_away)
 	tile.swapped.connect(swapped_for)
 	tile.reparent(container)
@@ -35,8 +38,8 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var newTile: DropTile = data as DropTile
-	
-	if (slotTile != null):
+	print(str(newTile) + " drop " + str(self) + " current " + str(slotTile))
+	if (slotTile != null && slotTile != newTile):
 		var tileRemoved = slotTile
 		slotTile.dragged_away.emit(slotTile)
 		newTile.swapped.emit(newTile, tileRemoved)
