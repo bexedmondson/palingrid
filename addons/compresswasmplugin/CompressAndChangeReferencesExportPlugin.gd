@@ -10,8 +10,10 @@ func _export_end() -> void:
 		return
 	
 	print("CompressAndChangeReferencesExportPlugin compress start")
+	DirAccess.remove_absolute("res://docs/index.wasm.br")
 	var output = []
 	var exit_code = OS.execute("/usr/bin/brotli", ["-v", "docs/index.wasm"], output)
+	print(exit_code)
 	for o in output:
 		print("\t\t" + o)
 	print("CompressAndChangeReferencesExportPlugin compress end")
