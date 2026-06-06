@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://ce3djr5ldcsbu" path="res://grid_bg.tres" id="2_fqc2p"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://TileDock.gd" id="3_bghhw"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
+[ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
 bg_color = Color(0.28627452, 0.28627452, 0.28627452, 1)
@@ -21,6 +22,34 @@ content_margin_top = 7.0
 content_margin_right = 7.0
 content_margin_bottom = 7.0
 bg_color = Color(0.38070744, 0.38070747, 0.3807073, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8ukp"]
+bg_color = Color(0.21176471, 0.21176471, 0.21176471, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0p4s"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xw4xy"]
+bg_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifj8t"]
+bg_color = Color(0.28627452, 0.28627452, 0.28627452, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -279,6 +308,52 @@ layout_mode = 2
 [node name="Tile25" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("3_fqc2p")]
 layout_mode = 2
 
+[node name="ButtonAnchor" type="Control" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel" unique_id=853209787]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="ResetButton" type="Button" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/ButtonAnchor" unique_id=1148351401]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -67.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_r8ukp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b0p4s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xw4xy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ifj8t")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ArrowTextureRect" type="TextureRect" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/ButtonAnchor/ResetButton" unique_id=254321134]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -16.0
+offset_right = 52.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-1, 1)
+mouse_filter = 2
+texture = ExtResource("8_r8ukp")
+expand_mode = 5
+
 [node name="ScoreMarginContainer" type="MarginContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer" unique_id=708401108]
 layout_mode = 2
 size_flags_horizontal = 6
@@ -312,3 +387,5 @@ size_flags_horizontal = 3
 
 [node name="WordPanel" parent="FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer/ScoreVBoxContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
 layout_mode = 2
+
+[connection signal="pressed" from="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/ButtonAnchor/ResetButton" to="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]

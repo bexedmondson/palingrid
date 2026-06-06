@@ -150,3 +150,11 @@ func make_word(word: String, indexes: Array[int]):
 func highlight(indexes):
 	for index in indexes:
 		slots[index].highlight()
+		
+func reset_tiles():
+	for slot in slots:
+		if slot.slotTile == null:
+			continue
+		var tile = slot.slotTile
+		tile.dragged_away.emit(tile)
+		tileHolder.add_tile(tile)
