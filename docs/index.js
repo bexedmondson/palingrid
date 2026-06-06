@@ -533,7 +533,7 @@ const InternalConfig = function (initConfig) { // eslint-disable-line no-unused-
 			'printErr': this.onPrintError,
 			'thisProgram': this.executable,
 			'noExitRuntime': false,
-			'dynamicLibraries': [`${loadPath}.side.wasm`].concat(this.gdextensionLibs),
+			'dynamicLibraries': [`${loadPath}.side.wasm.br`].concat(this.gdextensionLibs),
 			'emscriptenPoolSize': this.emscriptenPoolSize,
 			'instantiateWasm': function (imports, onSuccess) {
 				function done(result) {
@@ -560,10 +560,10 @@ const InternalConfig = function (initConfig) { // eslint-disable-line no-unused-
 					return `${loadPath}.js`;
 				} else if (path in gdext) {
 					return path;
-				} else if (path.endsWith('.side.wasm')) {
-					return `${loadPath}.side.wasm`;
-				} else if (path.endsWith('.wasm')) {
-					return `${loadPath}.wasm`;
+				} else if (path.endsWith('.side.wasm.br')) {
+					return `${loadPath}.side.wasm.br`;
+				} else if (path.endsWith('.wasm.br')) {
+					return `${loadPath}.wasm.br`;
 				}
 				return path;
 			},
