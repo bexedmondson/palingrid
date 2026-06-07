@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dlthwx6ssmwov" path="res://DropTile.gd" id="1_n3f48"]
 
 [node name="Tile" type="Panel" unique_id=1042171115 node_paths=PackedStringArray("letter_label")]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(80, 80)
 scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -25,7 +25,7 @@ offset_right = 20.0
 offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 52
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://28x1mc1dnjtv"]
 
+[ext_resource type="Script" uid="uid://c8q3lqv112djd" path="res://AspectRatioTweaker.gd" id="1_b0p4s"]
 [ext_resource type="Script" uid="uid://chbvohdq7s7dl" path="res://DailyLetterSetGenerator.gd" id="1_g2qvd"]
 [ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://Grid.gd" id="1_sle3t"]
 [ext_resource type="JSON" path="res://stats.json" id="2_05i0m"]
@@ -55,7 +56,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="MarginContainer" type="MarginContainer" unique_id=2099300064]
+[node name="MarginContainer" type="MarginContainer" unique_id=2099300064 node_paths=PackedStringArray("wordListScroller")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,6 +68,8 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
+script = ExtResource("1_b0p4s")
+wordListScroller = NodePath("FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer/ScoreVBoxContainer/ScrollContainer")
 
 [node name="LetterSetGenerator" type="Node" parent="." unique_id=1348343417]
 script = ExtResource("1_g2qvd")
@@ -78,30 +81,38 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_fqc2p")
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="." unique_id=384962350]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
-[node name="FullScreenHFlowContainer" type="HBoxContainer" parent="FullScreenScrollContainer" unique_id=311959715]
+[node name="FullScreenHFlowContainer" type="HFlowContainer" parent="FullScreenScrollContainer" unique_id=1724119542]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+alignment = 1
 
 [node name="GameVBoxContainer" type="VBoxContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer" unique_id=420867560]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-theme_override_constants/separation = 50
+theme_override_constants/separation = 10
 
 [node name="GridMarginContainer" type="MarginContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=1056585952]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
 [node name="GridAspectRatioContainer" type="AspectRatioContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer" unique_id=728211041]
 layout_mode = 2
-stretch_mode = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score")]
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 script = ExtResource("1_sle3t")
 generator = NodePath("../../../../../../LetterSetGenerator")
@@ -220,9 +231,8 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TileDockPanel" type="PanelContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=939378106]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(94, 94)
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_g2qvd")
 
 [node name="Tiles" type="HFlowContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel" unique_id=1101630964]
@@ -355,35 +365,41 @@ texture = ExtResource("8_r8ukp")
 expand_mode = 5
 
 [node name="ScoreMarginContainer" type="MarginContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer" unique_id=708401108]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer" unique_id=1727399492]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="TotalLabel" type="Label" parent="FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer/ScoreVBoxContainer" unique_id=1348282677]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 48
 text = "SCORE: 0"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer/ScoreVBoxContainer" unique_id=1601090332]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 4
+vertical_scroll_mode = 0
 scroll_deadzone = 10
 scroll_hint_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer/ScoreVBoxContainer/ScrollContainer" unique_id=1668258416]
+[node name="VBoxContainer" type="HFlowContainer" parent="FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer/ScoreVBoxContainer/ScrollContainer" unique_id=815669151]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+last_wrap_alignment = 2
 
 [node name="WordPanel" parent="FullScreenScrollContainer/FullScreenHFlowContainer/ScoreMarginContainer/ScoreVBoxContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
 layout_mode = 2
