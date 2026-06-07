@@ -80,7 +80,7 @@ var tween: Tween
 func highlight():
 	if (tween == null || !tween.is_valid()):
 		tween = create_tween()
-		tween.tween_property(circle, "modulate:a", 0, 0.8).from(1.0)
+		tween.tween_property(circle, "modulate:a", 0, 1.2).from(1.0)
 	if (tween.is_running()):
 		tween.stop()
 	tween.play()

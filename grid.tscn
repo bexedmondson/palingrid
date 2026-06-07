@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
-bg_color = Color(0.28627452, 0.28627452, 0.28627452, 1)
+bg_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
 expand_margin_left = 50.0
 expand_margin_top = 50.0
 expand_margin_right = 50.0

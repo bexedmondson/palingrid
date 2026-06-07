@@ -33,6 +33,7 @@ offset_right = 20.0
 offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.9843137, 0.92941177, 0.85490197, 1)
 theme_override_font_sizes/font_size = 64
 text = "A"
 horizontal_alignment = 1
