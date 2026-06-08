@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://ce3djr5ldcsbu" path="res://grid_bg.tres" id="2_fqc2p"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://TileDock.gd" id="3_bghhw"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
+[ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://DisableScrollOnDrag.gd" id="4_xw4xy"]
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
@@ -87,6 +88,7 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 scroll_deadzone = 10
 scroll_hint_mode = 1
+script = ExtResource("4_xw4xy")
 
 [node name="FullScreenHFlowContainer" type="HFlowContainer" parent="FullScreenScrollContainer" unique_id=1724119542]
 layout_mode = 2
