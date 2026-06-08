@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dlthwx6ssmwov" path="res://DropTile.gd" id="1_n3f48"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3f48"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Tile" type="Panel" unique_id=1042171115 node_paths=PackedStringArray("letter_label")]
 custom_minimum_size = Vector2(90, 90)
 offset_right = 90.0
@@ -10,6 +21,7 @@ scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3f48")
 script = ExtResource("1_n3f48")
 letter_label = NodePath("Label")
 
