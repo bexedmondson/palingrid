@@ -44,6 +44,8 @@ func _ready() -> void:
 	generator.generate(25)
 	
 	generator.generated_set.shuffle()
+	print(generator.generated_set)
+	
 	var i = 0
 	for tile in tiles:
 		tile.set_letter(generator.generated_set[i])
@@ -59,70 +61,6 @@ func _ready() -> void:
 		valid_words.append(line)
 	file.close()
 	
-	var set_count = {}
-	for c in generator.generated_set:
-		if c in set_count:
-			set_count[c] += 1
-		else:
-			set_count[c] = 1
-	
-	var possible_word_scores = {}
-	for word in valid_words:
-		var word_count = {}
-		for c in word:
-			if c in word_count:
-				word_count[c] += 1
-			else:
-				word_count[c] = 1
-		
-		var word_possible = true
-		for w in word_count:
-			if w not in set_count:
-				word_possible = false
-				break
-			if set_count[w] < word_count[w]:
-				word_possible = false
-				break
-		
-		if not word_possible:
-			continue
-		
-		if word.length() == 3:
-			possible_word_scores[word] = 1
-			continue
-		
-		possible_word_scores[word] = 0
-		var line_words = {}
-		
-		check_chunk(word[0]+word[1]+word[2], [0,1,2], line_words)
-		check_chunk(word[0]+word[1]+word[2]+word[3], [0,1,2,3], line_words)
-		check_chunk(word[1]+word[2]+word[3], [1,2,3], line_words)
-		if (word.length() == 4):
-			for l in line_words:
-				if l.length() == 3:
-					possible_word_scores[word] += 1
-				else:
-					possible_word_scores[word] += 2
-			continue
-		
-		check_chunk(word[1]+word[2]+word[3]+word[4], [1,2,3,4], line_words)
-		check_chunk(word[2]+word[3]+word[4], [2,3,4], line_words)
-		check_chunk(word[0]+word[1]+word[2]+word[3]+word[4], [0,1,2,3,4], line_words)
-		for l in line_words:
-			if l.length() == 3:
-				possible_word_scores[word] += 1
-			elif l.length() == 4:
-				possible_word_scores[word] += 2
-			else:
-				possible_word_scores[word] += 3
-	print(possible_word_scores)
-	print(possible_word_scores.size())
-	var total = 0
-	for p in possible_word_scores:
-		total += possible_word_scores[p]
-	print(str(total))
-		
-
 var dash = "-"
 
 func update(slot: DropSlot):
