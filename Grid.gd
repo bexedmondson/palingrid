@@ -1,4 +1,5 @@
-extends Node
+class_name Grid
+extends Control
 
 @export var generator : DailyLetterSetGenerator
 @export var tileHolder : TileDock
@@ -6,6 +7,7 @@ extends Node
 @export var tiles : Array[DropTile]
 @export var wordScene : InstancePlaceholder
 @export var score : Label
+@export var bestScore : BestScoreIndicator
 
 var lineSlotIndexes = [
 	[0,  1,  2,  3,  4], 
@@ -34,17 +36,21 @@ var lineSlotIndexes = [
 	[14, 18, 22]
 ]
 
-var test_letter_set = ["s","p","a","n","s","m","n","r","a","t","a","u","i","o","o","r","n","l","p","p","t","r","a","p","s"]
+const grid_width : int = 5
+const grid_height : int = 5
+func letter_count(): return grid_width * grid_height
 
 var valid_words = []
 var wordInstanceMap = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	generator.generate(25)
+	generator.generate(letter_count())
 	
 	generator.generated_set.shuffle()
 	print(generator.generated_set)
+	
+	bestScore.load()
 	
 	var i = 0
 	for tile in tiles:
@@ -64,7 +70,7 @@ func _ready() -> void:
 var dash = "-"
 
 func update(slot: DropSlot):
-	push_warning("grid - update from slot " + slot.name)
+	#push_warning("grid - update from slot " + slot.name)
 	var words = {}
 	for line in lineSlotIndexes:
 		add_line_words(line, words)
@@ -90,6 +96,8 @@ func update(slot: DropSlot):
 		total += wordInstanceMap[word].get_points()
 	
 	score.text = "SCORE: " + str(total)
+	
+	bestScore.update(total)
 
 func add_line_words(line: Array, words: Dictionary):
 	#print(str(line))
@@ -164,6 +172,9 @@ func make_word(word: String, indexes: Array[int]):
 func highlight(indexes):
 	for index in indexes:
 		slots[index].highlight()
+		
+func filled_slot_count():
+	return letter_count() - tileHolder.tile_count()
 		
 func reset_tiles():
 	for slot in slots:

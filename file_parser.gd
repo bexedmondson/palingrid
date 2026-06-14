@@ -13,7 +13,7 @@ func parse() -> void:
 			var line = file.get_line()
 			if (line.length() > 2 && line.length() < 6 && !line.contains("'")):
 				small[line] = null
-				print(line)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                				#print(line)
 		file.close()
 	
 	var smallFile = FileAccess.open("res://small.txt", FileAccess.WRITE)

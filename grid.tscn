@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
 [ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://DisableScrollOnDrag.gd" id="4_xw4xy"]
 [ext_resource type="Script" uid="uid://fusem4g6wje" path="res://BestScoreIndicator.gd" id="5_ifj8t"]
+[ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://text_shine.tres" id="7_kc0yb"]
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
+[ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://GridRippleAnimator.gd" id="9_ghb71"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
 bg_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
@@ -18,6 +20,43 @@ expand_margin_left = 50.0
 expand_margin_top = 50.0
 expand_margin_right = 50.0
 expand_margin_bottom = 50.0
+
+[sub_resource type="Gradient" id="Gradient_kc0yb"]
+offsets = PackedFloat32Array(0, 0.23210381, 1)
+colors = PackedColorArray(0.6969094, 0.69690996, 0.69690955, 1, 0.8776943, 0.8776943, 0.8776943, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hsp7l"]
+gradient = SubResource("Gradient_kc0yb")
+width = 30
+height = 15
+
+[sub_resource type="Gradient" id="Gradient_5xkti"]
+offsets = PackedFloat32Array(0, 0.870238, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_7jn42"]
+offsets = PackedFloat32Array(0.16111772, 0.38995045, 0.5155495, 0.72579235, 0.78349507)
+colors = PackedColorArray(0.41568628, 0.93333334, 1, 1, 0.41568628, 0.93333334, 0.08627451, 1, 1, 0.95686275, 0.08235294, 1, 0.97741234, 0.9139915, 0.110791944, 1, 0.9999985, 0.28824288, 0.646079, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsp7l"]
+bg_color = Color(0.28794214, 0.28794223, 0.28794205, 1)
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.69803923, 0.92156863, 0.5686275, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8ukp"]
 bg_color = Color(0.21176471, 0.21176471, 0.21176471, 1)
@@ -58,6 +97,21 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc0yb"]
+content_margin_left = 30.0
+content_margin_top = 25.0
+content_margin_right = 30.0
+content_margin_bottom = 25.0
+bg_color = Color(0.38070744, 0.38070747, 0.3807073, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
 [node name="MarginContainer" type="MarginContainer" unique_id=2099300064 node_paths=PackedStringArray("wordListScroller")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,13 +136,13 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fqc2p")
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="." unique_id=384962350]
+clip_contents = false
 layout_mode = 2
 theme_override_colors/scroll_hint_vertical_color = Color(0.28627452, 0.28627452, 0.28627452, 1)
 theme_override_colors/scroll_hint_horizontal_color = Color(0.28627452, 0.28627452, 0.28627452, 1)
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 scroll_deadzone = 10
-scroll_hint_mode = 1
 script = ExtResource("4_xw4xy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FullScreenScrollContainer" unique_id=418581970]
@@ -110,12 +164,29 @@ theme_override_font_sizes/font_size = 48
 text = "SCORE: 0"
 horizontal_alignment = 1
 
-[node name="YourBestLabel" type="Label" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer" unique_id=586686390 node_paths=PackedStringArray("dailyGenerator")]
+[node name="HBoxContainer" type="HBoxContainer" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer" unique_id=1565934058]
 layout_mode = 2
-text = "YOUR BEST:"
+alignment = 1
+
+[node name="BestSoFarLabel" type="Label" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=457676338]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "TODAY'S BEST:"
+
+[node name="BestScoreLabel" type="Label" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
 horizontal_alignment = 1
 script = ExtResource("5_ifj8t")
-dailyGenerator = NodePath("../../../../../LetterSetGenerator")
+gridAnimationPlayer = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/GridRippleAnimator")
+dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
+bestLabel = NodePath("../BestSoFarLabel")
+bestContainer = NodePath("..")
+grid = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 
 [node name="FullScreenHFlowContainer" type="HFlowContainer" parent="FullScreenScrollContainer/VBoxContainer" unique_id=1724119542]
 layout_mode = 2
@@ -134,7 +205,7 @@ theme_override_constants/separation = 10
 
 [node name="GridMarginContainer" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=1056585952]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 3
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
@@ -142,10 +213,10 @@ theme_override_constants/margin_bottom = 50
 
 [node name="GridAspectRatioContainer" type="AspectRatioContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer" unique_id=728211041]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
+stretch_mode = 1
 
-[node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score")]
+[node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 script = ExtResource("1_sle3t")
@@ -155,10 +226,48 @@ slots = [NodePath("VBoxContainer/Row/Cell1"), NodePath("VBoxContainer/Row/Cell2"
 tiles = [NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile2"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile3"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile4"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile5"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile6"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile7"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile8"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile9"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile10"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile11"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile12"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile13"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile14"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile15"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile16"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile17"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile18"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile19"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile20"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile21"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile22"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile23"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile24"), NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile25")]
 wordScene = NodePath("../../../../WordListMarginContainer/ScrollContainer/VBoxContainer/WordPanel")
 score = NodePath("../../../../../MarginContainer/ScoreVBoxContainer/TotalLabel")
+bestScore = NodePath("../../../../../MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
+
+[node name="Control" type="Control" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=1443428867]
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/Control" unique_id=424529749]
+emitting = false
+amount = 75
+texture = SubResource("GradientTexture2D_hsp7l")
+one_shot = true
+explosiveness = 0.95
+lifetime_randomness = 0.2
+local_coords = true
+emission_shape = 5
+emission_points = PackedVector2Array(250, 250, 250, 125, 250, 0, 250, -125, 250, -250, 125, -250, 0, -250, -125, -250, -250, -250, -250, -125, -250, 0, -250, 125, -250, 250, -125, 250, 0, 250, 125, 250)
+emission_normals = PackedVector2Array(1, 1, 1.4, 0, 1.4, 0, 1.4, 0, 1, -1, 0, -1.4, 0, -1.4, 0, -1.4, -1, -1, -1.4, 0, -1.4, 0, -1.4, 0, -1, 1, 0, 1.4, 0, 1.4, 0, 1.4)
+emission_colors = PackedColorArray()
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 110.0
+angular_velocity_min = 50.0
+angular_velocity_max = 100.0
+damping_min = 150.0
+damping_max = 150.0
+angle_min = -180.0
+angle_max = 180.0
+color_ramp = SubResource("Gradient_5xkti")
+color_initial_ramp = SubResource("Gradient_7jn42")
 
 [node name="Panel" type="Panel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=1960453266]
+material = ExtResource("7_kc0yb")
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_fqc2p")
+
+[node name="PanelGlow" type="Panel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=88182222]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hsp7l")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=34194217]
 layout_mode = 2
@@ -289,7 +398,17 @@ tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Til
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
+[node name="GridRippleAnimator" type="Control" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=881408362 node_paths=PackedStringArray("grid", "grid_bg", "grid_glow", "confetti")]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("9_ghb71")
+grid = NodePath("../Grid")
+grid_bg = NodePath("../Grid/Panel")
+grid_glow = NodePath("../Grid/PanelGlow")
+confetti = NodePath("../Grid/Control/CPUParticles2D")
+
 [node name="ButtonAnchor" type="Control" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer" unique_id=853209787]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -354,7 +473,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_g2qvd")
 
 [node name="Tiles" type="HFlowContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel" unique_id=1101630964]
 layout_mode = 2
-size_flags_vertical = 0
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 alignment = 1
@@ -443,6 +561,10 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer" unique_id=1892135352]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kc0yb")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer" unique_id=1601090332]
 custom_minimum_size = Vector2(400, 0)
