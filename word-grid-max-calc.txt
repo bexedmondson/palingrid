@@ -1,0 +1,7 @@
+5 horizontal lines length 5: 2x3pts, 2x2x2pts, 3x2x1pt = 6+8+6 = 20, x5 = 100
+5 vertical lines length 5: 2x3pts, 2x2x2pts, 3x2x1pt = 6+8+6 = 20, x5 = 100
+2 diagonal lines length 5: 2x3pts, 2x2x2pts, 3x2x1pt = 6+8+6 = 20, x2 = 40
+4 diagonal lines length 4: 2x2x2pts, 3x2x1pt = 8+6 = 14, x4 = 56
+4 diagonal lines length 3: 3x2x1pt = 6, x4 = 24
+
+100 + 100 + 40 + 56 + 24 = 200 + 96 + 24 = 320
