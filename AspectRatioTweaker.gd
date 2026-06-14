@@ -7,7 +7,7 @@ func _on_ready():
 
 func tweak():
 	var screen = get_viewport().get_screen_transform()
-	if (screen.x < screen.y):
+	if (screen.x * 1.1 < screen.y):
 		wordListScroller.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	else:
 		wordListScroller.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_RESERVE

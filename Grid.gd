@@ -1,4 +1,5 @@
-extends Node
+class_name Grid
+extends Control
 
 @export var generator : DailyLetterSetGenerator
 @export var tileHolder : TileDock
@@ -6,6 +7,7 @@ extends Node
 @export var tiles : Array[DropTile]
 @export var wordScene : InstancePlaceholder
 @export var score : Label
+@export var bestScore : BestScoreIndicator
 
 var lineSlotIndexes = [
 	[0,  1,  2,  3,  4], 
@@ -34,16 +36,22 @@ var lineSlotIndexes = [
 	[14, 18, 22]
 ]
 
-var test_letter_set = ["s","p","a","n","s","m","n","r","a","t","a","u","i","o","o","r","n","l","p","p","t","r","a","p","s"]
+const grid_width : int = 5
+const grid_height : int = 5
+func letter_count(): return grid_width * grid_height
 
 var valid_words = []
 var wordInstanceMap = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	generator.generate(25)
+	generator.generate(letter_count())
 	
 	generator.generated_set.shuffle()
+	print(generator.generated_set)
+	
+	bestScore.load()
+	
 	var i = 0
 	for tile in tiles:
 		tile.set_letter(generator.generated_set[i])
@@ -58,62 +66,14 @@ func _ready() -> void:
 		var line = file.get_line()
 		valid_words.append(line)
 	file.close()
-
+	
 var dash = "-"
 
 func update(slot: DropSlot):
 	#push_warning("grid - update from slot " + slot.name)
 	var words = {}
 	for line in lineSlotIndexes:
-		#print(str(line))
-		var l2 = line[2]
-		#if middle slot empty, no words possible in this line so can early exit this check
-		var c = slots[l2].letter()
-		if (c == dash):
-			continue
-			
-		var l0 = line[0]
-		var a = slots[l0].letter()
-		var l1 = line[1]
-		var b = slots[l1].letter()
-		
-		var chunk : String = a+b+c
-		check_chunk(chunk, [l0,l1,l2], words)
-		
-		if (line.size() < 4):
-			continue
-		
-		var l3 = line[3]
-		var d = slots[l3].letter()
-		if (d == dash):
-			continue
-		
-		chunk = b+c+d
-		check_chunk(chunk, [l1,l2,l3], words)
-		
-		chunk = a+b+c+d
-		check_chunk(chunk, [l0,l1,l2,l3], words)
-		
-		if (line.size() < 5):
-			continue
-		
-		var l4 = line[4]
-		var e = slots[l4].letter()
-		if (e == dash):
-			continue
-		
-		chunk = c+d+e
-		check_chunk(chunk, [l2,l3,l4], words)
-		if (b == dash):
-			continue
-		
-		chunk = b+c+d+e
-		check_chunk(chunk, [l1,l2,l3,l4], words)
-		if (a == dash):
-			continue
-		
-		chunk = a+b+c+d+e
-		check_chunk(chunk, [l0,l1,l2,l3,l4], words)
+		add_line_words(line, words)
 	
 	#push_warning("grid - words: " + str(words))
 	#push_warning("grid - wordinstancemap: " + str(wordInstanceMap))
@@ -136,6 +96,59 @@ func update(slot: DropSlot):
 		total += wordInstanceMap[word].get_points()
 	
 	score.text = "SCORE: " + str(total)
+	
+	bestScore.update(total)
+
+func add_line_words(line: Array, words: Dictionary):
+	#print(str(line))
+	var l2 = line[2]
+	#if middle slot empty, no words possible in this line so can early exit this check
+	var c = slots[l2].letter()
+	if (c == dash):
+		return
+		
+	var l0 = line[0]
+	var a = slots[l0].letter()
+	var l1 = line[1]
+	var b = slots[l1].letter()
+	
+	var chunk : String = a+b+c
+	check_chunk(chunk, [l0,l1,l2], words)
+	
+	if (line.size() < 4):
+		return
+	
+	var l3 = line[3]
+	var d = slots[l3].letter()
+	if (d == dash):
+		return
+	
+	chunk = b+c+d
+	check_chunk(chunk, [l1,l2,l3], words)
+	
+	chunk = a+b+c+d
+	check_chunk(chunk, [l0,l1,l2,l3], words)
+	
+	if (line.size() < 5):
+		return
+	
+	var l4 = line[4]
+	var e = slots[l4].letter()
+	if (e == dash):
+		return
+	
+	chunk = c+d+e
+	check_chunk(chunk, [l2,l3,l4], words)
+	if (b == dash):
+		return
+	
+	chunk = b+c+d+e
+	check_chunk(chunk, [l1,l2,l3,l4], words)
+	if (a == dash):
+		return
+	
+	chunk = a+b+c+d+e
+	check_chunk(chunk, [l0,l1,l2,l3,l4], words)
 
 func check_chunk(chunk: String, indexes: Array[int], words: Dictionary):
 	#print(chunk)
@@ -159,6 +172,9 @@ func make_word(word: String, indexes: Array[int]):
 func highlight(indexes):
 	for index in indexes:
 		slots[index].highlight()
+		
+func filled_slot_count():
+	return letter_count() - tileHolder.tile_count()
 		
 func reset_tiles():
 	for slot in slots:
