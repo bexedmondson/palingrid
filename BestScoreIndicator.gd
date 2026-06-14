@@ -2,8 +2,13 @@ extends Control
 
 @export var dailyGenerator : DailyLetterSetGenerator
 
-func convert_to_save_string(score: int):
-	return str(dailyGenerator.daySeed + score)
+const saveFile : String = "user://score.txt"
+const newline : String = "\n"
+
+var best : int = 0
+
+func convert_to_save_data(score: int):
+	return dailyGenerator.daySeed + score
 	
 func convert_from_save_string(saveString : String):
 	var saveNumber = saveString.to_int()
@@ -16,6 +21,22 @@ func _process(delta: float) -> void:
 		return
 	if (dailyGenerator.daySeed == 0):
 		return
-	print(dailyGenerator.daySeed)
-	convert_from_save_string(str(dailyGenerator.daySeed))
+	
 	done = true
+
+func save(score : int):
+	var saveData = convert_to_save_data(score)
+	var f = FileAccess.open(saveFile, FileAccess.READ_WRITE)
+	f.seek_end()
+	f.store_string(newline)
+	f.store_16(saveData)
+	f.close()
+
+func load():
+	if !FileAccess.file_exists(saveFile):
+		return
+	
+	var f = FileAccess.open(saveFile, FileAccess.READ)
+	f.seek_end(-16)
+	var last_save = f.get_16()
+	
