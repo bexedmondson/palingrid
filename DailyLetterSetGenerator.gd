@@ -8,10 +8,10 @@ var generated_set = []
 var minvowels = 7
 var vowels = {
 	"a": 0.25, 
-	"e": 0.3, 
-	"i": 0.2, 
-	"o": 0.15, 
-	"u": 0.1
+	"e": 0.55, 
+	"i": 0.75, 
+	"o": 0.9, 
+	"u": 1.0
 	}
 
 var daySeed : int
@@ -51,9 +51,9 @@ func alt_generator(count, day, valid_words):
 	for i in range(set_length, count):
 		var r = randf()
 		if i > count - minvowels and vowel_count < minvowels:
-			for v in range(len(vowels)):
-				if r < 0.2*(v+1):
-					generated_set.append(vowels[v])
+			for v in vowels:
+				if r < vowels[v]:
+					generated_set.append(v)
 					break
 		else:
 			for d in data:
@@ -81,6 +81,7 @@ func gen_date(count, day, month, year):
 			for v in vowels:
 				if r < vowels[v]:
 					generated_set.append(v)
+					vowel_count += 1
 					break
 		else:
 			for d in data:
@@ -92,11 +93,13 @@ func gen_date(count, day, month, year):
 	
 	return generated_set
 
+
 func generate(count: int):
 	var date = Time.get_date_dict_from_system(true)
 	gen_date(count, date["day"], date["month"], date["year"])
 	
 	return generated_set
+
 
 func load_letter_distribution() -> void:
 	var rawdata = statsFile.data

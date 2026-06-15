@@ -22,7 +22,7 @@ func update(current: int) -> void:
 	self.text = str(best)
 	
 	save(current)
-	print("updates " + str(updates_since_anim))
+	#print("updates " + str(updates_since_anim))
 	if  grid.filled_slot_count() < grid.letter_count() or (session_done_anim and updates_since_anim < 10):
 		var tween = self.create_tween()
 		tween.set_parallel()
