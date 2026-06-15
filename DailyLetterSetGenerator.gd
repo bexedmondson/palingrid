@@ -6,7 +6,13 @@ var data = {}
 var generated_set = []
 
 var minvowels = 7
-var vowels = ["a", "e", "i", "o", "u"]
+var vowels = {
+	"a": 0.25, 
+	"e": 0.3, 
+	"i": 0.2, 
+	"o": 0.15, 
+	"u": 0.1
+	}
 
 var daySeed : int
 
@@ -72,9 +78,9 @@ func gen_date(count, day, month, year):
 	for i in range(count):
 		var r = randf()
 		if i > count - minvowels and vowel_count < minvowels:
-			for v in range(len(vowels)):
-				if r < 0.2*(v+1):
-					generated_set.append(vowels[v])
+			for v in vowels:
+				if r < vowels[v]:
+					generated_set.append(v)
 					break
 		else:
 			for d in data:
