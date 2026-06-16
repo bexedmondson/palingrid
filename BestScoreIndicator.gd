@@ -23,7 +23,7 @@ func update(current: int) -> void:
 	
 	save(current)
 	#print("updates " + str(updates_since_anim))
-	if  grid.filled_slot_count() < grid.letter_count() or (session_done_anim and updates_since_anim < 10):
+	if  grid.filled_slot_count() < grid.letter_count() or (session_done_anim and updates_since_anim < 1):
 		var tween = self.create_tween()
 		tween.set_parallel()
 		tween.tween_property(self, "theme_override_colors/font_color", Color.WHITE, 1).from(Color.YELLOW)
