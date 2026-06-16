@@ -13,6 +13,7 @@ var allScores : Dictionary = {}
 var best : int = 0
 var session_done_anim : bool = false
 var updates_since_anim : int = 0
+var has_filled_board_this_session : bool = false
 
 func update(current: int) -> void:
 	if best >= current:
@@ -22,8 +23,11 @@ func update(current: int) -> void:
 	self.text = str(best)
 	
 	save(current)
+	if grid.filled_slot_count() >= grid.letter_count():
+		has_filled_board_this_session = true
+	
 	#print("updates " + str(updates_since_anim))
-	if  grid.filled_slot_count() < grid.letter_count() or (session_done_anim and updates_since_anim < 1):
+	if  grid.filled_slot_count() < grid.letter_count() and not has_filled_board_this_session:# (session_done_anim and updates_since_anim < 1):
 		var tween = self.create_tween()
 		tween.set_parallel()
 		tween.tween_property(self, "theme_override_colors/font_color", Color.WHITE, 1).from(Color.YELLOW)
