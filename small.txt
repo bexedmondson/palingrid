@@ -3617,7 +3617,7 @@ lames
 lamp
 lamps
 lams
-élan
+elan
 lance
 land
 lands
@@ -4388,7 +4388,7 @@ naves
 navy
 nay
 nays
-née
+nee
 near
 nears
 neat
@@ -4643,7 +4643,7 @@ outdo
 outed
 outer
 outgo
-outré
+outre
 outs
 ova
 oval
@@ -4746,7 +4746,7 @@ party
 pas
 pasha
 pass
-passé
+passe
 past
 pasta
 paste
@@ -4778,8 +4778,7 @@ payed
 payee
 payer
 pays
-pct
-épée
+epee
 pea
 peace
 peach
@@ -4840,7 +4839,7 @@ perky
 perm
 perms
 pert
-épées
+epees
 pesky
 peso
 pesos
@@ -5524,11 +5523,11 @@ rot
 rote
 rotor
 rots
-roué
+roue
 rouge
 rough
 round
-roués
+roues
 rouse
 rout
 route
@@ -5665,7 +5664,7 @@ satyr
 sauce
 saucy
 sauna
-sauté
+saute
 save
 saved
 saver
@@ -6959,7 +6958,7 @@ tubes
 tubs
 tuck
 tucks
-étude
+etude
 tuft
 tufts
 tug
