@@ -76,6 +76,10 @@ func gen_date(count, day, month, year):
 	
 	generated_set = []
 	for i in range(count):
+		if i == count - 1 and "q" in generated_set and "u" not in generated_set:
+			generated_set.append("u")
+			continue
+		
 		var r = randf()
 		if i > count - minvowels and vowel_count < minvowels:
 			for v in vowels:
