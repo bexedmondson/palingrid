@@ -1,0 +1,285 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuvkn80vfc7mq"]
+
+[ext_resource type="Script" uid="uid://10piffesa0q5" path="res://scripts/Leaderboard.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cighw5yua3ygf" path="res://addons/cheddaboards/icon.png" id="2_icon"]
+[ext_resource type="FontFile" uid="uid://b5c8vdfry2s83" path="res://assets/fonts/ZeroCool.ttf" id="3_font"]
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.059, 0.059, 0.059, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+; ============================================================
+; HEADER SECTION
+; ============================================================
+
+[node name="HeaderContainer" type="VBoxContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+; --- Title Row: Title + Refresh ---
+
+[node name="TitleRow" type="HBoxContainer" parent="MarginContainer/VBox/HeaderContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBox/HeaderContainer/TitleRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(0.96, 0.65, 0.14, 1)
+text = "CheddaBoards"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="RefreshButton" type="Button" parent="MarginContainer/VBox/HeaderContainer/TitleRow"]
+custom_minimum_size = Vector2(80, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 16
+text = "↻"
+tooltip_text = "Refresh leaderboard"
+
+; --- Tab Bar: All Time | Weekly | Daily ---
+
+[node name="TabBar" type="HBoxContainer" parent="MarginContainer/VBox/HeaderContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="AllTimeTab" type="Button" parent="MarginContainer/VBox/HeaderContainer/TabBar"]
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "All Time"
+
+[node name="WeeklyTab" type="Button" parent="MarginContainer/VBox/HeaderContainer/TabBar"]
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Weekly"
+
+[node name="DailyTab" type="Button" parent="MarginContainer/VBox/HeaderContainer/TabBar"]
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Daily"
+
+; --- Archive Dropdown Row ---
+
+[node name="ArchiveRow" type="HBoxContainer" parent="MarginContainer/VBox/HeaderContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ArchiveLabel" type="Label" parent="MarginContainer/VBox/HeaderContainer/ArchiveRow"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.53, 0.53, 0.53, 1)
+text = "Period:"
+
+[node name="ArchiveDropdown" type="OptionButton" parent="MarginContainer/VBox/HeaderContainer/ArchiveRow"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+item_count = 1
+popup/item_0/text = "Current"
+popup/item_0/id = 0
+
+; --- Sort Row ---
+
+[node name="SortRow" type="HBoxContainer" parent="MarginContainer/VBox/HeaderContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="SortByScoreButton" type="Button" parent="MarginContainer/VBox/HeaderContainer/SortRow"]
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "By Score"
+
+[node name="SortByStreakButton" type="Button" parent="MarginContainer/VBox/HeaderContainer/SortRow"]
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "By Combo"
+
+; ============================================================
+; SEPARATOR
+; ============================================================
+
+[node name="TopSeparator" type="HSeparator" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/separator_color = Color(0.2, 0.2, 0.2, 1)
+
+; ============================================================
+; COLUMN HEADER
+; ============================================================
+
+[node name="ColumnHeader" type="HBoxContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RankHeader" type="Label" parent="MarginContainer/VBox/ColumnHeader"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
+text = "RANK"
+horizontal_alignment = 1
+
+[node name="NameHeader" type="Label" parent="MarginContainer/VBox/ColumnHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
+text = "PLAYER"
+
+[node name="ScoreHeader" type="Label" parent="MarginContainer/VBox/ColumnHeader"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
+text = "SCORE"
+horizontal_alignment = 2
+
+; ============================================================
+; LEADERBOARD SCROLL AREA
+; ============================================================
+
+[node name="LeaderboardScroll" type="ScrollContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LeaderboardList" type="VBoxContainer" parent="MarginContainer/VBox/LeaderboardScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+; ============================================================
+; FOOTER SECTION
+; ============================================================
+
+[node name="BottomSeparator" type="HSeparator" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/separator_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="FooterContainer" type="VBoxContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+; --- Your Rank Panel ---
+
+[node name="YourRankPanel" type="PanelContainer" parent="MarginContainer/VBox/FooterContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="YourRankMargin" type="MarginContainer" parent="MarginContainer/VBox/FooterContainer/YourRankPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="YourRankLabel" type="Label" parent="MarginContainer/VBox/FooterContainer/YourRankPanel/YourRankMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+text = "Your Rank: Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+; --- Status Label ---
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/VBox/FooterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.53, 0.53, 0.53, 1)
+horizontal_alignment = 1
+autowrap_mode = 3
+
+; --- Navigation Buttons ---
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="MarginContainer/VBox/FooterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBox/FooterContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(130, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Menu"
+
+[node name="PlayAgainButton" type="Button" parent="MarginContainer/VBox/FooterContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(140, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Play Again"
+
+; --- Powered By CheddaBoards ---
+
+[node name="PoweredByLabel" type="Label" parent="MarginContainer/VBox/FooterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.35, 0.35, 0.35, 1)
+text = "Powered by CheddaBoards — cheddaboards.com"
+horizontal_alignment = 1
+
+; ============================================================
+; CHEDDABOARDS LOGO (bottom-right watermark)
+; ============================================================
+
+[node name="LogoRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_icon")
+expand_mode = 1
+modulate = Color(1, 1, 1, 0.25)
