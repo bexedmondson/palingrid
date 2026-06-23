@@ -15,6 +15,12 @@ run/main_scene="uid://28x1mc1dnjtv"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://cidrnlqod27uy"
 
+[autoload]
+
+CheddaBoards="*res://addons/cheddaboards/CheddaBoards.gd"
+Achievements="*res://autoloads/Achievements.gd"
+MobileUI="*res://autoloads/MobileUI.gd"
+
 [display]
 
 window/size/viewport_width=1080
