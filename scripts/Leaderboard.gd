@@ -65,38 +65,38 @@ const COLOR_DROPDOWN_BG: Color = Color("222240")
 # NODE REFERENCES
 # ============================================================
 
-@onready var margin_container: MarginContainer = $MarginContainer
-@onready var title_label: Label = $MarginContainer/VBox/HeaderContainer/TitleRow/TitleLabel
-@onready var refresh_button: Button = $MarginContainer/VBox/HeaderContainer/TitleRow/RefreshButton
+@export var margin_container: MarginContainer
+@export var title_label: Label #$MarginContainer/VBox/HeaderContainer/TitleRow/TitleLabel
+@export var refresh_button: Button #$MarginContainer/VBox/HeaderContainer/TitleRow/RefreshButton
 
 # Tabs
-@onready var tab_bar: HBoxContainer = $MarginContainer/VBox/HeaderContainer/TabBar
-@onready var tab_all_time: Button = $MarginContainer/VBox/HeaderContainer/TabBar/AllTimeTab
-@onready var tab_weekly: Button = $MarginContainer/VBox/HeaderContainer/TabBar/WeeklyTab
-@onready var tab_daily: Button = $MarginContainer/VBox/HeaderContainer/TabBar/DailyTab
+@export var tab_bar: HBoxContainer ##$MarginContainer/VBox/HeaderContainer/TabBar
+@export var tab_all_time: Button ##$MarginContainer/VBox/HeaderContainer/TabBar/AllTimeTab
+@export var tab_weekly: Button ##$MarginContainer/VBox/HeaderContainer/TabBar/WeeklyTab
+@export var tab_daily: Button ##$MarginContainer/VBox/HeaderContainer/TabBar/DailyTab
 
 # Archive dropdown row
-@onready var archive_row: HBoxContainer = $MarginContainer/VBox/HeaderContainer/ArchiveRow
-@onready var archive_label: Label = $MarginContainer/VBox/HeaderContainer/ArchiveRow/ArchiveLabel
-@onready var archive_dropdown: OptionButton = $MarginContainer/VBox/HeaderContainer/ArchiveRow/ArchiveDropdown
+@export var archive_row: HBoxContainer #$MarginContainer/VBox/HeaderContainer/ArchiveRow
+@export var archive_label: Label #$MarginContainer/VBox/HeaderContainer/ArchiveRow/ArchiveLabel
+@export var archive_dropdown: OptionButton #$MarginContainer/VBox/HeaderContainer/ArchiveRow/ArchiveDropdown
 
 # Sort row
-@onready var sort_row: HBoxContainer = $MarginContainer/VBox/HeaderContainer/SortRow
-@onready var sort_score_btn: Button = $MarginContainer/VBox/HeaderContainer/SortRow/SortByScoreButton
-@onready var sort_streak_btn: Button = $MarginContainer/VBox/HeaderContainer/SortRow/SortByStreakButton
+@export var sort_row: HBoxContainer #$MarginContainer/VBox/HeaderContainer/SortRow
+@export var sort_score_btn: Button #$MarginContainer/VBox/HeaderContainer/SortRow/SortByScoreButton
+@export var sort_streak_btn: Button #$MarginContainer/VBox/HeaderContainer/SortRow/SortByStreakButton
 
 # Leaderboard display
-@onready var column_header: HBoxContainer = $MarginContainer/VBox/ColumnHeader
-@onready var leaderboard_scroll: ScrollContainer = $MarginContainer/VBox/LeaderboardScroll
-@onready var leaderboard_list: VBoxContainer = $MarginContainer/VBox/LeaderboardScroll/LeaderboardList
+@export var column_header: HBoxContainer #$MarginContainer/VBox/ColumnHeader
+@export var leaderboard_scroll: ScrollContainer #$MarginContainer/VBox/LeaderboardScroll
+@export var leaderboard_list: VBoxContainer #$MarginContainer/VBox/LeaderboardScroll/LeaderboardList
 
 # Footer
-@onready var your_rank_label: Label = $MarginContainer/VBox/FooterContainer/YourRankPanel/YourRankMargin/YourRankLabel
-@onready var your_rank_panel: PanelContainer = $MarginContainer/VBox/FooterContainer/YourRankPanel
-@onready var status_label: Label = $MarginContainer/VBox/FooterContainer/StatusLabel
-@onready var back_button: Button = $MarginContainer/VBox/FooterContainer/ButtonsContainer/BackButton
-@onready var play_again_button: Button = $MarginContainer/VBox/FooterContainer/ButtonsContainer/PlayAgainButton
-@onready var powered_label: Label = $MarginContainer/VBox/FooterContainer/PoweredByLabel
+@export var your_rank_label: Label #$MarginContainer/VBox/FooterContainer/YourRankPanel/YourRankMargin/YourRankLabel
+@export var your_rank_panel: PanelContainer #$MarginContainer/VBox/FooterContainer/YourRankPanel
+@export var status_label: Label #$MarginContainer/VBox/FooterContainer/StatusLabel
+@export var back_button: Button #$MarginContainer/VBox/FooterContainer/ButtonsContainer/BackButton
+@export var play_again_button: Button #$MarginContainer/VBox/FooterContainer/ButtonsContainer/PlayAgainButton
+@export var powered_label: Label #$MarginContainer/VBox/FooterContainer/PoweredByLabel
 
 # ============================================================
 # STATE
@@ -136,8 +136,11 @@ var selected_archive_index: int = -1
 # ============================================================
 # INITIALIZATION
 # ============================================================
-
-func _ready():
+func on_visibility_changed():
+	if (!self.visible):
+		_clear_load_timeout()
+		return
+	
 	_scale_ui()
 	
 	# Wait for CheddaBoards
@@ -708,9 +711,13 @@ func _on_refresh_pressed():
 		_load_leaderboard()
 
 func _on_back_pressed():
+	self.visible = false;
+	return
 	get_tree().change_scene_to_file(SCENE_MAIN_MENU)
 
 func _on_play_again_pressed():
+	self.visible = false;
+	return
 	get_tree().change_scene_to_file(SCENE_GAME)
 
 # ============================================================

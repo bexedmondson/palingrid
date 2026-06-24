@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://chvqlsbp0m0km"]
 
-[ext_resource type="Script" uid="uid://bjythe25ich12" path="res://scripts/MainMenu.gd" id="1_script"]
-[ext_resource type="FontFile" uid="uid://2c7ig5uxin2m" path="res://assets/fonts/ZeroCool.ttf" id="3_h7a2f"]
+[ext_resource type="Script" uid="uid://ban8r84a0ebvr" path="res://scripts/MainMenu.gd" id="1_script"]
 
 [node name="MainMenu" type="Control" unique_id=2102351680]
 layout_mode = 3
@@ -49,7 +48,6 @@ alignment = 1
 [node name="TitleLabel" type="Label" parent="LoginPanel/MarginContainer/VBoxContainer" unique_id=175797180]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 64
 text = "My Game"
 horizontal_alignment = 1
@@ -57,7 +55,6 @@ horizontal_alignment = 1
 [node name="SubtitleLabel" type="Label" parent="LoginPanel/MarginContainer/VBoxContainer" unique_id=623518629]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 18
 text = "Welcome!"
 horizontal_alignment = 1
@@ -71,7 +68,6 @@ custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.3, 1, 0.4, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 28
 text = "PLAY NOW"
 
@@ -80,7 +76,6 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 20
 text = "Leaderboard"
 
@@ -102,7 +97,6 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 18
 text = "Sign In"
 
@@ -110,7 +104,6 @@ text = "Sign In"
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -153,7 +146,6 @@ custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 18
 text = "Exit"
 
@@ -271,14 +263,12 @@ alignment = 1
 [node name="TitleLabel2" type="Label" parent="AnonymousPanel/MarginContainer/VBoxContainer" unique_id=1627041211]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 48
 text = "My Game"
 horizontal_alignment = 1
 
 [node name="WelcomeLabel" type="Label" parent="AnonymousPanel/MarginContainer/VBoxContainer" unique_id=1151993880]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 32
 text = "Welcome back, Player!"
 horizontal_alignment = 1
@@ -296,7 +286,6 @@ theme_override_constants/separation = 5
 [node name="WeeklyScoreLabel" type="Label" parent="AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=1417173762]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 20
 text = "This Week: 0"
 horizontal_alignment = 1
@@ -313,7 +302,6 @@ horizontal_alignment = 1
 [node name="PlaysLabel" type="Label" parent="AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer" unique_id=865296901]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 20
 text = "Games Played: 0"
 horizontal_alignment = 1
@@ -326,7 +314,6 @@ custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.3, 1, 0.4, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 28
 text = "PLAY NOW"
 
@@ -335,7 +322,6 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 20
 text = "Leaderboard"
 
@@ -343,7 +329,6 @@ text = "Leaderboard"
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 20
 text = "Achievements"
 
@@ -352,7 +337,6 @@ custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 16
 text = "Change Name"
 
@@ -362,7 +346,6 @@ layout_mode = 2
 [node name="UpgradeLabel" type="Label" parent="AnonymousPanel/MarginContainer/VBoxContainer" unique_id=807564153]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 14
 text = "— save your progress —"
 horizontal_alignment = 1
@@ -371,7 +354,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 16
 text = "Link Google Account"
 
@@ -379,7 +361,6 @@ text = "Link Google Account"
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 16
 text = "Link Apple Account"
 
@@ -387,7 +368,6 @@ text = "Link Apple Account"
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 16
 text = "Link Chedda ID"
 
@@ -401,7 +381,6 @@ custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
-theme_override_fonts/font = ExtResource("3_h7a2f")
 theme_override_font_sizes/font_size = 16
 text = "Exit"
 

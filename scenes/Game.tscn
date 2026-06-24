@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt6lpd2kqqd5d"]
+[gd_scene format=3 uid="uid://bt6lpd2kqqd5d"]
 
-[ext_resource type="Script" uid="uid://dtd2d2nr5a5n2" path="res://scripts/Game.gd" id="1_wrapper"]
-[ext_resource type="Texture2D" uid="uid://cighw5yua3ygf" path="res://addons/cheddaboards/icon.png" id="2_logo"]
+[ext_resource type="Script" uid="uid://dfurpogmn5v1h" path="res://scripts/Game.gd" id="1_wrapper"]
+[ext_resource type="Texture2D" uid="uid://s1iwb1sccrc3" path="res://addons/cheddaboards/icon.png" id="2_logo"]
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" unique_id=1681626527]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wrapper")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1248706060]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.05, 0.05, 0.1, 1)
 
-[node name="GameContainer" type="Control" parent="."]
+[node name="GameContainer" type="Control" parent="." unique_id=276556248]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,13 +31,13 @@ offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control" parent="." unique_id=1820710720]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 
-[node name="TopBar" type="HBoxContainer" parent="HUD"]
+[node name="TopBar" type="HBoxContainer" parent="HUD" unique_id=829384547]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -45,59 +45,59 @@ offset_bottom = 80.0
 grow_horizontal = 2
 theme_override_constants/separation = 40
 
-[node name="ScorePanel" type="PanelContainer" parent="HUD/TopBar"]
+[node name="ScorePanel" type="PanelContainer" parent="HUD/TopBar" unique_id=1934603070]
 visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="VBox" type="VBoxContainer" parent="HUD/TopBar/ScorePanel"]
+[node name="VBox" type="VBoxContainer" parent="HUD/TopBar/ScorePanel" unique_id=307978323]
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="HUD/TopBar/ScorePanel/VBox"]
+[node name="ScoreLabel" type="Label" parent="HUD/TopBar/ScorePanel/VBox" unique_id=118003806]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Score: 0"
 
-[node name="ComboLabel" type="Label" parent="HUD/TopBar/ScorePanel/VBox"]
+[node name="ComboLabel" type="Label" parent="HUD/TopBar/ScorePanel/VBox" unique_id=255985018]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
 theme_override_font_sizes/font_size = 20
 text = "Combo: x1"
 
-[node name="TimePanel" type="PanelContainer" parent="HUD/TopBar"]
+[node name="TimePanel" type="PanelContainer" parent="HUD/TopBar" unique_id=132229893]
 visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="TimeLabel" type="Label" parent="HUD/TopBar/TimePanel"]
+[node name="TimeLabel" type="Label" parent="HUD/TopBar/TimePanel" unique_id=1293536383]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "60"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatsPanel" type="PanelContainer" parent="HUD/TopBar"]
+[node name="StatsPanel" type="PanelContainer" parent="HUD/TopBar" unique_id=469994712]
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="VBox" type="VBoxContainer" parent="HUD/TopBar/StatsPanel"]
+[node name="VBox" type="VBoxContainer" parent="HUD/TopBar/StatsPanel" unique_id=1006384321]
 layout_mode = 2
 
-[node name="Stat1Label" type="Label" parent="HUD/TopBar/StatsPanel/VBox"]
+[node name="Stat1Label" type="Label" parent="HUD/TopBar/StatsPanel/VBox" unique_id=2096561462]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Level: 1"
 horizontal_alignment = 2
 
-[node name="Stat2Label" type="Label" parent="HUD/TopBar/StatsPanel/VBox"]
+[node name="Stat2Label" type="Label" parent="HUD/TopBar/StatsPanel/VBox" unique_id=380304603]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Misses: 0"
 horizontal_alignment = 2
 
-[node name="BottomBar" type="HBoxContainer" parent="."]
+[node name="BottomBar" type="HBoxContainer" parent="." unique_id=1638322913]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -108,21 +108,21 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="CheddaLogo" type="TextureRect" parent="BottomBar"]
+[node name="CheddaLogo" type="TextureRect" parent="BottomBar" unique_id=915454523]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("2_logo")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PoweredBy" type="Label" parent="BottomBar"]
+[node name="PoweredBy" type="Label" parent="BottomBar" unique_id=1782273034]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
 theme_override_font_sizes/font_size = 16
 text = "Powered by CheddaBoards"
 vertical_alignment = 1
 
-[node name="GameOverPanel" type="Panel" parent="."]
+[node name="GameOverPanel" type="Panel" parent="." unique_id=2041944063]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -137,7 +137,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GameOverPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GameOverPanel" unique_id=1945025659]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,78 +149,78 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel/MarginContainer" unique_id=1560113281]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TitleLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=2000234399]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Game Over!"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=1825711412]
 layout_mode = 2
 
-[node name="FinalScoreLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="FinalScoreLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=608406897]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Final Score: 0"
 horizontal_alignment = 1
 
-[node name="StatsContainer" type="HBoxContainer" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="StatsContainer" type="HBoxContainer" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=11250071]
 layout_mode = 2
 alignment = 1
 
-[node name="Stat1Result" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer/StatsContainer"]
+[node name="Stat1Result" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer/StatsContainer" unique_id=1663090879]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Level: 1"
 
-[node name="Spacer" type="Control" parent="GameOverPanel/MarginContainer/VBoxContainer/StatsContainer"]
+[node name="Spacer" type="Control" parent="GameOverPanel/MarginContainer/VBoxContainer/StatsContainer" unique_id=1759328364]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="Stat2Result" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer/StatsContainer"]
+[node name="Stat2Result" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer/StatsContainer" unique_id=1749966557]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Accuracy: 0%"
 
-[node name="ExtraStatLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="ExtraStatLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=544744650]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
 theme_override_font_sizes/font_size = 20
 text = "Max Combo: x1"
 horizontal_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=1849187678]
 layout_mode = 2
 
-[node name="StatusLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=734211909]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 
-[node name="HSeparator3" type="HSeparator" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=2047874188]
 layout_mode = 2
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=2004141784]
 layout_mode = 2
 alignment = 1
 
-[node name="PlayAgainButton" type="Button" parent="GameOverPanel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="PlayAgainButton" type="Button" parent="GameOverPanel/MarginContainer/VBoxContainer/ButtonsContainer" unique_id=1957528059]
 custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Play Again"
 
-[node name="MainMenuButton" type="Button" parent="GameOverPanel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="MainMenuButton" type="Button" parent="GameOverPanel/MarginContainer/VBoxContainer/ButtonsContainer" unique_id=372559153]
 custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Main Menu"
 
-[node name="LeaderboardButton" type="Button" parent="GameOverPanel/MarginContainer/VBoxContainer"]
+[node name="LeaderboardButton" type="Button" parent="GameOverPanel/MarginContainer/VBoxContainer" unique_id=781770488]
 custom_minimum_size = Vector2(280, 50)
 layout_mode = 2
 size_flags_horizontal = 4

@@ -118,19 +118,19 @@ var has_achievements: bool = false
 
 func _ready():
 	# Hide game over panel
-	game_over_panel.visible = false
+	#game_over_panel.visible = false
 	
 	# HUD panels are opt-in: stay hidden until the game declares the
 	# matching signal (see _connect_game_signals). Prevents leftover
 	# placeholder text showing for games that don't use the built-in HUD.
-	score_panel.visible = false
-	time_panel.visible = false
-	stats_panel.visible = false
+	#score_panel.visible = false
+	#time_panel.visible = false
+	#stats_panel.visible = false
 	
 	# Connect game over buttons
-	play_again_button.pressed.connect(_on_play_again_pressed)
-	main_menu_button.pressed.connect(_on_main_menu_pressed)
-	leaderboard_button.pressed.connect(_on_leaderboard_pressed)
+	#play_again_button.pressed.connect(_on_play_again_pressed)
+	#main_menu_button.pressed.connect(_on_main_menu_pressed)
+	#leaderboard_button.pressed.connect(_on_leaderboard_pressed)
 	
 	# Connect CheddaBoards signals
 	CheddaBoards.score_submitted.connect(_on_score_submitted)
@@ -150,17 +150,17 @@ func _ready():
 
 func _load_game():
 	"""Load and instantiate the game scene"""
-	if game_scene_path.is_empty():
-		push_error("[GameWrapper] No game_scene_path set!")
-		return
+	#if game_scene_path.is_empty():
+		#push_error("[GameWrapper] No game_scene_path set!")
+		#return
 	
-	var game_scene = load(game_scene_path)
-	if not game_scene:
-		push_error("[GameWrapper] Failed to load game scene: %s" % game_scene_path)
-		return
+	#var game_scene = load(game_scene_path)
+	#if not game_scene:
+		#push_error("[GameWrapper] Failed to load game scene: %s" % game_scene_path)
+		#return
 	
-	game_instance = game_scene.instantiate()
-	game_container.add_child(game_instance)
+	#game_instance = game_scene.instantiate()
+	#game_container.add_child(game_instance)
 	
 	# Connect to game signals
 	_connect_game_signals()
@@ -173,29 +173,30 @@ func _load_game():
 
 func _connect_game_signals():
 	"""Connect to the game's signals"""
-	if not game_instance:
-		return
+	pass
+	#if not game_instance:
+		#return
 	
 	# Required signal — the submit + game-over flow needs this
-	if game_instance.has_signal("game_over"):
-		game_instance.game_over.connect(_on_game_over)
-	else:
-		push_warning("[GameWrapper] Game missing 'game_over' signal")
+	#if game_instance.has_signal("game_over"):
+		#game_instance.game_over.connect(_on_game_over)
+	#else:
+		#push_warning("[GameWrapper] Game missing 'game_over' signal")
 	
 	# Optional signals — only needed if you want the built-in HUD.
 	# Each panel is revealed only if the game declares its signal, so a
 	# game that uses none of these shows an empty HUD bar (no placeholders).
-	if game_instance.has_signal("score_changed"):
-		game_instance.score_changed.connect(_on_game_score_changed)
-		score_panel.visible = true
-	
-	if game_instance.has_signal("stats_changed"):
-		game_instance.stats_changed.connect(_on_game_stats_changed)
-		stats_panel.visible = true
-	
-	if game_instance.has_signal("time_changed"):
-		game_instance.time_changed.connect(_on_game_time_changed)
-		time_panel.visible = true
+#	if game_instance.has_signal("score_changed"):
+#		game_instance.score_changed.connect(_on_game_score_changed)
+#		score_panel.visible = true
+#	
+#	if game_instance.has_signal("stats_changed"):
+#		game_instance.stats_changed.connect(_on_game_stats_changed)
+#		stats_panel.visible = true
+#	
+#	if game_instance.has_signal("time_changed"):
+#		game_instance.time_changed.connect(_on_game_time_changed)
+#		time_panel.visible = true
 
 # ============================================================
 # GAME SIGNAL HANDLERS
@@ -219,21 +220,22 @@ func _on_game_score_changed(score: int, combo: int):
 
 func _on_game_stats_changed(hits: int, misses: int, level: int):
 	"""Called when game stats change"""
-	stat1_label.text = "Level: %d" % level
-	stat2_label.text = "Misses: %d" % misses
+	pass
+	#stat1_label.text = "Level: %d" % level
+	#stat2_label.text = "Misses: %d" % misses
 
 func _on_game_time_changed(time_remaining: float, max_time: float):
 	"""Called when game time changes"""
 	var seconds = int(ceil(time_remaining))
-	time_label.text = "%d" % seconds
+	#time_label.text = "%d" % seconds
 	
 	# Color code time
-	if time_remaining <= 10:
-		time_label.add_theme_color_override("font_color", Color.RED)
-	elif time_remaining <= 30:
-		time_label.add_theme_color_override("font_color", Color.YELLOW)
-	else:
-		time_label.add_theme_color_override("font_color", Color.WHITE)
+	#if time_remaining <= 10:
+		#time_label.add_theme_color_override("font_color", Color.RED)
+	#elif time_remaining <= 30:
+		#time_label.add_theme_color_override("font_color", Color.YELLOW)
+	#else:
+		#time_label.add_theme_color_override("font_color", Color.WHITE)
 
 func _on_game_over(final_score: int, stats: Dictionary):
 	"""Called when game ends"""
@@ -273,18 +275,19 @@ func _on_game_over(final_score: int, stats: Dictionary):
 
 func _update_score_display():
 	"""Update score and combo display"""
-	score_label.text = "Score: %d" % current_score
-	combo_label.text = "Combo: x%d" % current_combo
+	pass
+	#score_label.text = "Score: %d" % current_score
+	#combo_label.text = "Combo: x%d" % current_combo
 	
 	# Color combo based on multiplier
-	if current_combo >= 8:
-		combo_label.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
-	elif current_combo >= 5:
-		combo_label.add_theme_color_override("font_color", Color(1, 0.5, 0.1))
-	elif current_combo >= 3:
-		combo_label.add_theme_color_override("font_color", Color(1, 0.8, 0.2))
-	else:
-		combo_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
+#	if current_combo >= 8:
+#		combo_label.add_theme_color_override("font_color", Color(1, 0.2, 0.2))
+#	elif current_combo >= 5:
+#		combo_label.add_theme_color_override("font_color", Color(1, 0.5, 0.1))
+#	elif current_combo >= 3:
+#		combo_label.add_theme_color_override("font_color", Color(1, 0.8, 0.2))
+#	else:
+#		combo_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
 
 # ============================================================
 # GAME OVER
@@ -292,7 +295,7 @@ func _update_score_display():
 
 func _show_game_over_screen(stats: Dictionary):
 	"""Display game over panel and submit score"""
-	game_over_panel.visible = true
+	#game_over_panel.visible = true
 	
 	# Set title based on score thresholds
 	var title_key = "default"
@@ -313,11 +316,11 @@ func _show_game_over_screen(stats: Dictionary):
 	elif current_score >= title_thresholds[3]:
 		title_key = "good"
 	
-	title_label.text = game_over_titles.get(title_key, "Game Over")
-	title_label.add_theme_color_override("font_color", title_colors.get(title_key, Color.WHITE))
+	#title_label.text = game_over_titles.get(title_key, "Game Over")
+	#title_label.add_theme_color_override("font_color", title_colors.get(title_key, Color.WHITE))
 	
 	# Final score is universal — every game has one
-	final_score_label.text = "Final Score: %d" % current_score
+	#final_score_label.text = "Final Score: %d" % current_score
 	
 	# Stat fields are opt-in: a field shows only if the game reported it in
 	# `stats`, so non-arcade games don't get bogus "Accuracy: 0% / Level: 1".
@@ -328,38 +331,38 @@ func _show_game_over_screen(stats: Dictionary):
 	var show_accuracy = stats.has("accuracy")
 	var show_combo = stats.has("max_combo") or max_combo > 1
 	
-	if show_level:
-		stat1_result.text = "Level: %d" % int(stats.get("level", 1))
-	if show_accuracy:
-		stat2_result.text = "Accuracy: %d%%" % int(stats.get("accuracy", 0))
-	if show_combo:
-		extra_stat_label.text = "Max Combo: x%d" % max_combo
+#	if show_level:
+#		stat1_result.text = "Level: %d" % int(stats.get("level", 1))
+#	if show_accuracy:
+#		stat2_result.text = "Accuracy: %d%%" % int(stats.get("accuracy", 0))
+#	if show_combo:
+#		extra_stat_label.text = "Max Combo: x%d" % max_combo
 	
-	stat1_result.visible = show_level
-	stat2_result.visible = show_accuracy
-	# Gap between the two stats only matters when both are present
-	stats_spacer.visible = show_level and show_accuracy
-	# Hide the whole row if neither stat applies
-	stats_container.visible = show_level or show_accuracy
-	extra_stat_label.visible = show_combo
+#	stat1_result.visible = show_level
+#	stat2_result.visible = show_accuracy
+#	# Gap between the two stats only matters when both are present
+#	stats_spacer.visible = show_level and show_accuracy
+#	# Hide the whole row if neither stat applies
+#	stats_container.visible = show_level or show_accuracy
+#	extra_stat_label.visible = show_combo
 	
 	# Submit score
 	if CheddaBoards.is_ready():
 		if CheddaBoards.is_authenticated():
 			var auth_type = "anonymous" if CheddaBoards.is_anonymous() else "account"
-			status_label.text = "Saving score..."
-			status_label.add_theme_color_override("font_color", Color.WHITE)
+#			status_label.text = "Saving score..."
+#			status_label.add_theme_color_override("font_color", Color.WHITE)
 			_set_buttons_disabled(true)
 			_submit_score()
 			print("[GameWrapper] Submitting score (auth: %s)" % auth_type)
 		else:
-			status_label.text = "Saving score..."
-			status_label.add_theme_color_override("font_color", Color.WHITE)
+			#status_label.text = "Saving score..."
+			#status_label.add_theme_color_override("font_color", Color.WHITE)
 			_set_buttons_disabled(true)
 			_submit_score()
 	else:
-		status_label.text = "Offline - Score not saved"
-		status_label.add_theme_color_override("font_color", Color.GRAY)
+		#status_label.text = "Offline - Score not saved"
+		#status_label.add_theme_color_override("font_color", Color.GRAY)
 		_set_buttons_disabled(false)
 
 func _submit_score():
@@ -373,9 +376,10 @@ func _submit_score():
 
 func _set_buttons_disabled(disabled: bool):
 	"""Enable/disable game over buttons"""
-	play_again_button.disabled = disabled
-	main_menu_button.disabled = disabled
-	leaderboard_button.disabled = disabled
+	#play_again_button.disabled = disabled
+	#main_menu_button.disabled = disabled
+	#leaderboard_button.disabled = disabled
+	pass
 
 # ============================================================
 # CHEDDABOARDS CALLBACKS
@@ -389,17 +393,17 @@ func _on_score_submitted(score: int, streak: int):
 	
 	var profile = CheddaBoards.get_cached_profile()
 	var previous_high = 0
-	if not profile.is_empty():
-		previous_high = int(profile.get("score", 0))
-	
-	if score > previous_high and previous_high > 0:
-		title_label.text = "NEW HIGH SCORE!"
-		status_label.text = "New record: %d!" % score
-		status_label.add_theme_color_override("font_color", Color.GOLD)
-	else:
-		status_label.text = "Score saved!"
-		status_label.add_theme_color_override("font_color", Color.GREEN)
-	
+#	if not profile.is_empty():
+#		previous_high = int(profile.get("score", 0))
+#	
+#	if score > previous_high and previous_high > 0:
+#		title_label.text = "NEW HIGH SCORE!"
+#		status_label.text = "New record: %d!" % score
+#		status_label.add_theme_color_override("font_color", Color.GOLD)
+#	else:
+#		status_label.text = "Score saved!"
+#		status_label.add_theme_color_override("font_color", Color.GREEN)
+#	
 	_set_buttons_disabled(false)
 
 func _on_score_error(reason: String):
@@ -407,8 +411,8 @@ func _on_score_error(reason: String):
 	print("[GameWrapper] ✗ Score submission failed: %s" % reason)
 	CheddaBoards.clear_play_session()
 	
-	status_label.text = "Save failed: %s" % reason
-	status_label.add_theme_color_override("font_color", Color.RED)
+#	status_label.text = "Save failed: %s" % reason
+#	status_label.add_theme_color_override("font_color", Color.RED)
 	
 	_set_buttons_disabled(false)
 
@@ -435,25 +439,25 @@ func _on_play_again_pressed():
 		current_combo = 1
 		max_combo = 1
 		score_submitted = false
-		game_over_panel.visible = false
+		#game_over_panel.visible = false
 		_update_score_display()
 		
 		# Start new play session
 		if CheddaBoards.is_ready():
 			CheddaBoards.start_play_session()
 		
-		game_instance.restart()
-	else:
+		#game_instance.restart()
+	#else:
 		# Option 2: Reload entire scene
-		get_tree().reload_current_scene()
+	#	get_tree().reload_current_scene()
 
 func _on_main_menu_pressed():
 	print("[GameWrapper] Main menu")
-	get_tree().change_scene_to_file(main_menu_scene)
+	#get_tree().change_scene_to_file(main_menu_scene)
 
 func _on_leaderboard_pressed():
 	print("[GameWrapper] Leaderboard")
-	get_tree().change_scene_to_file(leaderboard_scene)
+	#get_tree().change_scene_to_file(leaderboard_scene)
 
 # ============================================================
 # DEBUG

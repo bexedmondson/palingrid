@@ -10,9 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
 [ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://DisableScrollOnDrag.gd" id="4_xw4xy"]
 [ext_resource type="Script" uid="uid://fusem4g6wje" path="res://BestScoreIndicator.gd" id="5_ifj8t"]
+[ext_resource type="Texture2D" uid="uid://pds6swqpbcoe" path="res://podium.svg" id="6_hsp7l"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://text_shine.tres" id="7_kc0yb"]
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://GridRippleAnimator.gd" id="9_ghb71"]
+[ext_resource type="StyleBox" uid="uid://csydikcrpmtm0" path="res://button_normal.tres" id="12_5xkti"]
+[ext_resource type="StyleBox" uid="uid://ck0fkdaghas4a" path="res://button_pressed.tres" id="13_7jn42"]
+[ext_resource type="StyleBox" uid="uid://c57j83sua426o" path="res://button_disabled.tres" id="14_1opga"]
+[ext_resource type="Script" uid="uid://ban8r84a0ebvr" path="res://scripts/MainMenu.gd" id="18_mbq38"]
+[ext_resource type="PackedScene" uid="uid://cuvkn80vfc7mq" path="res://scenes/Leaderboard.tscn" id="18_njo5y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
 bg_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
@@ -20,6 +26,12 @@ expand_margin_left = 50.0
 expand_margin_top = 50.0
 expand_margin_right = 50.0
 expand_margin_bottom = 50.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1opga"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
 
 [sub_resource type="Gradient" id="Gradient_kc0yb"]
 offsets = PackedFloat32Array(0, 0.23210381, 1)
@@ -58,29 +70,8 @@ expand_margin_bottom = 10.0
 shadow_color = Color(1, 1, 1, 0.6)
 shadow_size = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8ukp"]
-bg_color = Color(0.21176471, 0.21176471, 0.21176471, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0p4s"]
-bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xw4xy"]
 bg_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifj8t"]
-bg_color = Color(0.28627452, 0.28627452, 0.28627452, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -156,7 +147,9 @@ size_flags_vertical = 3
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="TotalLabel" type="Label" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer" unique_id=1348282677]
 layout_mode = 2
@@ -187,6 +180,29 @@ dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
 bestLabel = NodePath("../BestSoFarLabel")
 bestContainer = NodePath("..")
 grid = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
+
+[node name="PanelContainer" type="PanelContainer" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1488969488]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1opga")
+
+[node name="Button" type="Button" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer" unique_id=676292021]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("12_5xkti")
+theme_override_styles/pressed = ExtResource("13_7jn42")
+theme_override_styles/disabled = ExtResource("14_1opga")
+icon = ExtResource("6_hsp7l")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer" unique_id=80492182]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_hsp7l")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="FullScreenHFlowContainer" type="HFlowContainer" parent="FullScreenScrollContainer/VBoxContainer" unique_id=1724119542]
 layout_mode = 2
@@ -432,10 +448,10 @@ grow_vertical = 0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_r8ukp")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b0p4s")
+theme_override_styles/normal = ExtResource("12_5xkti")
+theme_override_styles/pressed = ExtResource("13_7jn42")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xw4xy")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_ifj8t")
+theme_override_styles/disabled = ExtResource("14_1opga")
 icon_alignment = 1
 expand_icon = true
 
@@ -587,4 +603,24 @@ last_wrap_alignment = 2
 [node name="WordPanel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
 layout_mode = 2
 
+[node name="Control" type="Control" parent="." unique_id=385360039]
+visible = false
+layout_mode = 2
+script = ExtResource("18_mbq38")
+
+[node name="Leaderboard" parent="Control" unique_id=160332827 instance=ExtResource("18_njo5y")]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_top = 10.0
+offset_right = -50.0
+offset_bottom = -10.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Control" method="show"]
+[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Control/Leaderboard" method="show"]
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
+[connection signal="visibility_changed" from="Control/Leaderboard" to="Control/Leaderboard" method="on_visibility_changed"]

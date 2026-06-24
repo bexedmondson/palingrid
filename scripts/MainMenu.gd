@@ -77,7 +77,7 @@ const SCENE_ACHIEVEMENTS: String = "res://scenes/AchievementsView.tscn"
 const DEVICE_ID_FILE: String = "user://device_id.txt"
 
 # CheddaBoards configuration for rank fetching
-const SCOREBOARD_ID: String = "weekly"  # Scoreboard to fetch rank from
+const SCOREBOARD_ID: String = "daily"  # Scoreboard to fetch rank from
 
 const UI_TIMEOUT_DURATION: float = 40.0
 const PROFILE_TIMEOUT_DURATION: float = 10.0
@@ -85,7 +85,7 @@ const POLL_INTERVAL: float = 0.5
 const MAX_PROFILE_LOAD_ATTEMPTS: int = 3
 const MAX_POLL_ATTEMPTS: int = 15
 
-const SAVE_FILE_PATH: String = "user://player_data.save"
+const LEADERBOARD_SAVE_FILE_PATH: String = "user://leaderboard_info.dat"
 const MIN_NAME_LENGTH: int = 2
 const MAX_NAME_LENGTH: int = 16
 
@@ -243,71 +243,71 @@ func _ready():
 	CheddaBoards.scoreboard_rank_loaded.connect(_on_scoreboard_rank_loaded)
 	
 	# Connect LOGIN PANEL buttons
-	if direct_play_button:
-		direct_play_button.pressed.connect(_on_direct_play_pressed)
-	if login_leaderboard_button:
-		login_leaderboard_button.pressed.connect(_on_leaderboard_pressed)
-	if exit_button:
-		exit_button.pressed.connect(_on_exit_button_pressed)
-	
-	# Connect DEVICE CODE button (Sign In)
-	if sign_in_button:
-		sign_in_button.pressed.connect(_on_sign_in_button_pressed)
-	if cancel_sign_in_button:
-		cancel_sign_in_button.pressed.connect(_on_cancel_sign_in_pressed)
-	
-	# Connect NAME ENTRY PANEL buttons
-	if confirm_name_button:
-		confirm_name_button.pressed.connect(_on_confirm_name_pressed)
-	if cancel_name_button:
-		cancel_name_button.pressed.connect(_on_cancel_name_pressed)
-	if name_line_edit:
-		name_line_edit.text_submitted.connect(_on_name_submitted)
-		name_line_edit.text_changed.connect(_on_name_text_changed)
-	
-	# Connect ANONYMOUS PANEL buttons
-	if anon_play_button:
-		anon_play_button.pressed.connect(_on_anon_play_pressed)
-	if anon_change_name_button:
-		anon_change_name_button.pressed.connect(_on_anon_change_name_pressed)
-	if anon_achievement_button:
-		anon_achievement_button.pressed.connect(_on_achievements_pressed)
-	if anon_leaderboard_button:
-		anon_leaderboard_button.pressed.connect(_on_leaderboard_pressed)
-	if anon_exit_button:
-		anon_exit_button.pressed.connect(_on_exit_button_pressed)
-	
-	# Connect UPGRADE buttons (all use device code popup now)
-	if upgrade_google_button:
-		upgrade_google_button.pressed.connect(_on_upgrade_device_code_pressed)
-	if upgrade_apple_button:
-		upgrade_apple_button.pressed.connect(_on_upgrade_device_code_pressed)
-	if upgrade_ii_button:
-		upgrade_ii_button.pressed.connect(_on_upgrade_device_code_pressed)
-	
-	# Connect MAIN PANEL buttons
-	if play_button:
-		play_button.pressed.connect(_on_play_button_pressed)
-	if change_nickname_button:
-		change_nickname_button.pressed.connect(_on_change_nickname_pressed)
-	if leaderboard_button:
-		leaderboard_button.pressed.connect(_on_leaderboard_pressed)
-	if achievement_button:
-		achievement_button.pressed.connect(_on_achievements_pressed)
-	if logout_button:
-		logout_button.pressed.connect(_on_logout_pressed)
-	
-	# Apply MobileUI scaling
-	_scale_ui()
+#	if direct_play_button:
+#		direct_play_button.pressed.connect(_on_direct_play_pressed)
+#	if login_leaderboard_button:
+#		login_leaderboard_button.pressed.connect(_on_leaderboard_pressed)
+#	if exit_button:
+#		exit_button.pressed.connect(_on_exit_button_pressed)
+#	
+#	# Connect DEVICE CODE button (Sign In)
+#	if sign_in_button:
+#		sign_in_button.pressed.connect(_on_sign_in_button_pressed)
+#	if cancel_sign_in_button:
+#		cancel_sign_in_button.pressed.connect(_on_cancel_sign_in_pressed)
+#	
+#	# Connect NAME ENTRY PANEL buttons
+#	if confirm_name_button:
+#		confirm_name_button.pressed.connect(_on_confirm_name_pressed)
+#	if cancel_name_button:
+#		cancel_name_button.pressed.connect(_on_cancel_name_pressed)
+#	if name_line_edit:
+#		name_line_edit.text_submitted.connect(_on_name_submitted)
+#		name_line_edit.text_changed.connect(_on_name_text_changed)
+#	
+#	# Connect ANONYMOUS PANEL buttons
+#	if anon_play_button:
+#		anon_play_button.pressed.connect(_on_anon_play_pressed)
+#	if anon_change_name_button:
+#		anon_change_name_button.pressed.connect(_on_anon_change_name_pressed)
+#	if anon_achievement_button:
+#		anon_achievement_button.pressed.connect(_on_achievements_pressed)
+#	if anon_leaderboard_button:
+#		anon_leaderboard_button.pressed.connect(_on_leaderboard_pressed)
+#	if anon_exit_button:
+#		anon_exit_button.pressed.connect(_on_exit_button_pressed)
+#	
+#	# Connect UPGRADE buttons (all use device code popup now)
+#	if upgrade_google_button:
+#		upgrade_google_button.pressed.connect(_on_upgrade_device_code_pressed)
+#	if upgrade_apple_button:
+#		upgrade_apple_button.pressed.connect(_on_upgrade_device_code_pressed)
+#	if upgrade_ii_button:
+#		upgrade_ii_button.pressed.connect(_on_upgrade_device_code_pressed)
+#	
+#	# Connect MAIN PANEL buttons
+#	if play_button:
+#		play_button.pressed.connect(_on_play_button_pressed)
+#	if change_nickname_button:
+#		change_nickname_button.pressed.connect(_on_change_nickname_pressed)
+#	if leaderboard_button:
+#		leaderboard_button.pressed.connect(_on_leaderboard_pressed)
+#	if achievement_button:
+#		achievement_button.pressed.connect(_on_achievements_pressed)
+#	if logout_button:
+#		logout_button.pressed.connect(_on_logout_pressed)
+#	
+#	# Apply MobileUI scaling
+#	_scale_ui()
 	
 	# Connect to scale changes for responsive updates
-	if MobileUI.has_signal("scale_changed"):
-		MobileUI.scale_changed.connect(_on_scale_changed)
+	#if MobileUI.has_signal("scale_changed"):
+		#MobileUI.scale_changed.connect(_on_scale_changed)
 	
 	# Initial state - show login panel
-	_show_login_panel()
-	status_label.text = "Connecting..."
-	_enable_login_buttons(false)
+	#_show_login_panel()
+	#status_label.text = "Connecting..."
+	#_enable_login_buttons(false)
 	
 	_log("MainMenu v2.1.0 initialized | Mobile: %s | UI Scale: %.2f" % [MobileUI.is_mobile, MobileUI.ui_scale])
 	
@@ -331,26 +331,27 @@ func _scale_login_panel():
 	if not login_panel:
 		return
 	
-	MobileUI.scale_button(direct_play_button, 20, 50)
-	MobileUI.scale_button(login_leaderboard_button, 18, 44)
-	MobileUI.scale_button(exit_button, 16, 40)
-	
-	MobileUI.scale_label(status_label, 16)
+#	MobileUI.scale_button(direct_play_button, 20, 50)
+#	MobileUI.scale_button(login_leaderboard_button, 18, 44)
+#	MobileUI.scale_button(exit_button, 16, 40)
+#	
+#	MobileUI.scale_label(status_label, 16)
 	
 	# Scale device code elements
-	if sign_in_button:
-		MobileUI.scale_button(sign_in_button, 18, 44)
-	if cancel_sign_in_button:
-		MobileUI.scale_button(cancel_sign_in_button, 14, 40)
-	if device_code_label:
-		MobileUI.scale_label(device_code_label, 14)
+	#if sign_in_button:
+		#MobileUI.scale_button(sign_in_button, 18, 44)
+	#if cancel_sign_in_button:
+		#MobileUI.scale_button(cancel_sign_in_button, 14, 40)
+	#if device_code_label:
+		#MobileUI.scale_label(device_code_label, 14)
 	
-	var margin = login_panel.get_node_or_null("MarginContainer")
-	if margin is MarginContainer:
-		MobileUI.scale_container_margins(margin, 20)
+	#var margin = login_panel.get_node_or_null("MarginContainer")
+	#if margin is MarginContainer:
+		#MobileUI.scale_container_margins(margin, 20)
 
 func _scale_name_entry_panel():
 	"""Scale name entry panel UI elements"""
+	return
 	if not name_entry_panel:
 		return
 	
@@ -368,6 +369,7 @@ func _scale_name_entry_panel():
 
 func _scale_anonymous_panel():
 	"""Scale anonymous panel UI elements"""
+	return
 	if not anonymous_panel:
 		return
 	
@@ -399,6 +401,7 @@ func _scale_anonymous_panel():
 
 func _scale_main_panel():
 	"""Scale main panel UI elements"""
+	return
 	if not main_panel:
 		return
 	
@@ -419,6 +422,7 @@ func _scale_main_panel():
 
 func _on_scale_changed(_new_scale: float):
 	"""Handle window resize / scale changes"""
+	return
 	_scale_ui()
 
 func _on_sdk_ready():
@@ -429,8 +433,8 @@ func _on_sdk_ready():
 	_sdk_ready_handled = true
 	
 	_log("SDK ready")
-	status_label.text = ""
-	_enable_login_buttons(true)
+	#status_label.text = ""
+	#_enable_login_buttons(true)
 	
 	_check_existing_auth()
 
@@ -483,11 +487,11 @@ func _get_or_create_native_device_id() -> String:
 
 func _load_player_data():
 	"""Load saved player data (anonymous nickname + has_played status)"""
-	if not FileAccess.file_exists(SAVE_FILE_PATH):
+	if not FileAccess.file_exists(LEADERBOARD_SAVE_FILE_PATH):
 		_log("No save file found")
 		return
 	
-	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	var file = FileAccess.open(LEADERBOARD_SAVE_FILE_PATH, FileAccess.READ)
 	if file:
 		var data = file.get_var()
 		file.close()
@@ -499,7 +503,7 @@ func _load_player_data():
 
 func _save_player_data():
 	"""Save player data (anonymous nickname + has_played status)"""
-	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
+	var file = FileAccess.open(LEADERBOARD_SAVE_FILE_PATH, FileAccess.WRITE)
 	if file:
 		var data = {
 			"nickname": anonymous_nickname,
@@ -563,11 +567,11 @@ func _check_existing_auth():
 	# they land on their saved score. Only a brand-new player sees the first menu.
 	elif _is_returning_anonymous_player():
 		_log("Returning anonymous player - showing anonymous dashboard")
-		_show_anonymous_panel()
+		#_show_anonymous_panel()
 	else:
 		# Brand-new player (never played) → first menu (start screen).
 		_log("New player - showing first menu (login panel)")
-		_show_login_panel()
+		#_show_login_panel()
 
 func _is_returning_anonymous_player() -> bool:
 	"""Check if this is a returning anonymous player who has played at least once"""
