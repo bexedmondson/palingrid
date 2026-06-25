@@ -1,3 +1,4 @@
+class_name MainMenu
 # MainMenu.gd v2.1.5
 # Main menu with authentication flow and profile display
 # - Login panel: PLAY NOW (with name entry), Leaderboard, and Sign In (device code)
@@ -93,68 +94,68 @@ const MAX_NAME_LENGTH: int = 16
 # NODE REFERENCES - LOGIN PANEL
 # ============================================================
 
-@onready var login_panel = $LoginPanel
-@onready var direct_play_button = $LoginPanel/MarginContainer/VBoxContainer/DirectPlayButton
-@onready var login_leaderboard_button = $LoginPanel/MarginContainer/VBoxContainer/LeaderboardButton
-@onready var google_button = $LoginPanel/MarginContainer/VBoxContainer/GoogleButton
-@onready var apple_button = $LoginPanel/MarginContainer/VBoxContainer/AppleButton
-@onready var chedda_button = $LoginPanel/MarginContainer/VBoxContainer/CheddaButton
-@onready var or_label = $LoginPanel/MarginContainer/VBoxContainer/OrLabel
-@onready var exit_button = $LoginPanel/MarginContainer/VBoxContainer/ExitButton
-@onready var status_label = $LoginPanel/MarginContainer/VBoxContainer/StatusLabel
+@export var login_panel : Node #$LoginPanel
+@export var direct_play_button : Node #$LoginPanel/MarginContainer/VBoxContainer/DirectPlayButton
+@export var login_leaderboard_button : Node #$LoginPanel/MarginContainer/VBoxContainer/LeaderboardButton
+@export var google_button : Node #$LoginPanel/MarginContainer/VBoxContainer/GoogleButton
+@export var apple_button : Node #$LoginPanel/MarginContainer/VBoxContainer/AppleButton
+@export var chedda_button : Node #$LoginPanel/MarginContainer/VBoxContainer/CheddaButton
+@export var or_label : Node #$LoginPanel/MarginContainer/VBoxContainer/OrLabel
+@export var exit_button : Node #$LoginPanel/MarginContainer/VBoxContainer/ExitButton
+@export var status_label : Node #$LoginPanel/MarginContainer/VBoxContainer/StatusLabel
 
 # --- Device Code Auth ---
-@onready var sign_in_button = $LoginPanel/MarginContainer/VBoxContainer/SignInButton
-@onready var device_code_label = $LoginPanel/MarginContainer/VBoxContainer/DeviceCodeLabel
-@onready var cancel_sign_in_button = $LoginPanel/MarginContainer/VBoxContainer/CancelSignInButton
+@export var sign_in_button : Node #$LoginPanel/MarginContainer/VBoxContainer/SignInButton
+@export var device_code_label : Node #$LoginPanel/MarginContainer/VBoxContainer/DeviceCodeLabel
+@export var cancel_sign_in_button : Node #$LoginPanel/MarginContainer/VBoxContainer/CancelSignInButton
 
 # ============================================================
 # NODE REFERENCES - NAME ENTRY PANEL
 # ============================================================
 
-@onready var name_entry_panel = $NameEntryPanel
-@onready var name_line_edit = $NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit
-@onready var confirm_name_button = $NameEntryPanel/MarginContainer/VBoxContainer/ConfirmNameButton
-@onready var cancel_name_button = $NameEntryPanel/MarginContainer/VBoxContainer/CancelNameButton
-@onready var name_status_label = $NameEntryPanel/MarginContainer/VBoxContainer/NameStatusLabel
+@export var name_entry_panel : Node #$NameEntryPanel
+@export var name_line_edit : Node #$NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit
+@export var confirm_name_button : Node #$NameEntryPanel/MarginContainer/VBoxContainer/ConfirmNameButton
+@export var cancel_name_button : Node #$NameEntryPanel/MarginContainer/VBoxContainer/CancelNameButton
+@export var name_status_label : Node #$NameEntryPanel/MarginContainer/VBoxContainer/NameStatusLabel
 
 # ============================================================
 # NODE REFERENCES - ANONYMOUS PANEL (Dashboard for returning anon players)
 # ============================================================
 
-@onready var anonymous_panel = $AnonymousPanel
-@onready var anon_welcome_label = $AnonymousPanel/MarginContainer/VBoxContainer/WelcomeLabel
-@onready var anon_weekly_score_label = $AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/WeeklyScoreLabel
-@onready var anon_rank_label = $AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/RankLabel
-@onready var anon_plays_label = $AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/PlaysLabel
-@onready var anon_play_button = $AnonymousPanel/MarginContainer/VBoxContainer/PlayButton
-@onready var anon_change_name_button = $AnonymousPanel/MarginContainer/VBoxContainer/ChangeNameButton
-@onready var anon_achievement_button = $AnonymousPanel/MarginContainer/VBoxContainer/AchievementsButton
-@onready var anon_leaderboard_button = $AnonymousPanel/MarginContainer/VBoxContainer/LeaderboardButton
-@onready var anon_exit_button = $AnonymousPanel/MarginContainer/VBoxContainer/ExitButton
+@export var anonymous_panel : Node #$AnonymousPanel
+@export var anon_welcome_label : Node #$AnonymousPanel/MarginContainer/VBoxContainer/WelcomeLabel
+@export var anon_weekly_score_label : Node #$AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/WeeklyScoreLabel
+@export var anon_rank_label : Node #$AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/RankLabel
+@export var anon_plays_label : Node #$AnonymousPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/PlaysLabel
+@export var anon_play_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/PlayButton
+@export var anon_change_name_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/ChangeNameButton
+@export var anon_achievement_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/AchievementsButton
+@export var anon_leaderboard_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/LeaderboardButton
+@export var anon_exit_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/ExitButton
 
 # --- Upgrade buttons ---
-@onready var upgrade_label = $AnonymousPanel/MarginContainer/VBoxContainer/UpgradeLabel
-@onready var upgrade_separator = $AnonymousPanel/MarginContainer/VBoxContainer/UpgradeSeparator
-@onready var upgrade_google_button = $AnonymousPanel/MarginContainer/VBoxContainer/UpgradeGoogleButton
-@onready var upgrade_apple_button = $AnonymousPanel/MarginContainer/VBoxContainer/UpgradeAppleButton
-@onready var upgrade_ii_button = $AnonymousPanel/MarginContainer/VBoxContainer/UpgradeIIButton
-@onready var upgrade_status_label = $AnonymousPanel/MarginContainer/VBoxContainer/UpgradeStatusLabel
+@export var upgrade_label : Node #$AnonymousPanel/MarginContainer/VBoxContainer/UpgradeLabel
+@export var upgrade_separator : Node #$AnonymousPanel/MarginContainer/VBoxContainer/UpgradeSeparator
+@export var upgrade_google_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/UpgradeGoogleButton
+@export var upgrade_apple_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/UpgradeAppleButton
+@export var upgrade_ii_button : Node #$AnonymousPanel/MarginContainer/VBoxContainer/UpgradeIIButton
+@export var upgrade_status_label : Node #$AnonymousPanel/MarginContainer/VBoxContainer/UpgradeStatusLabel
 
 # ============================================================
 # NODE REFERENCES - MAIN PANEL (Logged in users)
 # ============================================================
 
-@onready var main_panel = $MainPanel
-@onready var welcome_label = $MainPanel/MarginContainer/VBoxContainer/WelcomeLabel
-@onready var weekly_score_label = $MainPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/WeeklyScoreLabel
-@onready var rank_label = $MainPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/RankLabel
-@onready var plays_label = $MainPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/PlaysLabel
-@onready var play_button = $MainPanel/MarginContainer/VBoxContainer/PlayButton
-@onready var change_nickname_button = $MainPanel/MarginContainer/VBoxContainer/ChangeNicknameButton
-@onready var achievement_button = $MainPanel/MarginContainer/VBoxContainer/AchievementsButton
-@onready var leaderboard_button = $MainPanel/MarginContainer/VBoxContainer/LeaderboardButton
-@onready var logout_button = $MainPanel/MarginContainer/VBoxContainer/LogoutButton
+@export var main_panel : Node #$MainPanel
+@export var welcome_label : Node #$MainPanel/MarginContainer/VBoxContainer/WelcomeLabel
+@export var weekly_score_label : Node #$MainPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/WeeklyScoreLabel
+@export var rank_label : Node #$MainPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/RankLabel
+@export var plays_label : Node #$MainPanel/MarginContainer/VBoxContainer/StatsPanel/VBoxContainer/PlaysLabel
+@export var play_button : Node #$MainPanel/MarginContainer/VBoxContainer/PlayButton
+@export var change_nickname_button : Node #$MainPanel/MarginContainer/VBoxContainer/ChangeNicknameButton
+@export var achievement_button : Node #$MainPanel/MarginContainer/VBoxContainer/AchievementsButton
+@export var leaderboard_button : Node #$MainPanel/MarginContainer/VBoxContainer/LeaderboardButton
+@export var logout_button : Node #$MainPanel/MarginContainer/VBoxContainer/LogoutButton
 
 # ============================================================
 # STATE
@@ -437,6 +438,7 @@ func _on_sdk_ready():
 	#_enable_login_buttons(true)
 	
 	_check_existing_auth()
+	_silent_anonymous_login() #TODO test
 
 func _input(event):
 	"""Debug keyboard shortcuts"""
@@ -731,13 +733,13 @@ func _stop_all_timers():
 
 func _show_login_panel():
 	"""Show login panel (first time / new anonymous player)"""
-	login_panel.visible = true
-	main_panel.visible = false
+	#login_panel.visible = true
+	#main_panel.visible = false
 	if name_entry_panel:
 		name_entry_panel.visible = false
 	if anonymous_panel:
 		anonymous_panel.visible = false
-	status_label.text = ""
+	#status_label.text = ""
 	
 	waiting_for_profile = false
 	is_logging_in = false

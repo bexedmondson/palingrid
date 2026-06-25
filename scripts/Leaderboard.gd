@@ -39,7 +39,7 @@ const TAB_WEEKLY: int = 1
 const TAB_DAILY: int = 2
 
 ## Which tab to show by default
-@export var default_tab: int = TAB_WEEKLY
+@export var default_tab: int = TAB_DAILY
 
 # ============================================================
 # COLORS — CheddaBoards brand palette

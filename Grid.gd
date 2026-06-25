@@ -8,6 +8,7 @@ extends Control
 @export var wordScene : InstancePlaceholder
 @export var score : Label
 @export var bestScore : BestScoreIndicator
+@export var mainMenu : MainMenu
 
 var lineSlotIndexes = [
 	[0,  1,  2,  3,  4], 

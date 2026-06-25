@@ -45,11 +45,10 @@ func update(current: int) -> void:
 		session_done_anim = true
 
 func save(score : int):
-	#print("allscores " + str(allScores))
-	#print("dayseed " + str(dailyGenerator.daySeed) + " score " + str(score))
+	CheddaBoards.submit_score(score)
+	print("[GameWrapper] Submitting score: " + str(score))
 	allScores[dailyGenerator.daySeed] = score
 	
-	#print("allscores " + str(allScores))
 	var f = FileAccess.open(saveFile, FileAccess.WRITE_READ)
 	f.store_var(allScores)
 	f.close()

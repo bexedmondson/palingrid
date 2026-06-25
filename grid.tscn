@@ -233,7 +233,7 @@ layout_mode = 2
 size_flags_vertical = 4
 stretch_mode = 1
 
-[node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
+[node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore", "mainMenu")]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 script = ExtResource("1_sle3t")
@@ -244,6 +244,7 @@ tiles = [NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile"), 
 wordScene = NodePath("../../../../WordListMarginContainer/ScrollContainer/VBoxContainer/WordPanel")
 score = NodePath("../../../../../MarginContainer/ScoreVBoxContainer/TotalLabel")
 bestScore = NodePath("../../../../../MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
+mainMenu = NodePath("../../../../../../../Control")
 
 [node name="Control" type="Control" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=1443428867]
 show_behind_parent = true
@@ -609,7 +610,6 @@ layout_mode = 2
 script = ExtResource("18_mbq38")
 
 [node name="Leaderboard" parent="Control" unique_id=160332827 instance=ExtResource("18_njo5y")]
-visible = false
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
