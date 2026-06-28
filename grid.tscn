@@ -6,6 +6,7 @@
 [ext_resource type="JSON" path="res://stats.json" id="2_05i0m"]
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://cell.tscn" id="2_bghhw"]
 [ext_resource type="StyleBox" uid="uid://ce3djr5ldcsbu" path="res://grid_bg.tres" id="2_fqc2p"]
+[ext_resource type="Script" uid="uid://b3g538x5g3xep" path="res://LoginHandler.gd" id="2_mbq38"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://TileDock.gd" id="3_bghhw"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
 [ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://DisableScrollOnDrag.gd" id="4_xw4xy"]
@@ -13,12 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://pds6swqpbcoe" path="res://podium.svg" id="6_hsp7l"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://text_shine.tres" id="7_kc0yb"]
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
+[ext_resource type="StyleBox" uid="uid://bjlydsc6ixtne" path="res://button_hover.tres" id="9_4bqgu"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://GridRippleAnimator.gd" id="9_ghb71"]
 [ext_resource type="StyleBox" uid="uid://csydikcrpmtm0" path="res://button_normal.tres" id="12_5xkti"]
 [ext_resource type="StyleBox" uid="uid://ck0fkdaghas4a" path="res://button_pressed.tres" id="13_7jn42"]
 [ext_resource type="StyleBox" uid="uid://c57j83sua426o" path="res://button_disabled.tres" id="14_1opga"]
-[ext_resource type="Script" uid="uid://ban8r84a0ebvr" path="res://scripts/MainMenu.gd" id="18_mbq38"]
-[ext_resource type="PackedScene" uid="uid://cuvkn80vfc7mq" path="res://scenes/Leaderboard.tscn" id="18_njo5y"]
+[ext_resource type="StyleBox" uid="uid://bvo5536dvek2v" path="res://light_grey_bg.tres" id="17_gayrg"]
+[ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://Scoreboard.gd" id="20_konqy"]
+[ext_resource type="StyleBox" uid="uid://cf3thrfhfhmu6" path="res://light_grey_bg_shadow.tres" id="21_u6jcp"]
+[ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://NameChangeHandler.gd" id="24_bibwd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
 bg_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
@@ -70,24 +74,6 @@ expand_margin_bottom = 10.0
 shadow_color = Color(1, 1, 1, 0.6)
 shadow_size = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xw4xy"]
-bg_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2qvd"]
-content_margin_left = 30.0
-content_margin_top = 25.0
-content_margin_right = 30.0
-content_margin_bottom = 25.0
-bg_color = Color(0.38070744, 0.38070747, 0.3807073, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc0yb"]
 content_margin_left = 30.0
 content_margin_top = 25.0
@@ -103,6 +89,27 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bqgu"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eilgq"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.110071965, 0.11007198, 0.11007186, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="MarginContainer" type="MarginContainer" unique_id=2099300064 node_paths=PackedStringArray("wordListScroller")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,6 +124,9 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 script = ExtResource("1_b0p4s")
 wordListScroller = NodePath("FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer")
+
+[node name="LoginHandler" type="Node" parent="." unique_id=961667201]
+script = ExtResource("2_mbq38")
 
 [node name="LetterSetGenerator" type="Node" parent="." unique_id=1348343417]
 script = ExtResource("1_g2qvd")
@@ -167,7 +177,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "TODAY'S BEST:"
 
-[node name="BestScoreLabel" type="Label" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid")]
+[node name="BestScoreLabel" type="Label" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid", "scoreboard")]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -180,6 +190,7 @@ dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
 bestLabel = NodePath("../BestSoFarLabel")
 bestContainer = NodePath("..")
 grid = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
+scoreboard = NodePath("../../../../../../Scoreboard")
 
 [node name="PanelContainer" type="PanelContainer" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1488969488]
 layout_mode = 2
@@ -192,6 +203,7 @@ custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("12_5xkti")
 theme_override_styles/pressed = ExtResource("13_7jn42")
+theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
 icon = ExtResource("6_hsp7l")
 icon_alignment = 1
@@ -233,7 +245,7 @@ layout_mode = 2
 size_flags_vertical = 4
 stretch_mode = 1
 
-[node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore", "mainMenu")]
+[node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 script = ExtResource("1_sle3t")
@@ -244,7 +256,6 @@ tiles = [NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles/Tile"), 
 wordScene = NodePath("../../../../WordListMarginContainer/ScrollContainer/VBoxContainer/WordPanel")
 score = NodePath("../../../../../MarginContainer/ScoreVBoxContainer/TotalLabel")
 bestScore = NodePath("../../../../../MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
-mainMenu = NodePath("../../../../../../../Control")
 
 [node name="Control" type="Control" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=1443428867]
 show_behind_parent = true
@@ -451,7 +462,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_styles/normal = ExtResource("12_5xkti")
 theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xw4xy")
+theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
 icon_alignment = 1
 expand_icon = true
@@ -487,7 +498,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_g2qvd")
+theme_override_styles/panel = ExtResource("17_gayrg")
 
 [node name="Tiles" type="HFlowContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel" unique_id=1101630964]
 layout_mode = 2
@@ -604,23 +615,281 @@ last_wrap_alignment = 2
 [node name="WordPanel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="." unique_id=385360039]
-visible = false
+[node name="Scoreboard" type="Panel" parent="." unique_id=1504834327 node_paths=PackedStringArray("name_change_handler", "margin_container", "title_label", "refresh_button", "column_header", "leaderboard_scroll", "leaderboard_list", "status_label", "back_button")]
+z_index = 2
 layout_mode = 2
-script = ExtResource("18_mbq38")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
+script = ExtResource("20_konqy")
+name_change_handler = NodePath("NameEntryPanel")
+margin_container = NodePath("LeaderboardMarginContainer")
+title_label = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel")
+refresh_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton")
+column_header = NodePath("LeaderboardMarginContainer/VBoxContainer/ColumnHeader")
+leaderboard_scroll = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer")
+leaderboard_list = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+status_label = NodePath("LeaderboardMarginContainer/VBoxContainer/StatusLabel")
+back_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/ackButton")
 
-[node name="Leaderboard" parent="Control" unique_id=160332827 instance=ExtResource("18_njo5y")]
+[node name="ColorRect" type="ColorRect" parent="Scoreboard" unique_id=1819124421]
+custom_minimum_size = Vector2(3000, 3000)
+propagate_maximum_size = true
+layout_mode = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 1500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="LeaderboardMarginContainer" type="MarginContainer" parent="Scoreboard" unique_id=1271768416]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 100
+
+[node name="Panel" type="Panel" parent="Scoreboard/LeaderboardMarginContainer" unique_id=1766913104]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("21_u6jcp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard/LeaderboardMarginContainer" unique_id=974242218]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=71313950]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+text = "LEADERBOARD"
+horizontal_alignment = 1
+
+[node name="RefreshButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=870986636]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_right = -10.0
+offset_bottom = 70.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/normal = ExtResource("12_5xkti")
+theme_override_styles/pressed = ExtResource("13_7jn42")
+theme_override_styles/hover = ExtResource("9_4bqgu")
+theme_override_styles/disabled = ExtResource("14_1opga")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ArrowTextureRect" type="TextureRect" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton" unique_id=772989955]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 20.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_r8ukp")
+expand_mode = 5
+
+[node name="ackButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=242659008]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+offset_right = 70.0
+offset_bottom = 70.0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = ExtResource("12_5xkti")
+theme_override_styles/pressed = ExtResource("13_7jn42")
+theme_override_styles/hover = ExtResource("9_4bqgu")
+theme_override_styles/disabled = ExtResource("14_1opga")
+text = "<"
+icon_alignment = 1
+expand_icon = true
+
+[node name="ArrowTextureRect" type="TextureRect" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ackButton" unique_id=1984597428]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -16.0
+offset_right = 21.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_r8ukp")
+expand_mode = 5
+
+[node name="ColumnHeader" type="HBoxContainer" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=435664427]
+custom_minimum_size = Vector2(0, 32.372)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RankHeader" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=2131557448]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+text = "RANK"
+horizontal_alignment = 1
+
+[node name="NameHeader" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=1264875578]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PLAYER"
+
+[node name="ScoreHeader" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=805045531]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "SCORE"
+horizontal_alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=1357067574]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ScrollContainer" unique_id=1135369249]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StatusLabel" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=973517300]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="NameEntryPanel" type="Panel" parent="Scoreboard" unique_id=1863543125 node_paths=PackedStringArray("loginHandler", "title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button")]
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
-offset_left = 50.0
-offset_top = 10.0
-offset_right = -50.0
-offset_bottom = -10.0
-grow_horizontal = 1
-grow_vertical = 1
+anchor_left = 0.25
+anchor_top = 0.15
+anchor_right = 0.75
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("21_u6jcp")
+script = ExtResource("24_bibwd")
+loginHandler = NodePath("../../LoginHandler")
+title_label = NodePath("MarginContainer/VBoxContainer/TitleLabel")
+subtitle_label = NodePath("MarginContainer/VBoxContainer/SubtitleLabel")
+name_line_edit = NodePath("MarginContainer/VBoxContainer/NameLineEdit")
+name_status_label = NodePath("MarginContainer/VBoxContainer/NameStatusLabel")
+confirm_button = NodePath("MarginContainer/VBoxContainer/ConfirmNameButton")
 
-[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Control" method="show"]
-[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Control/Leaderboard" method="show"]
+[node name="ColorRect" type="ColorRect" parent="Scoreboard/NameEntryPanel" unique_id=94699613]
+show_behind_parent = true
+custom_minimum_size = Vector2(3000, 3000)
+propagate_maximum_size = true
+layout_mode = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 1500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="MarginContainer" type="MarginContainer" parent="Scoreboard/NameEntryPanel" unique_id=606843127]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard/NameEntryPanel/MarginContainer" unique_id=1016868895]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=880299228]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Enter Your Name"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1623076123]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "This will appear on the leaderboard"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=347683051]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="NameLineEdit" type="LineEdit" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1414645961]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.015210929, 0.015210832, 0.015210851, 1)
+theme_override_colors/font_placeholder_color = Color(0.33405125, 0.33405042, 0.3340506, 0.6)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4bqgu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_eilgq")
+placeholder_text = "Enter your name..."
+alignment = 1
+max_length = 16
+
+[node name="NameStatusLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1892913645]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1140598101]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ConfirmNameButton" type="Button" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=215375463]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("12_5xkti")
+theme_override_styles/pressed = ExtResource("13_7jn42")
+theme_override_styles/hover = ExtResource("9_4bqgu")
+theme_override_styles/disabled = ExtResource("14_1opga")
+text = "LET'S GO!"
+
+[node name="CancelNameButton" type="Button" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1379832663]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("12_5xkti")
+theme_override_styles/pressed = ExtResource("13_7jn42")
+theme_override_styles/hover = ExtResource("9_4bqgu")
+theme_override_styles/disabled = ExtResource("14_1opga")
+text = "Back"
+
+[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Scoreboard" method="on_visibility_changed"]
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
-[connection signal="visibility_changed" from="Control/Leaderboard" to="Control/Leaderboard" method="on_visibility_changed"]
+[connection signal="visibility_changed" from="Scoreboard" to="Scoreboard" method="on_visibility_changed"]
+[connection signal="text_changed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_text_changed"]
+[connection signal="text_submitted" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_submitted"]
+[connection signal="pressed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/ConfirmNameButton" to="Scoreboard/NameEntryPanel" method="_on_confirm_name_pressed"]
+[connection signal="pressed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/CancelNameButton" to="Scoreboard/NameEntryPanel" method="_on_cancel_name_pressed"]

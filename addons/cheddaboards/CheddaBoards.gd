@@ -733,7 +733,7 @@ func _update_cached_profile(profile: Dictionary) -> void:
 
 func _log(message: String) -> void:
 	if debug_logging:
-		print("[CheddaBoards] %s" % message)
+		push_warning("[CheddaBoards] %s" % message)
 
 # Redact a user-facing device code for logging. Shows the first 3 chars
 # so a developer can still correlate logs with what they see on screen,
@@ -789,6 +789,9 @@ func _safe_int(value) -> int:
 func _get_default_nickname() -> String:
 	return "Player_" + get_player_id().left(6)
 
+func has_nickname() -> bool:
+	return _nickname.is_empty()
+
 func get_nickname() -> String:
 	if _nickname != "" and not _nickname.begins_with("Player_p_") and not _nickname.begins_with("Player_dev_"):
 		return _nickname
@@ -798,8 +801,8 @@ func get_nickname() -> String:
 		if profile_nick != "" and not profile_nick.begins_with("Player_p_") and not profile_nick.begins_with("Player_dev_"):
 			return profile_nick
 	
-	# Return empty string — callers should show "Guest" for unnamed anonymous players
-	return ""
+	# Return — callers should show "Guest" for unnamed anonymous players
+	return "Guest"
 
 func get_high_score() -> int:
 	if _cached_profile.is_empty():
@@ -1437,7 +1440,7 @@ func get_scoreboard_rank(scoreboard_id: String, for_game_id: String = "") -> voi
 		scoreboard_error.emit("Game ID not set. Call set_game_id() first.")
 		return
 	
-	if _session_token.is_empty():
+	if _play_session_token.is_empty():
 		scoreboard_error.emit("Session token required for rank lookup")
 		return
 	

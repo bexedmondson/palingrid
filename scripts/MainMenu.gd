@@ -823,7 +823,7 @@ func _show_anonymous_panel():
 	_stop_all_timers()
 	
 	# Sync any pending achievements when dashboard is shown
-	Achievements.force_sync_pending()
+	#Achievements.force_sync_pending()
 	
 	if anon_welcome_label:
 		anon_welcome_label.text = "Welcome back, %s!" % anonymous_nickname

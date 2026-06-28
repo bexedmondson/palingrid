@@ -28,7 +28,7 @@ func _run():
 	fixes_applied.clear()
 	errors.clear()
 
-	print("")
+	push_warning("")
 	print("╔════════════════════════════════════════════════╗")
 	print("║       🧀 CheddaBoards Setup Wizard v2.1       ║")
 	print("╚════════════════════════════════════════════════╝")
