@@ -183,3 +183,10 @@ func reset_tiles():
 		var tile = slot.slotTile
 		tile.dragged_away.emit(tile)
 		tileHolder.add_tile(tile)
+
+func get_empty_slot() -> DropSlot:
+	for slot in slots:
+		if slot.slotTile == null:
+			return slot
+			
+	return null

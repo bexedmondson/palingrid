@@ -105,6 +105,7 @@ func _check_existing_auth():
 	else:
 		# Brand-new player (never played)
 		push_warning("New player - no existing auth found")
+		_create_new_device_id()
 		
 
 func _silent_anonymous_login():

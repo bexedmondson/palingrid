@@ -33,3 +33,8 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	#push_warning(self.name + " " + tile.name + " tiledock drop")
 	tile.dragged_away.emit(tile)
 	add_tile(tile)
+
+func get_tile():
+	if tile_count() == 0:
+		return null
+	return get_child(0)

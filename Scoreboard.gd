@@ -61,9 +61,6 @@ func _ready() -> void:
 	self.visible = false
 
 func on_visibility_changed():
-	if setup:
-		return
-	
 	if (!self.visible):
 		_clear_load_timeout()
 		return
@@ -74,20 +71,31 @@ func on_visibility_changed():
 		await CheddaBoards.wait_until_ready()
 	
 	# Connect other buttons
-	refresh_button.pressed.connect(_on_refresh_pressed)
-	back_button.pressed.connect(_on_back_pressed)
+	if not refresh_button.pressed.is_connected(_on_refresh_pressed):
+		refresh_button.pressed.connect(_on_refresh_pressed)
+	if not back_button.pressed.is_connected(_on_back_pressed):
+		back_button.pressed.connect(_on_back_pressed)
 	
 	# Connect CheddaBoards signals
-	CheddaBoards.scoreboard_loaded.connect(_on_scoreboard_loaded)
-	CheddaBoards.scoreboard_error.connect(_on_scoreboard_error)
+	if not CheddaBoards.scoreboard_loaded.is_connected(_on_scoreboard_loaded):
+		CheddaBoards.scoreboard_loaded.connect(_on_scoreboard_loaded)
+	if not CheddaBoards.scoreboard_error.is_connected(_on_scoreboard_error):
+		CheddaBoards.scoreboard_error.connect(_on_scoreboard_error)
+	if not CheddaBoards.score_submitted.is_connected(_on_score_submitted):
+		CheddaBoards.score_submitted.connect(_on_score_submitted)
 	
-	CheddaBoards.login_success.connect(_on_login_success)
-	CheddaBoards.login_failed.connect(_on_login_failed)
+	if not CheddaBoards.login_success.is_connected(_on_login_success):
+		CheddaBoards.login_success.connect(_on_login_success)
+	if not CheddaBoards.login_failed.is_connected(_on_login_failed):
+		CheddaBoards.login_failed.connect(_on_login_failed)
 	
 	_load_leaderboard()
 	
 	push_warning("[Leaderboard] v2.0.0 initialized (Mobile: %s, Scale: %.2f)" % [MobileUI.is_mobile, MobileUI.ui_scale])
 	setup = true
+	
+func _on_score_submitted():
+	_load_leaderboard()
 
 # ============================================================
 # LOADING
@@ -107,7 +115,7 @@ func _load_leaderboard():
 	if name_change_handler.on_closed.is_connected(_load_leaderboard):
 		name_change_handler.on_closed.disconnect(_load_leaderboard)
 		
-	if not CheddaBoards.has_account() and not CheddaBoards.is_authenticated() and not has_shown_set_name_prompt:
+	if CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
 		name_change_handler.on_closed.connect(_on_prompt_shown)
 		name_change_handler._show_name_entry_panel()
 		return
@@ -128,9 +136,13 @@ func _clear_leaderboard():
 
 func _on_prompt_shown():
 	has_shown_set_name_prompt = true
-	#if CheddaBoards.is_authenticated():
+	if CheddaBoards.get_cached_profile().is_empty():
+		CheddaBoards.profile_loaded.connect(_on_profile_loaded)
+		return
 	_load_leaderboard()
 
+func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
+	_load_leaderboard()
 # ============================================================
 # SIGNAL HANDLERS — SCOREBOARDS
 # ============================================================

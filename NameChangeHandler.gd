@@ -134,6 +134,9 @@ func _on_nickname_change_success(new_nickname: String):
 	if CheddaBoards.nickname_error.is_connected(_on_nickname_changed_error):
 		CheddaBoards.nickname_error.disconnect(_on_nickname_changed_error)
 	
+	CheddaBoards.refresh_profile()
+	await CheddaBoards.profile_loaded
+	
 	if is_rename:
 		push_warning("Renamed to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
 		#TODO toast
