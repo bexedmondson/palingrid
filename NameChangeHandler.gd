@@ -107,6 +107,11 @@ func _on_confirm_name_pressed():
 	CheddaBoards.nickname_changed.connect(_on_nickname_change_success)
 	CheddaBoards.nickname_error.connect(_on_nickname_changed_error)
 	
+	if CheddaBoards.get_cached_profile().is_empty():
+		CheddaBoards.refresh_profile()
+		CheddaBoards.profile_loaded.connect(_on_profile_loaded)
+		return
+	
 	if is_rename:
 		push_warning("Renaming to: %s" % name_text)
 		loginHandler.nickname = name_text
@@ -127,8 +132,12 @@ func _on_confirm_name_pressed():
 		on_closed.emit()
 		self.visible = false
 
+func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
+	if nickname != name_line_edit.text.strip_edges():
+		_on_confirm_name_pressed()
 
 func _on_nickname_change_success(new_nickname: String):
+	push_warning("[NameChangeHandler] name changed to " + new_nickname)
 	if CheddaBoards.nickname_changed.is_connected(_on_nickname_change_success):
 		CheddaBoards.nickname_changed.disconnect(_on_nickname_change_success)
 	if CheddaBoards.nickname_error.is_connected(_on_nickname_changed_error):

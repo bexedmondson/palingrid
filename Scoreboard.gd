@@ -94,7 +94,7 @@ func on_visibility_changed():
 	push_warning("[Leaderboard] v2.0.0 initialized (Mobile: %s, Scale: %.2f)" % [MobileUI.is_mobile, MobileUI.ui_scale])
 	setup = true
 	
-func _on_score_submitted():
+func _on_score_submitted(score: int, streak: int):
 	_load_leaderboard()
 
 # ============================================================

@@ -71,7 +71,7 @@ func submit(_entries):
 	CheddaBoards.submit_score(best)
 
 func save(score : int):
-	if CheddaBoards.is_authenticated():
+	if not CheddaBoards.get_cached_profile().is_empty():
 		push_warning("[BestScoreIndicator] Submitting score: " + str(score))
 		CheddaBoards.submit_score(score)
 	

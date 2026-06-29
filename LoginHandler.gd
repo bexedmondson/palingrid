@@ -166,6 +166,7 @@ func _load_anonymous_stats():
 	
 	if not profile.is_empty():
 		push_warning("Found cached profile")
+		return
 	else:
 		push_warning("No cached profile")
 	
