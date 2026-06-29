@@ -10,7 +10,6 @@ const POLL_INTERVAL: float = 0.5
 const MAX_PROFILE_LOAD_ATTEMPTS: int = 3
 const MAX_POLL_ATTEMPTS: int = 15
 
-var deviceId : String
 var is_logging_in: bool = false
 var waiting_for_profile: bool = false
 var nickname : String
@@ -50,6 +49,7 @@ func _ready() -> void:
 func _try_get_native_device_id():
 	"""Get existing device ID, if it exists"""
 	if !FileAccess.file_exists(deviceIdFile):
+		print("[LoginHandler] device id file not found " + deviceIdFile)
 		return
 	
 	var file = FileAccess.open(deviceIdFile, FileAccess.READ)
@@ -63,13 +63,14 @@ func _try_get_native_device_id():
 func _create_new_device_id():
 	"""Create new device ID (persisted to file)"""
 	randomize()
-	deviceId = "device_%d_%08x" % [Time.get_unix_time_from_system(), randi()]
+	var deviceId = "device_%d_%08x" % [Time.get_unix_time_from_system(), randi()]
 	
 	var file = FileAccess.open(deviceIdFile, FileAccess.WRITE)
 	if file:
 		file.store_line(deviceId)
 		file.close()
 	
+	CheddaBoards.set_player_id(deviceId)
 	return deviceId
 
 
@@ -97,7 +98,7 @@ func _check_existing_auth():
 	# Returning anonymous player (has played / submitted a score before, per the
 	# save file) → anonymous dashboard on ANY launch, cold restart included, so
 	# they land on their saved score. Only a brand-new player sees the first menu.
-	if not deviceId.is_empty():
+	if not CheddaBoards.get_player_id().is_empty():
 		push_warning("Returning anonymous player - logging in and loading player data")
 		_silent_anonymous_login()
 		_load_player_data()
@@ -108,8 +109,7 @@ func _check_existing_auth():
 
 func _silent_anonymous_login():
 	"""Silently log in as anonymous to fetch profile data (don't trigger full login flow)"""
-	push_warning("Starting silent anonymous login as: %s (ID: %s)" % [nickname, deviceId])
-	CheddaBoards.set_player_id(deviceId)
+	push_warning("Starting silent anonymous login as: %s (ID: %s)" % [nickname, CheddaBoards.get_player_id()])
 	CheddaBoards.login_anonymous(nickname)
 
 func _load_player_data():
@@ -133,7 +133,7 @@ func _save_player_data():
 	if file:
 		var data = {
 			"nickname": nickname,
-			"player_id": deviceId
+			"player_id": CheddaBoards.get_player_id()
 		}
 		file.store_var(data)
 		file.close()

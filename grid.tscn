@@ -628,7 +628,7 @@ column_header = NodePath("LeaderboardMarginContainer/VBoxContainer/ColumnHeader"
 leaderboard_scroll = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer")
 leaderboard_list = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
 status_label = NodePath("LeaderboardMarginContainer/VBoxContainer/StatusLabel")
-back_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/ackButton")
+back_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton")
 
 [node name="ColorRect" type="ColorRect" parent="Scoreboard" unique_id=1819124421]
 custom_minimum_size = Vector2(3000, 3000)
@@ -704,7 +704,7 @@ mouse_filter = 2
 texture = ExtResource("8_r8ukp")
 expand_mode = 5
 
-[node name="ackButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=242659008]
+[node name="BackButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=242659008]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 offset_right = 70.0
@@ -721,7 +721,7 @@ text = "<"
 icon_alignment = 1
 expand_icon = true
 
-[node name="ArrowTextureRect" type="TextureRect" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ackButton" unique_id=1984597428]
+[node name="ArrowTextureRect" type="TextureRect" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton" unique_id=1984597428]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -886,9 +886,11 @@ theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
 text = "Back"
 
+[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Scoreboard" method="show"]
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Scoreboard" method="on_visibility_changed"]
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="visibility_changed" from="Scoreboard" to="Scoreboard" method="on_visibility_changed"]
+[connection signal="pressed" from="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton" to="Scoreboard" method="hide"]
 [connection signal="text_changed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_text_changed"]
 [connection signal="text_submitted" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_submitted"]
 [connection signal="pressed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/ConfirmNameButton" to="Scoreboard/NameEntryPanel" method="_on_confirm_name_pressed"]

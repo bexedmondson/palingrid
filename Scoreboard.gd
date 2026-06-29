@@ -114,11 +114,6 @@ func _load_leaderboard():
 	
 	_set_loading(true)
 	_start_load_timeout()
-		
-	if not CheddaBoards.has_play_session():
-		CheddaBoards.start_play_session()
-		if not CheddaBoards.has_play_session():
-			await CheddaBoards.play_session_started
 	
 	push_warning("[Leaderboard] Requesting scoreboard '%s'" % scoreboard_id)
 	CheddaBoards.get_scoreboard(scoreboard_id, LEADERBOARD_LIMIT)
@@ -239,7 +234,7 @@ func _add_leaderboard_entry(rank: int, entry) -> void:
 	
 	# Entry container
 	var entry_container = PanelContainer.new()
-	entry_container.custom_minimum_size = Vector2(0, MobileUI.get_touch_size(44))
+	#entry_container.custom_minimum_size = Vector2(0, MobileUI.get_touch_size(44))
 	
 	# Row styling
 	var stylebox = StyleBoxFlat.new()
@@ -276,8 +271,8 @@ func _add_leaderboard_entry(rank: int, entry) -> void:
 	
 	# Rank
 	var rank_label = Label.new()
-	rank_label.custom_minimum_size = Vector2(MobileUI.get_size(44), 0)
-	rank_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
+	#rank_label.custom_minimum_size = Vector2(MobileUI.get_size(44), 0)
+	#rank_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	
 	match rank:
@@ -300,7 +295,7 @@ func _add_leaderboard_entry(rank: int, entry) -> void:
 	var name_label = Label.new()
 	name_label.text = nickname
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	name_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
+	#name_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
 	name_label.add_theme_color_override("font_color", Color.WHITE if is_current_player else COLOR_TEXT)
 	name_label.clip_text = true
 	hbox.add_child(name_label)
@@ -309,8 +304,8 @@ func _add_leaderboard_entry(rank: int, entry) -> void:
 	var value_label = Label.new()
 	value_label.text = _format_score(score)
 	value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	value_label.custom_minimum_size = Vector2(MobileUI.get_size(90), 0)
-	value_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
+	#value_label.custom_minimum_size = Vector2(MobileUI.get_size(90), 0)
+	#value_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
 	value_label.add_theme_color_override("font_color", COLOR_ACCENT if rank <= 3 else COLOR_TEXT)
 	hbox.add_child(value_label)
 	

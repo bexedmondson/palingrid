@@ -21,7 +21,6 @@ func _ready() -> void:
 # ============================================================
 # NAME ENTRY PANEL HANDLERS
 # ============================================================
-
 func _show_name_entry_panel(rename: bool = false):
 	"""Show name entry panel. Mode: 'first_play' = start game after, 'rename' = return to dashboard"""
 	is_rename = rename
@@ -93,7 +92,7 @@ func _on_confirm_name_pressed():
 	
 	push_warning("=== NAME CONFIRMATION (mode: %s) ===" % "rename" if is_rename else "first time")
 	push_warning("Entered name: '%s'" % name_text)
-	push_warning("Player ID: '%s'" % loginHandler.deviceId)
+	push_warning("Player ID: '%s'" % CheddaBoards.get_player_id())
 	
 	if name_text.length() < MIN_NAME_LENGTH:
 		name_status_label.text = "Name too short (min %d characters)" % MIN_NAME_LENGTH
@@ -120,11 +119,10 @@ func _on_confirm_name_pressed():
 		# First play: set up anonymous identity and start the game
 		loginHandler.nickname = name_text
 		
-		CheddaBoards.set_player_id(loginHandler.deviceId)
 		CheddaBoards.change_nickname(loginHandler.nickname)
 		CheddaBoards.login_anonymous(loginHandler.nickname)
 		
-		push_warning("Starting game as: %s (ID: %s)" % [loginHandler.nickname, loginHandler.deviceId])
+		push_warning("Starting game as: %s (ID: %s)" % [loginHandler.nickname, CheddaBoards.get_player_id()])
 		#TODO close
 		on_closed.emit()
 		self.visible = false
@@ -137,13 +135,13 @@ func _on_nickname_change_success(new_nickname: String):
 		CheddaBoards.nickname_error.disconnect(_on_nickname_changed_error)
 	
 	if is_rename:
-		push_warning("Renamed to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, loginHandler.deviceId])
+		push_warning("Renamed to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
 		#TODO toast
 		#TODO close
 		on_closed.emit()
 		self.visible = false
 	else:
-		push_warning("Starting game as: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, loginHandler.deviceId])
+		push_warning("Starting game as: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
 		#TODO close
 		on_closed.emit()
 		self.visible = false

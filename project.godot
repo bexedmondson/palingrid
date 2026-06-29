@@ -18,7 +18,7 @@ config/icon="uid://cidrnlqod27uy"
 [autoload]
 
 CheddaBoards="*res://addons/cheddaboards/CheddaBoards.gd"
-Achievements="res://autoloads/Achievements.gd"
+Achievements="*res://autoloads/Achievements.gd"
 MobileUI="*res://autoloads/MobileUI.gd"
 
 [display]

@@ -52,10 +52,7 @@ func update(current: int) -> void:
 func show_scoreboard(score: int):
 	if !CheddaBoards.is_authenticated():
 		push_warning("[BestScoreIndicator] waiting for leaderboard load")
-		CheddaBoards.leaderboard_loaded.connect(func(): 
-			push_warning("[BestScoreIndicator] Submitting score after leaderboard load: " + str(score))
-			CheddaBoards.submit_score(score)
-		)
+		CheddaBoards.leaderboard_loaded.connect(submit)
 	
 	scoreboard.visible = true
 	
@@ -63,13 +60,17 @@ func show_scoreboard(score: int):
 		push_warning("[BestScoreIndicator] submitting score as already authenticated")
 		CheddaBoards.submit_score(score)
 
+func submit(_entries):
+	push_warning("[BestScoreIndicator] Submitting score after leaderboard load: " + str(best))
+	CheddaBoards.submit_score(best)
+
 func save(score : int):
 	CheddaBoards.submit_score(score)
 	push_warning("[BestScoreIndicator] Submitting score: " + str(score))
-	
 	allScores[dailyGenerator.daySeed] = score
 	
 	var f = FileAccess.open(saveFile, FileAccess.WRITE_READ)
+	f.get_path_absolute()
 	f.store_var(allScores)
 	f.close()
 
