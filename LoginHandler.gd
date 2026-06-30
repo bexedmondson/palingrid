@@ -19,16 +19,8 @@ var profile_timeout_timer: Timer = null
 var profile_load_attempts: int = 0
 var profile_poll_attempts: int = 0
 
-enum PlayerInfoState
-{
-	INITIALISING,
-	NONE_FOUND,
-	EXISTS,
-	CHECK_FAILED
-}
-
-var local_state : PlayerInfoState = PlayerInfoState.INITIALISING
-var remote_state : PlayerInfoState = PlayerInfoState.INITIALISING
+var local_state : PlayerInfo.State = PlayerInfo.State.INITIALISING
+var remote_state : PlayerInfo.State = PlayerInfo.State.INITIALISING
 
 func _ready() -> void:
 	# --- CheddaBoards credentials (managed by Setup Wizard) ---
@@ -63,9 +55,9 @@ func _on_sdk_ready():
 	var has_data = _try_load_player_data()
 	push_warning("[LoginHandler] found local data? " + str(has_data))
 	
-	local_state = PlayerInfoState.EXISTS if has_data else PlayerInfoState.NONE_FOUND
+	local_state = PlayerInfo.State.EXISTS if has_data else PlayerInfo.State.NONE_FOUND
 	
-	if local_state == PlayerInfoState.EXISTS:
+	if local_state == PlayerInfo.State.EXISTS:
 		CheddaBoards.login_anonymous(nickname)
 	
 	_load_anonymous_profile()
@@ -171,13 +163,13 @@ func _on_profile_loaded(loaded_nickname: String, score: int, _streak: int, achie
 	between session-auth and API-key paths."""
 	push_warning("[LoginHandler] Profile loaded: %s (weekly score: %d, plays: %d)" % [loaded_nickname, score, play_count])
 	
-	remote_state = PlayerInfoState.EXISTS
+	remote_state = PlayerInfo.State.EXISTS
 	
 	if not loaded_nickname.is_empty():
 		# If backend has different nickname (e.g. auto-suffixed), update local storage
-		if nickname != loaded_nickname or local_state == PlayerInfoState.NONE_FOUND or local_state == PlayerInfoState.CHECK_FAILED:
+		if nickname != loaded_nickname or local_state == PlayerInfo.State.NONE_FOUND or local_state == PlayerInfo.State.CHECK_FAILED:
 			push_warning("[LoginHandler] Updating local nickname: '%s' -> '%s' (backend sync)" % [nickname if not nickname.is_empty() else "[none]", loaded_nickname])
-			local_state = PlayerInfoState.EXISTS
+			local_state = PlayerInfo.State.EXISTS
 			nickname = loaded_nickname
 			_save_player_data()
 
@@ -189,7 +181,7 @@ func _on_no_profile():
 	"""No profile found"""
 	push_warning("No profile signal")
 	
-	remote_state = PlayerInfoState.NONE_FOUND
+	remote_state = PlayerInfo.State.NONE_FOUND
 	
 	_clear_profile_timeout()
 	_stop_profile_polling()
@@ -279,8 +271,8 @@ func _on_profile_timeout():
 		_stop_profile_polling()
 		waiting_for_profile = false
 		#if initialising, set this so we know we need to retry later if the player wants their remote info
-		if remote_state == PlayerInfoState.INITIALISING:
-			remote_state = PlayerInfoState.CHECK_FAILED
+		if remote_state == PlayerInfo.State.INITIALISING:
+			remote_state = PlayerInfo.State.CHECK_FAILED
 
 
 func _on_nickname_changed(new_nickname: String):

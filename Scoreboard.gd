@@ -26,6 +26,7 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 # NODE REFERENCES
 # ============================================================
 
+@export var login_handler : LoginHandler
 @export var name_change_handler : NameChangeHandler
 @export var margin_container: MarginContainer
 @export var title_label: Label
@@ -84,10 +85,13 @@ func on_visibility_changed():
 	if not CheddaBoards.score_submitted.is_connected(_on_score_submitted):
 		CheddaBoards.score_submitted.connect(_on_score_submitted)
 	
-	if not CheddaBoards.login_success.is_connected(_on_login_success):
-		CheddaBoards.login_success.connect(_on_login_success)
-	if not CheddaBoards.login_failed.is_connected(_on_login_failed):
-		CheddaBoards.login_failed.connect(_on_login_failed)
+#	if not CheddaBoards.login_success.is_connected(_on_login_success):
+#		CheddaBoards.login_success.connect(_on_login_success)
+#	if not CheddaBoards.login_failed.is_connected(_on_login_failed):
+#		CheddaBoards.login_failed.connect(_on_login_failed)
+	
+	if login_handler.local_state == PlayerInfo.State.INITIALISING:
+		pass
 	
 	_load_leaderboard()
 	
@@ -117,7 +121,7 @@ func _load_leaderboard():
 		
 	if CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
 		name_change_handler.on_closed.connect(_on_prompt_shown)
-		name_change_handler._show_name_entry_panel()
+		name_change_handler._show_name_entry_panel(false)
 		return
 	
 	_set_loading(true)
