@@ -733,7 +733,7 @@ func _update_cached_profile(profile: Dictionary) -> void:
 
 func _log(message: String) -> void:
 	if debug_logging:
-		push_warning("[CheddaBoards] %s" % message)
+		print("[CheddaBoards] %s" % message)
 
 # Redact a user-facing device code for logging. Shows the first 3 chars
 # so a developer can still correlate logs with what they see on screen,

@@ -22,6 +22,7 @@
 [ext_resource type="StyleBox" uid="uid://bvo5536dvek2v" path="res://light_grey_bg.tres" id="17_gayrg"]
 [ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://Scoreboard.gd" id="20_konqy"]
 [ext_resource type="StyleBox" uid="uid://cf3thrfhfhmu6" path="res://light_grey_bg_shadow.tres" id="21_u6jcp"]
+[ext_resource type="Texture2D" uid="uid://dtkx2x3f8iddm" path="res://timer_0.png" id="23_bibwd"]
 [ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://NameChangeHandler.gd" id="24_bibwd"]
 [ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://DebugUtils.gd" id="24_eilgq"]
 
@@ -616,12 +617,13 @@ last_wrap_alignment = 2
 [node name="WordPanel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
 layout_mode = 2
 
-[node name="Scoreboard" type="Panel" parent="." unique_id=1504834327 node_paths=PackedStringArray("name_change_handler", "margin_container", "title_label", "refresh_button", "column_header", "leaderboard_scroll", "leaderboard_list", "status_label", "back_button")]
+[node name="Scoreboard" type="Panel" parent="." unique_id=1504834327 node_paths=PackedStringArray("login_handler", "name_change_handler", "margin_container", "title_label", "refresh_button", "column_header", "leaderboard_scroll", "leaderboard_list", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
 visible = false
 z_index = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
 script = ExtResource("20_konqy")
+login_handler = NodePath("../LoginHandler")
 name_change_handler = NodePath("NameEntryPanel")
 margin_container = NodePath("LeaderboardMarginContainer")
 title_label = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel")
@@ -629,6 +631,9 @@ refresh_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/R
 column_header = NodePath("LeaderboardMarginContainer/VBoxContainer/ColumnHeader")
 leaderboard_scroll = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer")
 leaderboard_list = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+spinner_bar = NodePath("LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar")
+spinner_bar2 = NodePath("LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar2")
+spinner_label = NodePath("LeaderboardMarginContainer/LoadingSpinner")
 status_label = NodePath("LeaderboardMarginContainer/VBoxContainer/StatusLabel")
 back_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/ackButton")
 
@@ -779,7 +784,62 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="NameEntryPanel" type="Panel" parent="Scoreboard" unique_id=1863543125 node_paths=PackedStringArray("loginHandler", "title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button")]
+[node name="LoadingSpinner" type="Label" parent="Scoreboard/LeaderboardMarginContainer" unique_id=549898208]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Scoreboard/LeaderboardMarginContainer/LoadingSpinner" unique_id=212297241]
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 32.87
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("23_bibwd")
+tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Scoreboard/LeaderboardMarginContainer/LoadingSpinner" unique_id=1574010757]
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 16.19
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("23_bibwd")
+
+[node name="NameEntryPanel" type="Panel" parent="Scoreboard" unique_id=1863543125 node_paths=PackedStringArray("loginHandler", "best_score_indicator", "title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button")]
+visible = false
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
@@ -792,6 +852,7 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("21_u6jcp")
 script = ExtResource("24_bibwd")
 loginHandler = NodePath("../../LoginHandler")
+best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 title_label = NodePath("MarginContainer/VBoxContainer/TitleLabel")
 subtitle_label = NodePath("MarginContainer/VBoxContainer/SubtitleLabel")
 name_line_edit = NodePath("MarginContainer/VBoxContainer/NameLineEdit")

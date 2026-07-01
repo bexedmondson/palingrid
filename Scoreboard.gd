@@ -37,6 +37,11 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 @export var leaderboard_scroll: ScrollContainer
 @export var leaderboard_list: VBoxContainer
 
+# Loading display
+@export var spinner_bar : Control
+@export var spinner_bar2 : Control
+@export var spinner_label : Label
+
 # Footer
 @export var status_label: Label
 @export var back_button: Button
@@ -44,6 +49,10 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 var setup : bool = false
 
 var has_shown_set_name_prompt : bool
+
+var spinner_tween1 : Tween
+var spinner_tween2 : Tween
+var spinner_tweenValue : Tween
 
 # ============================================================
 # STATE
@@ -60,9 +69,11 @@ var load_timeout_timer: Timer = null ## Load timeout timer
 # ============================================================
 func _ready() -> void:
 	self.visible = false
+	_set_loading(false)
 
 func on_visibility_changed():
-	if (!self.visible):
+	print("[Scoreboard] on_visibility_changed " + str(self.visible))
+	if !self.visible:
 		_clear_load_timeout()
 		return
 	
@@ -90,25 +101,28 @@ func on_visibility_changed():
 #	if not CheddaBoards.login_failed.is_connected(_on_login_failed):
 #		CheddaBoards.login_failed.connect(_on_login_failed)
 	
-	if login_handler.local_state == PlayerInfo.State.INITIALISING:
-		pass
+	#if login_handler.local_state == PlayerInfo.State.INITIALISING:
+		# SHOW NAME CHANGE THING HERE
+		#return
 	
 	_load_leaderboard()
 	
-	push_warning("[Leaderboard] v2.0.0 initialized (Mobile: %s, Scale: %.2f)" % [MobileUI.is_mobile, MobileUI.ui_scale])
+	print("[Scoreboard] v2.0.0 initialized (Mobile: %s, Scale: %.2f)" % [MobileUI.is_mobile, MobileUI.ui_scale])
 	setup = true
-	
+
+
 func _on_score_submitted(score: int, streak: int):
 	_load_leaderboard()
+
 
 # ============================================================
 # LOADING
 # ============================================================
 
 func _load_leaderboard():
-	push_warning("[Leaderboard] start load")
+	print("[Scoreboard] start load")
 	if is_loading:
-		push_warning("[Leaderboard] already loading, exiting load request early")
+		print("[Scoreboard] already loading, exiting load request early")
 		return
 	
 	refresh_button.disabled = true
@@ -116,8 +130,8 @@ func _load_leaderboard():
 	status_label.text = "Loading..."
 	status_label.add_theme_color_override("font_color", COLOR_TEXT)
 	
-	if name_change_handler.on_closed.is_connected(_load_leaderboard):
-		name_change_handler.on_closed.disconnect(_load_leaderboard)
+	if name_change_handler.on_closed.is_connected(_on_prompt_shown):
+		name_change_handler.on_closed.disconnect(_on_prompt_shown)
 		
 	if CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
 		name_change_handler.on_closed.connect(_on_prompt_shown)
@@ -127,22 +141,60 @@ func _load_leaderboard():
 	_set_loading(true)
 	_start_load_timeout()
 	
-	push_warning("[Leaderboard] Requesting scoreboard '%s'" % scoreboard_id)
+	print("[Scoreboard] Requesting scoreboard '%s'" % scoreboard_id)
 	CheddaBoards.get_scoreboard(scoreboard_id, LEADERBOARD_LIMIT)
 
-func _set_loading(loading: bool):
+func _set_loading(loading: bool, message: String = ""):
 	is_loading = loading
 	refresh_button.disabled = loading
+	
+	if loading:
+		if spinner_tween1 == null or not spinner_tween1.is_valid():
+			spinner_tween1 = create_tween()
+			spinner_tween1.set_loops()
+			spinner_tween1.set_loops()
+			spinner_tween1.tween_property(spinner_bar, "rotation_degrees", 360.0, 1.5).from(0.0)
+			
+		if spinner_tween2 == null or not spinner_tween2.is_valid():
+			spinner_tween2 = create_tween()
+			spinner_tween2.set_loops()
+			spinner_tween2.tween_property(spinner_bar2, "rotation_degrees", 360.0, 2.5).from(0.0)
+		
+		if spinner_tweenValue == null or not spinner_tweenValue.is_valid():
+			
+			spinner_tweenValue = create_tween()
+			spinner_tweenValue.set_loops()
+			spinner_tweenValue.tween_property(spinner_bar, "value", 10.0, 0.5).from(28.0)
+			spinner_tweenValue.tween_property(spinner_bar, "value", 28.0, 0.5)
+			
+		
+		spinner_tween1.play()
+		spinner_tween2.play()
+		spinner_tweenValue.play()
+		
+		spinner_label.show()
+	else: 
+		if spinner_tween1 != null and spinner_tween1.is_valid():
+			spinner_tween1.pause()
+		if spinner_tween2 != null and spinner_tween2.is_valid():
+			spinner_tween2.pause()
+		if spinner_tweenValue != null and spinner_tweenValue.is_valid():
+			spinner_tweenValue.pause()
+		spinner_label.hide()
+
 
 func _clear_leaderboard():
 	for child in leaderboard_list.get_children():
 		child.queue_free()
 
+
 func _on_prompt_shown():
+	name_change_handler.on_closed.disconnect(_on_prompt_shown)
+	
 	has_shown_set_name_prompt = true
-	if CheddaBoards.get_cached_profile().is_empty():
-		CheddaBoards.profile_loaded.connect(_on_profile_loaded)
-		return
+	#if CheddaBoards.get_cached_profile().is_empty():
+	#	CheddaBoards.profile_loaded.connect(_on_profile_loaded)
+	#	return
 	_load_leaderboard()
 
 func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
@@ -157,7 +209,7 @@ func _on_scoreboard_loaded(sb_id: String, config: Dictionary, entries: Array):
 	_display_entries(entries)
 
 func _on_scoreboard_error(reason: String):
-	push_warning("[Leaderboard] Error: %s" % reason)
+	push_warning("[Scoreboard] Error: %s" % reason)
 	_clear_load_timeout()
 	_set_loading(false)
 	status_label.text = "Error loading leaderboard"

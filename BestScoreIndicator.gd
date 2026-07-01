@@ -58,22 +58,25 @@ func update(current: int) -> void:
 
 func show_scoreboard(score: int):
 	if !CheddaBoards.is_authenticated():
-		push_warning("[BestScoreIndicator] waiting for leaderboard load")
+		print("[BestScoreIndicator] waiting for leaderboard load")
 		CheddaBoards.leaderboard_loaded.connect(submit)
 	else:	
-		push_warning("[BestScoreIndicator] submitting score as already authenticated")
+		print("[BestScoreIndicator] submitting score as already authenticated")
 		CheddaBoards.submit_score(score)
 	
 	scoreboard.show()
 
 func submit(_entries):
-	push_warning("[BestScoreIndicator] Submitting score after leaderboard load: " + str(best))
+	if CheddaBoards.leaderboard_loaded.is_connected(submit):
+		CheddaBoards.leaderboard_loaded.disconnect(submit)
+	
+	print("[BestScoreIndicator] Submitting score after leaderboard load: " + str(best))
 	CheddaBoards.submit_score(best)
 
 func save(score : int):
-	if not CheddaBoards.get_cached_profile().is_empty():
-		push_warning("[BestScoreIndicator] Submitting score: " + str(score))
-		CheddaBoards.submit_score(score)
+	#if not CheddaBoards.get_cached_profile().is_empty():
+	print("[BestScoreIndicator] Submitting score: " + str(score))
+	CheddaBoards.submit_score(score)
 	
 	allScores[dailyGenerator.daySeed] = score
 	

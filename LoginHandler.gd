@@ -47,13 +47,13 @@ func _on_sdk_ready():
 
 	var device_id_found = _try_get_native_device_id()
 	
-	push_warning("[LoginHandler] found device id? " + str(device_id_found))
+	print("[LoginHandler] found device id? " + str(device_id_found))
 	if not device_id_found:
-		push_warning("[LoginHandler] creating new device id")
+		print("[LoginHandler] creating new device id")
 		_create_new_device_id()
 
 	var has_data = _try_load_player_data()
-	push_warning("[LoginHandler] found local data? " + str(has_data))
+	print("[LoginHandler] found local data? " + str(has_data))
 	
 	local_state = PlayerInfo.State.EXISTS if has_data else PlayerInfo.State.NONE_FOUND
 	
@@ -99,7 +99,7 @@ func _create_new_device_id() -> void:
 func _try_load_player_data() -> bool:
 	"""Trying to load saved player data (e.g. nickname)"""
 	if not FileAccess.file_exists(leaderboardInfoFile):
-		push_warning("No save file found")
+		push_warning("[LoginHandler] No save file found")
 		return false
 
 	var file = FileAccess.open(leaderboardInfoFile, FileAccess.READ)
@@ -109,7 +109,7 @@ func _try_load_player_data() -> bool:
 
 		if data is Dictionary:
 			nickname = data.get("nickname", "")
-			push_warning("Loaded anonymous data: nickname='%s'" % [nickname])
+			print("[LoginHandler] Loaded anonymous data: nickname='%s'" % [nickname])
 			return true
 	
 	return false
@@ -125,23 +125,25 @@ func _save_player_data():
 		}
 		file.store_var(data)
 		file.close()
-		push_warning("[LoginHandler] Saved player data")
+		print("[LoginHandler] Saved player data")
+	
+	local_state = PlayerInfo.State.EXISTS
 		
 
 
 func _load_anonymous_profile():
 	"""Load and display stats for anonymous player from CheddaBoards API"""
-	push_warning("[LoginHandler] Loading anonymous profile...")
+	print("[LoginHandler] Loading anonymous profile...")
 
 	var profile = CheddaBoards.get_cached_profile()
 
 	if not profile.is_empty():
-		push_warning("Found cached profile")
+		print("[LoginHandler] Found cached profile")
 		return
 	else:
-		push_warning("No cached profile")
+		print("[LoginHandler] No cached profile")
 
-	push_warning("Requesting profile refresh...")
+	print("[LoginHandler] Requesting profile refresh...")
 	_request_profile_with_timeout()
 
 # ============================================================
@@ -161,14 +163,14 @@ func _on_profile_loaded(loaded_nickname: String, score: int, _streak: int, achie
 	SDK v2.2.0+ emits play_count as 5th arg — prefer it over digging into
 	the cached profile dict, which can be stale or inconsistently shaped
 	between session-auth and API-key paths."""
-	push_warning("[LoginHandler] Profile loaded: %s (weekly score: %d, plays: %d)" % [loaded_nickname, score, play_count])
+	print("[LoginHandler] Profile loaded: %s (weekly score: %d, plays: %d)" % [loaded_nickname, score, play_count])
 	
 	remote_state = PlayerInfo.State.EXISTS
 	
 	if not loaded_nickname.is_empty():
 		# If backend has different nickname (e.g. auto-suffixed), update local storage
 		if nickname != loaded_nickname or local_state == PlayerInfo.State.NONE_FOUND or local_state == PlayerInfo.State.CHECK_FAILED:
-			push_warning("[LoginHandler] Updating local nickname: '%s' -> '%s' (backend sync)" % [nickname if not nickname.is_empty() else "[none]", loaded_nickname])
+			print("[LoginHandler] Updating local nickname: '%s' -> '%s' (backend sync)" % [nickname if not nickname.is_empty() else "[none]", loaded_nickname])
 			local_state = PlayerInfo.State.EXISTS
 			nickname = loaded_nickname
 			_save_player_data()
@@ -179,7 +181,7 @@ func _on_profile_loaded(loaded_nickname: String, score: int, _streak: int, achie
 
 func _on_no_profile():
 	"""No profile found"""
-	push_warning("No profile signal")
+	print("[LoginHandler] No remote profile found")
 	
 	remote_state = PlayerInfo.State.NONE_FOUND
 	
@@ -193,7 +195,7 @@ func _on_no_profile():
 func _start_profile_polling():
 	"""Start polling for profile"""
 	_stop_profile_polling()
-	push_warning("[LoginHandler] beginning profile poll")
+	print("[LoginHandler] beginning profile poll")
 	profile_poll_timer = Timer.new()
 	profile_poll_timer.wait_time = POLL_INTERVAL
 	profile_poll_timer.timeout.connect(_check_profile_poll)
@@ -204,13 +206,13 @@ func _start_profile_polling():
 
 func _check_profile_poll():
 	"""Check if profile has loaded"""
-	push_warning("[LoginHandler] doing profile check")
+	print("[LoginHandler] doing profile check")
 	profile_poll_attempts += 1
 
 	var profile = CheddaBoards.get_cached_profile()
 
 	if not profile.is_empty() and waiting_for_profile:
-		push_warning("Profile found via polling")
+		print("[LoginHandler] Profile found via polling")
 		_clear_profile_timeout()
 		_stop_profile_polling()
 		waiting_for_profile = false
@@ -222,7 +224,7 @@ func _check_profile_poll():
 
 func _stop_profile_polling():
 	"""Stop polling"""
-	push_warning("[LoginHandler] stopping profile poll")
+	print("[LoginHandler] stopping profile poll")
 	if profile_poll_timer:
 		profile_poll_timer.stop()
 		profile_poll_timer.queue_free()
@@ -235,7 +237,7 @@ func _stop_profile_polling():
 func _start_profile_timeout():
 	"""Start timeout for profile loading"""
 	_clear_profile_timeout()
-	push_warning("[LoginHandler] starting profile poll timeout")
+	print("[LoginHandler] starting profile poll timeout")
 
 	profile_timeout_timer = Timer.new()
 	profile_timeout_timer.wait_time = PROFILE_TIMEOUT_DURATION
@@ -247,7 +249,7 @@ func _start_profile_timeout():
 
 func _clear_profile_timeout():
 	"""Clear profile timeout"""
-	push_warning("[LoginHandler] clearing profile poll timeout")
+	print("[LoginHandler] clearing profile poll timeout")
 	if profile_timeout_timer:
 		profile_timeout_timer.stop()
 		profile_timeout_timer.queue_free()
@@ -258,7 +260,7 @@ func _on_profile_timeout():
 	"""Handle profile timeout"""
 	if not waiting_for_profile:
 		return
-	push_warning("[LoginHandler] profile poll timeout check")
+	print("[LoginHandler] profile poll timeout check")
 
 	profile_load_attempts += 1
 	push_warning("Profile timeout (attempt %d/%d)" % [profile_load_attempts, MAX_PROFILE_LOAD_ATTEMPTS])
@@ -274,9 +276,12 @@ func _on_profile_timeout():
 		if remote_state == PlayerInfo.State.INITIALISING:
 			remote_state = PlayerInfo.State.CHECK_FAILED
 
+func update_nickname(new_nickname: String):
+	CheddaBoards.change_nickname(new_nickname)
 
 func _on_nickname_changed(new_nickname: String):
 	nickname = new_nickname
+	CheddaBoards.login_anonymous(nickname)
 	_save_player_data()
 
 
