@@ -133,7 +133,7 @@ func _load_leaderboard():
 	if name_change_handler.on_closed.is_connected(_on_prompt_shown):
 		name_change_handler.on_closed.disconnect(_on_prompt_shown)
 		
-	if CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
+	if login_handler.remote_state == PlayerInfo.State.NONE_FOUND and CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
 		name_change_handler.on_closed.connect(_on_prompt_shown)
 		name_change_handler._show_name_entry_panel(false)
 		return
@@ -340,6 +340,7 @@ func _add_leaderboard_entry(rank: int, entry) -> void:
 	# Rank
 	var rank_label = Label.new()
 	#rank_label.custom_minimum_size = Vector2(MobileUI.get_size(44), 0)
+	rank_label.custom_minimum_size = Vector2(44, 0)
 	#rank_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	
@@ -397,6 +398,18 @@ func _format_score(value: int) -> String:
 # ============================================================
 # BUTTON HANDLERS
 # ============================================================
+
+func on_rename_pressed():
+	refresh_button.disabled = true
+	_clear_leaderboard()
+	status_label.text = "Loading..."
+	status_label.add_theme_color_override("font_color", COLOR_TEXT)
+
+	if name_change_handler.on_closed.is_connected(_on_prompt_shown):
+		name_change_handler.on_closed.disconnect(_on_prompt_shown)
+
+	name_change_handler.on_closed.connect(_on_prompt_shown)
+	name_change_handler._show_name_entry_panel(true)
 
 func _on_refresh_pressed():
 	_load_leaderboard()

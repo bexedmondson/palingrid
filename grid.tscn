@@ -635,7 +635,7 @@ spinner_bar = NodePath("LeaderboardMarginContainer/LoadingSpinner/TextureProgres
 spinner_bar2 = NodePath("LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar2")
 spinner_label = NodePath("LeaderboardMarginContainer/LoadingSpinner")
 status_label = NodePath("LeaderboardMarginContainer/VBoxContainer/StatusLabel")
-back_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/ackButton")
+back_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton")
 
 [node name="ColorRect" type="ColorRect" parent="Scoreboard" unique_id=1819124421]
 custom_minimum_size = Vector2(3000, 3000)
@@ -691,6 +691,7 @@ theme_override_styles/normal = ExtResource("12_5xkti")
 theme_override_styles/pressed = ExtResource("13_7jn42")
 theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
+button_mask = 0
 icon_alignment = 1
 expand_icon = true
 
@@ -711,7 +712,31 @@ mouse_filter = 2
 texture = ExtResource("8_r8ukp")
 expand_mode = 5
 
-[node name="ackButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=242659008]
+[node name="ChangeNameButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=1336271375]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_right = -90.0
+offset_bottom = 70.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = ExtResource("12_5xkti")
+theme_override_styles/pressed = ExtResource("13_7jn42")
+theme_override_styles/hover = ExtResource("9_4bqgu")
+theme_override_styles/disabled = ExtResource("14_1opga")
+text = "change name"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="BackButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=242659008]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 offset_right = 70.0
@@ -728,7 +753,7 @@ text = "<"
 icon_alignment = 1
 expand_icon = true
 
-[node name="ArrowTextureRect" type="TextureRect" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ackButton" unique_id=1984597428]
+[node name="ArrowTextureRect" type="TextureRect" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton" unique_id=1984597428]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -754,17 +779,20 @@ theme_override_constants/separation = 12
 [node name="RankHeader" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=2131557448]
 custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "RANK"
 horizontal_alignment = 1
 
 [node name="NameHeader" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=1264875578]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
 text = "PLAYER"
 
 [node name="ScoreHeader" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=805045531]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "SCORE"
 horizontal_alignment = 2
 
@@ -785,9 +813,10 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="LoadingSpinner" type="Label" parent="Scoreboard/LeaderboardMarginContainer" unique_id=549898208]
+visible = false
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "loading..."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -800,10 +829,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -125.0
-offset_right = 125.0
-offset_bottom = 125.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5707964
@@ -824,10 +853,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -125.0
-offset_right = 125.0
-offset_bottom = 125.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -853,13 +882,14 @@ theme_override_styles/panel = ExtResource("21_u6jcp")
 script = ExtResource("24_bibwd")
 loginHandler = NodePath("../../LoginHandler")
 best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
-title_label = NodePath("MarginContainer/VBoxContainer/TitleLabel")
-subtitle_label = NodePath("MarginContainer/VBoxContainer/SubtitleLabel")
-name_line_edit = NodePath("MarginContainer/VBoxContainer/NameLineEdit")
-name_status_label = NodePath("MarginContainer/VBoxContainer/NameStatusLabel")
-confirm_button = NodePath("MarginContainer/VBoxContainer/ConfirmNameButton")
+title_label = NodePath("MarginConlainer/VBoxContainer/TitleLabel")
+subtitle_label = NodePath("MarginConlainer/VBoxContainer/SubtitleLabel")
+name_line_edit = NodePath("MarginConlainer/VBoxContainer/NameLineEdit")
+name_status_label = NodePath("MarginConlainer/VBoxContainer/NameStatusLabel")
+confirm_button = NodePath("MarginConlainer/VBoxContainer/ConfirmNameButton")
 
 [node name="ColorRect" type="ColorRect" parent="Scoreboard/NameEntryPanel" unique_id=94699613]
+visible = false
 show_behind_parent = true
 custom_minimum_size = Vector2(3000, 3000)
 propagate_maximum_size = true
@@ -870,7 +900,7 @@ offset_right = 1500.0
 offset_bottom = 1500.0
 color = Color(0, 0, 0, 0.21960784)
 
-[node name="MarginContainer" type="MarginContainer" parent="Scoreboard/NameEntryPanel" unique_id=606843127]
+[node name="MarginConlainer" type="MarginContainer" parent="Scoreboard/NameEntryPanel" unique_id=606843127]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -882,31 +912,31 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard/NameEntryPanel/MarginContainer" unique_id=1016868895]
+[node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard/NameEntryPanel/MarginConlainer" unique_id=1016868895]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=880299228]
+[node name="TitleLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=880299228]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Enter Your Name"
 horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1623076123]
+[node name="SubtitleLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=1623076123]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_font_sizes/font_size = 14
 text = "This will appear on the leaderboard"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=347683051]
+[node name="Spacer" type="Control" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=347683051]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="NameLineEdit" type="LineEdit" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1414645961]
+[node name="NameLineEdit" type="LineEdit" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=1414645961]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.015210929, 0.015210832, 0.015210851, 1)
@@ -918,17 +948,17 @@ placeholder_text = "Enter your name..."
 alignment = 1
 max_length = 16
 
-[node name="NameStatusLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1892913645]
+[node name="NameStatusLabel" type="Label" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=1892913645]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Spacer2" type="Control" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1140598101]
+[node name="Spacer2" type="Control" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=1140598101]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="ConfirmNameButton" type="Button" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=215375463]
+[node name="ConfirmNameButton" type="Button" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=215375463]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
@@ -938,7 +968,7 @@ theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
 text = "LET'S GO!"
 
-[node name="CancelNameButton" type="Button" parent="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer" unique_id=1379832663]
+[node name="CancelNameButton" type="Button" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=1379832663]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
@@ -957,7 +987,8 @@ dock = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowConta
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Scoreboard" method="show"]
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="visibility_changed" from="Scoreboard" to="Scoreboard" method="on_visibility_changed"]
-[connection signal="text_changed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_text_changed"]
-[connection signal="text_submitted" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_submitted"]
-[connection signal="pressed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/ConfirmNameButton" to="Scoreboard/NameEntryPanel" method="_on_confirm_name_pressed"]
-[connection signal="pressed" from="Scoreboard/NameEntryPanel/MarginContainer/VBoxContainer/CancelNameButton" to="Scoreboard/NameEntryPanel" method="_on_cancel_name_pressed"]
+[connection signal="pressed" from="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton" to="Scoreboard" method="on_rename_pressed"]
+[connection signal="text_changed" from="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_text_changed"]
+[connection signal="text_submitted" from="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_submitted"]
+[connection signal="pressed" from="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer/ConfirmNameButton" to="Scoreboard/NameEntryPanel" method="_on_confirm_name_pressed"]
+[connection signal="pressed" from="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer/CancelNameButton" to="Scoreboard/NameEntryPanel" method="_on_cancel_name_pressed"]

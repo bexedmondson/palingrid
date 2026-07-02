@@ -103,6 +103,7 @@ func _on_confirm_name_pressed():
 		
 	name_status_label.text = "Saving..."
 	name_status_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+	confirm_button.disabled = true
 	
 	loginHandler.update_nickname(name_text)
 	
@@ -118,6 +119,8 @@ func _on_profile_loaded(nickname: String, score: int, streak: int, achievements:
 		_on_confirm_name_pressed()
 
 func _on_nickname_change_success(new_nickname: String):
+	confirm_button.disabled = false
+	
 	print("[NameChangeHandler] name changed to " + new_nickname)
 	if CheddaBoards.nickname_changed.is_connected(_on_nickname_change_success):
 		CheddaBoards.nickname_changed.disconnect(_on_nickname_change_success)
@@ -139,11 +142,19 @@ func _on_nickname_change_success(new_nickname: String):
 		CheddaBoards.submit_score(best_score_indicator.best)
 		await CheddaBoards.score_submitted
 		
+		CheddaBoards.refresh_profile()
+		await CheddaBoards.profile_loaded
+		
+		CheddaBoards.change_nickname(new_nickname)
+		await CheddaBoards.nickname_changed
+		
 		#TODO close
 		on_closed.emit()
 		self.visible = false
 
 func _on_nickname_changed_error():
+	confirm_button.disabled = false
+	
 	if CheddaBoards.nickname_changed.is_connected(_on_nickname_change_success):
 		CheddaBoards.nickname_changed.disconnect(_on_nickname_change_success)
 	if CheddaBoards.nickname_error.is_connected(_on_nickname_changed_error):
