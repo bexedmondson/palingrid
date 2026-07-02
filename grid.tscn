@@ -11,20 +11,23 @@
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
 [ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://DisableScrollOnDrag.gd" id="4_xw4xy"]
 [ext_resource type="Script" uid="uid://fusem4g6wje" path="res://BestScoreIndicator.gd" id="5_ifj8t"]
-[ext_resource type="Texture2D" uid="uid://pds6swqpbcoe" path="res://podium.svg" id="6_hsp7l"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://text_shine.tres" id="7_kc0yb"]
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
 [ext_resource type="StyleBox" uid="uid://bjlydsc6ixtne" path="res://button_hover.tres" id="9_4bqgu"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://GridRippleAnimator.gd" id="9_ghb71"]
 [ext_resource type="StyleBox" uid="uid://csydikcrpmtm0" path="res://button_normal.tres" id="12_5xkti"]
+[ext_resource type="Texture2D" uid="uid://p8kf3hofix1q" path="res://leaderboardsComplex.png" id="12_jpp3n"]
 [ext_resource type="StyleBox" uid="uid://ck0fkdaghas4a" path="res://button_pressed.tres" id="13_7jn42"]
 [ext_resource type="StyleBox" uid="uid://c57j83sua426o" path="res://button_disabled.tres" id="14_1opga"]
 [ext_resource type="StyleBox" uid="uid://bvo5536dvek2v" path="res://light_grey_bg.tres" id="17_gayrg"]
+[ext_resource type="Texture2D" uid="uid://coh0kx8dqbali" path="res://return.png" id="17_pisw8"]
 [ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://Scoreboard.gd" id="20_konqy"]
 [ext_resource type="StyleBox" uid="uid://cf3thrfhfhmu6" path="res://light_grey_bg_shadow.tres" id="21_u6jcp"]
 [ext_resource type="Texture2D" uid="uid://dtkx2x3f8iddm" path="res://timer_0.png" id="23_bibwd"]
+[ext_resource type="Texture2D" uid="uid://cxhjow4cjxbm4" path="res://arrowLeft.png" id="23_ivji3"]
 [ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://NameChangeHandler.gd" id="24_bibwd"]
 [ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://DebugUtils.gd" id="24_eilgq"]
+[ext_resource type="Texture2D" uid="uid://bfc2d5oxx6lvr" path="res://toolPencil.png" id="24_jpp3n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
 bg_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
@@ -194,27 +197,27 @@ bestContainer = NodePath("..")
 grid = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 scoreboard = NodePath("../../../../../../Scoreboard")
 
-[node name="PanelContainer" type="PanelContainer" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1488969488]
+[node name="LeaderboardButtonPanelContainer" type="PanelContainer" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1488969488]
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1opga")
 
-[node name="Button" type="Button" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer" unique_id=676292021]
+[node name="LeaderboardButton" type="Button" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer" unique_id=676292021]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("12_5xkti")
 theme_override_styles/pressed = ExtResource("13_7jn42")
 theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
-icon = ExtResource("6_hsp7l")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer" unique_id=80492182]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer" unique_id=80492182]
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
-texture = ExtResource("6_hsp7l")
+size_flags_vertical = 0
+texture = ExtResource("12_jpp3n")
 expand_mode = 3
 stretch_mode = 5
 
@@ -445,7 +448,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 mouse_filter = 1
 
-[node name="ResetButton" type="Button" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor" unique_id=1148351401]
+[node name="ResetTilesButton" type="Button" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor" unique_id=1148351401]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 3
@@ -469,22 +472,21 @@ theme_override_styles/disabled = ExtResource("14_1opga")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ArrowTextureRect" type="TextureRect" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetButton" unique_id=254321134]
+[node name="ArrowTextureRect" type="TextureRect" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetTilesButton" unique_id=254321134]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 17.0
-offset_top = -16.0
-offset_right = 52.0
-offset_bottom = 15.0
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(-1, 1)
 mouse_filter = 2
-texture = ExtResource("8_r8ukp")
+texture = ExtResource("17_pisw8")
 expand_mode = 5
 
 [node name="TileDockMarginContainer" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=199900092]
@@ -702,10 +704,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -16.0
-offset_right = 20.0
-offset_bottom = 15.0
+offset_left = -18.0
+offset_top = -19.0
+offset_right = 24.349998
+offset_bottom = 18.509998
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -730,7 +732,7 @@ theme_override_styles/normal = ExtResource("12_5xkti")
 theme_override_styles/pressed = ExtResource("13_7jn42")
 theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
-text = "change name"
+icon = ExtResource("24_jpp3n")
 autowrap_mode = 2
 clip_text = true
 icon_alignment = 1
@@ -749,26 +751,24 @@ theme_override_styles/normal = ExtResource("12_5xkti")
 theme_override_styles/pressed = ExtResource("13_7jn42")
 theme_override_styles/hover = ExtResource("9_4bqgu")
 theme_override_styles/disabled = ExtResource("14_1opga")
-text = "<"
 icon_alignment = 1
 expand_icon = true
 
 [node name="ArrowTextureRect" type="TextureRect" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton" unique_id=1984597428]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = -16.0
-offset_right = 21.0
-offset_bottom = 15.0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("8_r8ukp")
+texture = ExtResource("23_ivji3")
 expand_mode = 5
 
 [node name="ColumnHeader" type="HBoxContainer" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=435664427]
@@ -777,7 +777,7 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="RankHeader" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=2131557448]
-custom_minimum_size = Vector2(44, 0)
+custom_minimum_size = Vector2(55, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "RANK"
@@ -984,8 +984,8 @@ script = ExtResource("24_eilgq")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 dock = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles")
 
-[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/PanelContainer/Button" to="Scoreboard" method="show"]
-[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
+[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer/LeaderboardButton" to="Scoreboard" method="show"]
+[connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetTilesButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="visibility_changed" from="Scoreboard" to="Scoreboard" method="on_visibility_changed"]
 [connection signal="pressed" from="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton" to="Scoreboard" method="on_rename_pressed"]
 [connection signal="text_changed" from="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer/NameLineEdit" to="Scoreboard/NameEntryPanel" method="_on_name_text_changed"]

@@ -340,7 +340,7 @@ func _add_leaderboard_entry(rank: int, entry) -> void:
 	# Rank
 	var rank_label = Label.new()
 	#rank_label.custom_minimum_size = Vector2(MobileUI.get_size(44), 0)
-	rank_label.custom_minimum_size = Vector2(44, 0)
+	rank_label.custom_minimum_size = Vector2(55, 0)
 	#rank_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	
