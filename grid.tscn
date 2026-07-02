@@ -217,6 +217,7 @@ expand_icon = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 texture = ExtResource("12_jpp3n")
 expand_mode = 3
 stretch_mode = 5
