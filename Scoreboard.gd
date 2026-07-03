@@ -31,11 +31,13 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 @export var margin_container: MarginContainer
 @export var title_label: Label
 @export var refresh_button: Button
+@export var change_name_button: Button
 
 # Leaderboard display
 @export var column_header: HBoxContainer
 @export var leaderboard_scroll: ScrollContainer
 @export var leaderboard_list: VBoxContainer
+@export var entry_placeholder : InstancePlaceholder
 
 # Loading display
 @export var spinner_bar : Control
@@ -53,6 +55,8 @@ var has_shown_set_name_prompt : bool
 var spinner_tween1 : Tween
 var spinner_tween2 : Tween
 var spinner_tweenValue : Tween
+
+var entry_displays = []
 
 # ============================================================
 # STATE
@@ -147,6 +151,7 @@ func _load_leaderboard():
 func _set_loading(loading: bool, message: String = ""):
 	is_loading = loading
 	refresh_button.disabled = loading
+	change_name_button.disabled = loading
 	
 	if loading:
 		if spinner_tween1 == null or not spinner_tween1.is_valid():
@@ -184,17 +189,15 @@ func _set_loading(loading: bool, message: String = ""):
 
 
 func _clear_leaderboard():
-	for child in leaderboard_list.get_children():
-		child.queue_free()
+	for entry in entry_displays:
+		entry.queue_free()
+	entry_displays.clear()
 
 
 func _on_prompt_shown():
 	name_change_handler.on_closed.disconnect(_on_prompt_shown)
 	
 	has_shown_set_name_prompt = true
-	#if CheddaBoards.get_cached_profile().is_empty():
-	#	CheddaBoards.profile_loaded.connect(_on_profile_loaded)
-	#	return
 	_load_leaderboard()
 
 func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
@@ -212,8 +215,7 @@ func _on_scoreboard_error(reason: String):
 	push_warning("[Scoreboard] Error: %s" % reason)
 	_clear_load_timeout()
 	_set_loading(false)
-	status_label.text = "Error loading leaderboard"
-	status_label.add_theme_color_override("font_color", Color.RED)
+	_set_status("Error loading leaderboard", true)
 
 func _on_login_success(nickname: String):
 	_set_status("")
@@ -269,12 +271,14 @@ func _display_entries(entries: Array):
 	for i in range(sorted_entries.size()):
 		_add_leaderboard_entry(i + 1, sorted_entries[i])
 
+
 func _sort_entries(entries: Array) -> Array:
 	var sorted = entries.duplicate()
 	sorted.sort_custom(func(a, b):
 		return _get_sort_value(a) > _get_sort_value(b)
 	)
 	return sorted
+
 
 func _get_sort_value(entry) -> int:
 	if typeof(entry) == TYPE_ARRAY:
@@ -300,85 +304,12 @@ func _add_leaderboard_entry(rank: int, entry) -> void:
 	var player_nickname = CheddaBoards.get_nickname()
 	var is_current_player = (nickname == player_nickname) and player_nickname != ""
 	
-	# Entry container
-	var entry_container = PanelContainer.new()
-	#entry_container.custom_minimum_size = Vector2(0, MobileUI.get_touch_size(44))
+	var entry_display : LeaderboardEntry = (entry_placeholder).create_instance()
+	entry_display.set_entry(rank, nickname, score, is_current_player)
 	
-	# Row styling
-	var stylebox = StyleBoxFlat.new()
-	stylebox.set_corner_radius_all(int(MobileUI.get_size(4)))
-	
-	if is_current_player:
-		stylebox.bg_color = COLOR_HIGHLIGHT_PLAYER
-	elif rank == 1:
-		stylebox.bg_color = COLOR_HIGHLIGHT_GOLD
-	elif rank == 2:
-		stylebox.bg_color = COLOR_HIGHLIGHT_SILVER
-	elif rank == 3:
-		stylebox.bg_color = COLOR_HIGHLIGHT_BRONZE
-	else:
-		# Alternating row colors for readability
-		stylebox.bg_color = Color("1a1a2e") if rank % 2 == 1 else Color("16162a")
-	
-	entry_container.add_theme_stylebox_override("panel", stylebox)
-	
-	# Margin
-	var margin = MarginContainer.new()
-	var h_margin = int(MobileUI.get_size(12))
-	var v_margin = int(MobileUI.get_size(4))
-	margin.add_theme_constant_override("margin_left", h_margin)
-	margin.add_theme_constant_override("margin_right", h_margin)
-	margin.add_theme_constant_override("margin_top", v_margin)
-	margin.add_theme_constant_override("margin_bottom", v_margin)
-	entry_container.add_child(margin)
-	
-	# HBox
-	var hbox = HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", int(MobileUI.get_size(12)))
-	margin.add_child(hbox)
-	
-	# Rank
-	var rank_label = Label.new()
-	#rank_label.custom_minimum_size = Vector2(MobileUI.get_size(44), 0)
-	rank_label.custom_minimum_size = Vector2(55, 0)
-	#rank_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
-	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	
-	match rank:
-		1:
-			rank_label.text = "#1"
-			rank_label.add_theme_color_override("font_color", Color.GOLD)
-		2:
-			rank_label.text = "#2"
-			rank_label.add_theme_color_override("font_color", Color.SILVER)
-		3:
-			rank_label.text = "#3"
-			rank_label.add_theme_color_override("font_color", Color("#CD7F32"))
-		_:
-			rank_label.text = "#%d" % rank
-			rank_label.add_theme_color_override("font_color", COLOR_TEXT_DIM)
-	
-	hbox.add_child(rank_label)
-	
-	# Nickname
-	var name_label = Label.new()
-	name_label.text = nickname
-	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	#name_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
-	name_label.add_theme_color_override("font_color", Color.WHITE if is_current_player else COLOR_TEXT)
-	name_label.clip_text = true
-	hbox.add_child(name_label)
-	
-	# Value
-	var value_label = Label.new()
-	value_label.text = _format_score(score)
-	value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	#value_label.custom_minimum_size = Vector2(MobileUI.get_size(90), 0)
-	#value_label.add_theme_font_size_override("font_size", MobileUI.get_font_size(18))
-	value_label.add_theme_color_override("font_color", COLOR_ACCENT if rank <= 3 else COLOR_TEXT)
-	hbox.add_child(value_label)
-	
-	leaderboard_list.add_child(entry_container)
+	entry_displays.append(entry_display)
+	return
+
 
 func _format_score(value: int) -> String:
 	"""Format score with commas for readability"""

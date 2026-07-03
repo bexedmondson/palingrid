@@ -115,6 +115,20 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpp3n"]
+bg_color = Color(0.38070744, 0.38070747, 0.3807073, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 40.0
+expand_margin_top = 50.0
+expand_margin_right = 40.0
+expand_margin_bottom = 20.0
+shadow_color = Color(0, 0, 0, 0.52156866)
+shadow_size = 5
+shadow_offset = Vector2(1, 2)
+
 [node name="MarginContainer" type="MarginContainer" unique_id=2099300064 node_paths=PackedStringArray("wordListScroller")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -620,7 +634,7 @@ last_wrap_alignment = 2
 [node name="WordPanel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
 layout_mode = 2
 
-[node name="Scoreboard" type="Panel" parent="." unique_id=1504834327 node_paths=PackedStringArray("login_handler", "name_change_handler", "margin_container", "title_label", "refresh_button", "column_header", "leaderboard_scroll", "leaderboard_list", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
+[node name="Scoreboard" type="Panel" parent="." unique_id=1504834327 node_paths=PackedStringArray("login_handler", "name_change_handler", "margin_container", "title_label", "refresh_button", "change_name_button", "column_header", "leaderboard_scroll", "leaderboard_list", "entry_placeholder", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
 visible = false
 z_index = 2
 layout_mode = 2
@@ -631,9 +645,11 @@ name_change_handler = NodePath("NameEntryPanel")
 margin_container = NodePath("LeaderboardMarginContainer")
 title_label = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel")
 refresh_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton")
+change_name_button = NodePath("LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton")
 column_header = NodePath("LeaderboardMarginContainer/VBoxContainer/ColumnHeader")
 leaderboard_scroll = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer")
 leaderboard_list = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+entry_placeholder = NodePath("LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/LeaderboardEntry")
 spinner_bar = NodePath("LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar")
 spinner_bar2 = NodePath("LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar2")
 spinner_label = NodePath("LeaderboardMarginContainer/LoadingSpinner")
@@ -806,6 +822,9 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="LeaderboardEntry" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1287213089 instance_placeholder="res://leaderboard_entry.tscn"]
+layout_mode = 2
 
 [node name="StatusLabel" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=973517300]
 layout_mode = 2
@@ -984,6 +1003,27 @@ text = "Back"
 script = ExtResource("24_eilgq")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 dock = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles")
+
+[node name="Control" type="Control" parent="." unique_id=1937231949]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=830487282]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jpp3n")
+
+[node name="WelcomeLabel" type="Label" parent="Control/PanelContainer" unique_id=500543789]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Welcome, name!"
 
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer/LeaderboardButton" to="Scoreboard" method="show"]
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetTilesButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bruyrjw7jvgln"]
+
+[ext_resource type="Script" uid="uid://ddgb60ucdhl7c" path="res://LeaderboardEntry.gd" id="1_rqmqv"]
+[ext_resource type="StyleBox" uid="uid://c7vw4sy03w24h" path="res://leaderboard_entry_rank1.tres" id="2_goo0i"]
+[ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://leaderboard_entry_rank2.tres" id="3_fb3tn"]
+[ext_resource type="StyleBox" uid="uid://cv571g73ibkjw" path="res://leaderboard_entry_rank3.tres" id="4_hq4ag"]
+[ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://leaderboard_entry_rankeven.tres" id="5_qioxu"]
+[ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://leaderboard_entry_rankodd.tres" id="6_7yd7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqmqv"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.3023058, 0.5402686, 0.30159763, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="LeaderboardEntry" type="PanelContainer" unique_id=1287213089 node_paths=PackedStringArray("rank_label", "name_label", "score_label", "player_outline", "background")]
+theme_override_styles/panel = ExtResource("3_fb3tn")
+script = ExtResource("1_rqmqv")
+rank_label = NodePath("MarginContainer/HBoxContainer/RankLabel")
+name_label = NodePath("MarginContainer/HBoxContainer/NameLabel")
+score_label = NodePath("MarginContainer/HBoxContainer/ScoreLabel")
+player_outline = NodePath("PlayerOutline")
+background = NodePath(".")
+rank1_style = ExtResource("2_goo0i")
+rank2_style = ExtResource("3_fb3tn")
+rank3_style = ExtResource("4_hq4ag")
+even_style = ExtResource("5_qioxu")
+odd_style = ExtResource("6_7yd7s")
+
+[node name="PlayerOutline" type="PanelContainer" parent="." unique_id=1694561146]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rqmqv")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=908217972]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=65686773]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="RankLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=547512980]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+text = "#1000"
+horizontal_alignment = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1069968313]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "name_goes_here"
+clip_text = true
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1013753552]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.6509804, 0.13725491, 1)
+text = "000"
+horizontal_alignment = 2
