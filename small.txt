@@ -1777,7 +1777,6 @@ doze
 dozed
 dozen
 dozes
-dpi
 drab
 drabs
 draft
@@ -2657,6 +2656,8 @@ girth
 girts
 gismo
 gist
+git
+gits
 give
 given
 gives
@@ -3038,6 +3039,7 @@ heros
 hers
 hertz
 hes
+hest
 hew
 hewed
 hewer
@@ -3047,7 +3049,6 @@ hex
 hexed
 hexes
 hey
-hgt
 hick
 hicks
 hid
@@ -6623,6 +6624,8 @@ teat
 teats
 tech
 techs
+ted
+teddy
 tee
 teed
 teem
@@ -6986,7 +6989,9 @@ turns
 tush
 tusk
 tusks
+tut
 tutor
+tuts
 tutu
 tutus
 tux
@@ -7491,7 +7496,6 @@ wive
 wives
 wiz
 wizes
-wkly
 woe
 woes
 wok
