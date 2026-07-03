@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://NameChangeHandler.gd" id="24_bibwd"]
 [ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://DebugUtils.gd" id="24_eilgq"]
 [ext_resource type="Texture2D" uid="uid://bfc2d5oxx6lvr" path="res://toolPencil.png" id="24_jpp3n"]
+[ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://WelcomeToast.gd" id="29_en7xa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
 bg_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
@@ -1009,16 +1010,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=830487282]
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=830487282 node_paths=PackedStringArray("label")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -64.0
-offset_right = 64.0
-offset_bottom = 40.0
+offset_left = -96.0
+offset_top = -100.0
+offset_right = 96.0
+offset_bottom = -66.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jpp3n")
+script = ExtResource("29_en7xa")
+label = NodePath("WelcomeLabel")
 
 [node name="WelcomeLabel" type="Label" parent="Control/PanelContainer" unique_id=500543789]
 layout_mode = 2
