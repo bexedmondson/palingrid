@@ -1005,12 +1005,12 @@ script = ExtResource("24_eilgq")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 dock = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Control" type="Control" parent="." unique_id=1937231949]
+[node name="ToastControl" type="Control" parent="." unique_id=1937231949]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=830487282 node_paths=PackedStringArray("label")]
+[node name="PanelContainer" type="PanelContainer" parent="ToastControl" unique_id=830487282 node_paths=PackedStringArray("label")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1024,7 +1024,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jpp3n")
 script = ExtResource("29_en7xa")
 label = NodePath("WelcomeLabel")
 
-[node name="WelcomeLabel" type="Label" parent="Control/PanelContainer" unique_id=500543789]
+[node name="WelcomeLabel" type="Label" parent="ToastControl/PanelContainer" unique_id=500543789]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Welcome, name!"

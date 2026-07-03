@@ -12,7 +12,7 @@ signal on_closed
 @export var confirm_button : Button
 
 const MIN_NAME_LENGTH: int = 2
-const MAX_NAME_LENGTH: int = 16
+const MAX_NAME_LENGTH: int = 12
 
 var is_rename = false
 
