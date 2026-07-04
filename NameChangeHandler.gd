@@ -10,6 +10,7 @@ signal on_closed
 @export var name_line_edit : LineEdit
 @export var name_status_label : Label
 @export var confirm_button : Button
+@export var back_button : Button
 
 const MIN_NAME_LENGTH: int = 2
 const MAX_NAME_LENGTH: int = 12
@@ -104,6 +105,7 @@ func _on_confirm_name_pressed():
 	name_status_label.text = "Saving..."
 	name_status_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 	confirm_button.disabled = true
+	back_button.disabled = true
 	
 	loginHandler.update_nickname(name_text)
 	
@@ -119,8 +121,6 @@ func _on_profile_loaded(nickname: String, score: int, streak: int, achievements:
 		_on_confirm_name_pressed()
 
 func _on_nickname_change_success(new_nickname: String):
-	confirm_button.disabled = false
-	
 	print("[NameChangeHandler] name changed to " + new_nickname)
 	if CheddaBoards.nickname_changed.is_connected(_on_nickname_change_success):
 		CheddaBoards.nickname_changed.disconnect(_on_nickname_change_success)
@@ -132,7 +132,6 @@ func _on_nickname_change_success(new_nickname: String):
 	
 	if is_rename:
 		print("[NameChangeHandler] Renamed successfully to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
-		#TODO toast
 		#TODO close
 		on_closed.emit()
 		self.visible = false
@@ -142,8 +141,12 @@ func _on_nickname_change_success(new_nickname: String):
 		CheddaBoards.submit_score(best_score_indicator.best)
 		await CheddaBoards.score_submitted
 		
+		name_status_label.text = "Setting up profile..."
+		
 		CheddaBoards.refresh_profile()
 		await CheddaBoards.profile_loaded
+		
+		name_status_label.text = "Finalising..."
 		
 		CheddaBoards.change_nickname(new_nickname)
 		await CheddaBoards.nickname_changed
@@ -151,9 +154,13 @@ func _on_nickname_change_success(new_nickname: String):
 		#TODO close
 		on_closed.emit()
 		self.visible = false
+	
+	confirm_button.disabled = false
+	back_button.disabled = false
 
 func _on_nickname_changed_error():
 	confirm_button.disabled = false
+	back_button.disabled = false
 	
 	if CheddaBoards.nickname_changed.is_connected(_on_nickname_change_success):
 		CheddaBoards.nickname_changed.disconnect(_on_nickname_change_success)

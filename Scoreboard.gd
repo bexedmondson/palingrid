@@ -137,7 +137,7 @@ func _load_leaderboard():
 	if name_change_handler.on_closed.is_connected(_on_prompt_shown):
 		name_change_handler.on_closed.disconnect(_on_prompt_shown)
 		
-	if login_handler.remote_state == PlayerInfo.State.NONE_FOUND and CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
+	if not name_change_handler.visible and login_handler.remote_state == PlayerInfo.State.NONE_FOUND and CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
 		name_change_handler.on_closed.connect(_on_prompt_shown)
 		name_change_handler._show_name_entry_panel(false)
 		return

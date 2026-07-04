@@ -888,7 +888,7 @@ radial_initial_angle = 104.8
 nine_patch_stretch = true
 texture_progress = ExtResource("23_bibwd")
 
-[node name="NameEntryPanel" type="Panel" parent="Scoreboard" unique_id=1863543125 node_paths=PackedStringArray("loginHandler", "best_score_indicator", "title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button")]
+[node name="NameEntryPanel" type="Panel" parent="Scoreboard" unique_id=1863543125 node_paths=PackedStringArray("loginHandler", "best_score_indicator", "title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button", "back_button")]
 visible = false
 z_index = 2
 layout_mode = 1
@@ -908,9 +908,9 @@ subtitle_label = NodePath("MarginConlainer/VBoxContainer/SubtitleLabel")
 name_line_edit = NodePath("MarginConlainer/VBoxContainer/NameLineEdit")
 name_status_label = NodePath("MarginConlainer/VBoxContainer/NameStatusLabel")
 confirm_button = NodePath("MarginConlainer/VBoxContainer/ConfirmNameButton")
+back_button = NodePath("MarginConlainer/VBoxContainer/CancelNameButton")
 
 [node name="ColorRect" type="ColorRect" parent="Scoreboard/NameEntryPanel" unique_id=94699613]
-visible = false
 show_behind_parent = true
 custom_minimum_size = Vector2(3000, 3000)
 propagate_maximum_size = true
@@ -1006,6 +1006,7 @@ grid = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowConta
 dock = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles")
 
 [node name="ToastControl" type="Control" parent="." unique_id=1937231949]
+z_index = 50
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
