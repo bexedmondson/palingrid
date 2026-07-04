@@ -222,6 +222,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_1opga")
 [node name="LeaderboardButton" type="Button" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer" unique_id=676292021]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_styles/normal = ExtResource("7_7swsl")
 theme_override_styles/pressed = ExtResource("8_cl3o7")
 theme_override_styles/hover = ExtResource("9_18g0k")
