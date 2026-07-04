@@ -636,6 +636,7 @@ last_wrap_alignment = 2
 layout_mode = 2
 
 [node name="Scoreboard" type="Panel" parent="." unique_id=1504834327 node_paths=PackedStringArray("login_handler", "name_change_handler", "margin_container", "title_label", "refresh_button", "change_name_button", "column_header", "leaderboard_scroll", "leaderboard_list", "entry_placeholder", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
+visible = false
 z_index = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
