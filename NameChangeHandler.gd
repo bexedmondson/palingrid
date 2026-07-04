@@ -15,6 +15,11 @@ signal on_closed
 const MIN_NAME_LENGTH: int = 2
 const MAX_NAME_LENGTH: int = 12
 
+const valid_chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+				'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+				'0','1','2','3','4','5','6','7','8','9',
+				'_']
+
 var is_rename = false
 
 func _ready() -> void:
@@ -65,7 +70,6 @@ func _show_name_entry_panel(rename: bool = false):
 func _on_name_text_changed(_new_text: String):
 	"""Handle name text changes"""
 	_update_confirm_button_state()
-	name_status_label.text = ""
 
 
 func _on_name_submitted(_name_text: String):
@@ -78,7 +82,19 @@ func _update_confirm_button_state():
 	"""Enable/disable confirm button based on name validity"""
 	var name_text = name_line_edit.text.strip_edges()
 	var is_valid = name_text.length() >= MIN_NAME_LENGTH and name_text.length() <= MAX_NAME_LENGTH
-	confirm_button.disabled = not is_valid
+	if not is_valid:
+		name_status_label.text = "Please enter a username between 2 and 12 characters long"
+		confirm_button.disabled = true
+		return
+	for c in name_text:
+		if not valid_chars.has(c):
+			is_valid = false
+			name_status_label.text = "Please enter a username containing only letters, numbers, and/or underscores"
+			confirm_button.disabled = true
+			return
+			
+	name_status_label.text = ""
+	confirm_button.disabled = false
 
 
 func _on_confirm_name_pressed():

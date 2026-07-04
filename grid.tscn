@@ -974,6 +974,7 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Spacer2" type="Control" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=1140598101]
 custom_minimum_size = Vector2(0, 10)
