@@ -54,7 +54,7 @@ func update(current: int) -> void:
 		return	
 	
 	has_filled_board_this_session = true
-	show_scoreboard(current)
+	#show_scoreboard(current)
 
 func show_scoreboard(score: int):
 	if !CheddaBoards.is_authenticated():
