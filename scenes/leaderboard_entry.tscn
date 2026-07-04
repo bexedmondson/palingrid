@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bruyrjw7jvgln"]
 
-[ext_resource type="Script" uid="uid://ddgb60ucdhl7c" path="res://LeaderboardEntry.gd" id="1_rqmqv"]
-[ext_resource type="StyleBox" uid="uid://c7vw4sy03w24h" path="res://leaderboard_entry_rank1.tres" id="2_goo0i"]
-[ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://leaderboard_entry_rank2.tres" id="3_fb3tn"]
-[ext_resource type="StyleBox" uid="uid://cv571g73ibkjw" path="res://leaderboard_entry_rank3.tres" id="4_hq4ag"]
-[ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://leaderboard_entry_rankeven.tres" id="5_qioxu"]
-[ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://leaderboard_entry_rankodd.tres" id="6_7yd7s"]
+[ext_resource type="Script" uid="uid://ddgb60ucdhl7c" path="res://scripts/LeaderboardEntry.gd" id="1_rqmqv"]
+[ext_resource type="StyleBox" uid="uid://c7vw4sy03w24h" path="res://themes/leaderboard_entry_rank1.tres" id="2_goo0i"]
+[ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://themes/leaderboard_entry_rank2.tres" id="3_fb3tn"]
+[ext_resource type="StyleBox" uid="uid://cv571g73ibkjw" path="res://themes/leaderboard_entry_rank3.tres" id="4_hq4ag"]
+[ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://themes/leaderboard_entry_rankeven.tres" id="5_qioxu"]
+[ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/leaderboard_entry_rankodd.tres" id="6_7yd7s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqmqv"]
 draw_center = false

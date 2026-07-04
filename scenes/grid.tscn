@@ -1,34 +1,34 @@
 [gd_scene format=3 uid="uid://28x1mc1dnjtv"]
 
-[ext_resource type="Script" uid="uid://c8q3lqv112djd" path="res://AspectRatioTweaker.gd" id="1_b0p4s"]
-[ext_resource type="Script" uid="uid://chbvohdq7s7dl" path="res://DailyLetterSetGenerator.gd" id="1_g2qvd"]
-[ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://Grid.gd" id="1_sle3t"]
-[ext_resource type="JSON" path="res://stats.json" id="2_05i0m"]
-[ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://cell.tscn" id="2_bghhw"]
-[ext_resource type="StyleBox" uid="uid://ce3djr5ldcsbu" path="res://grid_bg.tres" id="2_fqc2p"]
-[ext_resource type="Script" uid="uid://b3g538x5g3xep" path="res://LoginHandler.gd" id="2_mbq38"]
-[ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://TileDock.gd" id="3_bghhw"]
-[ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://tile.tscn" id="3_fqc2p"]
-[ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://DisableScrollOnDrag.gd" id="4_xw4xy"]
-[ext_resource type="Script" uid="uid://fusem4g6wje" path="res://BestScoreIndicator.gd" id="5_ifj8t"]
-[ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://text_shine.tres" id="7_kc0yb"]
-[ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://icon_repeat_light.svg" id="8_r8ukp"]
-[ext_resource type="StyleBox" uid="uid://bjlydsc6ixtne" path="res://button_hover.tres" id="9_4bqgu"]
-[ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://GridRippleAnimator.gd" id="9_ghb71"]
-[ext_resource type="StyleBox" uid="uid://csydikcrpmtm0" path="res://button_normal.tres" id="12_5xkti"]
-[ext_resource type="Texture2D" uid="uid://p8kf3hofix1q" path="res://leaderboardsComplex.png" id="12_jpp3n"]
-[ext_resource type="StyleBox" uid="uid://ck0fkdaghas4a" path="res://button_pressed.tres" id="13_7jn42"]
-[ext_resource type="StyleBox" uid="uid://c57j83sua426o" path="res://button_disabled.tres" id="14_1opga"]
-[ext_resource type="StyleBox" uid="uid://bvo5536dvek2v" path="res://light_grey_bg.tres" id="17_gayrg"]
-[ext_resource type="Texture2D" uid="uid://coh0kx8dqbali" path="res://return.png" id="17_pisw8"]
-[ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://Scoreboard.gd" id="20_konqy"]
-[ext_resource type="StyleBox" uid="uid://cf3thrfhfhmu6" path="res://light_grey_bg_shadow.tres" id="21_u6jcp"]
-[ext_resource type="Texture2D" uid="uid://dtkx2x3f8iddm" path="res://timer_0.png" id="23_bibwd"]
-[ext_resource type="Texture2D" uid="uid://cxhjow4cjxbm4" path="res://arrowLeft.png" id="23_ivji3"]
-[ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://NameChangeHandler.gd" id="24_bibwd"]
-[ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://DebugUtils.gd" id="24_eilgq"]
-[ext_resource type="Texture2D" uid="uid://bfc2d5oxx6lvr" path="res://toolPencil.png" id="24_jpp3n"]
-[ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://WelcomeToast.gd" id="29_en7xa"]
+[ext_resource type="Script" uid="uid://c8q3lqv112djd" path="res://scripts/AspectRatioTweaker.gd" id="1_7swsl"]
+[ext_resource type="Script" uid="uid://b3g538x5g3xep" path="res://scripts/LoginHandler.gd" id="2_cl3o7"]
+[ext_resource type="Script" uid="uid://chbvohdq7s7dl" path="res://scripts/DailyLetterSetGenerator.gd" id="3_18g0k"]
+[ext_resource type="JSON" path="res://stats.json" id="4_docto"]
+[ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://scripts/DisableScrollOnDrag.gd" id="5_wnhym"]
+[ext_resource type="Script" uid="uid://fusem4g6wje" path="res://scripts/BestScoreIndicator.gd" id="6_2bxyt"]
+[ext_resource type="StyleBox" uid="uid://csydikcrpmtm0" path="res://themes/button_normal.tres" id="7_7swsl"]
+[ext_resource type="StyleBox" uid="uid://ck0fkdaghas4a" path="res://themes/button_pressed.tres" id="8_cl3o7"]
+[ext_resource type="StyleBox" uid="uid://bjlydsc6ixtne" path="res://themes/button_hover.tres" id="9_18g0k"]
+[ext_resource type="StyleBox" uid="uid://c57j83sua426o" path="res://themes/button_disabled.tres" id="10_docto"]
+[ext_resource type="Texture2D" uid="uid://p8kf3hofix1q" path="res://textures/leaderboardsComplex.png" id="11_7swsl"]
+[ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://scripts/Grid.gd" id="12_eudc0"]
+[ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://themes/text_shine.tres" id="13_xfqe3"]
+[ext_resource type="StyleBox" uid="uid://ce3djr5ldcsbu" path="res://themes/grid_bg.tres" id="14_7swsl"]
+[ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://scenes/cell.tscn" id="15_01tbl"]
+[ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://scripts/GridRippleAnimator.gd" id="16_tvpgl"]
+[ext_resource type="Texture2D" uid="uid://coh0kx8dqbali" path="res://textures/return.png" id="17_7swsl"]
+[ext_resource type="StyleBox" uid="uid://bvo5536dvek2v" path="res://themes/light_grey_bg.tres" id="18_7swsl"]
+[ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
+[ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://scenes/tile.tscn" id="20_64acc"]
+[ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://scripts/Scoreboard.gd" id="21_nk46e"]
+[ext_resource type="StyleBox" uid="uid://cf3thrfhfhmu6" path="res://themes/light_grey_bg_shadow.tres" id="22_cl3o7"]
+[ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="23_7swsl"]
+[ext_resource type="Texture2D" uid="uid://bfc2d5oxx6lvr" path="res://textures/toolPencil.png" id="24_7swsl"]
+[ext_resource type="Texture2D" uid="uid://cxhjow4cjxbm4" path="res://textures/arrowLeft.png" id="25_7swsl"]
+[ext_resource type="Texture2D" uid="uid://dtkx2x3f8iddm" path="res://textures/timer_0.png" id="26_cl3o7"]
+[ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://scripts/NameChangeHandler.gd" id="27_tkjpc"]
+[ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://scripts/DebugUtils.gd" id="28_5816i"]
+[ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://scripts/WelcomeToast.gd" id="29_7swsl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqc2p"]
 bg_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
@@ -142,15 +142,15 @@ theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
-script = ExtResource("1_b0p4s")
+script = ExtResource("1_7swsl")
 wordListScroller = NodePath("FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer")
 
 [node name="LoginHandler" type="Node" parent="." unique_id=961667201]
-script = ExtResource("2_mbq38")
+script = ExtResource("2_cl3o7")
 
 [node name="LetterSetGenerator" type="Node" parent="." unique_id=1348343417]
-script = ExtResource("1_g2qvd")
-statsFile = ExtResource("2_05i0m")
+script = ExtResource("3_18g0k")
+statsFile = ExtResource("4_docto")
 
 [node name="BG" type="Panel" parent="." unique_id=445511291]
 layout_mode = 2
@@ -164,7 +164,7 @@ theme_override_colors/scroll_hint_horizontal_color = Color(0.28627452, 0.2862745
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 scroll_deadzone = 10
-script = ExtResource("4_xw4xy")
+script = ExtResource("5_wnhym")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FullScreenScrollContainer" unique_id=418581970]
 layout_mode = 2
@@ -204,7 +204,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "0"
 horizontal_alignment = 1
-script = ExtResource("5_ifj8t")
+script = ExtResource("6_2bxyt")
 gridAnimationPlayer = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/GridRippleAnimator")
 dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
 bestLabel = NodePath("../BestSoFarLabel")
@@ -221,10 +221,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_1opga")
 [node name="LeaderboardButton" type="Button" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer" unique_id=676292021]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_styles/normal = ExtResource("12_5xkti")
-theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = ExtResource("9_4bqgu")
-theme_override_styles/disabled = ExtResource("14_1opga")
+theme_override_styles/normal = ExtResource("7_7swsl")
+theme_override_styles/pressed = ExtResource("8_cl3o7")
+theme_override_styles/hover = ExtResource("9_18g0k")
+theme_override_styles/disabled = ExtResource("10_docto")
 icon_alignment = 1
 expand_icon = true
 
@@ -233,7 +233,7 @@ custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
-texture = ExtResource("12_jpp3n")
+texture = ExtResource("11_7swsl")
 expand_mode = 3
 stretch_mode = 5
 
@@ -269,7 +269,7 @@ stretch_mode = 1
 [node name="Grid" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
-script = ExtResource("1_sle3t")
+script = ExtResource("12_eudc0")
 generator = NodePath("../../../../../../../LetterSetGenerator")
 tileHolder = NodePath("../../../TileDockMarginContainer/TileDockPanel/Tiles")
 slots = [NodePath("VBoxContainer/Row/Cell1"), NodePath("VBoxContainer/Row/Cell2"), NodePath("VBoxContainer/Row/Cell3"), NodePath("VBoxContainer/Row/Cell4"), NodePath("VBoxContainer/Row/Cell5"), NodePath("VBoxContainer/Row2/Cell6"), NodePath("VBoxContainer/Row2/Cell7"), NodePath("VBoxContainer/Row2/Cell8"), NodePath("VBoxContainer/Row2/Cell9"), NodePath("VBoxContainer/Row2/Cell10"), NodePath("VBoxContainer/Row3/Cell11"), NodePath("VBoxContainer/Row3/Cell12"), NodePath("VBoxContainer/Row3/Cell13"), NodePath("VBoxContainer/Row3/Cell14"), NodePath("VBoxContainer/Row3/Cell15"), NodePath("VBoxContainer/Row4/Cell16"), NodePath("VBoxContainer/Row4/Cell17"), NodePath("VBoxContainer/Row4/Cell18"), NodePath("VBoxContainer/Row4/Cell19"), NodePath("VBoxContainer/Row4/Cell20"), NodePath("VBoxContainer/Row5/Cell21"), NodePath("VBoxContainer/Row5/Cell22"), NodePath("VBoxContainer/Row5/Cell23"), NodePath("VBoxContainer/Row5/Cell24"), NodePath("VBoxContainer/Row5/Cell25")]
@@ -310,9 +310,9 @@ color_ramp = SubResource("Gradient_5xkti")
 color_initial_ramp = SubResource("Gradient_7jn42")
 
 [node name="Panel" type="Panel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=1960453266]
-material = ExtResource("7_kc0yb")
+material = ExtResource("13_xfqe3")
 layout_mode = 2
-theme_override_styles/panel = ExtResource("2_fqc2p")
+theme_override_styles/panel = ExtResource("14_7swsl")
 
 [node name="PanelGlow" type="Panel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" unique_id=88182222]
 modulate = Color(1, 1, 1, 0)
@@ -328,23 +328,23 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell1" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell1" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell2" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell2" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell3" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell3" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell4" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell4" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell5" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell5" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
@@ -353,23 +353,23 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell6" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell6" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell7" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell7" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell8" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell8" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell9" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell9" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell10" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell10" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
@@ -378,23 +378,23 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell11" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell11" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell12" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell12" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell13" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell13" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell14" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell14" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell15" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell15" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
@@ -403,23 +403,23 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell16" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell16" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell17" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell17" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell18" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell18" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell19" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell19" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell20" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell20" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
@@ -428,30 +428,30 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Cell21" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell21" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell22" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell22" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell23" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell23" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell24" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell24" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
-[node name="Cell25" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 node_paths=PackedStringArray("tileDock") instance=ExtResource("2_bghhw")]
+[node name="Cell25" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockMarginContainer/TileDockPanel/Tiles")
 
 [node name="GridRippleAnimator" type="Control" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer" unique_id=881408362 node_paths=PackedStringArray("grid", "grid_bg", "grid_glow", "confetti")]
 layout_mode = 2
 mouse_filter = 2
-script = ExtResource("9_ghb71")
+script = ExtResource("16_tvpgl")
 grid = NodePath("../Grid")
 grid_bg = NodePath("../Grid/Panel")
 grid_glow = NodePath("../Grid/PanelGlow")
@@ -481,10 +481,10 @@ grow_vertical = 0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_styles/normal = ExtResource("12_5xkti")
-theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = ExtResource("9_4bqgu")
-theme_override_styles/disabled = ExtResource("14_1opga")
+theme_override_styles/normal = ExtResource("7_7swsl")
+theme_override_styles/pressed = ExtResource("8_cl3o7")
+theme_override_styles/hover = ExtResource("9_18g0k")
+theme_override_styles/disabled = ExtResource("10_docto")
 icon_alignment = 1
 expand_icon = true
 
@@ -502,7 +502,7 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("17_pisw8")
+texture = ExtResource("17_7swsl")
 expand_mode = 5
 
 [node name="TileDockMarginContainer" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=199900092]
@@ -518,88 +518,88 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("17_gayrg")
+theme_override_styles/panel = ExtResource("18_7swsl")
 
 [node name="Tiles" type="HFlowContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel" unique_id=1101630964]
 layout_mode = 2
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 alignment = 1
-script = ExtResource("3_bghhw")
+script = ExtResource("19_x36ys")
 
-[node name="Tile" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=723670457 instance=ExtResource("3_fqc2p")]
+[node name="Tile" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=723670457 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile2" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1463121450 instance=ExtResource("3_fqc2p")]
+[node name="Tile2" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1463121450 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile3" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=947134029 instance=ExtResource("3_fqc2p")]
+[node name="Tile3" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=947134029 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile4" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1953381486 instance=ExtResource("3_fqc2p")]
+[node name="Tile4" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1953381486 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile5" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=2123812368 instance=ExtResource("3_fqc2p")]
+[node name="Tile5" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=2123812368 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile6" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1194733076 instance=ExtResource("3_fqc2p")]
+[node name="Tile6" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1194733076 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile7" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=893445152 instance=ExtResource("3_fqc2p")]
+[node name="Tile7" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=893445152 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile8" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=437237139 instance=ExtResource("3_fqc2p")]
+[node name="Tile8" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=437237139 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile9" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1482847350 instance=ExtResource("3_fqc2p")]
+[node name="Tile9" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1482847350 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile10" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1455093455 instance=ExtResource("3_fqc2p")]
+[node name="Tile10" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1455093455 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile11" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1285912586 instance=ExtResource("3_fqc2p")]
+[node name="Tile11" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1285912586 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile12" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=753452829 instance=ExtResource("3_fqc2p")]
+[node name="Tile12" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=753452829 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile13" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=178434238 instance=ExtResource("3_fqc2p")]
+[node name="Tile13" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=178434238 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile14" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1225045827 instance=ExtResource("3_fqc2p")]
+[node name="Tile14" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1225045827 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile15" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=888061142 instance=ExtResource("3_fqc2p")]
+[node name="Tile15" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=888061142 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile16" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=413422064 instance=ExtResource("3_fqc2p")]
+[node name="Tile16" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=413422064 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile17" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=906399512 instance=ExtResource("3_fqc2p")]
+[node name="Tile17" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=906399512 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile18" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=673589112 instance=ExtResource("3_fqc2p")]
+[node name="Tile18" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=673589112 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile19" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=282961456 instance=ExtResource("3_fqc2p")]
+[node name="Tile19" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=282961456 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile20" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=2108475761 instance=ExtResource("3_fqc2p")]
+[node name="Tile20" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=2108475761 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile21" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1761087001 instance=ExtResource("3_fqc2p")]
+[node name="Tile21" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1761087001 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile22" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=971932350 instance=ExtResource("3_fqc2p")]
+[node name="Tile22" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=971932350 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile23" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1467639409 instance=ExtResource("3_fqc2p")]
+[node name="Tile23" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1467639409 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile24" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=581289634 instance=ExtResource("3_fqc2p")]
+[node name="Tile24" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=581289634 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile25" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("3_fqc2p")]
+[node name="Tile25" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
 [node name="WordListMarginContainer" type="MarginContainer" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer" unique_id=708401108]
@@ -632,15 +632,14 @@ size_flags_vertical = 3
 alignment = 1
 last_wrap_alignment = 2
 
-[node name="WordPanel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer/VBoxContainer" unique_id=2012203541 instance_placeholder="res://word.tscn"]
+[node name="WordPanel" parent="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListMarginContainer/ScrollContainer/VBoxContainer" unique_id=1288653546 instance_placeholder="res://scenes/word.tscn"]
 layout_mode = 2
 
 [node name="Scoreboard" type="Panel" parent="." unique_id=1504834327 node_paths=PackedStringArray("login_handler", "name_change_handler", "margin_container", "title_label", "refresh_button", "change_name_button", "column_header", "leaderboard_scroll", "leaderboard_list", "entry_placeholder", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
-visible = false
 z_index = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
-script = ExtResource("20_konqy")
+script = ExtResource("21_nk46e")
 login_handler = NodePath("../LoginHandler")
 name_change_handler = NodePath("NameEntryPanel")
 margin_container = NodePath("LeaderboardMarginContainer")
@@ -681,7 +680,7 @@ theme_override_constants/margin_bottom = 100
 
 [node name="Panel" type="Panel" parent="Scoreboard/LeaderboardMarginContainer" unique_id=1766913104]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("21_u6jcp")
+theme_override_styles/panel = ExtResource("22_cl3o7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard/LeaderboardMarginContainer" unique_id=974242218]
 layout_mode = 2
@@ -707,10 +706,10 @@ grow_horizontal = 0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_styles/normal = ExtResource("12_5xkti")
-theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = ExtResource("9_4bqgu")
-theme_override_styles/disabled = ExtResource("14_1opga")
+theme_override_styles/normal = ExtResource("7_7swsl")
+theme_override_styles/pressed = ExtResource("8_cl3o7")
+theme_override_styles/hover = ExtResource("9_18g0k")
+theme_override_styles/disabled = ExtResource("10_docto")
 button_mask = 0
 icon_alignment = 1
 expand_icon = true
@@ -729,7 +728,7 @@ offset_bottom = 18.509998
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("8_r8ukp")
+texture = ExtResource("23_7swsl")
 expand_mode = 5
 
 [node name="ChangeNameButton" type="Button" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=1336271375]
@@ -746,11 +745,11 @@ pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = ExtResource("12_5xkti")
-theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = ExtResource("9_4bqgu")
-theme_override_styles/disabled = ExtResource("14_1opga")
-icon = ExtResource("24_jpp3n")
+theme_override_styles/normal = ExtResource("7_7swsl")
+theme_override_styles/pressed = ExtResource("8_cl3o7")
+theme_override_styles/hover = ExtResource("9_18g0k")
+theme_override_styles/disabled = ExtResource("10_docto")
+icon = ExtResource("24_7swsl")
 autowrap_mode = 2
 clip_text = true
 icon_alignment = 1
@@ -765,10 +764,10 @@ pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 33
-theme_override_styles/normal = ExtResource("12_5xkti")
-theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = ExtResource("9_4bqgu")
-theme_override_styles/disabled = ExtResource("14_1opga")
+theme_override_styles/normal = ExtResource("7_7swsl")
+theme_override_styles/pressed = ExtResource("8_cl3o7")
+theme_override_styles/hover = ExtResource("9_18g0k")
+theme_override_styles/disabled = ExtResource("10_docto")
 icon_alignment = 1
 expand_icon = true
 
@@ -786,7 +785,7 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("23_ivji3")
+texture = ExtResource("25_7swsl")
 expand_mode = 5
 
 [node name="ColumnHeader" type="HBoxContainer" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=435664427]
@@ -824,7 +823,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="LeaderboardEntry" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1287213089 instance_placeholder="res://leaderboard_entry.tscn"]
+[node name="LeaderboardEntry" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1287213089 instance_placeholder="res://scenes/leaderboard_entry.tscn"]
 layout_mode = 2
 
 [node name="StatusLabel" type="Label" parent="Scoreboard/LeaderboardMarginContainer/VBoxContainer" unique_id=973517300]
@@ -863,7 +862,7 @@ value = 32.87
 fill_mode = 4
 radial_initial_angle = 104.8
 nine_patch_stretch = true
-texture_progress = ExtResource("23_bibwd")
+texture_progress = ExtResource("26_cl3o7")
 tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Scoreboard/LeaderboardMarginContainer/LoadingSpinner" unique_id=1574010757]
@@ -886,7 +885,7 @@ value = 16.19
 fill_mode = 4
 radial_initial_angle = 104.8
 nine_patch_stretch = true
-texture_progress = ExtResource("23_bibwd")
+texture_progress = ExtResource("26_cl3o7")
 
 [node name="NameEntryPanel" type="Panel" parent="Scoreboard" unique_id=1863543125 node_paths=PackedStringArray("loginHandler", "best_score_indicator", "title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button", "back_button")]
 visible = false
@@ -899,8 +898,8 @@ anchor_right = 0.75
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("21_u6jcp")
-script = ExtResource("24_bibwd")
+theme_override_styles/panel = ExtResource("22_cl3o7")
+script = ExtResource("27_tkjpc")
 loginHandler = NodePath("../../LoginHandler")
 best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 title_label = NodePath("MarginConlainer/VBoxContainer/TitleLabel")
@@ -984,10 +983,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = ExtResource("12_5xkti")
-theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = ExtResource("9_4bqgu")
-theme_override_styles/disabled = ExtResource("14_1opga")
+theme_override_styles/normal = ExtResource("7_7swsl")
+theme_override_styles/pressed = ExtResource("8_cl3o7")
+theme_override_styles/hover = ExtResource("9_18g0k")
+theme_override_styles/disabled = ExtResource("10_docto")
 text = "LET'S GO!"
 
 [node name="CancelNameButton" type="Button" parent="Scoreboard/NameEntryPanel/MarginConlainer/VBoxContainer" unique_id=1379832663]
@@ -995,14 +994,14 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = ExtResource("12_5xkti")
-theme_override_styles/pressed = ExtResource("13_7jn42")
-theme_override_styles/hover = ExtResource("9_4bqgu")
-theme_override_styles/disabled = ExtResource("14_1opga")
+theme_override_styles/normal = ExtResource("7_7swsl")
+theme_override_styles/pressed = ExtResource("8_cl3o7")
+theme_override_styles/hover = ExtResource("9_18g0k")
+theme_override_styles/disabled = ExtResource("10_docto")
 text = "Back"
 
 [node name="DebugUtils" type="Node" parent="." unique_id=924695395 node_paths=PackedStringArray("grid", "dock")]
-script = ExtResource("24_eilgq")
+script = ExtResource("28_5816i")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 dock = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles")
 
@@ -1023,7 +1022,7 @@ offset_right = 96.0
 offset_bottom = -66.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jpp3n")
-script = ExtResource("29_en7xa")
+script = ExtResource("29_7swsl")
 label = NodePath("WelcomeLabel")
 
 [node name="WelcomeLabel" type="Label" parent="ToastControl/PanelContainer" unique_id=500543789]

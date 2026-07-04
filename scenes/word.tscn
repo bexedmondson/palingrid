@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bl407o8b0kftt"]
 
-[ext_resource type="Script" uid="uid://bajtllaqyewf3" path="res://Word.gd" id="1_3q3ku"]
+[ext_resource type="Script" uid="uid://bajtllaqyewf3" path="res://scripts/Word.gd" id="1_3q3ku"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vp38"]
 content_margin_left = 12.0

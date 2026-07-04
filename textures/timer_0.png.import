@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfc2d5oxx6lvr"
-path="res://.godot/imported/toolPencil.png-ba69b0c4d9b7a8762b12c3c4919d9ed7.ctex"
+uid="uid://dtkx2x3f8iddm"
+path="res://.godot/imported/timer_0.png-089e5c5b08a1f4d827c162b89fd18a01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://toolPencil.png"
-dest_files=["res://.godot/imported/toolPencil.png-ba69b0c4d9b7a8762b12c3c4919d9ed7.ctex"]
+source_file="res://textures/timer_0.png"
+dest_files=["res://.godot/imported/timer_0.png-089e5c5b08a1f4d827c162b89fd18a01.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ciooiwey7meeq"]
 
-[ext_resource type="Script" uid="uid://b2s5nlvj2kgfh" path="res://DropSlot.gd" id="1_yh0nt"]
+[ext_resource type="Script" uid="uid://b2s5nlvj2kgfh" path="res://scripts/DropSlot.gd" id="1_yh0nt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh0nt"]
 bg_color = Color(0.167451, 0.16745105, 0.16745082, 1)

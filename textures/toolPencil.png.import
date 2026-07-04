@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxhjow4cjxbm4"
-path="res://.godot/imported/arrowLeft.png-bc379f0477d56183deb8a5129b79b0fd.ctex"
+uid="uid://bfc2d5oxx6lvr"
+path="res://.godot/imported/toolPencil.png-554846ee36a7e330371cca4318dd213e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arrowLeft.png"
-dest_files=["res://.godot/imported/arrowLeft.png-bc379f0477d56183deb8a5129b79b0fd.ctex"]
+source_file="res://textures/toolPencil.png"
+dest_files=["res://.godot/imported/toolPencil.png-554846ee36a7e330371cca4318dd213e.ctex"]
 
 [params]
 
