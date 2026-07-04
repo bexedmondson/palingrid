@@ -2,6 +2,7 @@ extends Node
 
 @export var grid : Grid
 @export var dock : TileDock
+@export var leaderboardButton : Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_F:
 			try_add_random_tile_to_board()
+		if event.pressed and event.keycode == KEY_D and event.ctrl_pressed:
+			leaderboardButton.visible = true
 
 func try_add_random_tile_to_board():
 	var tile = dock.get_tile()

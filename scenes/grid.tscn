@@ -213,6 +213,7 @@ grid = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarg
 scoreboard = NodePath("../../../../../../Scoreboard")
 
 [node name="LeaderboardButtonPanelContainer" type="PanelContainer" parent="FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1488969488]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 1
@@ -1001,10 +1002,11 @@ theme_override_styles/hover = ExtResource("9_18g0k")
 theme_override_styles/disabled = ExtResource("10_docto")
 text = "Back"
 
-[node name="DebugUtils" type="Node" parent="." unique_id=924695395 node_paths=PackedStringArray("grid", "dock")]
+[node name="DebugUtils" type="Node" parent="." unique_id=924695395 node_paths=PackedStringArray("grid", "dock", "leaderboardButton")]
 script = ExtResource("28_5816i")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 dock = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockMarginContainer/TileDockPanel/Tiles")
+leaderboardButton = NodePath("../FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer")
 
 [node name="ToastControl" type="Control" parent="." unique_id=1937231949]
 z_index = 50

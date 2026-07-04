@@ -13,7 +13,7 @@ signal on_closed
 @export var back_button : Button
 
 const MIN_NAME_LENGTH: int = 2
-const MAX_NAME_LENGTH: int = 12
+const MAX_NAME_LENGTH: int = 16
 
 const valid_chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
 				'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
@@ -83,7 +83,7 @@ func _update_confirm_button_state():
 	var name_text = name_line_edit.text.strip_edges()
 	var is_valid = name_text.length() >= MIN_NAME_LENGTH and name_text.length() <= MAX_NAME_LENGTH
 	if not is_valid:
-		name_status_label.text = "Please enter a username between 2 and 12 characters long"
+		name_status_label.text = "Please enter a username between %d and %d characters long" % [MIN_NAME_LENGTH, MAX_NAME_LENGTH]
 		confirm_button.disabled = true
 		return
 	for c in name_text:
