@@ -1,19 +1,18 @@
 @tool
-extends Node
+extends EditorScript
 
-@export_tool_button("parse") var parseAction = parse 
-func parse() -> void:
+func _run() -> void:
 	var small = {}
 	
 	var files = ["res://british-english", "res://american-english"]
 	
 	for path in files:
 		var file = FileAccess.open(path, FileAccess.READ)
-		while (file.get_position() <file.get_length()):
+		while (file.get_position() < file.get_length()):
 			var line = file.get_line()
 			if (line.length() > 2 && line.length() < 6 && !line.contains("'")):
 				small[line] = null
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                				#print(line)
+				#print(line)
 		file.close()
 	
 	var smallFile = FileAccess.open("res://small.txt", FileAccess.WRITE)
@@ -21,12 +20,3 @@ func parse() -> void:
 		smallFile.store_line(s)
 		
 	smallFile.close()
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
