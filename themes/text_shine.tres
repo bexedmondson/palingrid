@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://v1xr7j7a0je0"]
 
-[ext_resource type="Shader" uid="uid://b6syj02d4c0l4" path="res://workplace_cell_info_ui_shine.gdshader" id="1_elfxl"]
+[ext_resource type="Shader" uid="uid://b6syj02d4c0l4" path="res://themes/workplace_cell_info_ui_shine.gdshader" id="1_elfxl"]
 
 [resource]
 resource_local_to_scene = true
