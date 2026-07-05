@@ -1021,7 +1021,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -96.0
 offset_top = -100.0
-offset_right = 96.0
+offset_right = 30.0
 offset_bottom = -66.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jpp3n")
@@ -1031,7 +1031,8 @@ label = NodePath("WelcomeLabel")
 [node name="WelcomeLabel" type="Label" parent="ToastControl/PanelContainer" unique_id=500543789]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Welcome, name!"
+text = "Welcome, !"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButtonPanelContainer/LeaderboardButton" to="Scoreboard" method="show"]
 [connection signal="pressed" from="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetTilesButton" to="FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
