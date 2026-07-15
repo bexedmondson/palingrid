@@ -32,6 +32,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=6
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/remove_all_theme_overrides/plugin.cfg")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
