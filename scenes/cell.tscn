@@ -1,26 +1,7 @@
 [gd_scene format=3 uid="uid://ciooiwey7meeq"]
 
 [ext_resource type="Script" uid="uid://b2s5nlvj2kgfh" path="res://scripts/DropSlot.gd" id="1_yh0nt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh0nt"]
-bg_color = Color(0.167451, 0.16745105, 0.16745082, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwrgs"]
-bg_color = Color(1, 0.7882353, 0.3019608, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.8, 0.8, 0.8, 0)
-corner_radius_top_left = 35
-corner_radius_top_right = 35
-corner_radius_bottom_right = 35
-corner_radius_bottom_left = 35
-corner_detail = 10
+[ext_resource type="StyleBox" uid="uid://b4dnh6r4k0p7l" path="res://themes/highlight_cell_panel.tres" id="2_0s7o3"]
 
 [node name="Cell" type="Panel" unique_id=655647732 node_paths=PackedStringArray("circle", "container")]
 custom_minimum_size = Vector2(100, 100)
@@ -28,12 +9,12 @@ offset_right = 100.0
 offset_bottom = 100.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_yh0nt")
+theme_type_variation = &"PanelCell"
 script = ExtResource("1_yh0nt")
-circle = NodePath("Panel")
+circle = NodePath("HighlightPanel")
 container = NodePath("CenterContainer")
 
-[node name="Panel" type="Panel" parent="." unique_id=209722210]
+[node name="HighlightPanel" type="Panel" parent="." unique_id=209722210]
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -43,7 +24,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gwrgs")
+theme_type_variation = &"PanelCellHighlight"
+theme_override_styles/panel = ExtResource("2_0s7o3")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1902976002]
 layout_mode = 1

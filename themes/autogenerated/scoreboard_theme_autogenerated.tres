@@ -1,0 +1,23 @@
+[gd_resource type="Theme" format=3]
+
+[ext_resource type="StyleBox" uid="uid://c57j83sua426o" path="res://themes/button_disabled.tres" id="1_kodkg"]
+[ext_resource type="StyleBox" uid="uid://bjlydsc6ixtne" path="res://themes/button_hover.tres" id="2_pnrgt"]
+[ext_resource type="StyleBox" uid="uid://csydikcrpmtm0" path="res://themes/button_normal.tres" id="3_6pofp"]
+[ext_resource type="StyleBox" uid="uid://ck0fkdaghas4a" path="res://themes/button_pressed.tres" id="4_vn6l1"]
+[ext_resource type="StyleBox" uid="uid://cf3thrfhfhmu6" path="res://themes/light_grey_bg_shadow.tres" id="5_qar5n"]
+[ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://themes/leaderboard_entry_rank2.tres" id="6_h0o6e"]
+
+[resource]
+Button/font_sizes/font_size = 33
+Button/styles/disabled = ExtResource("1_kodkg")
+Button/styles/hover = ExtResource("2_pnrgt")
+Button/styles/normal = ExtResource("3_6pofp")
+Button/styles/pressed = ExtResource("4_vn6l1")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 24
+MarginContainer/constants/margin_bottom = 100
+MarginContainer/constants/margin_left = 150
+MarginContainer/constants/margin_right = 150
+MarginContainer/constants/margin_top = 100
+Panel/styles/panel = ExtResource("5_qar5n")
+PanelContainer/styles/panel = ExtResource("6_h0o6e")

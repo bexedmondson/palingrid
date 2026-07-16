@@ -28,13 +28,9 @@ MobileUI="*res://autoloads/MobileUI.gd"
 
 window/size/viewport_width=1080
 window/size/viewport_height=1080
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=6
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/remove_all_theme_overrides/plugin.cfg")
 
 [physics]
 

@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://d3ous8x3sgirx"]
+
+[ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://scripts/NameChangeHandler.gd" id="2_p7tcu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eilgq"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.110071965, 0.11007198, 0.11007186, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="NameEntryPanel" type="Panel" unique_id=1648906337 node_paths=PackedStringArray("title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button", "back_button")]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.15
+anchor_right = 0.75
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelFloating"
+script = ExtResource("2_p7tcu")
+title_label = NodePath("MarginContainer/VBoxContainer/TitleLabel")
+subtitle_label = NodePath("MarginContainer/VBoxContainer/SubtitleLabel")
+name_line_edit = NodePath("MarginContainer/VBoxContainer/NameLineEdit")
+name_status_label = NodePath("MarginContainer/VBoxContainer/NameStatusLabel")
+confirm_button = NodePath("MarginContainer/VBoxContainer/ConfirmNameButton")
+back_button = NodePath("MarginContainer/VBoxContainer/CancelNameButton")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1749929732]
+show_behind_parent = true
+custom_minimum_size = Vector2(3000, 3000)
+propagate_maximum_size = true
+layout_mode = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 1500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1019914599]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1498734409]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1134105707]
+layout_mode = 2
+theme_type_variation = &"LabelHeading"
+theme_override_font_sizes/font_size = 44
+text = "Enter Your Name"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=233285768]
+layout_mode = 2
+theme_type_variation = &"LabelSubheading"
+text = "This will appear on the leaderboard"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1281922529]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="NameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer" unique_id=935110898]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_eilgq")
+placeholder_text = "Enter your name..."
+alignment = 1
+max_length = 16
+clear_button_enabled = true
+
+[node name="NameStatusLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1573797271]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=750338779]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ConfirmNameButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2140864133]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "LET'S GO!"
+
+[node name="CancelNameButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=352710823]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonSecondary"
+text = "Back"
+
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/NameLineEdit" to="." method="_on_name_text_changed"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/NameLineEdit" to="." method="_on_name_submitted"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfirmNameButton" to="." method="_on_confirm_name_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CancelNameButton" to="." method="_on_cancel_name_pressed"]

@@ -1,0 +1,66 @@
+[gd_resource type="Theme" format=3 uid="uid://bp3mcg1gy72lb"]
+
+[ext_resource type="StyleBox" uid="uid://c57j83sua426o" path="res://themes/button_disabled.tres" id="1_s7bvp"]
+[ext_resource type="StyleBox" uid="uid://bjlydsc6ixtne" path="res://themes/button_hover.tres" id="2_e7ks8"]
+[ext_resource type="StyleBox" uid="uid://csydikcrpmtm0" path="res://themes/button_normal.tres" id="3_wiry2"]
+[ext_resource type="StyleBox" uid="uid://ck0fkdaghas4a" path="res://themes/button_pressed.tres" id="4_5c6wr"]
+[ext_resource type="StyleBox" uid="uid://cf3thrfhfhmu6" path="res://themes/light_grey_bg_shadow.tres" id="5_5i5un"]
+[ext_resource type="Script" uid="uid://dmuq8yu0ex3h1" path="res://scripts/ColorTheme.gd" id="6_pruw4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eilgq"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.110071965, 0.11007198, 0.11007186, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bqgu"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpp3n"]
+bg_color = Color(0.38070744, 0.38070747, 0.3807073, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 40.0
+expand_margin_top = 50.0
+expand_margin_right = 40.0
+expand_margin_bottom = 20.0
+shadow_color = Color(0, 0, 0, 0.52156866)
+shadow_size = 5
+shadow_offset = Vector2(1, 2)
+
+[resource]
+Button/colors/font_color = Color(0.6, 0.6, 0.6, 1)
+Button/font_sizes/font_size = 16
+Button/styles/disabled = ExtResource("1_s7bvp")
+Button/styles/hover = ExtResource("2_e7ks8")
+Button/styles/normal = ExtResource("3_wiry2")
+Button/styles/pressed = ExtResource("4_5c6wr")
+Color1/colors/color1_a = Color(0, 0, 0, 1)
+HFlowContainer/constants/h_separation = 15
+HFlowContainer/constants/v_separation = 15
+Label/colors/font_color = Color(0.7, 0.7, 0.7, 1)
+Label/font_sizes/font_size = 24
+LineEdit/colors/font_color = Color(0.015210929, 0.015210832, 0.015210851, 1)
+LineEdit/colors/font_placeholder_color = Color(0.33405125, 0.33405042, 0.3340506, 0.6)
+LineEdit/font_sizes/font_size = 20
+LineEdit/styles/focus = SubResource("StyleBoxFlat_eilgq")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_4bqgu")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+Panel/styles/panel = ExtResource("5_5i5un")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_jpp3n")
+script = ExtResource("6_pruw4")

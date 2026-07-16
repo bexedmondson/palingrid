@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://cu1ciow3fnymq"]
+
+[ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://scripts/Scoreboard.gd" id="1_mmelj"]
+[ext_resource type="Texture2D" uid="uid://dy2daddsrobx0" path="res://textures/icon_repeat_light.png" id="2_fpta5"]
+[ext_resource type="Texture2D" uid="uid://bfc2d5oxx6lvr" path="res://textures/toolPencil.png" id="8_7ekvq"]
+[ext_resource type="Texture2D" uid="uid://cxhjow4cjxbm4" path="res://textures/arrowLeft.png" id="9_fjifx"]
+[ext_resource type="Texture2D" uid="uid://dtkx2x3f8iddm" path="res://textures/timer_0.png" id="10_bv2p2"]
+[ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="11_n3wga"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7acvr"]
+
+[node name="Scoreboard" type="Panel" unique_id=531030568 node_paths=PackedStringArray("name_change_handler", "title_label", "refresh_button", "change_name_button", "column_header", "leaderboard_scroll", "leaderboard_list", "entry_placeholder", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
+visible = false
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
+script = ExtResource("1_mmelj")
+name_change_handler = NodePath("NameEntryPanel")
+title_label = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel")
+refresh_button = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton")
+change_name_button = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton")
+column_header = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ColumnHeader")
+leaderboard_scroll = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer")
+leaderboard_list = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+entry_placeholder = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/LeaderboardEntry")
+spinner_bar = NodePath("Panel/LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar")
+spinner_bar2 = NodePath("Panel/LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar2")
+spinner_label = NodePath("Panel/LeaderboardMarginContainer/LoadingSpinner")
+status_label = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/StatusLabel")
+back_button = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=877933288]
+custom_minimum_size = Vector2(3000, 3000)
+propagate_maximum_size = true
+layout_mode = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 1500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="Panel" type="Panel" parent="." unique_id=1147680429]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelFloating"
+
+[node name="LeaderboardMarginContainer" type="PanelContainer" parent="Panel" unique_id=1091344264]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7acvr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/LeaderboardMarginContainer" unique_id=510556136]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="Panel/LeaderboardMarginContainer/VBoxContainer" unique_id=289646525]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"LabelHeading"
+text = "LEADERBOARD"
+horizontal_alignment = 1
+
+[node name="RefreshButton" type="Button" parent="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=992733087]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_right = -10.0
+offset_bottom = 70.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+button_mask = 0
+icon = ExtResource("2_fpta5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ChangeNameButton" type="Button" parent="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=132229455]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_right = -90.0
+offset_bottom = 70.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("8_7ekvq")
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="BackButton" type="Button" parent="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel" unique_id=1512587471]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+offset_right = 70.0
+offset_bottom = 70.0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("9_fjifx")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ColumnHeader" type="HBoxContainer" parent="Panel/LeaderboardMarginContainer/VBoxContainer" unique_id=2051372270]
+custom_minimum_size = Vector2(0, 32.372)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RankHeader" type="Label" parent="Panel/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=887522307]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+theme_type_variation = &"LabelSubheading"
+text = "RANK"
+horizontal_alignment = 1
+
+[node name="NameHeader" type="Label" parent="Panel/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=360489446]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LabelSubheading"
+text = "PLAYER"
+
+[node name="ScoreHeader" type="Label" parent="Panel/LeaderboardMarginContainer/VBoxContainer/ColumnHeader" unique_id=1491335863]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_type_variation = &"LabelSubheading"
+text = "SCORE"
+horizontal_alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/LeaderboardMarginContainer/VBoxContainer" unique_id=1514504654]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer" unique_id=1969394558]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LeaderboardEntry" parent="Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1287213089 instance_placeholder="res://scenes/leaderboard_entry.tscn"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="Panel/LeaderboardMarginContainer/VBoxContainer" unique_id=124702976]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="LoadingSpinner" type="Label" parent="Panel/LeaderboardMarginContainer" unique_id=1895150791]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Panel/LeaderboardMarginContainer/LoadingSpinner" unique_id=500235717]
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 32.87
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("10_bv2p2")
+tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel/LeaderboardMarginContainer/LoadingSpinner" unique_id=1786489425]
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 16.19
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("10_bv2p2")
+
+[node name="NameEntryPanel" parent="." unique_id=1648906337 instance=ExtResource("11_n3wga")]
+visible = false
+layout_mode = 1
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.9
+
+[connection signal="visibility_changed" from="." to="." method="on_visibility_changed"]
+[connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton" to="." method="on_rename_pressed"]

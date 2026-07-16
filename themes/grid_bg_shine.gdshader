@@ -37,7 +37,7 @@ void fragment() {
 	
 	// 5. Map progress to these bounds
 	// We subtract shine_size from start so it begins completely invisible
-	float current_pos = mix(min_dist - shine_size - (10.0/control_size), max_dist, shine_progress);
+	float current_pos = mix(min_dist - shine_size - (25.0/control_size), max_dist, shine_progress);
 	
 	// 6. Create the band
 	float shine = step(current_pos, projection) - step(current_pos + shine_size, projection);

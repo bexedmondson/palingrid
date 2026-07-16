@@ -23,16 +23,16 @@ func set_entry(rank : int, name: String, score: int, is_player: bool):
 	
 	match rank:
 		1:
-			background.add_theme_stylebox_override("panel", rank1_style)
+			background.set_theme_type_variation(&"LeaderboardEntryRank1")
 			rank_label.add_theme_color_override("font_color", Color.GOLD)
 		2:
-			background.add_theme_stylebox_override("panel", rank2_style)
+			background.set_theme_type_variation(&"LeaderboardEntryRank2")
 			rank_label.add_theme_color_override("font_color", Color.SILVER)
 		3:
-			background.add_theme_stylebox_override("panel", rank3_style)
+			background.set_theme_type_variation(&"LeaderboardEntryRank3")
 			rank_label.add_theme_color_override("font_color", Color("#CD7F32"))
 		_:
-			background.add_theme_stylebox_override("panel", even_style if rank % 2 == 0 else odd_style)
+			background.set_theme_type_variation(&"LeaderboardEntryRankEven" if rank % 2 == 0 else &"LeaderboardEntryRankOdd")
 			rank_label.add_theme_color_override("font_color", dim_text_color)
 	
 	name_label.add_theme_color_override("font_color", Color.WHITE if is_player else default_text_color)
