@@ -1,0 +1,130 @@
+[gd_resource type="Theme" format=3 uid="uid://brqal24634wvg"]
+
+[ext_resource type="StyleBox" uid="uid://cvajsf34st3s3" path="res://themes/light/button_disabled_light.tres" id="1_u0swb"]
+[ext_resource type="StyleBox" uid="uid://cdne81otj76hs" path="res://themes/light/button_normal_light.tres" id="2_nq408"]
+[ext_resource type="StyleBox" uid="uid://c0l3mdton8wkf" path="res://themes/light/button_hover_light.tres" id="2_wj2d4"]
+[ext_resource type="StyleBox" uid="uid://i2qbmhr8ilbq" path="res://themes/light/button_pressed_light.tres" id="3_rmme2"]
+[ext_resource type="StyleBox" uid="uid://r7myyiac6ndw" path="res://themes/light/panel_default_light.tres" id="3_tvg4m"]
+[ext_resource type="StyleBox" uid="uid://x0gqett0ghx0" path="res://themes/light/panel_cell_light.tres" id="4_cpslb"]
+[ext_resource type="StyleBox" uid="uid://dofia87ysn56o" path="res://themes/light/panel_container_default_light.tres" id="4_wtvwc"]
+[ext_resource type="StyleBox" uid="uid://bc6o23gbsrmmh" path="res://themes/light/panel_grid_light.tres" id="5_hb1pw"]
+[ext_resource type="StyleBox" uid="uid://h0n8ygc18iba" path="res://themes/light/button_secondary_disabled_light.tres" id="5_ov7us"]
+[ext_resource type="StyleBox" uid="uid://7vqtky7d82gc" path="res://themes/light/panel_cell_highlight_light.tres" id="5_u0swb"]
+[ext_resource type="StyleBox" uid="uid://clwwmv8y57b4c" path="res://themes/light/button_secondary_hover_light.tres" id="6_m7yg3"]
+[ext_resource type="StyleBox" uid="uid://cstx8h8wubtpe" path="res://themes/light/line_edit_normal_light.tres" id="7_tr3sr"]
+[ext_resource type="StyleBox" uid="uid://buryi35mfrk7m" path="res://themes/light/button_secondary_normal_light.tres" id="7_vfvoy"]
+[ext_resource type="StyleBox" uid="uid://dtkjdcvag4s45" path="res://themes/light/line_edit_focus_light.tres" id="7_xyh1g"]
+[ext_resource type="StyleBox" uid="uid://cdtfswg8oe554" path="res://themes/light/line_edit_disabled_light.tres" id="8_aghd6"]
+[ext_resource type="StyleBox" uid="uid://6m62s4m8u1wt" path="res://themes/light/panel_tile_light.tres" id="8_nq408"]
+[ext_resource type="StyleBox" uid="uid://dlsgmlcoklfc3" path="res://themes/light/button_secondary_pressed_light.tres" id="8_yo7ga"]
+[ext_resource type="FontFile" uid="uid://fn4x3stk2l3l" path="res://themes/fonts/montserrat/Montserrat-Medium.ttf" id="9_krt1t"]
+[ext_resource type="FontFile" uid="uid://c8f84nxlvugqk" path="res://themes/fonts/montserrat/Montserrat-Bold.ttf" id="10_krt1t"]
+[ext_resource type="StyleBox" uid="uid://c3yo5kn1rsn0n" path="res://themes/light/panel_floating_light.tres" id="11_1lbab"]
+[ext_resource type="StyleBox" uid="uid://cnvn5udqkm06u" path="res://themes/light/panel_container_inset_light.tres" id="11_jnuea"]
+[ext_resource type="StyleBox" uid="uid://c7vw4sy03w24h" path="res://themes/leaderboard_entry_rank1.tres" id="11_roldc"]
+[ext_resource type="StyleBox" uid="uid://djgv0jp0io35w" path="res://themes/light/panel_container_thin_margins_light.tres" id="12_bsmx7"]
+[ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://themes/leaderboard_entry_rank2.tres" id="12_txn4r"]
+[ext_resource type="StyleBox" uid="uid://cv571g73ibkjw" path="res://themes/leaderboard_entry_rank3.tres" id="13_uddhy"]
+[ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://themes/leaderboard_entry_rankeven.tres" id="14_tlbd4"]
+[ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/leaderboard_entry_rankodd.tres" id="15_k4jnt"]
+[ext_resource type="StyleBox" uid="uid://c48db3gig8bw8" path="res://themes/light/panel_floating_toast_light.tres" id="25_krt1t"]
+
+[resource]
+BoxContainer/constants/separation = 10
+Button/colors/font_color = Color(0.14901961, 0.2, 0.19607843, 1)
+Button/colors/font_disabled_color = Color(0.8, 0.7294118, 0.6392157, 1)
+Button/colors/font_focus_color = Color(0.15, 0.2, 0.19416668, 1)
+Button/colors/font_hover_color = Color(0.2627451, 0.3019608, 0.29803923, 1)
+Button/colors/font_hover_pressed_color = Color(0.091, 0.14, 0.13265, 1)
+Button/colors/font_pressed_color = Color(0.091, 0.14, 0.13265, 1)
+Button/colors/icon_disabled_color = Color(0.8, 0.7294118, 0.6392157, 1)
+Button/colors/icon_focus_color = Color(0.15, 0.2, 0.19416668, 1)
+Button/colors/icon_hover_color = Color(0.2627451, 0.3019608, 0.29803923, 1)
+Button/colors/icon_hover_pressed_color = Color(0.091, 0.14, 0.13265, 1)
+Button/colors/icon_normal_color = Color(0.15, 0.2, 0.19416668, 1)
+Button/colors/icon_pressed_color = Color(0.091, 0.14, 0.13265, 1)
+Button/font_sizes/font_size = 24
+Button/styles/disabled = ExtResource("1_u0swb")
+Button/styles/hover = ExtResource("2_wj2d4")
+Button/styles/normal = ExtResource("2_nq408")
+Button/styles/pressed = ExtResource("3_rmme2")
+ButtonSecondary/base_type = &"Button"
+ButtonSecondary/colors/font_color = Color(0.09019608, 0.14117648, 0.13333334, 1)
+ButtonSecondary/colors/font_disabled_color = Color(0.091, 0.14, 0.13265, 1)
+ButtonSecondary/colors/font_focus_color = Color(0.091, 0.14, 0.13265, 1)
+ButtonSecondary/colors/font_hover_color = Color(0.15, 0.2, 0.19416668, 1)
+ButtonSecondary/colors/font_hover_pressed_color = Color(0.007843138, 0.07058824, 0.06666667, 1)
+ButtonSecondary/colors/font_pressed_color = Color(0.039215688, 0.078431375, 0.07450981, 1)
+ButtonSecondary/colors/icon_disabled_color = Color(0.091, 0.14, 0.13265, 1)
+ButtonSecondary/colors/icon_focus_color = Color(0.091, 0.14, 0.13265, 1)
+ButtonSecondary/colors/icon_hover_color = Color(0.15, 0.2, 0.19416668, 1)
+ButtonSecondary/colors/icon_hover_pressed_color = Color(0.091, 0.14, 0.13265, 1)
+ButtonSecondary/colors/icon_normal_color = Color(0.15, 0.2, 0.19416668, 1)
+ButtonSecondary/colors/icon_pressed_color = Color(0.039215688, 0.078431375, 0.07450981, 1)
+ButtonSecondary/styles/disabled = ExtResource("5_ov7us")
+ButtonSecondary/styles/hover = ExtResource("6_m7yg3")
+ButtonSecondary/styles/normal = ExtResource("7_vfvoy")
+ButtonSecondary/styles/pressed = ExtResource("8_yo7ga")
+FlowContainer/constants/h_separation = 10
+FlowContainer/constants/v_separation = 10
+Label/colors/font_color = Color(0.15, 0.2, 0.19416668, 1)
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("9_krt1t")
+LabelHeading/base_type = &"Label"
+LabelHeading/colors/font_color = Color(0.091, 0.14, 0.13265, 1)
+LabelHeading/font_sizes/font_size = 48
+LabelHeading/fonts/font = ExtResource("10_krt1t")
+LabelSubheading/base_type = &"Label"
+LabelSubheading/colors/font_color = Color(0.1298, 0.59, 0.57466, 1)
+LabelSubheading/font_sizes/font_size = 24
+LabelSubheading/fonts/font = ExtResource("9_krt1t")
+LabelTile/base_type = &"Label"
+LabelTile/colors/font_color = Color(0.091, 0.14, 0.13265, 1)
+LabelTile/font_sizes/font_size = 64
+LeaderboardEntryRank1/base_type = &"PanelContainer"
+LeaderboardEntryRank1/styles/panel = ExtResource("11_roldc")
+LeaderboardEntryRank2/base_type = &"PanelContainer"
+LeaderboardEntryRank2/styles/panel = ExtResource("12_txn4r")
+LeaderboardEntryRank3/base_type = &"PanelContainer"
+LeaderboardEntryRank3/styles/panel = ExtResource("13_uddhy")
+LeaderboardEntryRankEven/base_type = &"PanelContainer"
+LeaderboardEntryRankEven/styles/panel = ExtResource("14_tlbd4")
+LeaderboardEntryRankOdd/base_type = &"PanelContainer"
+LeaderboardEntryRankOdd/styles/panel = ExtResource("15_k4jnt")
+LineEdit/colors/caret_color = Color(0.15, 0.2, 0.19416668, 1)
+LineEdit/colors/clear_button_color = Color(0.15, 0.2, 0.19416668, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0.091, 0.14, 0.13265, 1)
+LineEdit/colors/font_color = Color(0.1298, 0.59, 0.57466, 1)
+LineEdit/colors/font_placeholder_color = Color(0.5921569, 0.7294118, 0.7137255, 1)
+LineEdit/colors/font_selected_color = Color(0.93, 0.9021, 0.8742, 1)
+LineEdit/colors/font_uneditable_color = Color(0.8, 0.75686276, 0.69411767, 1)
+LineEdit/colors/selection_color = Color(0.1298, 0.59, 0.57466, 1)
+LineEdit/font_sizes/font_size = 24
+LineEdit/styles/focus = ExtResource("7_xyh1g")
+LineEdit/styles/normal = ExtResource("7_tr3sr")
+LineEdit/styles/read_only = ExtResource("8_aghd6")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+Panel/styles/panel = ExtResource("3_tvg4m")
+PanelCell/base_type = &"Panel"
+PanelCell/styles/panel = ExtResource("4_cpslb")
+PanelCellHighlight/base_type = &"Panel"
+PanelCellHighlight/styles/panel = ExtResource("5_u0swb")
+PanelContainer/styles/panel = ExtResource("4_wtvwc")
+PanelContainerGameBG/base_type = &"PanelContainer"
+PanelContainerGameBG/styles/panel = ExtResource("3_tvg4m")
+PanelContainerInset/base_type = &"PanelContainer"
+PanelContainerInset/styles/panel = ExtResource("11_jnuea")
+PanelContainerThinMargins/base_type = &"PanelContainer"
+PanelContainerThinMargins/styles/panel = ExtResource("12_bsmx7")
+PanelContainerToast/base_type = &"PanelContainer"
+PanelContainerToast/styles/panel = ExtResource("25_krt1t")
+PanelFloating/base_type = &"Panel"
+PanelFloating/styles/panel = ExtResource("11_1lbab")
+PanelGrid/base_type = &"Panel"
+PanelGrid/styles/panel = ExtResource("5_hb1pw")
+PanelTile/base_type = &"Panel"
+PanelTile/styles/panel = ExtResource("8_nq408")
+VBoxContainer/constants/separation = 10

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://hx0u0tuvv2rj"]
 
 [ext_resource type="Script" uid="uid://dlthwx6ssmwov" path="res://scripts/DropTile.gd" id="1_n3f48"]
-[ext_resource type="StyleBox" uid="uid://dxfwxcqmdus43" path="res://themes/tile_dark_grey_bg.tres" id="1_vx4y2"]
 
 [node name="Tile" type="Panel" unique_id=1042171115 node_paths=PackedStringArray("letter_label")]
 custom_minimum_size = Vector2(95, 95)
@@ -11,9 +10,9 @@ scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("1_vx4y2")
+theme_type_variation = &"PanelTile"
 script = ExtResource("1_n3f48")
-letter_label = NodePath("Label")
+letter_label = NodePath("TileLetterLabel")
 
 [node name="Button" type="Button" parent="." unique_id=284698249]
 layout_mode = 0
@@ -21,7 +20,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 flat = true
 
-[node name="Label" type="Label" parent="." unique_id=1773525463]
+[node name="TileLetterLabel" type="Label" parent="." unique_id=1773525463]
 z_index = 2
 layout_mode = 1
 anchors_preset = 8
@@ -35,8 +34,7 @@ offset_right = 20.0
 offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.9843137, 0.92941177, 0.85490197, 1)
-theme_override_font_sizes/font_size = 64
+theme_type_variation = &"LabelTile"
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
