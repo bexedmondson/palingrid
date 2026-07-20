@@ -128,7 +128,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LightDarkModeButton" type="TextureButton" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1281457744 node_paths=PackedStringArray("rootNode")]
+[node name="LightDarkModeButton" type="TextureButton" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1281457744 node_paths=PackedStringArray("rootNode", "saveFileHandler")]
 custom_maximum_size = Vector2(217.834, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -140,6 +140,7 @@ script = ExtResource("9_0enuu")
 light = ExtResource("1_wqld8")
 dark = ExtResource("1_f2tft")
 rootNode = NodePath("../../../..")
+saveFileHandler = NodePath("../../../../SaveFileHandler")
 
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(400, 0)
@@ -193,7 +194,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="HowToPlayButton" type="Button" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer" unique_id=2028854943]
-visible = false
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8

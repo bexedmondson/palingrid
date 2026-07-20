@@ -6,6 +6,7 @@ extends TextureButton
 
 @export var rootNode : Control
 
+@export var saveFileHandler : SaveFileHandler
 
 func _on_toggled(toggled_on: bool) -> void:
 	rootNode.theme = light if toggled_on else dark
