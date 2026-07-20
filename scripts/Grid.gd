@@ -43,6 +43,9 @@ func letter_count(): return grid_width * grid_height
 var valid_words = []
 var wordInstanceMap = {}
 
+func _enter_tree() -> void:
+	get_window().title = "Palingrid"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	generator.generate(letter_count())
