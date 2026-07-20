@@ -12,13 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://dsialahwm1iv2" path="res://textures/toggle-light-on.svg" id="8_f2tft"]
 [ext_resource type="Texture2D" uid="uid://b8hl8ae172l0h" path="res://textures/toggle-light-off.svg" id="8_idg7c"]
 [ext_resource type="Script" uid="uid://k5jcxqfps3fk" path="res://scripts/LightDarkMode.gd" id="9_0enuu"]
-[ext_resource type="Texture2D" uid="uid://p8kf3hofix1q" path="res://textures/leaderboardsComplex.png" id="11_7swsl"]
 [ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://scripts/Grid.gd" id="12_eudc0"]
+[ext_resource type="Texture2D" uid="uid://dio3u62awig2g" path="res://textures/podium-complex.svg" id="13_ne81u"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://themes/text_shine.tres" id="13_xfqe3"]
 [ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="14_gsnlb"]
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://scenes/cell.tscn" id="15_01tbl"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://scripts/GridRippleAnimator.gd" id="16_tvpgl"]
-[ext_resource type="Texture2D" uid="uid://coh0kx8dqbali" path="res://textures/return.png" id="17_7swsl"]
+[ext_resource type="Texture2D" uid="uid://dkuycxmj6cfv" path="res://textures/return-arrow.svg" id="19_eudc0"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://scenes/tile.tscn" id="20_64acc"]
 [ext_resource type="PackedScene" uid="uid://cu1ciow3fnymq" path="res://scenes/scoreboard.tscn" id="21_aktff"]
@@ -76,6 +76,9 @@ expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 shadow_color = Color(1, 1, 1, 0.6)
 shadow_size = 5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ne81u"]
+load_path = "res://.godot/imported/return.png-4acfd938ccdd999ef5a9c8ba6dcd7e81.ctex"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
 
@@ -189,7 +192,7 @@ custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-icon = ExtResource("11_7swsl")
+icon = ExtResource("13_ne81u")
 icon_alignment = 1
 expand_icon = true
 
@@ -435,7 +438,7 @@ grow_vertical = 0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-icon = ExtResource("17_7swsl")
+icon = ExtResource("19_eudc0")
 icon_alignment = 1
 expand_icon = true
 
@@ -454,7 +457,7 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("17_7swsl")
+texture = SubResource("CompressedTexture2D_ne81u")
 expand_mode = 5
 
 [node name="TileDockPanel" type="PanelContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=939378106]

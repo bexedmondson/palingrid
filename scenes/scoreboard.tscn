@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cu1ciow3fnymq"]
 
 [ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://scripts/Scoreboard.gd" id="1_mmelj"]
-[ext_resource type="Texture2D" uid="uid://dy2daddsrobx0" path="res://textures/icon_repeat_light.png" id="2_fpta5"]
+[ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="2_fpta5"]
+[ext_resource type="Texture2D" uid="uid://66nf847ass0e" path="res://textures/tool-pencil.svg" id="3_fpta5"]
 [ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="4_fpta5"]
-[ext_resource type="Texture2D" uid="uid://bfc2d5oxx6lvr" path="res://textures/toolPencil.png" id="8_7ekvq"]
-[ext_resource type="Texture2D" uid="uid://dtkx2x3f8iddm" path="res://textures/timer_0.png" id="10_bv2p2"]
+[ext_resource type="Texture2D" uid="uid://ctufowlq4oai2" path="res://textures/timer_0.svg" id="5_7acvr"]
 [ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="11_n3wga"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
@@ -107,7 +107,7 @@ grow_horizontal = 0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-icon = ExtResource("8_7ekvq")
+icon = ExtResource("3_fpta5")
 autowrap_mode = 2
 clip_text = true
 icon_alignment = 1
@@ -173,7 +173,6 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 24
 text = "loading..."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -199,7 +198,7 @@ value = 32.87
 fill_mode = 4
 radial_initial_angle = 104.8
 nine_patch_stretch = true
-texture_progress = ExtResource("10_bv2p2")
+texture_progress = ExtResource("5_7acvr")
 tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Panel/LeaderboardMarginContainer/LoadingSpinner" unique_id=1786489425]
@@ -222,7 +221,7 @@ value = 16.19
 fill_mode = 4
 radial_initial_angle = 104.8
 nine_patch_stretch = true
-texture_progress = ExtResource("10_bv2p2")
+texture_progress = ExtResource("5_7acvr")
 
 [node name="NameEntryPanel" parent="." unique_id=1648906337 instance=ExtResource("11_n3wga")]
 visible = false

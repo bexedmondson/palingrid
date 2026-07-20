@@ -3,26 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bffwwsp5ys3at"
-path="res://.godot/imported/valid_word_placements3.png-b1f4a8e8eb4f816ef18aab15bf993566.ctex"
+path.bptc="res://.godot/imported/valid_word_placements3.png-b1f4a8e8eb4f816ef18aab15bf993566.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/tutorial_images/valid_word_placements3.png"
-dest_files=["res://.godot/imported/valid_word_placements3.png-b1f4a8e8eb4f816ef18aab15bf993566.ctex"]
+dest_files=["res://.godot/imported/valid_word_placements3.png-b1f4a8e8eb4f816ef18aab15bf993566.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
-compress/channel_pack=0
+compress/normal_map=2
+compress/channel_pack=1
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0

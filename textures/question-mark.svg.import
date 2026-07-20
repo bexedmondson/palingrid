@@ -3,26 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm6rji8jklpxg"
-path="res://.godot/imported/question-mark.svg-5ecf98fa79ba7c78a118ef956012d99e.ctex"
+path.bptc="res://.godot/imported/question-mark.svg-5ecf98fa79ba7c78a118ef956012d99e.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/question-mark.svg"
-dest_files=["res://.godot/imported/question-mark.svg-5ecf98fa79ba7c78a118ef956012d99e.ctex"]
+dest_files=["res://.godot/imported/question-mark.svg-5ecf98fa79ba7c78a118ef956012d99e.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
-compress/channel_pack=0
+compress/normal_map=2
+compress/channel_pack=1
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
@@ -38,6 +39,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
+svg/scale=2.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

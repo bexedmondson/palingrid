@@ -3,26 +3,27 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbhxy5rmniw0g"
-path="res://.godot/imported/score1word.png-4b562f919fc986c2ced1f8812fd4fb14.ctex"
+path.bptc="res://.godot/imported/score1word.png-4b562f919fc986c2ced1f8812fd4fb14.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/tutorial_images/score1word.png"
-dest_files=["res://.godot/imported/score1word.png-4b562f919fc986c2ced1f8812fd4fb14.ctex"]
+dest_files=["res://.godot/imported/score1word.png-4b562f919fc986c2ced1f8812fd4fb14.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
-compress/channel_pack=0
+compress/normal_map=2
+compress/channel_pack=1
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
