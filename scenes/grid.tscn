@@ -193,6 +193,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="HowToPlayButton" type="Button" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer" unique_id=2028854943]
+visible = false
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -585,6 +586,7 @@ loginHandler = NodePath("../../LoginHandler")
 best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 
 [node name="HowToPlay" type="Panel" parent="GameCanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
+visible = false
 z_index = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
