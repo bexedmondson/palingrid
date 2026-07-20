@@ -12,7 +12,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7acvr"]
 
 [node name="Scoreboard" type="Panel" unique_id=531030568 node_paths=PackedStringArray("name_change_handler", "title_label", "refresh_button", "change_name_button", "column_header", "leaderboard_scroll", "leaderboard_list", "entry_placeholder", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
-visible = false
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0

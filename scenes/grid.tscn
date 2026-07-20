@@ -77,9 +77,6 @@ expand_margin_bottom = 10.0
 shadow_color = Color(1, 1, 1, 0.6)
 shadow_size = 5
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ne81u"]
-load_path = "res://.godot/imported/return.png-4acfd938ccdd999ef5a9c8ba6dcd7e81.ctex"
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7acvr"]
@@ -441,24 +438,6 @@ size_flags_vertical = 0
 icon = ExtResource("19_eudc0")
 icon_alignment = 1
 expand_icon = true
-
-[node name="ArrowTextureRect" type="TextureRect" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetTilesButton" unique_id=254321134]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("CompressedTexture2D_ne81u")
-expand_mode = 5
 
 [node name="TileDockPanel" type="PanelContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=939378106]
 custom_minimum_size = Vector2(620, 100)

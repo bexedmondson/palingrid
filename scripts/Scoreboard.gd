@@ -1,5 +1,5 @@
 class_name Scoreboard
-extends Node
+extends Control
 
 # ============================================================
 # CONFIGURATION
@@ -71,6 +71,10 @@ var load_timeout_timer: Timer = null ## Load timeout timer
 # ============================================================
 # INITIALIZATION
 # ============================================================
+
+func _enter_tree() -> void:
+	hide()
+
 func _ready() -> void:
 	self.visible = false
 	_set_loading(false)
