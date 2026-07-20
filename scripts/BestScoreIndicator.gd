@@ -94,14 +94,15 @@ func submit(_entries):
 
 func save(score : int):
 	print("[BestScoreIndicator] Submitting score: " + str(score))
-	#CheddaBoards.submit_score(score)
+	CheddaBoards.submit_score(score)
 	
 	allScores[dailyGenerator.daySeed] = score
 	
-	var f = FileAccess.open(saveFileHandler.get_save_path_far(SaveFileHandler.SaveType.SCORE), FileAccess.WRITE_READ)
+	var f = FileAccess.open(saveFileHandler.get_save_path_for(SaveFileHandler.SaveType.SCORE), FileAccess.WRITE_READ)
 	f.get_path_absolute()
 	f.store_var(allScores)
 	f.close()
+	saveFileHandler.update_save_data(SaveFileHandler.SaveType.SCORE, allScores)
 
 func load():
 	var result = saveFileHandler.request_load(SaveFileHandler.SaveType.SCORE)

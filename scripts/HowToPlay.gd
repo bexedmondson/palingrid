@@ -14,7 +14,4 @@ func _ready() -> void:
 		save()
 
 func save():
-	var f = FileAccess.open(saveFileHandler.get_save_path_far(SaveFileHandler.SaveType.HOWTOPLAY), FileAccess.WRITE_READ)
-	f.get_path_absolute()
-	f.store_8(1)
-	f.close()
+	saveFileHandler.update_flag_and_save_all_flags(SaveFileHandler.SaveType.HOWTOPLAY, true)
