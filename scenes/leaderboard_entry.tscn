@@ -33,7 +33,7 @@ rank3_style = ExtResource("4_hq4ag")
 even_style = ExtResource("5_qioxu")
 odd_style = ExtResource("6_7yd7s")
 accent_text_color = Color(0.1298, 0.59, 0.57466, 1)
-default_text_color = Color(0.15, 0.2, 0.19416668, 1)
+default_text_color = Color(0.3254902, 0.8156863, 0.7607843, 1)
 dim_text_color = Color(0.091, 0.14, 0.13265, 1)
 
 [node name="PlayerOutline" type="PanelContainer" parent="." unique_id=1694561146]

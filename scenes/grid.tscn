@@ -5,23 +5,40 @@
 [ext_resource type="Theme" uid="uid://brqal24634wvg" path="res://themes/light/light_theme.tres" id="1_wqld8"]
 [ext_resource type="Script" uid="uid://b3g538x5g3xep" path="res://scripts/LoginHandler.gd" id="2_cl3o7"]
 [ext_resource type="Script" uid="uid://chbvohdq7s7dl" path="res://scripts/DailyLetterSetGenerator.gd" id="3_18g0k"]
+[ext_resource type="Script" uid="uid://dt45c4hucauxl" path="res://scripts/SaveFileHandler.gd" id="4_aktff"]
 [ext_resource type="JSON" path="res://stats.json" id="4_docto"]
 [ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://scripts/DisableScrollOnDrag.gd" id="5_wnhym"]
 [ext_resource type="Script" uid="uid://fusem4g6wje" path="res://scripts/BestScoreIndicator.gd" id="6_2bxyt"]
 [ext_resource type="Texture2D" uid="uid://dsialahwm1iv2" path="res://textures/toggle-light-on.svg" id="8_f2tft"]
 [ext_resource type="Texture2D" uid="uid://b8hl8ae172l0h" path="res://textures/toggle-light-off.svg" id="8_idg7c"]
-[ext_resource type="Script" uid="uid://k5jcxqfps3fk" path="res://scripts/light_dark_mode_button.gd" id="9_0enuu"]
+[ext_resource type="Script" uid="uid://k5jcxqfps3fk" path="res://scripts/LightDarkMode.gd" id="9_0enuu"]
 [ext_resource type="Texture2D" uid="uid://p8kf3hofix1q" path="res://textures/leaderboardsComplex.png" id="11_7swsl"]
 [ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://scripts/Grid.gd" id="12_eudc0"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://themes/text_shine.tres" id="13_xfqe3"]
+[ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="14_gsnlb"]
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://scenes/cell.tscn" id="15_01tbl"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://scripts/GridRippleAnimator.gd" id="16_tvpgl"]
 [ext_resource type="Texture2D" uid="uid://coh0kx8dqbali" path="res://textures/return.png" id="17_7swsl"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://scenes/tile.tscn" id="20_64acc"]
 [ext_resource type="PackedScene" uid="uid://cu1ciow3fnymq" path="res://scenes/scoreboard.tscn" id="21_aktff"]
+[ext_resource type="Script" uid="uid://d3c2i8e7no5ix" path="res://scripts/HowToPlay.gd" id="23_1s87h"]
+[ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="24_1s87h"]
+[ext_resource type="Texture2D" uid="uid://cphyepf8of4rt" path="res://textures/tutorial_images/valid_word_placements1.png" id="25_o46hl"]
+[ext_resource type="Texture2D" uid="uid://dhbutai54wrxf" path="res://textures/tutorial_images/valid_word_placements2.png" id="26_jh3ig"]
+[ext_resource type="Texture2D" uid="uid://bffwwsp5ys3at" path="res://textures/tutorial_images/valid_word_placements3.png" id="27_7swsl"]
 [ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://scripts/DebugUtils.gd" id="28_5816i"]
+[ext_resource type="Texture2D" uid="uid://cdxjmnx1yv3ih" path="res://textures/tutorial_images/valid_word_placements4.png" id="28_cl3o7"]
 [ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://scripts/WelcomeToast.gd" id="29_7swsl"]
+[ext_resource type="Texture2D" uid="uid://kd7tpx8rqas0" path="res://textures/tutorial_images/valid_word_placements5.png" id="29_18g0k"]
+[ext_resource type="Texture2D" uid="uid://b730uqrmfx3qt" path="res://textures/tutorial_images/valid_word_placements6.png" id="30_docto"]
+[ext_resource type="Texture2D" uid="uid://dbhxy5rmniw0g" path="res://textures/tutorial_images/score1word.png" id="31_wnhym"]
+[ext_resource type="Texture2D" uid="uid://pbu3g6w3bprs" path="res://textures/tutorial_images/score2word.png" id="32_2bxyt"]
+[ext_resource type="Texture2D" uid="uid://h8xfh6jvn73d" path="res://textures/tutorial_images/score3word.png" id="33_rccgx"]
+[ext_resource type="Texture2D" uid="uid://npurgoymbbai" path="res://textures/tutorial_images/score3points.png" id="34_jffns"]
+[ext_resource type="Texture2D" uid="uid://b3qobrpixwagc" path="res://textures/tutorial_images/score1points.png" id="34_lr6w7"]
+[ext_resource type="Texture2D" uid="uid://drb27t610dr7t" path="res://textures/tutorial_images/score2points.png" id="35_x3wu6"]
+[ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
 
 [sub_resource type="Gradient" id="Gradient_kc0yb"]
 offsets = PackedFloat32Array(0, 0.23210381, 1)
@@ -60,6 +77,10 @@ expand_margin_bottom = 10.0
 shadow_color = Color(1, 1, 1, 0.6)
 shadow_size = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7acvr"]
+
 [node name="Game" type="Control" unique_id=1518414441]
 layout_mode = 3
 anchors_preset = 15
@@ -83,6 +104,9 @@ wordListScroller = NodePath("FullScreenScrollContainer/VBoxContainer/FullScreenH
 
 [node name="LoginHandler" type="Node" parent="GameCanvasLayer/PanelContainer" unique_id=961667201]
 script = ExtResource("2_cl3o7")
+
+[node name="SaveFileHandler" type="Node" parent="GameCanvasLayer/PanelContainer" unique_id=1868105605]
+script = ExtResource("4_aktff")
 
 [node name="LetterSetGenerator" type="Node" parent="GameCanvasLayer/PanelContainer" unique_id=1348343417]
 script = ExtResource("3_18g0k")
@@ -139,11 +163,11 @@ layout_mode = 2
 theme_type_variation = &"LabelSubheading"
 text = "TODAY'S BEST:"
 
-[node name="BestScoreLabel" type="Label" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid", "scoreboard")]
+[node name="BestScoreLabel" type="Label" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 theme_type_variation = &"LabelSubheading"
-text = "00"
+text = "0"
 horizontal_alignment = 1
 script = ExtResource("6_2bxyt")
 gridAnimationPlayer = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/GridRippleAnimator")
@@ -152,13 +176,28 @@ bestLabel = NodePath("../BestSoFarLabel")
 bestContainer = NodePath("..")
 grid = NodePath("../../../../FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
 scoreboard = NodePath("../../../../../../Scoreboard")
+saveFileHandler = NodePath("../../../../../../SaveFileHandler")
+lightDarkMode = NodePath("../../../LightDarkModeButton")
 
-[node name="LeaderboardButton" type="Button" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=676292021]
+[node name="ButtonHBoxContainer" type="HBoxContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer" unique_id=1462982208]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="LeaderboardButton" type="Button" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer" unique_id=676292021]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 icon = ExtResource("11_7swsl")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HowToPlayButton" type="Button" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer" unique_id=2028854943]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+icon = ExtResource("14_gsnlb")
 icon_alignment = 1
 expand_icon = true
 
@@ -545,6 +584,240 @@ login_handler = NodePath("../LoginHandler")
 loginHandler = NodePath("../../LoginHandler")
 best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/MarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 
+[node name="HowToPlay" type="Panel" parent="GameCanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
+z_index = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
+script = ExtResource("23_1s87h")
+saveFileHandler = NodePath("../SaveFileHandler")
+
+[node name="ColorRect" type="ColorRect" parent="GameCanvasLayer/PanelContainer/HowToPlay" unique_id=877933288]
+custom_minimum_size = Vector2(3000, 3000)
+propagate_maximum_size = true
+layout_mode = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 1500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="Panel" type="Panel" parent="GameCanvasLayer/PanelContainer/HowToPlay" unique_id=1147680429]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelFloating"
+
+[node name="HowToPlayMarginContainer" type="PanelContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel" unique_id=1091344264]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7acvr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer" unique_id=1425158048]
+layout_mode = 2
+horizontal_scroll_mode = 0
+scroll_deadzone = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer" unique_id=510556136]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=289646525]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"LabelHeading"
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=1512587471]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+offset_right = 70.0
+offset_bottom = 70.0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("24_1s87h")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1783326784]
+layout_mode = 2
+bbcode_enabled = true
+text = "
+[font_size=32][b]GAMEPLAY[/b][/font_size]
+[p]
+Drag letters onto the grid and form words to score.
+[p]
+Words can be formed in any direction: up, down, left, right, and all diagonal directions.
+[p]"
+fit_content = true
+
+[node name="FoldableContainer" type="FoldableContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=2146879476]
+layout_mode = 2
+mouse_filter = 1
+title = "VALID WORD PLACEMENT EXAMPLES"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer" unique_id=722899795]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=571911132]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=271065969]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("25_o46hl")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=1451649117]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("26_jh3ig")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=1013504745]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("27_7swsl")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=850187490]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=539143398]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("28_cl3o7")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=1433813066]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("29_18g0k")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect6" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=1210207920]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("30_docto")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=783289156]
+layout_mode = 2
+bbcode_enabled = true
+text = "
+[font_size=32][b]SCORING[/b][/font_size]
+[p]
+[ul]3 letter words: 1 point[/ul]
+[ul]4 letter words: 2 points[/ul]
+[ul]5 letter words: 3 points[/ul]
+[p]"
+fit_content = true
+
+[node name="FoldableContainer2" type="FoldableContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=349251191]
+layout_mode = 2
+title = "SCORE EXAMPLES"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2" unique_id=149703048]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer" unique_id=1683472249]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1619675538]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("31_wnhym")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1702743674]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("32_2bxyt")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1978195714]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("33_rccgx")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer" unique_id=1471533209]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect6" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=813106511]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("34_jffns")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=1033160865]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("35_x3wu6")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=871608519]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("34_lr6w7")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1426832181]
+layout_mode = 2
+bbcode_enabled = true
+text = "
+[p]
+Note: duplicate words will only be scored once per grid!"
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1307572703]
+custom_maximum_size = Vector2(-1, 350)
+layout_mode = 2
+texture = ExtResource("37_ne81u")
+expand_mode = 5
+stretch_mode = 5
+
 [node name="DebugUtils" type="Node" parent="GameCanvasLayer/PanelContainer" unique_id=924695395 node_paths=PackedStringArray("grid", "dock")]
 script = ExtResource("28_5816i")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid")
@@ -577,7 +850,9 @@ text = "Welcome, !"
 horizontal_alignment = 1
 
 [connection signal="toggled" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/LightDarkModeButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
-[connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/LeaderboardButton" to="GameCanvasLayer/PanelContainer/Scoreboard" method="show"]
+[connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer/LeaderboardButton" to="GameCanvasLayer/PanelContainer/Scoreboard" method="show"]
+[connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer/HowToPlayButton" to="GameCanvasLayer/PanelContainer/HowToPlay" method="show"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetTilesButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
+[connection signal="pressed" from="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="GameCanvasLayer/PanelContainer/HowToPlay" method="hide"]
 
 [editable path="GameCanvasLayer/PanelContainer/Scoreboard"]

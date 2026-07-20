@@ -19,15 +19,18 @@
 [ext_resource type="StyleBox" uid="uid://dlsgmlcoklfc3" path="res://themes/light/button_secondary_pressed_light.tres" id="8_yo7ga"]
 [ext_resource type="FontFile" uid="uid://fn4x3stk2l3l" path="res://themes/fonts/montserrat/Montserrat-Medium.ttf" id="9_krt1t"]
 [ext_resource type="FontFile" uid="uid://c8f84nxlvugqk" path="res://themes/fonts/montserrat/Montserrat-Bold.ttf" id="10_krt1t"]
+[ext_resource type="StyleBox" uid="uid://c3qo18mtki70q" path="res://themes/light/foldable_container_panel_light.tres" id="10_mtu13"]
 [ext_resource type="StyleBox" uid="uid://c3yo5kn1rsn0n" path="res://themes/light/panel_floating_light.tres" id="11_1lbab"]
 [ext_resource type="StyleBox" uid="uid://cnvn5udqkm06u" path="res://themes/light/panel_container_inset_light.tres" id="11_jnuea"]
 [ext_resource type="StyleBox" uid="uid://c7vw4sy03w24h" path="res://themes/leaderboard_entry_rank1.tres" id="11_roldc"]
 [ext_resource type="StyleBox" uid="uid://djgv0jp0io35w" path="res://themes/light/panel_container_thin_margins_light.tres" id="12_bsmx7"]
+[ext_resource type="StyleBox" uid="uid://b3apx0l4ve2dt" path="res://themes/light/foldable_container_unfolded_title_light.tres" id="12_tq8i7"]
 [ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://themes/leaderboard_entry_rank2.tres" id="12_txn4r"]
 [ext_resource type="StyleBox" uid="uid://cv571g73ibkjw" path="res://themes/leaderboard_entry_rank3.tres" id="13_uddhy"]
 [ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://themes/leaderboard_entry_rankeven.tres" id="14_tlbd4"]
 [ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/leaderboard_entry_rankodd.tres" id="15_k4jnt"]
 [ext_resource type="StyleBox" uid="uid://c48db3gig8bw8" path="res://themes/light/panel_floating_toast_light.tres" id="25_krt1t"]
+[ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
 
 [resource]
 BoxContainer/constants/separation = 10
@@ -67,7 +70,18 @@ ButtonSecondary/styles/normal = ExtResource("7_vfvoy")
 ButtonSecondary/styles/pressed = ExtResource("8_yo7ga")
 FlowContainer/constants/h_separation = 10
 FlowContainer/constants/v_separation = 10
-Label/colors/font_color = Color(0.15, 0.2, 0.19416668, 1)
+FoldableContainer/colors/collapsed_font_color = Color(0, 0.4392157, 0.42352942, 1)
+FoldableContainer/colors/font_color = Color(0, 0.4392157, 0.42352942, 1)
+FoldableContainer/colors/font_outline_color = Color(1, 1, 1, 1)
+FoldableContainer/colors/hover_font_color = Color(0.1298, 0.59, 0.57466, 1)
+FoldableContainer/font_sizes/font_size = 20
+FoldableContainer/fonts/font = ExtResource("29_l35dm")
+FoldableContainer/styles/panel = ExtResource("10_mtu13")
+FoldableContainer/styles/title_collapsed_hover_panel = ExtResource("4_wtvwc")
+FoldableContainer/styles/title_collapsed_panel = ExtResource("4_wtvwc")
+FoldableContainer/styles/title_hover_panel = ExtResource("12_tq8i7")
+FoldableContainer/styles/title_panel = ExtResource("12_tq8i7")
+Label/colors/font_color = Color(0.14901961, 0.2, 0.19607843, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("9_krt1t")
 LabelHeading/base_type = &"Label"
@@ -127,4 +141,12 @@ PanelGrid/base_type = &"Panel"
 PanelGrid/styles/panel = ExtResource("5_hb1pw")
 PanelTile/base_type = &"Panel"
 PanelTile/styles/panel = ExtResource("8_nq408")
+RichTextLabel/colors/default_color = Color(0.14901961, 0.2, 0.19607843, 1)
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/bold_italics_font_size = 24
+RichTextLabel/font_sizes/italics_font_size = 24
+RichTextLabel/font_sizes/mono_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/bold_font = ExtResource("10_krt1t")
+RichTextLabel/fonts/normal_font = ExtResource("29_l35dm")
 VBoxContainer/constants/separation = 10

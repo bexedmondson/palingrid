@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://scripts/Scoreboard.gd" id="1_mmelj"]
 [ext_resource type="Texture2D" uid="uid://dy2daddsrobx0" path="res://textures/icon_repeat_light.png" id="2_fpta5"]
+[ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="4_fpta5"]
 [ext_resource type="Texture2D" uid="uid://bfc2d5oxx6lvr" path="res://textures/toolPencil.png" id="8_7ekvq"]
-[ext_resource type="Texture2D" uid="uid://cxhjow4cjxbm4" path="res://textures/arrowLeft.png" id="9_fjifx"]
 [ext_resource type="Texture2D" uid="uid://dtkx2x3f8iddm" path="res://textures/timer_0.png" id="10_bv2p2"]
 [ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="11_n3wga"]
 
@@ -121,7 +121,7 @@ offset_bottom = 70.0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-icon = ExtResource("9_fjifx")
+icon = ExtResource("4_fpta5")
 icon_alignment = 1
 expand_icon = true
 

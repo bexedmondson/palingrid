@@ -3868,6 +3868,7 @@ lone
 loner
 long
 longs
+loo
 look
 looks
 loom
@@ -3878,6 +3879,7 @@ loony
 loop
 loops
 loopy
+loos
 loose
 loot
 loots
@@ -6130,6 +6132,7 @@ snit
 snits
 snob
 snobs
+snood
 snoop
 snoot
 snore

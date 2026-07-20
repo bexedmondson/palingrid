@@ -101,7 +101,10 @@ func gen_date(count, day, month, year):
 func generate(count: int):
 	var date = Time.get_date_dict_from_system(true)
 	gen_date(count, date["day"], date["month"], date["year"])
-	
+	generated_set[0] = "w"
+	generated_set[1] = "o"
+	generated_set[2] = "r"
+	generated_set[3] = "d"
 	return generated_set
 
 
