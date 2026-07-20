@@ -5,7 +5,7 @@ letters = list(string.ascii_lowercase)
 counts = {l: 0 for l in letters}
 total = 0
 
-with open("small.txt") as f:
+with open("../small.txt") as f:
 	lines = f.readlines()
 	for line in lines:
 		for c in line:
@@ -21,5 +21,5 @@ for c in counts:
 
 print(probabilities)
 
-with open("stats.json", 'w') as f:
+with open("../stats.json", 'w') as f:
 	json.dump(probabilities, f)
