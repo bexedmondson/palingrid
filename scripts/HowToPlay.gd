@@ -7,11 +7,11 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	var result = saveFileHandler.request_load(SaveFileHandler.SaveType.HOWTOPLAY)
-	#if result[0] && result[1]:
-		#hide()
-	#else:
-		#show()
-		#save()
+	if result[0] && result[1]:
+		hide()
+	else:
+		show()
+		save()
 
 func save():
 	var f = FileAccess.open(saveFileHandler.get_save_path_far(SaveFileHandler.SaveType.HOWTOPLAY), FileAccess.WRITE_READ)
