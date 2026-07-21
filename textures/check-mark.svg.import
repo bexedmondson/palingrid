@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2c50267l5ccq"
-path.bptc="res://.godot/imported/check-mark.svg-c80443bfdcc5797fbff4535435c28367.bptc.ctex"
+path="res://.godot/imported/check-mark.svg-c80443bfdcc5797fbff4535435c28367.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/check-mark.svg"
-dest_files=["res://.godot/imported/check-mark.svg-c80443bfdcc5797fbff4535435c28367.bptc.ctex"]
+dest_files=["res://.godot/imported/check-mark.svg-c80443bfdcc5797fbff4535435c28367.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0

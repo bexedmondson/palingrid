@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://66nf847ass0e"
-path.bptc="res://.godot/imported/tool-pencil.svg-ba4213b2b66160686b5a866b8f6c0636.bptc.ctex"
+path="res://.godot/imported/tool-pencil.svg-ba4213b2b66160686b5a866b8f6c0636.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/tool-pencil.svg"
-dest_files=["res://.godot/imported/tool-pencil.svg-ba4213b2b66160686b5a866b8f6c0636.bptc.ctex"]
+dest_files=["res://.godot/imported/tool-pencil.svg-ba4213b2b66160686b5a866b8f6c0636.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0

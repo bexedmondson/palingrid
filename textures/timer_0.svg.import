@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctufowlq4oai2"
-path.bptc="res://.godot/imported/timer_0.svg-fcb56c2bcf1446eb75100bec95d935b2.bptc.ctex"
+path="res://.godot/imported/timer_0.svg-fcb56c2bcf1446eb75100bec95d935b2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/timer_0.svg"
-dest_files=["res://.godot/imported/timer_0.svg-fcb56c2bcf1446eb75100bec95d935b2.bptc.ctex"]
+dest_files=["res://.godot/imported/timer_0.svg-fcb56c2bcf1446eb75100bec95d935b2.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0

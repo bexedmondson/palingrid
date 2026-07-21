@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkuycxmj6cfv"
-path.bptc="res://.godot/imported/return-arrow.svg-96f0816e980832c735115aa2c6b50fce.bptc.ctex"
+path="res://.godot/imported/return-arrow.svg-96f0816e980832c735115aa2c6b50fce.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/return-arrow.svg"
-dest_files=["res://.godot/imported/return-arrow.svg-96f0816e980832c735115aa2c6b50fce.bptc.ctex"]
+dest_files=["res://.godot/imported/return-arrow.svg-96f0816e980832c735115aa2c6b50fce.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0

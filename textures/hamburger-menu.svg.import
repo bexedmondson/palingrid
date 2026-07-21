@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqguhfpbmhth1"
-path.bptc="res://.godot/imported/hamburger-menu.svg-95f341063783b125d11e581e364f2e89.bptc.ctex"
+path="res://.godot/imported/hamburger-menu.svg-95f341063783b125d11e581e364f2e89.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/hamburger-menu.svg"
-dest_files=["res://.godot/imported/hamburger-menu.svg-95f341063783b125d11e581e364f2e89.bptc.ctex"]
+dest_files=["res://.godot/imported/hamburger-menu.svg-95f341063783b125d11e581e364f2e89.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0

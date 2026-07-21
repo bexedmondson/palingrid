@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://npurgoymbbai"
-path.bptc="res://.godot/imported/score3points.png-251b27c49805962c5652d1365b3935a0.bptc.ctex"
+path="res://.godot/imported/score3points.png-251b27c49805962c5652d1365b3935a0.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/tutorial_images/score3points.png"
-dest_files=["res://.godot/imported/score3points.png-251b27c49805962c5652d1365b3935a0.bptc.ctex"]
+dest_files=["res://.godot/imported/score3points.png-251b27c49805962c5652d1365b3935a0.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0

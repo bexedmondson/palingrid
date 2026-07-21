@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdxjmnx1yv3ih"
-path.bptc="res://.godot/imported/valid_word_placements4.png-1a52c493593b34c28297e19c698c010e.bptc.ctex"
+path="res://.godot/imported/valid_word_placements4.png-1a52c493593b34c28297e19c698c010e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/tutorial_images/valid_word_placements4.png"
-dest_files=["res://.godot/imported/valid_word_placements4.png-1a52c493593b34c28297e19c698c010e.bptc.ctex"]
+dest_files=["res://.godot/imported/valid_word_placements4.png-1a52c493593b34c28297e19c698c010e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
