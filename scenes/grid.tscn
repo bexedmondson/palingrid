@@ -558,6 +558,7 @@ last_wrap_alignment = 2
 layout_mode = 2
 
 [node name="Scoreboard" parent="GameCanvasLayer/PanelContainer" unique_id=531030568 node_paths=PackedStringArray("login_handler") instance=ExtResource("21_aktff")]
+visible = false
 layout_mode = 2
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
