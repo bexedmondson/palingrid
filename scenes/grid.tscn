@@ -22,8 +22,11 @@
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://scenes/tile.tscn" id="20_64acc"]
 [ext_resource type="PackedScene" uid="uid://cu1ciow3fnymq" path="res://scenes/scoreboard.tscn" id="21_aktff"]
+[ext_resource type="Texture2D" uid="uid://bb7838h81l1r2" path="res://textures/support_me_on_kofi_beige.png" id="22_eudc0"]
 [ext_resource type="Script" uid="uid://d3c2i8e7no5ix" path="res://scripts/HowToPlay.gd" id="23_1s87h"]
+[ext_resource type="Texture2D" uid="uid://ba23rx0emkofo" path="res://textures/support_me_on_kofi_beige_dark.png" id="23_xfqe3"]
 [ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="24_1s87h"]
+[ext_resource type="Script" uid="uid://cvuw6t8ehs56n" path="res://scripts/KofiButton.gd" id="24_02pyl"]
 [ext_resource type="Texture2D" uid="uid://cphyepf8of4rt" path="res://textures/tutorial_images/valid_word_placements1.png" id="25_o46hl"]
 [ext_resource type="Texture2D" uid="uid://dhbutai54wrxf" path="res://textures/tutorial_images/valid_word_placements2.png" id="26_jh3ig"]
 [ext_resource type="Texture2D" uid="uid://bffwwsp5ys3at" path="res://textures/tutorial_images/valid_word_placements3.png" id="27_7swsl"]
@@ -207,7 +210,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 50
-theme_override_constants/v_separation = 50
 alignment = 1
 
 [node name="GameVBoxContainer" type="VBoxContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer" unique_id=420867560]
@@ -527,6 +529,22 @@ layout_mode = 2
 [node name="Tile25" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=2108196964]
+layout_mode = 2
+
+[node name="KofiButton" type="TextureButton" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer" unique_id=1668340809]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("22_eudc0")
+texture_pressed = ExtResource("23_xfqe3")
+texture_hover = ExtResource("22_eudc0")
+texture_disabled = ExtResource("22_eudc0")
+texture_focused = ExtResource("22_eudc0")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("24_02pyl")
+
 [node name="WordListContainer" type="PanelContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer" unique_id=683834855]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
@@ -838,6 +856,7 @@ horizontal_alignment = 1
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer/LeaderboardButton" to="GameCanvasLayer/PanelContainer/Scoreboard" method="show"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MarginContainer/ButtonHBoxContainer/HowToPlayButton" to="GameCanvasLayer/PanelContainer/HowToPlay" method="show"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/ButtonAnchor/ResetTilesButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridMarginContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
+[connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="GameCanvasLayer/PanelContainer/HowToPlay" method="hide"]
 
 [editable path="GameCanvasLayer/PanelContainer/Scoreboard"]
