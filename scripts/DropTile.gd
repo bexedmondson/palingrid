@@ -47,6 +47,7 @@ func _gui_input(event: InputEvent) -> void:
 
 func update_min_size_for_layout(is_vertical_layout : bool) -> void:
 	self.custom_minimum_size = Vector2.ONE * min_size_vertical_layout if is_vertical_layout else Vector2.ONE * min_size_horizontal_layout
+	
 	if is_vertical_layout && !letter_label.has_theme_font_size_override("font_size"):
 		var current_font_size = letter_label.get_theme_font_size("font_size")
 		letter_label.add_theme_font_size_override("font_size", current_font_size / 0.9)

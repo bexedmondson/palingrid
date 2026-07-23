@@ -3,6 +3,7 @@ extends Node
 @export var wordListScroller : ScrollContainer
 @export var leftGridSpacer : Control
 @export var rightGridSpacer : Control
+@export var kofiButton : Button
 
 @export var onOnlyWhenHorizontal : Array[Control]
 
