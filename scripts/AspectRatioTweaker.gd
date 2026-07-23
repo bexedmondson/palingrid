@@ -34,13 +34,13 @@ func tweak():
 	rightGridSpacer.set_h_size_flags(rightSpacerFlagsVertical if is_vertical else spacerFlagsHorizontal)
 	
 	_toggle_items()
-	_update_tile_grid_sizes()
+	_update_tile_grid_sizes(screen)
 
 func _toggle_items():
 	for control in onOnlyWhenHorizontal:
 		control.visible = !most_recent_check_vertical
 
-func _update_tile_grid_sizes():
-	get_tree().call_group("layout_size_change", "update_min_size_for_layout", most_recent_check_vertical)
-	get_tree().call_group("layout_size_change", "update_min_size_for_layout", most_recent_check_vertical)
+func _update_tile_grid_sizes(screen_size: Vector2i):
+	get_tree().call_group("layout_size_change", "update_min_size_for_layout", most_recent_check_vertical, screen_size)
+	get_tree().call_group("layout_size_change", "update_min_size_for_layout", most_recent_check_vertical, screen_size)
 	

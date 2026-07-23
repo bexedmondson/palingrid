@@ -88,5 +88,5 @@ func highlight():
 		tween.stop()
 	tween.play()
 
-func update_min_size_for_layout(is_vertical_layout : bool) -> void:
-	self.custom_minimum_size = Vector2.ONE * min_size_vertical_layout if is_vertical_layout else Vector2.ONE * min_size_horizontal_layout
+func update_min_size_for_layout(is_vertical_layout : bool, screen_size: Vector2i) -> void:
+	self.custom_minimum_size = Vector2.ONE * (screen_size.x / 7) if is_vertical_layout else Vector2.ONE * min_size_horizontal_layout
