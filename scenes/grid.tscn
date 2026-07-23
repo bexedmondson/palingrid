@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://drb27t610dr7t" path="res://textures/tutorial_images/score2points.png" id="35_x3wu6"]
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
+[ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01tbl"]
 content_margin_left = 30.0
@@ -911,6 +912,7 @@ layout_mode = 0
 offset_right = 403.0
 offset_bottom = 73.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("45_quncq")
 text = "testing 123"
 
 [connection signal="resized" from="GameCanvasLayer/PanelContainer" to="GameCanvasLayer/PanelContainer" method="tweak"]
