@@ -464,15 +464,6 @@ icon = ExtResource("19_eudc0")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetTilesButton2" type="Button" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=1495618415]
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-icon = ExtResource("19_eudc0")
-icon_alignment = 1
-expand_icon = true
-
 [node name="TileDockPanel" type="PanelContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=939378106]
 custom_minimum_size = Vector2(620, 100)
 layout_mode = 2
@@ -892,7 +883,6 @@ horizontal_alignment = 1
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="GameCanvasLayer/PanelContainer/Scoreboard" method="show"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="GameCanvasLayer/PanelContainer/HowToPlay" method="show"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
-[connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton2" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="GameCanvasLayer/PanelContainer/HowToPlay" method="hide"]
 

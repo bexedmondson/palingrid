@@ -13,8 +13,7 @@ var rightSpacerFlagsVertical = (Control.SizeFlags.SIZE_EXPAND & Control.SizeFlag
 var spacerFlagsHorizontal = (Control.SizeFlags.SIZE_EXPAND & Control.SizeFlags.SIZE_SHRINK_CENTER)
 
 func _on_ready():
-	var screen = get_viewport().get_screen_transform()
-	most_recent_check_vertical = screen.x * 1.1 < screen.y
+	tweak()
 
 func tweak():
 	var screen = get_tree().get_root().size
