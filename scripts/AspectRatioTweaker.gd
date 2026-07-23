@@ -20,10 +20,6 @@ func _on_ready():
 	most_recent_check_vertical = screen_size.x * 1.1 < screen_size.y
 	
 	debug_label.text = str(screen_size) + " " + str(Vector2.ONE * (screen_size.x / 8 - 5)) + " " + str(cell.size)
-	deferred(screen_size)
-	
-func deferred(screen_size):
-	await get_tree().process_frame
 	_do_tweak(screen_size)
 
 func tweak():

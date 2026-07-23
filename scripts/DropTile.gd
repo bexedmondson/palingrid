@@ -12,6 +12,11 @@ signal quick_move_to_dock(tile: DropTile)
 const DOUBLETAPDELAY = .25
 var doubleTapTimeout = 0.0
 
+func _on_ready():
+	var screen_size = get_tree().get_root().size
+	var is_vertical = screen_size.x * 1.1 < screen_size.y
+	update_min_size_for_layout(is_vertical, screen_size)
+
 func _process(delta: float) -> void:
 	if doubleTapTimeout > 0:
 		doubleTapTimeout -= delta

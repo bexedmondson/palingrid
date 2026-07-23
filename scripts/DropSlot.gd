@@ -12,6 +12,11 @@ signal tile_changed(slot: DropSlot)
 
 var slotTile: DropTile
 
+func _on_ready():
+	var screen_size = get_tree().get_root().size
+	var is_vertical = screen_size.x * 1.1 < screen_size.y
+	update_min_size_for_layout(is_vertical, screen_size)
+
 func remove_tile(tile: DropTile) -> void:
 	#push_warning(self.name + " " + tile.name + " remove, current " + (slotTile.name if slotTile != null else "null"))
 	if (tile != slotTile):

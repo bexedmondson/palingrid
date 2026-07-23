@@ -150,7 +150,7 @@ statsFile = ExtResource("4_docto")
 [node name="DebugLetterSetGenerator" type="Node" parent="GameCanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
 script = ExtResource("7_01tbl")
 generator = NodePath("..")
-start_day = 23
+start_day = 24
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="GameCanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
