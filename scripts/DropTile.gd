@@ -6,6 +6,9 @@ signal quick_move_to_dock(tile: DropTile)
 
 @export var letter_label: Label
 
+@export var min_size_horizontal_layout : float
+@export var min_size_vertical_layout : float
+
 const DOUBLETAPDELAY = .25
 var doubleTapTimeout = 0.0
 
@@ -41,3 +44,11 @@ func _gui_input(event: InputEvent) -> void:
 			doubleTapTimeout = DOUBLETAPDELAY
 	elif event is InputEventMouseButton and event.double_click:
 		quick_move_to_dock.emit(self)
+
+func update_min_size_for_layout(is_vertical_layout : bool) -> void:
+	self.custom_minimum_size = Vector2.ONE * min_size_vertical_layout if is_vertical_layout else Vector2.ONE * min_size_horizontal_layout
+	if is_vertical_layout && !letter_label.has_theme_font_size_override("font_size"):
+		var current_font_size = letter_label.get_theme_font_size("font_size")
+		letter_label.add_theme_font_size_override("font_size", current_font_size / 0.9)
+	elif !is_vertical_layout && letter_label.has_theme_font_size_override("font_size"):
+		letter_label.remove_theme_font_size_override("font_size")

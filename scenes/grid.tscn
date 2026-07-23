@@ -165,7 +165,7 @@ rootNode = NodePath("../../../..")
 saveFileHandler = NodePath("../../../../SaveFileHandler")
 
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -259,7 +259,6 @@ size_flags_vertical = 0
 custom_minimum_size = Vector2(540, 540)
 layout_mode = 2
 size_flags_horizontal = 3
-stretch_mode = 1
 
 [node name="Grid" type="MarginContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
 custom_minimum_size = Vector2(500, 500)
@@ -321,23 +320,23 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell1" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell1" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell2" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell2" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell3" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell3" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell4" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell4" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell5" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell5" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
@@ -345,23 +344,23 @@ tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell6" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell6" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell7" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell7" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell8" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell8" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell9" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell9" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell10" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell10" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
@@ -369,23 +368,23 @@ tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell11" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell11" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell12" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell12" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell13" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell13" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell14" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell14" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell15" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell15" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
@@ -393,23 +392,23 @@ tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell16" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell16" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell17" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell17" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell18" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell18" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell19" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell19" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell20" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell20" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
@@ -417,23 +416,23 @@ tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell21" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell21" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell22" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell22" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell23" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell23" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell24" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell24" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell25" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 node_paths=PackedStringArray("tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell25" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 node_paths=PackedStringArray("tileDock") groups=["layout_size_change"] instance=ExtResource("15_01tbl")]
 layout_mode = 2
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
@@ -468,7 +467,7 @@ expand_icon = true
 [node name="TileDockPanel" type="PanelContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=939378106]
 custom_minimum_size = Vector2(620, 100)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 3
 mouse_filter = 1
 
 [node name="Tiles" type="HFlowContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel" unique_id=1101630964]
@@ -478,79 +477,79 @@ layout_mode = 2
 alignment = 1
 script = ExtResource("19_x36ys")
 
-[node name="Tile" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=723670457 instance=ExtResource("20_64acc")]
+[node name="Tile" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=723670457 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile2" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1463121450 instance=ExtResource("20_64acc")]
+[node name="Tile2" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1463121450 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile3" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=947134029 instance=ExtResource("20_64acc")]
+[node name="Tile3" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=947134029 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile4" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1953381486 instance=ExtResource("20_64acc")]
+[node name="Tile4" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1953381486 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile5" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2123812368 instance=ExtResource("20_64acc")]
+[node name="Tile5" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2123812368 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile6" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1194733076 instance=ExtResource("20_64acc")]
+[node name="Tile6" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1194733076 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile7" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=893445152 instance=ExtResource("20_64acc")]
+[node name="Tile7" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=893445152 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile8" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=437237139 instance=ExtResource("20_64acc")]
+[node name="Tile8" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=437237139 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile9" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1482847350 instance=ExtResource("20_64acc")]
+[node name="Tile9" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1482847350 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile10" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1455093455 instance=ExtResource("20_64acc")]
+[node name="Tile10" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1455093455 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile11" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1285912586 instance=ExtResource("20_64acc")]
+[node name="Tile11" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1285912586 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile12" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=753452829 instance=ExtResource("20_64acc")]
+[node name="Tile12" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=753452829 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile13" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=178434238 instance=ExtResource("20_64acc")]
+[node name="Tile13" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=178434238 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile14" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1225045827 instance=ExtResource("20_64acc")]
+[node name="Tile14" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1225045827 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile15" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=888061142 instance=ExtResource("20_64acc")]
+[node name="Tile15" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=888061142 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile16" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=413422064 instance=ExtResource("20_64acc")]
+[node name="Tile16" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=413422064 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile17" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=906399512 instance=ExtResource("20_64acc")]
+[node name="Tile17" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=906399512 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile18" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=673589112 instance=ExtResource("20_64acc")]
+[node name="Tile18" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=673589112 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile19" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=282961456 instance=ExtResource("20_64acc")]
+[node name="Tile19" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=282961456 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile20" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2108475761 instance=ExtResource("20_64acc")]
+[node name="Tile20" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2108475761 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile21" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1761087001 instance=ExtResource("20_64acc")]
+[node name="Tile21" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1761087001 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile22" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=971932350 instance=ExtResource("20_64acc")]
+[node name="Tile22" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=971932350 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile23" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1467639409 instance=ExtResource("20_64acc")]
+[node name="Tile23" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1467639409 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile24" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=581289634 instance=ExtResource("20_64acc")]
+[node name="Tile24" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=581289634 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile25" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("20_64acc")]
+[node name="Tile25" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1156430888 groups=["layout_size_change"] instance=ExtResource("20_64acc")]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer" unique_id=2108196964]

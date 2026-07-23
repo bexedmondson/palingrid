@@ -7,6 +7,9 @@ signal tile_changed(slot: DropSlot)
 
 @export var tileDock : TileDock
 
+@export var min_size_horizontal_layout : float
+@export var min_size_vertical_layout : float
+
 var slotTile: DropTile
 
 func remove_tile(tile: DropTile) -> void:
@@ -84,3 +87,6 @@ func highlight():
 	if (tween.is_running()):
 		tween.stop()
 	tween.play()
+
+func update_min_size_for_layout(is_vertical_layout : bool) -> void:
+	self.custom_minimum_size = Vector2.ONE * min_size_vertical_layout if is_vertical_layout else Vector2.ONE * min_size_horizontal_layout
