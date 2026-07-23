@@ -15,7 +15,12 @@ var rightSpacerFlagsVertical = (Control.SizeFlags.SIZE_EXPAND & Control.SizeFlag
 var spacerFlagsHorizontal = (Control.SizeFlags.SIZE_EXPAND & Control.SizeFlags.SIZE_SHRINK_CENTER)
 
 func _on_ready():
-	tweak()
+	var screen = get_tree().get_root().size
+	most_recent_check_vertical = screen.x * 1.1 < screen.y
+	
+	debug_label.text = "is vertical? " + str(most_recent_check_vertical) + " " + str(screen)
+	
+	_do_tweak(screen)
 
 func tweak():
 	var screen = get_tree().get_root().size
@@ -25,16 +30,20 @@ func tweak():
 	
 	if most_recent_check_vertical == is_vertical:
 		return
-	
+		
 	most_recent_check_vertical = is_vertical
+	_do_tweak(screen)
 	
-	wordListScroller.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED if is_vertical else ScrollContainer.SCROLL_MODE_RESERVE
+func _do_tweak(screen_size: Vector2i):
 	
-	leftGridSpacer.set_h_size_flags(leftSpacerFlagsVertical if is_vertical else spacerFlagsHorizontal)
-	rightGridSpacer.set_h_size_flags(rightSpacerFlagsVertical if is_vertical else spacerFlagsHorizontal)
+	wordListScroller.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED if most_recent_check_vertical else ScrollContainer.SCROLL_MODE_RESERVE
+	
+	leftGridSpacer.set_h_size_flags(leftSpacerFlagsVertical if most_recent_check_vertical else spacerFlagsHorizontal)
+	rightGridSpacer.set_h_size_flags(rightSpacerFlagsVertical if most_recent_check_vertical else spacerFlagsHorizontal)
 	
 	_toggle_items()
-	_update_tile_grid_sizes(screen)
+	_update_tile_grid_sizes(screen_size)
+	
 
 func _toggle_items():
 	for control in onOnlyWhenHorizontal:
