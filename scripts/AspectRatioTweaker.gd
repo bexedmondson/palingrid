@@ -3,7 +3,9 @@ extends Node
 @export var wordListScroller : ScrollContainer
 @export var leftGridSpacer : Control
 @export var rightGridSpacer : Control
-@export var kofiButton : Button
+@export var kofiButton : TextureButton
+
+@export var debug_label : Label
 
 @export var onOnlyWhenHorizontal : Array[Control]
 
@@ -18,6 +20,8 @@ func _on_ready():
 func tweak():
 	var screen = get_tree().get_root().size
 	var is_vertical = screen.x * 1.1 < screen.y
+	
+	debug_label.text = "is vertical? " + str(is_vertical) + " " + str(screen)
 	
 	if most_recent_check_vertical == is_vertical:
 		return

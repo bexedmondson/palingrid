@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://b3qobrpixwagc" path="res://textures/tutorial_images/score1points.png" id="34_lr6w7"]
 [ext_resource type="Texture2D" uid="uid://drb27t610dr7t" path="res://textures/tutorial_images/score2points.png" id="35_x3wu6"]
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
+[ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01tbl"]
 content_margin_left = 30.0
@@ -96,6 +97,15 @@ shadow_size = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7acvr"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7wdiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x36ys"]
+bg_color = Color(0.6, 0.6, 0.6, 0.54901963)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_quncq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tvpgl"]
+
 [node name="Game" type="Control" unique_id=1518414441]
 layout_mode = 3
 anchors_preset = 15
@@ -108,7 +118,7 @@ size_flags_vertical = 3
 
 [node name="GameCanvasLayer" type="CanvasLayer" parent="." unique_id=1009878321]
 
-[node name="PanelContainer" type="PanelContainer" parent="GameCanvasLayer" unique_id=1632390155 node_paths=PackedStringArray("wordListScroller", "leftGridSpacer", "rightGridSpacer")]
+[node name="PanelContainer" type="PanelContainer" parent="GameCanvasLayer" unique_id=1632390155 node_paths=PackedStringArray("wordListScroller", "leftGridSpacer", "rightGridSpacer", "kofiButton", "debug_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -122,6 +132,8 @@ script = ExtResource("1_7swsl")
 wordListScroller = NodePath("FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/WordListContainer/ScrollContainer")
 leftGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridLeftBalanceContainer")
 rightGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer")
+kofiButton = NodePath("FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton")
+debug_label = NodePath("../DebugButton/Label")
 
 [node name="LoginHandler" type="Node" parent="GameCanvasLayer/PanelContainer" unique_id=961667201]
 script = ExtResource("2_cl3o7")
@@ -882,6 +894,25 @@ theme_override_font_sizes/font_size = 24
 text = "Welcome, !"
 horizontal_alignment = 1
 
+[node name="DebugButton" type="Button" parent="GameCanvasLayer" unique_id=202080634]
+z_index = 5
+offset_right = 141.0
+offset_bottom = 68.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7wdiv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x36ys")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_quncq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvpgl")
+script = ExtResource("44_tvpgl")
+
+[node name="Label" type="Label" parent="GameCanvasLayer/DebugButton" unique_id=547459522]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_right = 403.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "testing 123"
+
 [connection signal="resized" from="GameCanvasLayer/PanelContainer" to="GameCanvasLayer/PanelContainer" method="tweak"]
 [connection signal="toggled" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" method="_on_toggled"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="GameCanvasLayer/PanelContainer/Scoreboard" method="show"]
@@ -889,5 +920,6 @@ horizontal_alignment = 1
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="GameCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/FullScreenHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="GameCanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="GameCanvasLayer/PanelContainer/HowToPlay" method="hide"]
+[connection signal="pressed" from="GameCanvasLayer/DebugButton" to="GameCanvasLayer/DebugButton" method="on_click"]
 
 [editable path="GameCanvasLayer/PanelContainer/Scoreboard"]
