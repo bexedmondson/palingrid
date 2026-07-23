@@ -19,15 +19,18 @@ func _on_ready():
 	var screen_size = get_tree().get_root().size
 	most_recent_check_vertical = screen_size.x * 1.1 < screen_size.y
 	
-	debug_label.text = str(screen_size) + " " + str(Vector2.ONE * (screen_size.x / 7 - 5)) + " " + str(cell.size)
+	debug_label.text = str(screen_size) + " " + str(Vector2.ONE * (screen_size.x / 8 - 5)) + " " + str(cell.size)
+	deferred(screen_size)
 	
+func deferred(screen_size):
+	await get_tree().process_frame
 	_do_tweak(screen_size)
 
 func tweak():
 	var screen_size = get_tree().get_root().size
 	var is_vertical = screen_size.x * 1.1 < screen_size.y
 	
-	debug_label.text = str(screen_size) + " " + str(Vector2.ONE * (screen_size.x / 7 - 5)) + " " + str(cell.size)
+	debug_label.text = str(screen_size) + " " + str(Vector2.ONE * (screen_size.x / 8 - 5)) + " " + str(cell.size)
 	
 	if most_recent_check_vertical == is_vertical:
 		return
