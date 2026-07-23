@@ -4,6 +4,7 @@ extends Node
 @export var leftGridSpacer : Control
 @export var rightGridSpacer : Control
 @export var kofiButton : TextureButton
+@export var cell : DropSlot
 
 @export var debug_label : Label
 
@@ -15,24 +16,24 @@ var rightSpacerFlagsVertical = (Control.SizeFlags.SIZE_EXPAND & Control.SizeFlag
 var spacerFlagsHorizontal = (Control.SizeFlags.SIZE_EXPAND & Control.SizeFlags.SIZE_SHRINK_CENTER)
 
 func _on_ready():
-	var screen = get_tree().get_root().size
-	most_recent_check_vertical = screen.x * 1.1 < screen.y
+	var screen_size = get_tree().get_root().size
+	most_recent_check_vertical = screen_size.x * 1.1 < screen_size.y
 	
-	debug_label.text = "is vertical? " + str(most_recent_check_vertical) + " " + str(screen)
+	debug_label.text = str(screen_size) + " " + str(Vector2.ONE * (screen_size.x / 7 - 5)) + " " + str(cell.size)
 	
-	_do_tweak(screen)
+	_do_tweak(screen_size)
 
 func tweak():
-	var screen = get_tree().get_root().size
-	var is_vertical = screen.x * 1.1 < screen.y
+	var screen_size = get_tree().get_root().size
+	var is_vertical = screen_size.x * 1.1 < screen_size.y
 	
-	debug_label.text = "is vertical? " + str(is_vertical) + " " + str(screen)
+	debug_label.text = str(screen_size) + " " + str(Vector2.ONE * (screen_size.x / 7 - 5)) + " " + str(cell.size)
 	
 	if most_recent_check_vertical == is_vertical:
 		return
 		
 	most_recent_check_vertical = is_vertical
-	_do_tweak(screen)
+	_do_tweak(screen_size)
 	
 func _do_tweak(screen_size: Vector2i):
 	
