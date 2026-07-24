@@ -174,7 +174,7 @@ func _on_nickname_change_success(new_nickname: String):
 	confirm_button.disabled = false
 	back_button.disabled = false
 
-func _on_nickname_changed_error():
+func _on_nickname_changed_error(error):
 	confirm_button.disabled = false
 	back_button.disabled = false
 	
