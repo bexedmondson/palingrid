@@ -80,7 +80,6 @@ func _ready() -> void:
 	_set_loading(false)
 
 func on_visibility_changed():
-	print("[Scoreboard] on_visibility_changed " + str(self.visible))
 	if !self.visible:
 		_clear_load_timeout()
 		return
@@ -128,7 +127,6 @@ func _on_score_submitted(score: int, streak: int):
 # ============================================================
 
 func _load_leaderboard():
-	print("[Scoreboard] start load")
 	if is_loading:
 		print("[Scoreboard] already loading, exiting load request early")
 		return
