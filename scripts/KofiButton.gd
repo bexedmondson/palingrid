@@ -4,7 +4,8 @@ extends TextureButton
 @export var min_size_horizontal_layout : Vector2
 
 func _on_ready():
-	get_tree().root.ready.connect(resize)
+	#get_tree().root.ready.connect(resize)
+	resize()
 
 func resize():
 	var screen_size = get_tree().get_root().size
