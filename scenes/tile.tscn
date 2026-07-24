@@ -13,8 +13,6 @@ mouse_filter = 1
 theme_type_variation = &"PanelTile"
 script = ExtResource("1_n3f48")
 letter_label = NodePath("TileLetterLabel")
-min_size_horizontal_layout = 95.0
-min_size_vertical_layout = 125.0
 
 [node name="Button" type="Button" parent="." unique_id=284698249]
 layout_mode = 0
@@ -36,6 +34,7 @@ offset_right = 20.0
 offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_type_variation = &"LabelTile"
 text = "A"
 horizontal_alignment = 1

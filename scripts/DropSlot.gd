@@ -5,20 +5,10 @@ signal tile_changed(slot: DropSlot)
 @export var circle: Control
 @export var container: Container
 
+@export var resizeReference : Control
 @export var tileDock : TileDock
 
-@export var min_size_horizontal_layout : float
-@export var min_size_vertical_layout : float
-
 var slotTile: DropTile
-
-func _on_ready():
-	get_tree().root.ready.connect(resize)
-
-func resize():
-	var screen_size = get_tree().get_root().size
-	var is_vertical = screen_size.x * 1.1 < screen_size.y
-	update_min_size_for_layout(is_vertical, screen_size)
 
 func remove_tile(tile: DropTile) -> void:
 	#push_warning(self.name + " " + tile.name + " remove, current " + (slotTile.name if slotTile != null else "null"))
@@ -95,6 +85,3 @@ func highlight():
 	if (tween.is_running()):
 		tween.stop()
 	tween.play()
-
-func update_min_size_for_layout(is_vertical_layout : bool, screen_size: Vector2i) -> void:
-	self.custom_minimum_size = Vector2.ONE * (screen_size.x / 8) if is_vertical_layout else Vector2.ONE * min_size_horizontal_layout
