@@ -3,12 +3,11 @@ extends TextureButton
 @export var min_size_vertical_layout : Vector2
 @export var min_size_horizontal_layout : Vector2
 
-func _on_ready():
-	#get_tree().root.ready.connect(resize)
+func _ready():
 	resize()
 
 func resize():
-	var screen_size = get_tree().get_root().size
+	var screen_size = get_viewport().size
 	var is_vertical = screen_size.x * 1.1 < screen_size.y
 	update_min_size_for_layout(is_vertical, screen_size)
 
