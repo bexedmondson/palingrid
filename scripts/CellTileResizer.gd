@@ -32,12 +32,8 @@ func resize():
 	var is_vertical = screen_size.x * 1.1 < screen_size.y
 	
 	var min_newsize = referenceControl.size.x * (vertical_layout_ratio_to_resizeReference_width if is_vertical else min(horizontal_layout_ratio_to_resizeReference_width, tiledock.size. x / 10))
-	print("min_newsize %d, max size %d, reference control %s size %d, is vert %s" % [min_newsize, screen_size.y / 8, referenceControl.name, referenceControl.size.x, str(is_vertical)])
-
-	#var max_newsize = screen_size.x / 8 if is_vertical else screen_size.y / 10
-	#print("max_newsize %d, screen size x %d (scaled %d), is vert %s, screen size y %d (scaled %d)" % [max_newsize, screen_size.x, screen_size.x /7, str(is_vertical), screen_size.y, screen_size.y / 10])
-	var newsize = Vector2.ONE * min(min_newsize, screen_size.y / 8) #min(, max_newsize)
-	#print("screen size %dx%d, max size %d, min size %d, new size %d" % [screen_size.x, screen_size.y, max_newsize, min_newsize, newsize.x])
+	
+	var newsize = Vector2.ONE * min(min_newsize, screen_size.y / 8)
 	
 	for c in cells:
 		c.custom_minimum_size = newsize

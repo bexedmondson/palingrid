@@ -33,3 +33,5 @@ func tweak():
 	
 	for control in onOnlyWhenHorizontal:
 		control.visible = !is_vertical
+	
+	get_tree().call_group("layout_size_change", "update_min_size_for_layout", is_vertical, screen_size)
