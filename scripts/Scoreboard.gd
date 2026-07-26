@@ -67,6 +67,7 @@ var scoreboard_id: String = SCOREBOARD_DAILY ## Current scoreboard ID being view
 var is_loading: bool = false ## Whether we're loading
 var load_timeout_timer: Timer = null ## Load timeout timer
 
+var show_hide_tween : Tween
 
 # ============================================================
 # INITIALIZATION
@@ -80,9 +81,17 @@ func _ready() -> void:
 	_set_loading(false)
 
 func on_visibility_changed():
+	pivot_offset = size * 0.5
 	if !self.visible:
 		_clear_load_timeout()
 		return
+	
+	if show_hide_tween != null and show_hide_tween.is_valid():
+		show_hide_tween.kill()
+	show_hide_tween = create_tween()
+	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	show_hide_tween.tween_property(self, "scale", Vector2(1,1), 0.2).from(Vector2.ZERO)
+	show_hide_tween.play()
 	
 	# Wait for CheddaBoards
 	if not CheddaBoards.is_ready():
@@ -348,8 +357,16 @@ func _on_refresh_pressed():
 	_load_leaderboard()
 
 func _on_back_pressed():
+	if show_hide_tween != null and show_hide_tween.is_valid():
+		show_hide_tween.kill()
+	show_hide_tween = create_tween()
+	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	show_hide_tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
+	show_hide_tween.play()
+	
+	await show_hide_tween.finished
+	
 	self.visible = false;
-	return
 
 
 # ============================================================

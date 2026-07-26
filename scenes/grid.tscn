@@ -948,10 +948,10 @@ text = "testing 123"
 
 [connection signal="toggled" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" to="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" method="_on_toggled"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="CanvasLayer/PanelContainer/Scoreboard" method="show"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="CanvasLayer/PanelContainer/HowToPlay" method="show"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="CanvasLayer/PanelContainer/HowToPlay" method="do_show"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="CanvasLayer/PanelContainer/HowToPlay" method="hide"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="CanvasLayer/PanelContainer/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="CanvasLayer/DebugButton" to="CanvasLayer/DebugButton" method="on_click"]
 
 [editable path="CanvasLayer/PanelContainer/Scoreboard"]

@@ -23,6 +23,7 @@ config/icon="uid://xof0ydmq2c4x"
 CheddaBoards="*res://addons/cheddaboards/CheddaBoards.gd"
 Achievements="*res://autoloads/Achievements.gd"
 MobileUI="*res://autoloads/MobileUI.gd"
+TweenLibrary="*uid://bcaank0w1rbgd"
 
 [display]
 

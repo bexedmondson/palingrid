@@ -22,6 +22,8 @@ const valid_chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o'
 
 var is_rename = false
 
+var show_hide_tween : Tween
+
 func _ready() -> void:
 	self.visible = false
 
@@ -30,6 +32,14 @@ func _ready() -> void:
 # ============================================================
 func _show_name_entry_panel(rename: bool = false):
 	"""Show name entry panel. Mode: 'first_play' = start game after, 'rename' = return to dashboard"""
+	pivot_offset = size * 0.5
+	if show_hide_tween != null and show_hide_tween.is_valid():
+		show_hide_tween.kill()
+	show_hide_tween = create_tween()
+	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	show_hide_tween.tween_property(self, "scale", Vector2(1,1), 0.2).from(Vector2.ZERO)
+	show_hide_tween.play()
+	
 	is_rename = rename
 	
 	if is_rename:
@@ -187,4 +197,13 @@ func _on_nickname_changed_error(error):
 
 func _on_cancel_name_pressed():
 	"""Cancel name entry, go back to previous panel"""
+	
+	if show_hide_tween != null and show_hide_tween.is_valid():
+		show_hide_tween.kill()
+	show_hide_tween = create_tween()
+	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	show_hide_tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
+	show_hide_tween.play()
+	
+	await show_hide_tween.finished
 	self.visible = false
