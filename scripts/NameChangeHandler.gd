@@ -31,7 +31,7 @@ func _ready() -> void:
 # NAME ENTRY PANEL HANDLERS
 # ============================================================
 func _show_name_entry_panel(rename: bool = false):
-	"""Show name entry panel. Mode: 'first_play' = start game after, 'rename' = return to dashboard"""
+	"""Show name entry panel. rename: false = no account found on this device, true = return player"""
 	pivot_offset = size * 0.5
 	if show_hide_tween != null and show_hide_tween.is_valid():
 		show_hide_tween.kill()
@@ -91,14 +91,14 @@ func _on_name_submitted(_name_text: String):
 func _update_confirm_button_state():
 	"""Enable/disable confirm button based on name validity"""
 	var name_text = name_line_edit.text.strip_edges()
-	var is_valid = name_text.length() >= MIN_NAME_LENGTH and name_text.length() <= MAX_NAME_LENGTH
-	if not is_valid:
+	var is_valid_length = name_text.length() >= MIN_NAME_LENGTH and name_text.length() <= MAX_NAME_LENGTH
+	if not is_valid_length:
 		name_status_label.text = "Please enter a username between %d and %d characters long" % [MIN_NAME_LENGTH, MAX_NAME_LENGTH]
 		confirm_button.disabled = true
 		return
+	
 	for c in name_text:
 		if not valid_chars.has(c):
-			is_valid = false
 			name_status_label.text = "Please enter a username containing only letters, numbers, and/or underscores"
 			confirm_button.disabled = true
 			return
@@ -127,7 +127,7 @@ func _on_confirm_name_pressed():
 	
 	CheddaBoards.nickname_changed.connect(_on_nickname_change_success)
 	CheddaBoards.nickname_error.connect(_on_nickname_changed_error)
-		
+	
 	name_status_label.text = "Saving..."
 	name_status_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 	confirm_button.disabled = true
@@ -138,8 +138,7 @@ func _on_confirm_name_pressed():
 	if is_rename:
 		print("[NameChangeHandler] Renaming to: %s" % name_text)
 	else:                                                                  
-		# First play: set up anonymous identity and start the game
-		print("[NameChangeHandler] Starting game as: %s (ID: %s)" % [loginHandler.nickname, CheddaBoards.get_player_id()])
+		print("[NameChangeHandler] Entering leaderboard as: %s (ID: %s)" % [loginHandler.nickname, CheddaBoards.get_player_id()])
 
 
 func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
@@ -158,7 +157,6 @@ func _on_nickname_change_success(new_nickname: String):
 	
 	if is_rename:
 		print("[NameChangeHandler] Renamed successfully to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
-		#TODO close
 		on_closed.emit()
 		self.visible = false
 	else:

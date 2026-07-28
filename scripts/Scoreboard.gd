@@ -123,7 +123,6 @@ func on_visibility_changed():
 	
 	_load_leaderboard()
 	
-	print("[Scoreboard] v2.0.0 initialized (Mobile: %s, Scale: %.2f)" % [MobileUI.is_mobile, MobileUI.ui_scale])
 	setup = true
 
 
@@ -140,7 +139,6 @@ func _load_leaderboard():
 		print("[Scoreboard] already loading, exiting load request early")
 		return
 	
-	refresh_button.disabled = true
 	_clear_leaderboard()
 	status_label.text = "Loading..."
 	status_label.add_theme_color_override("font_color", COLOR_TEXT)
@@ -211,8 +209,6 @@ func _on_prompt_shown():
 	has_shown_set_name_prompt = true
 	_load_leaderboard()
 
-func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
-	_load_leaderboard()
 # ============================================================
 # SIGNAL HANDLERS — SCOREBOARDS
 # ============================================================

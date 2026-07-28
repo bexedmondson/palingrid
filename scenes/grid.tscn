@@ -9,7 +9,7 @@
 [ext_resource type="JSON" path="res://stats.json" id="4_docto"]
 [ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://scripts/DisableScrollOnDrag.gd" id="5_wnhym"]
 [ext_resource type="Script" uid="uid://fusem4g6wje" path="res://scripts/BestScoreIndicator.gd" id="6_2bxyt"]
-[ext_resource type="Script" uid="uid://cro6oq27eeo4" path="res://DebugLetterSetGenerator.gd" id="7_01tbl"]
+[ext_resource type="Script" uid="uid://cro6oq27eeo4" path="res://scripts/DebugLetterSetGenerator.gd" id="7_01tbl"]
 [ext_resource type="Texture2D" uid="uid://dsialahwm1iv2" path="res://textures/toggle-light-on.svg" id="8_f2tft"]
 [ext_resource type="Texture2D" uid="uid://b8hl8ae172l0h" path="res://textures/toggle-light-off.svg" id="8_idg7c"]
 [ext_resource type="Script" uid="uid://k5jcxqfps3fk" path="res://scripts/LightDarkMode.gd" id="9_0enuu"]
@@ -151,7 +151,9 @@ statsFile = ExtResource("4_docto")
 [node name="DebugLetterSetGenerator" type="Node" parent="CanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
 script = ExtResource("7_01tbl")
 generator = NodePath("..")
-start_day = 24
+start_day = 23
+is_range = true
+end_day = 31
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
