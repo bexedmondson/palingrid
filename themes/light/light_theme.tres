@@ -30,6 +30,7 @@
 [ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://themes/leaderboard_entry_rankeven.tres" id="14_tlbd4"]
 [ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/leaderboard_entry_rankodd.tres" id="15_k4jnt"]
 [ext_resource type="StyleBox" uid="uid://c48db3gig8bw8" path="res://themes/light/panel_floating_toast_light.tres" id="25_krt1t"]
+[ext_resource type="StyleBox" uid="uid://c8x3wnv7tajmb" path="res://themes/light/panel_container_expand_margins_light.tres" id="26_tq8i7"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
 
 [resource]
@@ -127,6 +128,8 @@ PanelCell/styles/panel = ExtResource("4_cpslb")
 PanelCellHighlight/base_type = &"Panel"
 PanelCellHighlight/styles/panel = ExtResource("5_u0swb")
 PanelContainer/styles/panel = ExtResource("4_wtvwc")
+PanelContainerExpandMargins/base_type = &"PanelContainer"
+PanelContainerExpandMargins/styles/panel = ExtResource("26_tq8i7")
 PanelContainerGameBG/base_type = &"PanelContainer"
 PanelContainerGameBG/styles/panel = ExtResource("3_tvg4m")
 PanelContainerInset/base_type = &"PanelContainer"
