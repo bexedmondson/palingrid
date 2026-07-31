@@ -145,7 +145,9 @@ func _on_profile_loaded(nickname: String, score: int, streak: int, achievements:
 	if nickname != name_line_edit.text.strip_edges():
 		_on_confirm_name_pressed()
 
+var new_set_nickname
 func _on_nickname_change_success(new_nickname: String):
+	new_set_nickname = new_nickname
 	print("[NameChangeHandler] name changed to " + new_nickname)
 	if CheddaBoards.nickname_changed.is_connected(_on_nickname_change_success):
 		CheddaBoards.nickname_changed.disconnect(_on_nickname_change_success)
@@ -161,26 +163,39 @@ func _on_nickname_change_success(new_nickname: String):
 		self.visible = false
 	else:
 		print("[NameChangeHandler] Starting game successfully as: %s (loginHandler nickname: %s) (cheddaboards nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards._nickname, CheddaBoards.get_player_id()])
-		
-		CheddaBoards.submit_score(best_score_indicator.best)
-		await CheddaBoards.score_submitted
-		
-		name_status_label.text = "Setting up profile..."
-		
-		CheddaBoards.refresh_profile()
-		await CheddaBoards.profile_loaded
-		
-		name_status_label.text = "Finalising..."
-		
-		CheddaBoards.change_nickname(new_nickname)
-		await CheddaBoards.nickname_changed
-		
-		#TODO close
-		on_closed.emit()
-		self.visible = false
+		do_first_score_submit()
 	
 	confirm_button.disabled = false
 	back_button.disabled = false
+
+func do_first_score_submit():
+	if !CheddaBoards.score_submitted.is_connected(_on_first_score_submitted):
+		CheddaBoards.score_submitted.connect(_on_first_score_submitted)
+	if !CheddaBoards.score_error.is_connected(_on_first_score_submitted):
+		CheddaBoards.score_error.connect(_on_first_score_submitted)
+		
+	ScoreSubmitter.submit_score(best_score_indicator.best)
+
+func _on_first_score_submitted():
+	if CheddaBoards.score_submitted.is_connected(_on_first_score_submitted):
+		CheddaBoards.score_submitted.disconnect(_on_first_score_submitted)
+	if CheddaBoards.score_error.is_connected(_on_first_score_submitted):
+		CheddaBoards.score_error.disconnect(_on_first_score_submitted)
+
+	name_status_label.text = "Setting up profile..."
+
+	CheddaBoards.refresh_profile()
+	await CheddaBoards.profile_loaded
+
+	name_status_label.text = "Finalising..."
+
+	CheddaBoards.change_nickname(new_set_nickname)
+	await CheddaBoards.nickname_changed
+
+	#TODO close
+	on_closed.emit()
+	self.visible = false
+
 
 func _on_nickname_changed_error(error):
 	confirm_button.disabled = false

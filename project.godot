@@ -24,6 +24,7 @@ CheddaBoards="*res://addons/cheddaboards/CheddaBoards.gd"
 Achievements="*res://autoloads/Achievements.gd"
 MobileUI="*res://autoloads/MobileUI.gd"
 TweenLibrary="*uid://bcaank0w1rbgd"
+ScoreSubmitter="*uid://cknb6hmvsqb8h"
 
 [display]
 

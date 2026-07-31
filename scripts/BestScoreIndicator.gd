@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 func _on_score_submitted(score: int, streak: int):
 	if score < best:
-		CheddaBoards.submit_score(best)
+		ScoreSubmitter.submit_score(best)
 
 func update(current: int) -> void:
 	if best > current:
@@ -81,7 +81,7 @@ func show_scoreboard(score: int):
 		CheddaBoards.leaderboard_loaded.connect(submit)
 	else:	
 		print("[BestScoreIndicator] submitting score as already authenticated")
-		CheddaBoards.submit_score(score)
+		ScoreSubmitter.submit_score(score)
 	
 	scoreboard.show()
 
@@ -90,11 +90,11 @@ func submit(_entries):
 		CheddaBoards.leaderboard_loaded.disconnect(submit)
 	
 	print("[BestScoreIndicator] Submitting score after leaderboard load: " + str(best))
-	CheddaBoards.submit_score(best)
+	ScoreSubmitter.submit_score(best)
 
 func save(score : int):
 	print("[BestScoreIndicator] Submitting score: " + str(score))
-	CheddaBoards.submit_score(score)
+	ScoreSubmitter.submit_score(score)
 	
 	allScores[dailyGenerator.daySeed] = score
 	
