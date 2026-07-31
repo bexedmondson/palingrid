@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://cu1ciow3fnymq"]
 
+[ext_resource type="Theme" uid="uid://dsjemrfw3gdrr" path="res://themes/dark/dark_theme.tres" id="1_7acvr"]
 [ext_resource type="Script" uid="uid://t7r2kmqw2xdk" path="res://scripts/Scoreboard.gd" id="1_mmelj"]
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="2_fpta5"]
 [ext_resource type="Texture2D" uid="uid://66nf847ass0e" path="res://textures/tool-pencil.svg" id="3_fpta5"]
 [ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="4_fpta5"]
 [ext_resource type="Texture2D" uid="uid://ctufowlq4oai2" path="res://textures/timer_0.svg" id="5_7acvr"]
+[ext_resource type="Script" uid="uid://ce2oky6y0w4rh" path="res://scripts/ShareButton.gd" id="6_a2dux"]
 [ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="11_n3wga"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
@@ -18,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7acvr")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
 script = ExtResource("1_mmelj")
 name_change_handler = NodePath("NameEntryPanel")
@@ -38,10 +41,10 @@ back_button = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabe
 custom_minimum_size = Vector2(3000, 3000)
 propagate_maximum_size = true
 layout_mode = 0
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 1500.0
-offset_bottom = 1500.0
+offset_left = -456.0
+offset_top = -493.0
+offset_right = 2544.0
+offset_bottom = 2507.0
 color = Color(0, 0, 0, 0.21960784)
 
 [node name="Panel" type="Panel" parent="." unique_id=1147680429]
@@ -168,6 +171,15 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
+[node name="ShareButton" type="Button" parent="Panel/LeaderboardMarginContainer/VBoxContainer" unique_id=805629620]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SHARE PALINGRID
+WITH YOUR FRIENDS"
+icon = ExtResource("4_fpta5")
+icon_alignment = 2
+script = ExtResource("6_a2dux")
+
 [node name="LoadingSpinner" type="Label" parent="Panel/LeaderboardMarginContainer" unique_id=1895150791]
 visible = false
 layout_mode = 2
@@ -232,3 +244,4 @@ anchor_bottom = 0.9
 
 [connection signal="visibility_changed" from="." to="." method="on_visibility_changed"]
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton" to="." method="on_rename_pressed"]
+[connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" to="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" method="on_pressed"]
