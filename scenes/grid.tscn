@@ -117,10 +117,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_f2tft")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1550155891]
+[node name="MainCanvasLayer" type="CanvasLayer" parent="." unique_id=1550155891]
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1632390155 node_paths=PackedStringArray("wordListScroller", "leftGridSpacer", "rightGridSpacer", "kofiButton", "cell", "debug_label")]
+[node name="PanelContainer" type="PanelContainer" parent="MainCanvasLayer" unique_id=1632390155 node_paths=PackedStringArray("wordListScroller", "leftGridSpacer", "rightGridSpacer", "kofiButton", "cell", "debug_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -136,26 +137,26 @@ leftGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlow
 rightGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer")
 kofiButton = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton")
 cell = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell1")
-debug_label = NodePath("../DebugButton/Label")
+debug_label = NodePath("../../DebugCanvasLayer/DebugButton/Label")
 
-[node name="LoginHandler" type="Node" parent="CanvasLayer/PanelContainer" unique_id=961667201]
+[node name="LoginHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=961667201]
 script = ExtResource("2_cl3o7")
 
-[node name="SaveFileHandler" type="Node" parent="CanvasLayer/PanelContainer" unique_id=1868105605]
+[node name="SaveFileHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=1868105605]
 script = ExtResource("4_aktff")
 
-[node name="LetterSetGenerator" type="Node" parent="CanvasLayer/PanelContainer" unique_id=1348343417]
+[node name="LetterSetGenerator" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=1348343417]
 script = ExtResource("3_18g0k")
 statsFile = ExtResource("4_docto")
 
-[node name="DebugLetterSetGenerator" type="Node" parent="CanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
+[node name="DebugLetterSetGenerator" type="Node" parent="MainCanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
 script = ExtResource("7_01tbl")
 generator = NodePath("..")
 start_day = 23
 is_range = true
 end_day = 31
 
-[node name="FullScreenScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer" unique_id=384962350]
+[node name="FullScreenScrollContainer" type="ScrollContainer" parent="MainCanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
 layout_mode = 2
 horizontal_scroll_mode = 0
@@ -163,15 +164,15 @@ vertical_scroll_mode = 3
 scroll_deadzone = 10
 script = ExtResource("5_wnhym")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer" unique_id=418581970]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer" unique_id=418581970]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HeaderMarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer" unique_id=1132622539]
+[node name="HeaderMarginContainer" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer" unique_id=1132622539]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LightDarkModeButton" type="TextureButton" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1281457744 node_paths=PackedStringArray("rootNode", "saveFileHandler")]
+[node name="LightDarkModeButton" type="TextureButton" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1281457744 node_paths=PackedStringArray("nodesToToggleTheme", "saveFileHandler")]
 custom_maximum_size = Vector2(217.834, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -182,10 +183,10 @@ texture_pressed = ExtResource("8_f2tft")
 script = ExtResource("9_0enuu")
 light = ExtResource("1_wqld8")
 dark = ExtResource("1_f2tft")
-rootNode = NodePath("../../../..")
+nodesToToggleTheme = [NodePath("../../../.."), NodePath("../../../../../../PopupCanvasLayer/PopupThemeController")]
 saveFileHandler = NodePath("../../../../SaveFileHandler")
 
-[node name="ScoreVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
+[node name="ScoreHeaderVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -193,22 +194,22 @@ size_flags_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TotalLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=1348282677]
+[node name="TotalLabel" type="Label" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreHeaderVBoxContainer" unique_id=1348282677]
 layout_mode = 2
 theme_type_variation = &"LabelHeading"
 text = "SCORE: 0"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=1565934058]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreHeaderVBoxContainer" unique_id=1565934058]
 layout_mode = 2
 alignment = 1
 
-[node name="BestSoFarLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=457676338]
+[node name="BestSoFarLabel" type="Label" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreHeaderVBoxContainer/HBoxContainer" unique_id=457676338]
 layout_mode = 2
 theme_type_variation = &"LabelSubheading"
 text = "TODAY'S BEST:"
 
-[node name="BestScoreLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
+[node name="BestScoreLabel" type="Label" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreHeaderVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 theme_type_variation = &"LabelSubheading"
@@ -220,15 +221,15 @@ dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
 bestLabel = NodePath("../BestSoFarLabel")
 bestContainer = NodePath("..")
 grid = NodePath("../../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-scoreboard = NodePath("../../../../../../Scoreboard")
+scoreboard = NodePath("../../../../../../../../PopupCanvasLayer/PopupThemeController/Scoreboard")
 saveFileHandler = NodePath("../../../../../../SaveFileHandler")
 lightDarkMode = NodePath("../../../LightDarkModeButton")
 
-[node name="ButtonHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
+[node name="ButtonHBoxContainer" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="LeaderboardButton" type="Button" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer" unique_id=676292021]
+[node name="LeaderboardButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer" unique_id=676292021]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -237,7 +238,7 @@ icon = ExtResource("13_ne81u")
 icon_alignment = 1
 expand_icon = true
 
-[node name="HowToPlayButton" type="Button" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer" unique_id=2028854943]
+[node name="HowToPlayButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer" unique_id=2028854943]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -246,22 +247,22 @@ icon = ExtResource("14_gsnlb")
 icon_alignment = 1
 expand_icon = true
 
-[node name="MainBodyHFlowContainer" type="HFlowContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer" unique_id=1724119542]
+[node name="MainBodyHFlowContainer" type="HFlowContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer" unique_id=1724119542]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 50
 
-[node name="GameVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer" unique_id=420867560]
+[node name="GameVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer" unique_id=420867560]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="GridHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer" unique_id=902300252]
+[node name="GridHBoxContainer" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer" unique_id=902300252]
 layout_mode = 2
 alignment = 1
 
-[node name="GridLeftBalanceContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer" unique_id=1229187910]
+[node name="GridLeftBalanceContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer" unique_id=1229187910]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -269,18 +270,18 @@ size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_01tbl")
 
-[node name="SpacerControl" type="Control" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridLeftBalanceContainer" unique_id=1487371906]
+[node name="SpacerControl" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridLeftBalanceContainer" unique_id=1487371906]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="GridAspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer" unique_id=330357175]
+[node name="GridAspectRatioContainer" type="AspectRatioContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer" unique_id=330357175]
 custom_minimum_size = Vector2(540, 540)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Grid" type="MarginContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
+[node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 script = ExtResource("12_eudc0")
@@ -289,16 +290,16 @@ tileHolder = NodePath("../../../TileDockPanel/Tiles")
 slots = [NodePath("VBoxContainer/Row/Cell1"), NodePath("VBoxContainer/Row/Cell2"), NodePath("VBoxContainer/Row/Cell3"), NodePath("VBoxContainer/Row/Cell4"), NodePath("VBoxContainer/Row/Cell5"), NodePath("VBoxContainer/Row2/Cell6"), NodePath("VBoxContainer/Row2/Cell7"), NodePath("VBoxContainer/Row2/Cell8"), NodePath("VBoxContainer/Row2/Cell9"), NodePath("VBoxContainer/Row2/Cell10"), NodePath("VBoxContainer/Row3/Cell11"), NodePath("VBoxContainer/Row3/Cell12"), NodePath("VBoxContainer/Row3/Cell13"), NodePath("VBoxContainer/Row3/Cell14"), NodePath("VBoxContainer/Row3/Cell15"), NodePath("VBoxContainer/Row4/Cell16"), NodePath("VBoxContainer/Row4/Cell17"), NodePath("VBoxContainer/Row4/Cell18"), NodePath("VBoxContainer/Row4/Cell19"), NodePath("VBoxContainer/Row4/Cell20"), NodePath("VBoxContainer/Row5/Cell21"), NodePath("VBoxContainer/Row5/Cell22"), NodePath("VBoxContainer/Row5/Cell23"), NodePath("VBoxContainer/Row5/Cell24"), NodePath("VBoxContainer/Row5/Cell25")]
 tiles = [NodePath("../../../TileDockPanel/Tiles/Tile"), NodePath("../../../TileDockPanel/Tiles/Tile2"), NodePath("../../../TileDockPanel/Tiles/Tile3"), NodePath("../../../TileDockPanel/Tiles/Tile4"), NodePath("../../../TileDockPanel/Tiles/Tile5"), NodePath("../../../TileDockPanel/Tiles/Tile6"), NodePath("../../../TileDockPanel/Tiles/Tile7"), NodePath("../../../TileDockPanel/Tiles/Tile8"), NodePath("../../../TileDockPanel/Tiles/Tile9"), NodePath("../../../TileDockPanel/Tiles/Tile10"), NodePath("../../../TileDockPanel/Tiles/Tile11"), NodePath("../../../TileDockPanel/Tiles/Tile12"), NodePath("../../../TileDockPanel/Tiles/Tile13"), NodePath("../../../TileDockPanel/Tiles/Tile14"), NodePath("../../../TileDockPanel/Tiles/Tile15"), NodePath("../../../TileDockPanel/Tiles/Tile16"), NodePath("../../../TileDockPanel/Tiles/Tile17"), NodePath("../../../TileDockPanel/Tiles/Tile18"), NodePath("../../../TileDockPanel/Tiles/Tile19"), NodePath("../../../TileDockPanel/Tiles/Tile20"), NodePath("../../../TileDockPanel/Tiles/Tile21"), NodePath("../../../TileDockPanel/Tiles/Tile22"), NodePath("../../../TileDockPanel/Tiles/Tile23"), NodePath("../../../TileDockPanel/Tiles/Tile24"), NodePath("../../../TileDockPanel/Tiles/Tile25")]
 wordScene = NodePath("../../../../WordListContainer/ScrollContainer/VBoxContainer/WordPanel")
-score = NodePath("../../../../../HeaderMarginContainer/ScoreVBoxContainer/TotalLabel")
-bestScore = NodePath("../../../../../HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
+score = NodePath("../../../../../HeaderMarginContainer/ScoreHeaderVBoxContainer/TotalLabel")
+bestScore = NodePath("../../../../../HeaderMarginContainer/ScoreHeaderVBoxContainer/HBoxContainer/BestScoreLabel")
 
-[node name="Control" type="Control" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=1443428867]
+[node name="Control" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=1443428867]
 show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/Control" unique_id=424529749]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/Control" unique_id=424529749]
 emitting = false
 amount = 75
 texture = SubResource("GradientTexture2D_hsp7l")
@@ -323,165 +324,165 @@ angle_max = 180.0
 color_ramp = SubResource("Gradient_5xkti")
 color_initial_ramp = SubResource("Gradient_7jn42")
 
-[node name="GridBGPanel" type="Panel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=1960453266]
+[node name="GridBGPanel" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=1960453266]
 material = ExtResource("13_xfqe3")
 layout_mode = 2
 theme_type_variation = &"PanelGrid"
 
-[node name="GridBGPanelGlow" type="Panel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=88182222]
+[node name="GridBGPanelGlow" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=88182222]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hsp7l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=34194217]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=34194217]
 layout_mode = 2
 
-[node name="Row" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=598198550]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Cell1" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell2" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell3" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell4" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell5" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Row2" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=11786437]
+[node name="Row" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=598198550]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell6" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell1" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell7" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell2" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell8" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell3" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell9" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell4" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell10" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell5" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Row3" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=277426052]
+[node name="Row2" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=11786437]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell11" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell6" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell12" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell7" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell13" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell8" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell14" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell9" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell15" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell10" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Row4" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1018981240]
+[node name="Row3" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=277426052]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell16" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell11" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell17" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell12" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell18" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell13" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell19" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell14" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell20" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell15" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Row5" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1458008159]
+[node name="Row4" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1018981240]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Cell21" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell16" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell22" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell17" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell23" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell18" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell24" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell19" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="Cell25" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell20" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../../..")
 tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
 
-[node name="GridRippleAnimator" type="Control" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=881408362 node_paths=PackedStringArray("grid", "grid_bg", "grid_glow", "confetti")]
+[node name="Row5" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1458008159]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Cell21" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+layout_mode = 2
+resizeReference = NodePath("../../../../..")
+tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+
+[node name="Cell22" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+layout_mode = 2
+resizeReference = NodePath("../../../../..")
+tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+
+[node name="Cell23" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+layout_mode = 2
+resizeReference = NodePath("../../../../..")
+tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+
+[node name="Cell24" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+layout_mode = 2
+resizeReference = NodePath("../../../../..")
+tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+
+[node name="Cell25" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+layout_mode = 2
+resizeReference = NodePath("../../../../..")
+tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+
+[node name="GridRippleAnimator" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=881408362 node_paths=PackedStringArray("grid", "grid_bg", "grid_glow", "confetti")]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("16_tvpgl")
@@ -490,17 +491,17 @@ grid_bg = NodePath("../Grid/GridBGPanel")
 grid_glow = NodePath("../Grid/GridBGPanelGlow")
 confetti = NodePath("../Grid/Control/CPUParticles2D")
 
-[node name="GridButtonContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer" unique_id=796959299]
+[node name="GridButtonContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer" unique_id=796959299]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
 mouse_filter = 1
 
-[node name="GridButtonVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer" unique_id=947021112]
+[node name="GridButtonVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer" unique_id=947021112]
 layout_mode = 2
 
-[node name="ResetTilesButton" type="Button" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=1148351401]
+[node name="ResetTilesButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=1148351401]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -509,7 +510,7 @@ icon = ExtResource("19_eudc0")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TileDockPanel" type="PanelContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer" unique_id=939378106 node_paths=PackedStringArray("tiles", "cells", "referenceControl", "tiledock")]
+[node name="TileDockPanel" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer" unique_id=939378106 node_paths=PackedStringArray("tiles", "cells", "referenceControl", "tiledock")]
 custom_minimum_size = Vector2(620, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -520,92 +521,92 @@ cells = [NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContai
 referenceControl = NodePath("../../../../../../..")
 tiledock = NodePath("Tiles")
 
-[node name="Tiles" type="HFlowContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel" unique_id=1101630964]
+[node name="Tiles" type="HFlowContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel" unique_id=1101630964]
 custom_minimum_size = Vector2(560, 0)
 propagate_maximum_size = false
 layout_mode = 2
 alignment = 1
 script = ExtResource("19_x36ys")
 
-[node name="Tile" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=723670457 instance=ExtResource("20_64acc")]
+[node name="Tile" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=723670457 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile2" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1463121450 instance=ExtResource("20_64acc")]
+[node name="Tile2" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1463121450 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile3" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=947134029 instance=ExtResource("20_64acc")]
+[node name="Tile3" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=947134029 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile4" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1953381486 instance=ExtResource("20_64acc")]
+[node name="Tile4" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1953381486 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile5" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2123812368 instance=ExtResource("20_64acc")]
+[node name="Tile5" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2123812368 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile6" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1194733076 instance=ExtResource("20_64acc")]
+[node name="Tile6" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1194733076 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile7" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=893445152 instance=ExtResource("20_64acc")]
+[node name="Tile7" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=893445152 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile8" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=437237139 instance=ExtResource("20_64acc")]
+[node name="Tile8" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=437237139 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile9" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1482847350 instance=ExtResource("20_64acc")]
+[node name="Tile9" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1482847350 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile10" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1455093455 instance=ExtResource("20_64acc")]
+[node name="Tile10" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1455093455 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile11" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1285912586 instance=ExtResource("20_64acc")]
+[node name="Tile11" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1285912586 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile12" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=753452829 instance=ExtResource("20_64acc")]
+[node name="Tile12" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=753452829 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile13" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=178434238 instance=ExtResource("20_64acc")]
+[node name="Tile13" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=178434238 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile14" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1225045827 instance=ExtResource("20_64acc")]
+[node name="Tile14" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1225045827 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile15" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=888061142 instance=ExtResource("20_64acc")]
+[node name="Tile15" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=888061142 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile16" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=413422064 instance=ExtResource("20_64acc")]
+[node name="Tile16" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=413422064 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile17" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=906399512 instance=ExtResource("20_64acc")]
+[node name="Tile17" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=906399512 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile18" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=673589112 instance=ExtResource("20_64acc")]
+[node name="Tile18" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=673589112 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile19" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=282961456 instance=ExtResource("20_64acc")]
+[node name="Tile19" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=282961456 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile20" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2108475761 instance=ExtResource("20_64acc")]
+[node name="Tile20" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=2108475761 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile21" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1761087001 instance=ExtResource("20_64acc")]
+[node name="Tile21" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1761087001 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile22" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=971932350 instance=ExtResource("20_64acc")]
+[node name="Tile22" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=971932350 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile23" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1467639409 instance=ExtResource("20_64acc")]
+[node name="Tile23" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1467639409 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile24" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=581289634 instance=ExtResource("20_64acc")]
+[node name="Tile24" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=581289634 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="Tile25" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("20_64acc")]
+[node name="Tile25" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" unique_id=1156430888 instance=ExtResource("20_64acc")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer" unique_id=2108196964]
+[node name="MarginContainer" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer" unique_id=2108196964]
 layout_mode = 2
 
-[node name="KofiButton" type="TextureButton" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer" unique_id=1668340809 groups=["layout_size_change"]]
+[node name="KofiButton" type="TextureButton" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer" unique_id=1668340809 groups=["layout_size_change"]]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -620,18 +621,18 @@ script = ExtResource("24_02pyl")
 min_size_vertical_layout = Vector2(400, 80)
 min_size_horizontal_layout = Vector2(250, 50)
 
-[node name="WordListContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer" unique_id=683834855]
+[node name="WordListContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer" unique_id=683834855]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 theme_type_variation = &"PanelContainerThinMargins"
 
-[node name="Panel" type="Panel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1892135352]
+[node name="Panel" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1892135352]
 visible = false
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1601090332]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1601090332]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -640,7 +641,7 @@ vertical_scroll_mode = 0
 scroll_deadzone = 10
 scroll_hint_mode = 1
 
-[node name="VBoxContainer" type="HFlowContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer" unique_id=815669151]
+[node name="VBoxContainer" type="HFlowContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer" unique_id=815669151]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -648,29 +649,53 @@ size_flags_vertical = 3
 alignment = 1
 last_wrap_alignment = 2
 
-[node name="WordPanel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer/VBoxContainer" unique_id=1288653546 instance_placeholder="res://scenes/word.tscn"]
+[node name="WordPanel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer/VBoxContainer" unique_id=1288653546 instance_placeholder="res://scenes/word.tscn"]
 layout_mode = 2
 
-[node name="Scoreboard" parent="CanvasLayer/PanelContainer" unique_id=531030568 node_paths=PackedStringArray("login_handler") instance=ExtResource("21_aktff")]
+[node name="PopupCanvasLayer" type="CanvasLayer" parent="." unique_id=1883848822]
+layer = 2
+
+[node name="PopupThemeController" type="Control" parent="PopupCanvasLayer" unique_id=891734546]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_f2tft")
+
+[node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=531030568 node_paths=PackedStringArray("login_handler") instance=ExtResource("21_aktff")]
 visible = false
-layout_mode = 2
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 1050.0
+offset_bottom = 1050.0
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
-login_handler = NodePath("../LoginHandler")
+login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 
-[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer/Scoreboard" index="2" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator")]
-loginHandler = NodePath("../../LoginHandler")
-best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
+[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController/Scoreboard" index="2" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator")]
+loginHandler = NodePath("../../../../MainCanvasLayer/PanelContainer/LoginHandler")
+best_score_indicator = NodePath("../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreHeaderVBoxContainer/HBoxContainer/BestScoreLabel")
 
-[node name="HowToPlay" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
+[node name="HowToPlay" type="Panel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false
 z_index = 2
-layout_mode = 2
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 1050.0
+offset_bottom = 1050.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
 script = ExtResource("23_1s87h")
-saveFileHandler = NodePath("../SaveFileHandler")
+saveFileHandler = NodePath("../../../MainCanvasLayer/PanelContainer/SaveFileHandler")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PanelContainer/HowToPlay" unique_id=877933288]
+[node name="ColorRect" type="ColorRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay" unique_id=877933288]
 custom_minimum_size = Vector2(3000, 3000)
 propagate_maximum_size = true
 layout_mode = 0
@@ -680,7 +705,7 @@ offset_right = 1500.0
 offset_bottom = 1500.0
 color = Color(0, 0, 0, 0.21960784)
 
-[node name="Panel" type="Panel" parent="CanvasLayer/PanelContainer/HowToPlay" unique_id=1147680429]
+[node name="Panel" type="Panel" parent="PopupCanvasLayer/PopupThemeController/HowToPlay" unique_id=1147680429]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -691,7 +716,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"PanelFloating"
 
-[node name="HowToPlayMarginContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel" unique_id=1091344264]
+[node name="HowToPlayMarginContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel" unique_id=1091344264]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -700,24 +725,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7acvr")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer" unique_id=1425158048]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer" unique_id=1425158048]
 layout_mode = 2
 horizontal_scroll_mode = 0
 scroll_deadzone = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer" unique_id=510556136]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer" unique_id=510556136]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=289646525]
+[node name="TitleLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=289646525]
 layout_mode = 2
 size_flags_vertical = 1
 theme_type_variation = &"LabelHeading"
 text = "HOW TO PLAY"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=1512587471]
+[node name="BackButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=1512587471]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 offset_right = 70.0
@@ -729,7 +754,7 @@ icon = ExtResource("24_1s87h")
 icon_alignment = 1
 expand_icon = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1783326784]
+[node name="RichTextLabel" type="RichTextLabel" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1783326784]
 layout_mode = 2
 bbcode_enabled = true
 text = "
@@ -741,20 +766,20 @@ Words can be formed in any direction: up, down, left, right, and all diagonal di
 [p]"
 fit_content = true
 
-[node name="FoldableContainer" type="FoldableContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=2146879476]
+[node name="FoldableContainer" type="FoldableContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=2146879476]
 layout_mode = 2
 mouse_filter = 1
 title = "VALID WORD PLACEMENT EXAMPLES"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer" unique_id=722899795]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer" unique_id=722899795]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=571911132]
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=571911132]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=271065969]
+[node name="TextureRect" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=271065969]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -762,7 +787,7 @@ texture = ExtResource("25_o46hl")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=1451649117]
+[node name="TextureRect2" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=1451649117]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -770,7 +795,7 @@ texture = ExtResource("26_jh3ig")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=1013504745]
+[node name="TextureRect3" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=1013504745]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -778,11 +803,11 @@ texture = ExtResource("27_7swsl")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=850187490]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=850187490]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=539143398]
+[node name="TextureRect4" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=539143398]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -790,7 +815,7 @@ texture = ExtResource("28_cl3o7")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=1433813066]
+[node name="TextureRect5" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=1433813066]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -798,7 +823,7 @@ texture = ExtResource("29_18g0k")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=1210207920]
+[node name="TextureRect6" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer2" unique_id=1210207920]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -806,7 +831,7 @@ texture = ExtResource("30_docto")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=783289156]
+[node name="RichTextLabel2" type="RichTextLabel" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=783289156]
 layout_mode = 2
 bbcode_enabled = true
 text = "
@@ -818,19 +843,19 @@ text = "
 [p]"
 fit_content = true
 
-[node name="FoldableContainer2" type="FoldableContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=349251191]
+[node name="FoldableContainer2" type="FoldableContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=349251191]
 layout_mode = 2
 title = "SCORE EXAMPLES"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2" unique_id=149703048]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2" unique_id=149703048]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer" unique_id=1683472249]
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer" unique_id=1683472249]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1619675538]
+[node name="TextureRect" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1619675538]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -838,7 +863,7 @@ texture = ExtResource("31_wnhym")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1702743674]
+[node name="TextureRect2" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1702743674]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -846,7 +871,7 @@ texture = ExtResource("32_2bxyt")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1978195714]
+[node name="TextureRect3" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer" unique_id=1978195714]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -854,11 +879,11 @@ texture = ExtResource("33_rccgx")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer" unique_id=1471533209]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer" unique_id=1471533209]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=813106511]
+[node name="TextureRect6" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=813106511]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -866,7 +891,7 @@ texture = ExtResource("34_jffns")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=1033160865]
+[node name="TextureRect5" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=1033160865]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -874,7 +899,7 @@ texture = ExtResource("35_x3wu6")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=871608519]
+[node name="TextureRect4" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/FoldableContainer2/VBoxContainer/HBoxContainer2" unique_id=871608519]
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -882,7 +907,7 @@ texture = ExtResource("34_lr6w7")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1426832181]
+[node name="RichTextLabel3" type="RichTextLabel" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1426832181]
 layout_mode = 2
 bbcode_enabled = true
 text = "
@@ -890,25 +915,24 @@ text = "
 Note: duplicate words will only be scored once per grid!"
 fit_content = true
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1307572703]
+[node name="TextureRect" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer" unique_id=1307572703]
 custom_maximum_size = Vector2(-1, 350)
 layout_mode = 2
 texture = ExtResource("37_ne81u")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="DebugUtils" type="Node" parent="CanvasLayer/PanelContainer" unique_id=924695395 node_paths=PackedStringArray("grid", "dock")]
-script = ExtResource("28_5816i")
-grid = NodePath("../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-dock = NodePath("../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles")
-
-[node name="ToastControl" type="Control" parent="CanvasLayer/PanelContainer" unique_id=1937231949]
+[node name="ToastControl" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1937231949]
 z_index = 50
-layout_mode = 2
+anchors_preset = 0
+offset_left = 540.0
+offset_top = 30.0
+offset_right = 540.0
+offset_bottom = 30.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="ToastPanelContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/ToastControl" unique_id=830487282 node_paths=PackedStringArray("label")]
+[node name="ToastPanelContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/ToastControl" unique_id=830487282 node_paths=PackedStringArray("label")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -922,13 +946,22 @@ theme_type_variation = &"PanelContainerToast"
 script = ExtResource("29_7swsl")
 label = NodePath("WelcomeLabel")
 
-[node name="WelcomeLabel" type="Label" parent="CanvasLayer/PanelContainer/ToastControl/ToastPanelContainer" unique_id=500543789]
+[node name="WelcomeLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" unique_id=500543789]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Welcome, !"
 horizontal_alignment = 1
 
-[node name="DebugButton" type="Button" parent="CanvasLayer" unique_id=202080634]
+[node name="DebugCanvasLayer" type="CanvasLayer" parent="." unique_id=427733943]
+layer = 3
+
+[node name="DebugUtils" type="Node" parent="DebugCanvasLayer" unique_id=924695395 node_paths=PackedStringArray("grid", "dock", "leaderboardButton")]
+script = ExtResource("28_5816i")
+grid = NodePath("../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+dock = NodePath("../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles")
+leaderboardButton = NodePath("../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton")
+
+[node name="DebugButton" type="Button" parent="DebugCanvasLayer" unique_id=202080634]
 z_index = 5
 offset_right = 141.0
 offset_bottom = 68.0
@@ -938,7 +971,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_quncq")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvpgl")
 script = ExtResource("44_tvpgl")
 
-[node name="Label" type="Label" parent="CanvasLayer/DebugButton" unique_id=547459522]
+[node name="Label" type="Label" parent="DebugCanvasLayer/DebugButton" unique_id=547459522]
 visible = false
 z_index = 5
 layout_mode = 0
@@ -948,12 +981,12 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("45_quncq")
 text = "testing 123"
 
-[connection signal="toggled" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" to="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" method="_on_toggled"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="CanvasLayer/PanelContainer/Scoreboard" method="show"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="CanvasLayer/PanelContainer/HowToPlay" method="do_show"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="CanvasLayer/PanelContainer/HowToPlay" method="do_hide"]
-[connection signal="pressed" from="CanvasLayer/DebugButton" to="CanvasLayer/DebugButton" method="on_click"]
+[connection signal="toggled" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton" method="_on_toggled"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="PopupCanvasLayer/PopupThemeController/Scoreboard" method="show"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
+[connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
-[editable path="CanvasLayer/PanelContainer/Scoreboard"]
+[editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]
