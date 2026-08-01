@@ -71,6 +71,7 @@ func _ready() -> void:
 	file.close()
 	
 var dash = "-"
+var total = 0
 
 func update(_slot: DropSlot):
 	#push_warning("grid - update from slot " + _slot.name)
@@ -94,7 +95,7 @@ func update(_slot: DropSlot):
 		make_word(word, words[word])
 	#push_warning("grid - wordinstancemap: " + str(wordInstanceMap))
 	
-	var total = 0
+	total = 0
 	for word in wordInstanceMap:
 		total += wordInstanceMap[word].get_points()
 	
