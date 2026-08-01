@@ -143,11 +143,11 @@ func _load_leaderboard():
 	status_label.text = "Loading..."
 	status_label.add_theme_color_override("font_color", COLOR_TEXT)
 	
-	if name_change_handler.on_closed.is_connected(_on_prompt_shown):
-		name_change_handler.on_closed.disconnect(_on_prompt_shown)
+	if name_change_handler.on_closed.is_connected(_on_name_change_prompt_closed):
+		name_change_handler.on_closed.disconnect(_on_name_change_prompt_closed)
 		
 	if not name_change_handler.visible and login_handler.remote_state == PlayerInfo.State.NONE_FOUND and CheddaBoards._cached_profile.is_empty() and not has_shown_set_name_prompt: #and not CheddaBoards.has_account() and not CheddaBoards.is_authenticated()
-		name_change_handler.on_closed.connect(_on_prompt_shown)
+		name_change_handler.on_closed.connect(_on_name_change_prompt_closed)
 		name_change_handler._show_name_entry_panel(false)
 		return
 	
@@ -203,8 +203,8 @@ func _clear_leaderboard():
 	entry_displays.clear()
 
 
-func _on_prompt_shown():
-	name_change_handler.on_closed.disconnect(_on_prompt_shown)
+func _on_name_change_prompt_closed():
+	name_change_handler.on_closed.disconnect(_on_name_change_prompt_closed)
 	
 	has_shown_set_name_prompt = true
 	_load_leaderboard()
@@ -343,10 +343,10 @@ func on_rename_pressed():
 	status_label.text = "Loading..."
 	status_label.add_theme_color_override("font_color", COLOR_TEXT)
 
-	if name_change_handler.on_closed.is_connected(_on_prompt_shown):
-		name_change_handler.on_closed.disconnect(_on_prompt_shown)
+	if name_change_handler.on_closed.is_connected(_on_name_change_prompt_closed):
+		name_change_handler.on_closed.disconnect(_on_name_change_prompt_closed)
 
-	name_change_handler.on_closed.connect(_on_prompt_shown)
+	name_change_handler.on_closed.connect(_on_name_change_prompt_closed)
 	name_change_handler._show_name_entry_panel(true)
 
 func _on_refresh_pressed():

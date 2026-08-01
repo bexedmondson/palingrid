@@ -50,6 +50,11 @@
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
+[ext_resource type="Texture2D" uid="uid://66nf847ass0e" path="res://textures/tool-pencil.svg" id="47_0uv86"]
+[ext_resource type="Script" uid="uid://cjb5hurxpbpdp" path="res://scripts/AccountPopup.gd" id="47_idbgw"]
+[ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="48_0wqag"]
+[ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="48_tkjpc"]
+[ext_resource type="Texture2D" uid="uid://ctufowlq4oai2" path="res://textures/timer_0.svg" id="49_xvihj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01tbl"]
 content_margin_left = 30.0
@@ -759,7 +764,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_f2tft")
 
-[node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=531030568 node_paths=PackedStringArray("login_handler") instance=ExtResource("21_aktff")]
+[node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=531030568 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -774,14 +779,11 @@ grow_vertical = 1
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
+name_change_handler = NodePath("../NameEntryPanel")
 
 [node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(531030568, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
-
-[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController/Scoreboard" index="2" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator")]
-loginHandler = NodePath("../../../../MainCanvasLayer/PanelContainer/LoginHandler")
-best_score_indicator = NodePath("../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreHeaderVBoxContainer/HBoxContainer/BestScoreLabel")
 
 [node name="HowToPlay" type="Panel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false
@@ -1022,6 +1024,175 @@ texture = ExtResource("37_ne81u")
 expand_mode = 5
 stretch_mode = 5
 
+[node name="AccountPopup" type="Panel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1517227116 node_paths=PackedStringArray("name_change_handler", "login_handler", "name_label", "loading_indicator")]
+z_index = 2
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 1050.0
+offset_bottom = 1050.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
+script = ExtResource("47_idbgw")
+name_change_handler = NodePath("../NameEntryPanel")
+login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
+name_label = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
+loading_indicator = NodePath("Panel/AccountMarginContainer/LoadingSpinner")
+
+[node name="ColorRect" type="ColorRect" parent="PopupCanvasLayer/PopupThemeController/AccountPopup" unique_id=1166561486]
+custom_minimum_size = Vector2(3000, 3000)
+propagate_maximum_size = true
+layout_mode = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 1500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="Panel" type="Panel" parent="PopupCanvasLayer/PopupThemeController/AccountPopup" unique_id=1316080515]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelFloating"
+
+[node name="AccountMarginContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel" unique_id=2086088521]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7acvr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer" unique_id=115585384]
+layout_mode = 2
+horizontal_scroll_mode = 0
+scroll_deadzone = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer" unique_id=1544523529]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer" unique_id=1586698568]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"LabelHeading"
+text = "YOUR ACCOUNT"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=1138809082]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+offset_right = 70.0
+offset_bottom = 70.0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("24_1s87h")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ConnectionIconTextureRect" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=2131825735]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+texture = ExtResource("48_tkjpc")
+
+[node name="TextureRect" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/ConnectionIconTextureRect" unique_id=1325153165]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = -13.5
+offset_right = 18.00003
+offset_bottom = 46.5
+grow_horizontal = 0
+texture = ExtResource("14_gsnlb")
+expand_mode = 5
+
+[node name="NameHBoxContainer" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer" unique_id=1976906998]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NameLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=1354961783]
+layout_mode = 2
+text = "Hello [name]!"
+
+[node name="ChangeNameButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=276239716]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("47_0uv86")
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="LoadingSpinner" type="Label" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer" unique_id=5103975]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+text = "loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/LoadingSpinner" unique_id=898756826]
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 32.87
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("49_xvihj")
+tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/LoadingSpinner" unique_id=1251830187]
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 16.19
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("49_xvihj")
+
 [node name="ToastControl" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1937231949]
 z_index = 50
 anchors_preset = 0
@@ -1051,6 +1222,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Welcome, !"
 horizontal_alignment = 1
+
+[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1648906337 instance=ExtResource("48_0wqag")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="." unique_id=427733943]
 layer = 3
@@ -1090,6 +1266,7 @@ text = "testing 123"
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="_on_back_pressed"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]
