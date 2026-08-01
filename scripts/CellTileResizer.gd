@@ -31,16 +31,16 @@ func resize():
 	var screen_size = get_viewport().size
 	var is_vertical = screen_size.x * 1.1 < screen_size.y
 	
-	var min_newsize = referenceControl.size.x * (vertical_layout_ratio_to_resizeReference_width if is_vertical else min(horizontal_layout_ratio_to_resizeReference_width, tiledock.size. x / 10))
-	
-	var newsize = Vector2.ONE * min(min_newsize, screen_size.y / 8)
+	var new_size_val = min(referenceControl.size.x / (8 if is_vertical else 14), referenceControl.size.y / 12)
+	var new_cell_size = Vector2.ONE * new_size_val
+	var new_tile_size = new_cell_size - Vector2.ONE * 5
+	var tile_label_scale_factor = new_tile_size / reference_tile_size
 	
 	for c in cells:
-		c.custom_minimum_size = newsize
+		c.custom_minimum_size = new_cell_size
 	for t in tiles:
-		t.custom_minimum_size = newsize - Vector2.ONE * 5
-		var scale_factor = t.custom_minimum_size / reference_tile_size
-		t.letter_label.scale = scale_factor
+		t.custom_minimum_size = new_tile_size
+		t.letter_label.scale = tile_label_scale_factor
 	
 	reconnect_after_layout_reorganised()
 
