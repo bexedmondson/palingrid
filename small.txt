@@ -1829,6 +1829,7 @@ druid
 drum
 drums
 drunk
+drupe
 dry
 dryad
 dryer
@@ -2295,6 +2296,7 @@ flaky
 flame
 flan
 flank
+flans
 flap
 flaps
 flare
@@ -5410,6 +5412,7 @@ rib
 ribs
 rice
 riced
+ricer
 rices
 rich
 rick
@@ -7030,6 +7033,7 @@ tykes
 type
 typed
 types
+typic
 typo
 typos
 tyre
