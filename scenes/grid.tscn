@@ -656,6 +656,10 @@ COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../LoginHandler")
 
+[node name="ShareButton" parent="CanvasLayer/PanelContainer/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(531030568, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
+grid = NodePath("../../../../../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+letter_set_generator = NodePath("../../../../../LetterSetGenerator")
+
 [node name="NameEntryPanel" parent="CanvasLayer/PanelContainer/Scoreboard" index="2" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator")]
 loginHandler = NodePath("../../LoginHandler")
 best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
