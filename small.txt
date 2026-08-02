@@ -2686,6 +2686,7 @@ glob
 globe
 globs
 gloom
+gloop
 glop
 glory
 gloss
