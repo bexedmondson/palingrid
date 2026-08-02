@@ -52,7 +52,7 @@ func gen_date(count, day, month, year):
 
 func generate(count: int):
 	var date = Time.get_date_dict_from_system(true)
-	gen_date(count, date["day"], date["month"], date["year"])
+	gen_date(count, 31, 7, date["year"])
 	return generated_set
 
 
