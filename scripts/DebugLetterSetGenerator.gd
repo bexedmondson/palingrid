@@ -3,7 +3,7 @@ extends Node
 
 @export var generator : DailyLetterSetGenerator
 
-@export var output_to_file : bool
+@export var output_to_file : bool = true
 
 @export_range(1, 31) var start_day = 1 :
 	set(d):
@@ -62,14 +62,17 @@ func _check_valid_date():
 		return
 
 func gen_particular_date():
-	var results = {}
+	var results = []
 	var count = 25
 	if !is_range:
+		var dict = {}
 		var letterSetArray = generator.gen_date(count, start_day, start_month, start_year)
 		var letterSetString = ""
 		for character in letterSetArray:
 			letterSetString += character
-		results["%04d-%02d-%02d" % [start_year, start_month, start_day]] = letterSetString
+		dict["date"] = "%04d-%02d-%02d" % [start_year, start_month, start_day]
+		dict["letterset"] = letterSetString
+		results.append(dict)
 	else:
 		var day = start_day
 		var month = start_month
@@ -79,11 +82,14 @@ func gen_particular_date():
 			while month <= monthToIterateTo:
 				var dayToIterateTo = end_day if year == end_year and month == end_month else 31
 				while day <= dayToIterateTo:
+					var dict = {}
 					var letterSetArray = generator.gen_date(count, day, month, year)
 					var letterSetString = ""
 					for character in letterSetArray:
 						letterSetString += character
-					results["%04d-%02d-%02d" % [year, month, day]] = letterSetString
+					dict["date"] = "%04d-%02d-%02d" % [year, start_month, day]
+					dict["letterset"] = letterSetString
+					results.append(dict)
 					day += 1
 				month += 1
 				day = 1
@@ -92,11 +98,11 @@ func gen_particular_date():
 			day = 1
 	
 	for r in results:
-		print("%s \t%s" % [r, results[r]])
+		print(r)
 	
-	if output_to_file:
+	if true:
 		var json = JSON.stringify(results)
-		var filename = "res://notes/letter_sets_" + results.keys()[0] + "-" + results.keys()[-1] + ".json"
+		var filename = "res://notes/letter_sets_" + results[0]["date"] + "-" + results[-1]["date"] + ".json"
 		print(filename)
 		var file = FileAccess.open(filename, FileAccess.WRITE)
 		print(str(file))
