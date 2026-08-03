@@ -151,10 +151,11 @@ statsFile = ExtResource("4_docto")
 [node name="DebugLetterSetGenerator" type="Node" parent="CanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
 script = ExtResource("7_7wdiv")
 generator = NodePath("..")
-start_day = 3
-start_month = 8
+output_to_file = false
+start_day = 31
 is_range = true
-end_year = 2027
+end_day = 3
+end_month = 8
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
