@@ -32,6 +32,11 @@
 [ext_resource type="StyleBox" uid="uid://c48db3gig8bw8" path="res://themes/light/panel_floating_toast_light.tres" id="25_krt1t"]
 [ext_resource type="StyleBox" uid="uid://c8x3wnv7tajmb" path="res://themes/light/panel_container_expand_margins_light.tres" id="26_tq8i7"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
+[ext_resource type="StyleBox" uid="uid://1smleun01y7i" path="res://themes/goal_progress_bar_fill.tres" id="33_12gmn"]
+[ext_resource type="StyleBox" uid="uid://coqb6uqy106cc" path="res://themes/goal_progress_bar_bg.tres" id="34_sk8j7"]
+[ext_resource type="StyleBox" uid="uid://cw36c4h5qm20r" path="res://themes/goal_progress_bar_best_fill.tres" id="35_50rey"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk8j7"]
 
 [resource]
 BoxContainer/constants/separation = 10
@@ -144,6 +149,11 @@ PanelGrid/base_type = &"Panel"
 PanelGrid/styles/panel = ExtResource("5_hb1pw")
 PanelTile/base_type = &"Panel"
 PanelTile/styles/panel = ExtResource("8_nq408")
+ProgressBar/styles/background = ExtResource("34_sk8j7")
+ProgressBar/styles/fill = ExtResource("33_12gmn")
+ProgressBarBestScore/base_type = &"ProgressBar"
+ProgressBarBestScore/styles/background = SubResource("StyleBoxEmpty_sk8j7")
+ProgressBarBestScore/styles/fill = ExtResource("35_50rey")
 RichTextLabel/colors/default_color = Color(0.14901961, 0.2, 0.19607843, 1)
 RichTextLabel/font_sizes/bold_font_size = 24
 RichTextLabel/font_sizes/bold_italics_font_size = 24

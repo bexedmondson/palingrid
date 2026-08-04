@@ -5,6 +5,7 @@ extends ProgressBar
 
 @export var grid : Grid
 @export var ticks : Array[GoalProgressTick]
+@export var best_bar : ProgressBar
 
 var predicted_top_score : int
 var model_prediction_halfrange : float
@@ -14,6 +15,7 @@ var bar_tween : Tween
 
 func _ready() -> void:
 	self.value = 0
+	best_bar.value = 0
 	
 	if grid.is_node_ready():
 		_initialise_bar()
@@ -45,13 +47,15 @@ func _initialise_bar():
 	tick_diff = min(max_tick_diff, tick_diff)
 	
 	#TODO add bonus goal that's same as predicted top score, that only appears after reaching the original top goal
-	print("tick diff " + str(tick_diff))
-	print("halfrange " + str(model_prediction_halfrange))
+	
 	self.max_value = top_goal # TODO make these spaced out a lot more!!
+	best_bar.max_value = top_goal
 	for i in ticks.size():
 		ticks[i].set_target(self.max_value - tick_diff * i, self.max_value)
 	
 	var best = grid.bestScore.best
+	best_bar.value = best
+	
 	for t in ticks:
 		if t.target_amount <= best:
 			t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS)
@@ -69,7 +73,11 @@ func _on_score_updated(new_score : int):
 
 func _update_bar(tween_value):
 	self.value = tween_value
+	
 	var best = grid.bestScore.best
+	if best_bar.value < best:
+		best_bar.value = tween_value
+	
 	for t in ticks:
 		if t.target_amount <= tween_value:
 			if t.state == GoalProgressTick.TickState.NOT_REACHED or t.state == GoalProgressTick.TickState.RESET:
