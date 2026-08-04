@@ -1003,6 +1003,7 @@ capon
 caps
 car
 carat
+carb
 carbs
 card
 cards

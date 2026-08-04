@@ -1,1 +1,1486 @@
-{"2026-08-03": {"topscore": 53, "halfrange": 3.72}, "2026-08-04": {"topscore": 43, "halfrange": 1.91}, "2026-08-05": {"topscore": 58, "halfrange": 4.87}, "2026-08-06": {"topscore": 48, "halfrange": 6.79}, "2026-08-07": {"topscore": 58, "halfrange": 0.72}, "2026-08-08": {"topscore": 52, "halfrange": 4.59}, "2026-08-09": {"topscore": 51, "halfrange": 4.52}, "2026-08-10": {"topscore": 55, "halfrange": 3.38}, "2026-08-11": {"topscore": 56, "halfrange": 1.59}, "2026-08-12": {"topscore": 48, "halfrange": 0.93}, "2026-08-13": {"topscore": 53, "halfrange": 2.77}, "2026-08-14": {"topscore": 43, "halfrange": 3.96}, "2026-08-15": {"topscore": 51, "halfrange": 3.7}, "2026-08-16": {"topscore": 43, "halfrange": 8.7}, "2026-08-17": {"topscore": 54, "halfrange": 2.97}, "2026-08-18": {"topscore": 51, "halfrange": 3.77}, "2026-08-19": {"topscore": 52, "halfrange": 2.32}, "2026-08-20": {"topscore": 51, "halfrange": 2.23}, "2026-08-21": {"topscore": 47, "halfrange": 6.13}, "2026-08-22": {"topscore": 58, "halfrange": 2.8}, "2026-08-23": {"topscore": 50, "halfrange": 1.85}, "2026-08-24": {"topscore": 54, "halfrange": 4.36}, "2026-08-25": {"topscore": 38, "halfrange": 6.26}, "2026-08-26": {"topscore": 49, "halfrange": 0.58}, "2026-08-27": {"topscore": 51, "halfrange": 3.61}, "2026-08-28": {"topscore": 55, "halfrange": 1.63}, "2026-08-29": {"topscore": 51, "halfrange": 4.14}, "2026-08-30": {"topscore": 48, "halfrange": 4.52}, "2026-08-31": {"topscore": 44, "halfrange": 4.04}, "2026-08-01": {"topscore": 43, "halfrange": 3.13}, "2026-08-02": {"topscore": 56, "halfrange": 1.27}, "2027-08-01": {"topscore": 58, "halfrange": 4.0}, "2027-08-02": {"topscore": 52, "halfrange": 3.5}, "2027-08-03": {"topscore": 64, "halfrange": 1.09}, "2027-08-04": {"topscore": 53, "halfrange": 2.12}, "2027-08-05": {"topscore": 28, "halfrange": 13.18}, "2027-08-06": {"topscore": 62, "halfrange": 2.41}, "2027-08-07": {"topscore": 47, "halfrange": 6.02}, "2027-08-08": {"topscore": 60, "halfrange": 5.17}, "2027-08-09": {"topscore": 47, "halfrange": 0.56}, "2027-08-10": {"topscore": 46, "halfrange": 12.64}, "2027-08-11": {"topscore": 55, "halfrange": 2.21}, "2027-08-12": {"topscore": 49, "halfrange": 4.8}, "2027-08-13": {"topscore": 50, "halfrange": 3.03}, "2027-08-14": {"topscore": 51, "halfrange": 1.75}, "2027-08-15": {"topscore": 58, "halfrange": 3.43}, "2027-08-16": {"topscore": 48, "halfrange": 1.75}, "2027-08-17": {"topscore": 48, "halfrange": 4.32}, "2027-08-18": {"topscore": 60, "halfrange": 1.32}, "2027-08-19": {"topscore": 48, "halfrange": 1.71}, "2027-08-20": {"topscore": 63, "halfrange": 2.29}, "2027-08-21": {"topscore": 54, "halfrange": 4.06}, "2027-08-22": {"topscore": 47, "halfrange": 0.36}, "2027-08-23": {"topscore": 54, "halfrange": 0.84}, "2027-08-24": {"topscore": 50, "halfrange": 3.23}, "2027-08-25": {"topscore": 38, "halfrange": 6.05}, "2027-08-26": {"topscore": 49, "halfrange": 1.28}, "2027-08-27": {"topscore": 55, "halfrange": 3.1}, "2027-08-28": {"topscore": 54, "halfrange": 3.25}, "2027-08-29": {"topscore": 55, "halfrange": 0.92}, "2027-08-30": {"topscore": 60, "halfrange": 2.95}, "2027-08-31": {"topscore": 45, "halfrange": 1.33}}
+{
+	"2026-08-03": {
+		"topscore": 54.0,
+		"halfrange": 2.99
+	},
+	"2026-08-04": {
+		"topscore": 49.0,
+		"halfrange": 1.04
+	},
+	"2026-08-05": {
+		"topscore": 47.0,
+		"halfrange": 2.16
+	},
+	"2026-08-06": {
+		"topscore": 53.0,
+		"halfrange": 2.77
+	},
+	"2026-08-07": {
+		"topscore": 47.0,
+		"halfrange": 1.86
+	},
+	"2026-08-08": {
+		"topscore": 56.0,
+		"halfrange": 2.05
+	},
+	"2026-08-09": {
+		"topscore": 31.0,
+		"halfrange": 10.75
+	},
+	"2026-08-10": {
+		"topscore": 48.0,
+		"halfrange": 6.91
+	},
+	"2026-08-11": {
+		"topscore": 43.0,
+		"halfrange": 5.12
+	},
+	"2026-08-12": {
+		"topscore": 45.0,
+		"halfrange": 1.22
+	},
+	"2026-08-13": {
+		"topscore": 51.0,
+		"halfrange": 1.43
+	},
+	"2026-08-14": {
+		"topscore": 50.0,
+		"halfrange": 4.52
+	},
+	"2026-08-15": {
+		"topscore": 51.0,
+		"halfrange": 3.02
+	},
+	"2026-08-16": {
+		"topscore": 53.0,
+		"halfrange": 2.88
+	},
+	"2026-08-17": {
+		"topscore": 49.0,
+		"halfrange": 5.33
+	},
+	"2026-08-18": {
+		"topscore": 53.0,
+		"halfrange": 3.46
+	},
+	"2026-08-19": {
+		"topscore": 53.0,
+		"halfrange": 2.14
+	},
+	"2026-08-20": {
+		"topscore": 49.0,
+		"halfrange": 4.54
+	},
+	"2026-08-21": {
+		"topscore": 48.0,
+		"halfrange": 0.98
+	},
+	"2026-08-22": {
+		"topscore": 49.0,
+		"halfrange": 2.43
+	},
+	"2026-08-23": {
+		"topscore": 54.0,
+		"halfrange": 3.63
+	},
+	"2026-08-24": {
+		"topscore": 57.0,
+		"halfrange": 3.06
+	},
+	"2026-08-25": {
+		"topscore": 52.0,
+		"halfrange": 1.83
+	},
+	"2026-08-26": {
+		"topscore": 53.0,
+		"halfrange": 2.69
+	},
+	"2026-08-27": {
+		"topscore": 37.0,
+		"halfrange": 5.74
+	},
+	"2026-08-28": {
+		"topscore": 54.0,
+		"halfrange": 2.95
+	},
+	"2026-08-29": {
+		"topscore": 49.0,
+		"halfrange": 4.58
+	},
+	"2026-08-30": {
+		"topscore": 45.0,
+		"halfrange": 11.88
+	},
+	"2026-08-31": {
+		"topscore": 40.0,
+		"halfrange": 3.73
+	},
+	"2026-09-01": {
+		"topscore": 51.0,
+		"halfrange": 10.13
+	},
+	"2026-09-02": {
+		"topscore": 55.0,
+		"halfrange": 2.15
+	},
+	"2026-09-03": {
+		"topscore": 45.0,
+		"halfrange": 2.07
+	},
+	"2026-09-04": {
+		"topscore": 47.0,
+		"halfrange": 4.61
+	},
+	"2026-09-05": {
+		"topscore": 47.0,
+		"halfrange": 1.12
+	},
+	"2026-09-06": {
+		"topscore": 48.0,
+		"halfrange": 1.16
+	},
+	"2026-09-07": {
+		"topscore": 55.0,
+		"halfrange": 2.75
+	},
+	"2026-09-08": {
+		"topscore": 60.0,
+		"halfrange": 1.74
+	},
+	"2026-09-09": {
+		"topscore": 49.0,
+		"halfrange": 2.85
+	},
+	"2026-09-10": {
+		"topscore": 52.0,
+		"halfrange": 2.9
+	},
+	"2026-09-11": {
+		"topscore": 51.0,
+		"halfrange": 2.15
+	},
+	"2026-09-12": {
+		"topscore": 43.0,
+		"halfrange": 4.7
+	},
+	"2026-09-13": {
+		"topscore": 53.0,
+		"halfrange": 2.32
+	},
+	"2026-09-14": {
+		"topscore": 48.0,
+		"halfrange": 5.43
+	},
+	"2026-09-15": {
+		"topscore": 57.0,
+		"halfrange": 1.31
+	},
+	"2026-09-16": {
+		"topscore": 61.0,
+		"halfrange": 0.9
+	},
+	"2026-09-17": {
+		"topscore": 48.0,
+		"halfrange": 2.45
+	},
+	"2026-09-18": {
+		"topscore": 54.0,
+		"halfrange": 1.01
+	},
+	"2026-09-19": {
+		"topscore": 56.0,
+		"halfrange": 2.04
+	},
+	"2026-09-20": {
+		"topscore": 55.0,
+		"halfrange": 3.53
+	},
+	"2026-09-21": {
+		"topscore": 60.0,
+		"halfrange": 1.54
+	},
+	"2026-09-22": {
+		"topscore": 33.0,
+		"halfrange": 9.92
+	},
+	"2026-09-23": {
+		"topscore": 50.0,
+		"halfrange": 4.62
+	},
+	"2026-09-24": {
+		"topscore": 39.0,
+		"halfrange": 3.05
+	},
+	"2026-09-25": {
+		"topscore": 44.0,
+		"halfrange": 4.27
+	},
+	"2026-09-26": {
+		"topscore": 44.0,
+		"halfrange": 1.22
+	},
+	"2026-09-27": {
+		"topscore": 51.0,
+		"halfrange": 4.76
+	},
+	"2026-09-28": {
+		"topscore": 43.0,
+		"halfrange": 3.09
+	},
+	"2026-09-29": {
+		"topscore": 45.0,
+		"halfrange": 3.86
+	},
+	"2026-09-30": {
+		"topscore": 57.0,
+		"halfrange": 1.33
+	},
+	"2026-09-31": {
+		"topscore": 45.0,
+		"halfrange": 1.32
+	},
+	"2026-10-01": {
+		"topscore": 45.0,
+		"halfrange": 4.81
+	},
+	"2026-10-02": {
+		"topscore": 50.0,
+		"halfrange": 3.9
+	},
+	"2026-10-03": {
+		"topscore": 50.0,
+		"halfrange": 2.05
+	},
+	"2026-10-04": {
+		"topscore": 52.0,
+		"halfrange": 2.45
+	},
+	"2026-10-05": {
+		"topscore": 51.0,
+		"halfrange": 2.01
+	},
+	"2026-10-06": {
+		"topscore": 51.0,
+		"halfrange": 2.06
+	},
+	"2026-10-07": {
+		"topscore": 52.0,
+		"halfrange": 3.02
+	},
+	"2026-10-08": {
+		"topscore": 59.0,
+		"halfrange": 3.35
+	},
+	"2026-10-09": {
+		"topscore": 51.0,
+		"halfrange": 1.56
+	},
+	"2026-10-10": {
+		"topscore": 48.0,
+		"halfrange": 2.92
+	},
+	"2026-10-11": {
+		"topscore": 53.0,
+		"halfrange": 3.22
+	},
+	"2026-10-12": {
+		"topscore": 56.0,
+		"halfrange": 6.99
+	},
+	"2026-10-13": {
+		"topscore": 47.0,
+		"halfrange": 2.98
+	},
+	"2026-10-14": {
+		"topscore": 43.0,
+		"halfrange": 1.62
+	},
+	"2026-10-15": {
+		"topscore": 50.0,
+		"halfrange": 9.21
+	},
+	"2026-10-16": {
+		"topscore": 53.0,
+		"halfrange": 2.54
+	},
+	"2026-10-17": {
+		"topscore": 45.0,
+		"halfrange": 2.97
+	},
+	"2026-10-18": {
+		"topscore": 46.0,
+		"halfrange": 1.15
+	},
+	"2026-10-19": {
+		"topscore": 51.0,
+		"halfrange": 3.94
+	},
+	"2026-10-20": {
+		"topscore": 56.0,
+		"halfrange": 1.57
+	},
+	"2026-10-21": {
+		"topscore": 53.0,
+		"halfrange": 2.66
+	},
+	"2026-10-22": {
+		"topscore": 53.0,
+		"halfrange": 4.14
+	},
+	"2026-10-23": {
+		"topscore": 58.0,
+		"halfrange": 1.62
+	},
+	"2026-10-24": {
+		"topscore": 47.0,
+		"halfrange": 3.52
+	},
+	"2026-10-25": {
+		"topscore": 41.0,
+		"halfrange": 3.87
+	},
+	"2026-10-26": {
+		"topscore": 46.0,
+		"halfrange": 2.23
+	},
+	"2026-10-27": {
+		"topscore": 51.0,
+		"halfrange": 1.47
+	},
+	"2026-10-28": {
+		"topscore": 45.0,
+		"halfrange": 3.72
+	},
+	"2026-10-29": {
+		"topscore": 56.0,
+		"halfrange": 3.22
+	},
+	"2026-10-30": {
+		"topscore": 46.0,
+		"halfrange": 1.91
+	},
+	"2026-10-31": {
+		"topscore": 52.0,
+		"halfrange": 3.27
+	},
+	"2026-11-01": {
+		"topscore": 56.0,
+		"halfrange": 1.99
+	},
+	"2026-11-02": {
+		"topscore": 53.0,
+		"halfrange": 4.31
+	},
+	"2026-11-03": {
+		"topscore": 54.0,
+		"halfrange": 1.52
+	},
+	"2026-11-04": {
+		"topscore": 52.0,
+		"halfrange": 5.13
+	},
+	"2026-11-05": {
+		"topscore": 46.0,
+		"halfrange": 1.23
+	},
+	"2026-11-06": {
+		"topscore": 47.0,
+		"halfrange": 2.2
+	},
+	"2026-11-07": {
+		"topscore": 54.0,
+		"halfrange": 2.35
+	},
+	"2026-11-08": {
+		"topscore": 51.0,
+		"halfrange": 3.29
+	},
+	"2026-11-09": {
+		"topscore": 54.0,
+		"halfrange": 1.96
+	},
+	"2026-11-10": {
+		"topscore": 39.0,
+		"halfrange": 7.37
+	},
+	"2026-11-11": {
+		"topscore": 50.0,
+		"halfrange": 4.38
+	},
+	"2026-11-12": {
+		"topscore": 52.0,
+		"halfrange": 2.23
+	},
+	"2026-11-13": {
+		"topscore": 45.0,
+		"halfrange": 4.91
+	},
+	"2026-11-14": {
+		"topscore": 51.0,
+		"halfrange": 1.61
+	},
+	"2026-11-15": {
+		"topscore": 53.0,
+		"halfrange": 9.51
+	},
+	"2026-11-16": {
+		"topscore": 59.0,
+		"halfrange": 2.72
+	},
+	"2026-11-17": {
+		"topscore": 47.0,
+		"halfrange": 3.77
+	},
+	"2026-11-18": {
+		"topscore": 46.0,
+		"halfrange": 5.12
+	},
+	"2026-11-19": {
+		"topscore": 51.0,
+		"halfrange": 4.04
+	},
+	"2026-11-20": {
+		"topscore": 49.0,
+		"halfrange": 1.41
+	},
+	"2026-11-21": {
+		"topscore": 50.0,
+		"halfrange": 6.38
+	},
+	"2026-11-22": {
+		"topscore": 48.0,
+		"halfrange": 1.72
+	},
+	"2026-11-23": {
+		"topscore": 49.0,
+		"halfrange": 8.47
+	},
+	"2026-11-24": {
+		"topscore": 45.0,
+		"halfrange": 3.44
+	},
+	"2026-11-25": {
+		"topscore": 46.0,
+		"halfrange": 3.89
+	},
+	"2026-11-26": {
+		"topscore": 52.0,
+		"halfrange": 1.23
+	},
+	"2026-11-27": {
+		"topscore": 48.0,
+		"halfrange": 7.1
+	},
+	"2026-11-28": {
+		"topscore": 51.0,
+		"halfrange": 1.83
+	},
+	"2026-11-29": {
+		"topscore": 59.0,
+		"halfrange": 4.47
+	},
+	"2026-11-30": {
+		"topscore": 45.0,
+		"halfrange": 16.75
+	},
+	"2026-11-31": {
+		"topscore": 45.0,
+		"halfrange": 1.32
+	},
+	"2026-12-01": {
+		"topscore": 43.0,
+		"halfrange": 3.14
+	},
+	"2026-12-02": {
+		"topscore": 56.0,
+		"halfrange": 1.26
+	},
+	"2026-12-03": {
+		"topscore": 53.0,
+		"halfrange": 3.7
+	},
+	"2026-12-04": {
+		"topscore": 43.0,
+		"halfrange": 1.9
+	},
+	"2026-12-05": {
+		"topscore": 58.0,
+		"halfrange": 4.91
+	},
+	"2026-12-06": {
+		"topscore": 48.0,
+		"halfrange": 6.82
+	},
+	"2026-12-07": {
+		"topscore": 58.0,
+		"halfrange": 0.72
+	},
+	"2026-12-08": {
+		"topscore": 52.0,
+		"halfrange": 4.56
+	},
+	"2026-12-09": {
+		"topscore": 51.0,
+		"halfrange": 4.49
+	},
+	"2026-12-10": {
+		"topscore": 55.0,
+		"halfrange": 3.38
+	},
+	"2026-12-11": {
+		"topscore": 56.0,
+		"halfrange": 1.59
+	},
+	"2026-12-12": {
+		"topscore": 48.0,
+		"halfrange": 0.94
+	},
+	"2026-12-13": {
+		"topscore": 53.0,
+		"halfrange": 2.75
+	},
+	"2026-12-14": {
+		"topscore": 43.0,
+		"halfrange": 3.95
+	},
+	"2026-12-15": {
+		"topscore": 51.0,
+		"halfrange": 3.7
+	},
+	"2026-12-16": {
+		"topscore": 43.0,
+		"halfrange": 8.68
+	},
+	"2026-12-17": {
+		"topscore": 54.0,
+		"halfrange": 2.95
+	},
+	"2026-12-18": {
+		"topscore": 51.0,
+		"halfrange": 3.73
+	},
+	"2026-12-19": {
+		"topscore": 52.0,
+		"halfrange": 2.3
+	},
+	"2026-12-20": {
+		"topscore": 51.0,
+		"halfrange": 2.25
+	},
+	"2026-12-21": {
+		"topscore": 47.0,
+		"halfrange": 6.16
+	},
+	"2026-12-22": {
+		"topscore": 58.0,
+		"halfrange": 2.77
+	},
+	"2026-12-23": {
+		"topscore": 50.0,
+		"halfrange": 1.87
+	},
+	"2026-12-24": {
+		"topscore": 54.0,
+		"halfrange": 4.36
+	},
+	"2026-12-25": {
+		"topscore": 38.0,
+		"halfrange": 6.26
+	},
+	"2026-12-26": {
+		"topscore": 49.0,
+		"halfrange": 0.57
+	},
+	"2026-12-27": {
+		"topscore": 51.0,
+		"halfrange": 3.59
+	},
+	"2026-12-28": {
+		"topscore": 55.0,
+		"halfrange": 1.6
+	},
+	"2026-12-29": {
+		"topscore": 51.0,
+		"halfrange": 4.13
+	},
+	"2026-12-30": {
+		"topscore": 48.0,
+		"halfrange": 4.5
+	},
+	"2026-12-31": {
+		"topscore": 44.0,
+		"halfrange": 4.01
+	},
+	"2027-01-01": {
+		"topscore": 60.0,
+		"halfrange": 2.31
+	},
+	"2027-01-02": {
+		"topscore": 56.0,
+		"halfrange": 1.92
+	},
+	"2027-01-03": {
+		"topscore": 53.0,
+		"halfrange": 2.31
+	},
+	"2027-01-04": {
+		"topscore": 56.0,
+		"halfrange": 1.97
+	},
+	"2027-01-05": {
+		"topscore": 49.0,
+		"halfrange": 8.45
+	},
+	"2027-01-06": {
+		"topscore": 46.0,
+		"halfrange": 4.18
+	},
+	"2027-01-07": {
+		"topscore": 48.0,
+		"halfrange": 3.37
+	},
+	"2027-01-08": {
+		"topscore": 40.0,
+		"halfrange": 5.42
+	},
+	"2027-01-09": {
+		"topscore": 49.0,
+		"halfrange": 4.17
+	},
+	"2027-01-10": {
+		"topscore": 58.0,
+		"halfrange": 2.33
+	},
+	"2027-01-11": {
+		"topscore": 54.0,
+		"halfrange": 1.89
+	},
+	"2027-01-12": {
+		"topscore": 25.0,
+		"halfrange": 19.55
+	},
+	"2027-01-13": {
+		"topscore": 57.0,
+		"halfrange": 2.05
+	},
+	"2027-01-14": {
+		"topscore": 59.0,
+		"halfrange": 4.69
+	},
+	"2027-01-15": {
+		"topscore": 48.0,
+		"halfrange": 6.36
+	},
+	"2027-01-16": {
+		"topscore": 57.0,
+		"halfrange": 2.28
+	},
+	"2027-01-17": {
+		"topscore": 52.0,
+		"halfrange": 1.01
+	},
+	"2027-01-18": {
+		"topscore": 45.0,
+		"halfrange": 3.72
+	},
+	"2027-01-19": {
+		"topscore": 51.0,
+		"halfrange": 1.69
+	},
+	"2027-01-20": {
+		"topscore": 61.0,
+		"halfrange": 3.54
+	},
+	"2027-01-21": {
+		"topscore": 57.0,
+		"halfrange": 0.94
+	},
+	"2027-01-22": {
+		"topscore": 47.0,
+		"halfrange": 3.59
+	},
+	"2027-01-23": {
+		"topscore": 44.0,
+		"halfrange": 5.09
+	},
+	"2027-01-24": {
+		"topscore": 53.0,
+		"halfrange": 0.27
+	},
+	"2027-01-25": {
+		"topscore": 49.0,
+		"halfrange": 4.9
+	},
+	"2027-01-26": {
+		"topscore": 46.0,
+		"halfrange": 2.3
+	},
+	"2027-01-27": {
+		"topscore": 49.0,
+		"halfrange": 2.12
+	},
+	"2027-01-28": {
+		"topscore": 60.0,
+		"halfrange": 2.78
+	},
+	"2027-01-29": {
+		"topscore": 52.0,
+		"halfrange": 4.88
+	},
+	"2027-01-30": {
+		"topscore": 42.0,
+		"halfrange": 2.74
+	},
+	"2027-01-31": {
+		"topscore": 50.0,
+		"halfrange": 2.94
+	},
+	"2027-02-01": {
+		"topscore": 58.0,
+		"halfrange": 3.28
+	},
+	"2027-02-02": {
+		"topscore": 46.0,
+		"halfrange": 4.34
+	},
+	"2027-02-03": {
+		"topscore": 52.0,
+		"halfrange": 4.63
+	},
+	"2027-02-04": {
+		"topscore": 40.0,
+		"halfrange": 7.12
+	},
+	"2027-02-05": {
+		"topscore": 48.0,
+		"halfrange": 0.48
+	},
+	"2027-02-06": {
+		"topscore": 53.0,
+		"halfrange": 6.79
+	},
+	"2027-02-07": {
+		"topscore": 39.0,
+		"halfrange": 3.81
+	},
+	"2027-02-08": {
+		"topscore": 46.0,
+		"halfrange": 2.31
+	},
+	"2027-02-09": {
+		"topscore": 55.0,
+		"halfrange": 2.38
+	},
+	"2027-02-10": {
+		"topscore": 49.0,
+		"halfrange": 5.75
+	},
+	"2027-02-11": {
+		"topscore": 52.0,
+		"halfrange": 2.81
+	},
+	"2027-02-12": {
+		"topscore": 51.0,
+		"halfrange": 2.64
+	},
+	"2027-02-13": {
+		"topscore": 51.0,
+		"halfrange": 1.91
+	},
+	"2027-02-14": {
+		"topscore": 46.0,
+		"halfrange": 8.66
+	},
+	"2027-02-15": {
+		"topscore": 54.0,
+		"halfrange": 7.42
+	},
+	"2027-02-16": {
+		"topscore": 57.0,
+		"halfrange": 2.76
+	},
+	"2027-02-17": {
+		"topscore": 61.0,
+		"halfrange": 0.81
+	},
+	"2027-02-18": {
+		"topscore": 56.0,
+		"halfrange": 2.74
+	},
+	"2027-02-19": {
+		"topscore": 45.0,
+		"halfrange": 0.53
+	},
+	"2027-02-20": {
+		"topscore": 50.0,
+		"halfrange": 4.41
+	},
+	"2027-02-21": {
+		"topscore": 50.0,
+		"halfrange": 6.56
+	},
+	"2027-02-22": {
+		"topscore": 48.0,
+		"halfrange": 1.61
+	},
+	"2027-02-23": {
+		"topscore": 47.0,
+		"halfrange": 1.82
+	},
+	"2027-02-24": {
+		"topscore": 56.0,
+		"halfrange": 2.57
+	},
+	"2027-02-25": {
+		"topscore": 50.0,
+		"halfrange": 0.84
+	},
+	"2027-02-26": {
+		"topscore": 50.0,
+		"halfrange": 4.93
+	},
+	"2027-02-27": {
+		"topscore": 49.0,
+		"halfrange": 3.16
+	},
+	"2027-02-28": {
+		"topscore": 53.0,
+		"halfrange": 3.04
+	},
+	"2027-02-29": {
+		"topscore": 45.0,
+		"halfrange": 1.32
+	},
+	"2027-02-30": {
+		"topscore": 45.0,
+		"halfrange": 1.32
+	},
+	"2027-02-31": {
+		"topscore": 45.0,
+		"halfrange": 1.32
+	},
+	"2027-03-01": {
+		"topscore": 49.0,
+		"halfrange": 2.35
+	},
+	"2027-03-02": {
+		"topscore": 52.0,
+		"halfrange": 1.95
+	},
+	"2027-03-03": {
+		"topscore": 47.0,
+		"halfrange": 1.09
+	},
+	"2027-03-04": {
+		"topscore": 53.0,
+		"halfrange": 2.11
+	},
+	"2027-03-05": {
+		"topscore": 50.0,
+		"halfrange": 1.16
+	},
+	"2027-03-06": {
+		"topscore": 56.0,
+		"halfrange": 1.87
+	},
+	"2027-03-07": {
+		"topscore": 43.0,
+		"halfrange": 3.43
+	},
+	"2027-03-08": {
+		"topscore": 43.0,
+		"halfrange": 6.22
+	},
+	"2027-03-09": {
+		"topscore": 61.0,
+		"halfrange": 1.82
+	},
+	"2027-03-10": {
+		"topscore": 44.0,
+		"halfrange": 0.77
+	},
+	"2027-03-11": {
+		"topscore": 55.0,
+		"halfrange": 5.16
+	},
+	"2027-03-12": {
+		"topscore": 49.0,
+		"halfrange": 4.39
+	},
+	"2027-03-13": {
+		"topscore": 47.0,
+		"halfrange": 2.79
+	},
+	"2027-03-14": {
+		"topscore": 60.0,
+		"halfrange": 2.52
+	},
+	"2027-03-15": {
+		"topscore": 57.0,
+		"halfrange": 6.91
+	},
+	"2027-03-16": {
+		"topscore": 48.0,
+		"halfrange": 2.92
+	},
+	"2027-03-17": {
+		"topscore": 52.0,
+		"halfrange": 3.58
+	},
+	"2027-03-18": {
+		"topscore": 35.0,
+		"halfrange": 7.49
+	},
+	"2027-03-19": {
+		"topscore": 47.0,
+		"halfrange": 10.21
+	},
+	"2027-03-20": {
+		"topscore": 39.0,
+		"halfrange": 5.99
+	},
+	"2027-03-21": {
+		"topscore": 53.0,
+		"halfrange": 2.67
+	},
+	"2027-03-22": {
+		"topscore": 59.0,
+		"halfrange": 1.69
+	},
+	"2027-03-23": {
+		"topscore": 52.0,
+		"halfrange": 2.58
+	},
+	"2027-03-24": {
+		"topscore": 52.0,
+		"halfrange": 3.54
+	},
+	"2027-03-25": {
+		"topscore": 55.0,
+		"halfrange": 3.43
+	},
+	"2027-03-26": {
+		"topscore": 49.0,
+		"halfrange": 4.24
+	},
+	"2027-03-27": {
+		"topscore": 55.0,
+		"halfrange": 3.33
+	},
+	"2027-03-28": {
+		"topscore": 50.0,
+		"halfrange": 6.18
+	},
+	"2027-03-29": {
+		"topscore": 43.0,
+		"halfrange": 1.2
+	},
+	"2027-03-30": {
+		"topscore": 60.0,
+		"halfrange": 2.28
+	},
+	"2027-03-31": {
+		"topscore": 45.0,
+		"halfrange": 3.08
+	},
+	"2027-04-01": {
+		"topscore": 55.0,
+		"halfrange": 7.6
+	},
+	"2027-04-02": {
+		"topscore": 52.0,
+		"halfrange": 3.47
+	},
+	"2027-04-03": {
+		"topscore": 49.0,
+		"halfrange": 6.59
+	},
+	"2027-04-04": {
+		"topscore": 51.0,
+		"halfrange": 3.12
+	},
+	"2027-04-05": {
+		"topscore": 46.0,
+		"halfrange": 2.56
+	},
+	"2027-04-06": {
+		"topscore": 48.0,
+		"halfrange": 5.92
+	},
+	"2027-04-07": {
+		"topscore": 48.0,
+		"halfrange": 6.18
+	},
+	"2027-04-08": {
+		"topscore": 62.0,
+		"halfrange": 1.69
+	},
+	"2027-04-09": {
+		"topscore": 54.0,
+		"halfrange": 1.55
+	},
+	"2027-04-10": {
+		"topscore": 53.0,
+		"halfrange": 2.11
+	},
+	"2027-04-11": {
+		"topscore": 50.0,
+		"halfrange": 1.16
+	},
+	"2027-04-12": {
+		"topscore": 50.0,
+		"halfrange": 2.33
+	},
+	"2027-04-13": {
+		"topscore": 55.0,
+		"halfrange": 3.02
+	},
+	"2027-04-14": {
+		"topscore": 57.0,
+		"halfrange": 1.69
+	},
+	"2027-04-15": {
+		"topscore": 46.0,
+		"halfrange": 5.59
+	},
+	"2027-04-16": {
+		"topscore": 57.0,
+		"halfrange": 4.77
+	},
+	"2027-04-17": {
+		"topscore": 51.0,
+		"halfrange": 3.17
+	},
+	"2027-04-18": {
+		"topscore": 48.0,
+		"halfrange": 2.23
+	},
+	"2027-04-19": {
+		"topscore": 51.0,
+		"halfrange": 1.93
+	},
+	"2027-04-20": {
+		"topscore": 34.0,
+		"halfrange": 7.7
+	},
+	"2027-04-21": {
+		"topscore": 38.0,
+		"halfrange": 5.05
+	},
+	"2027-04-22": {
+		"topscore": 49.0,
+		"halfrange": 3.78
+	},
+	"2027-04-23": {
+		"topscore": 46.0,
+		"halfrange": 0.89
+	},
+	"2027-04-24": {
+		"topscore": 46.0,
+		"halfrange": 5.79
+	},
+	"2027-04-25": {
+		"topscore": 45.0,
+		"halfrange": 3.61
+	},
+	"2027-04-26": {
+		"topscore": 46.0,
+		"halfrange": 3.67
+	},
+	"2027-04-27": {
+		"topscore": 55.0,
+		"halfrange": 1.47
+	},
+	"2027-04-28": {
+		"topscore": 46.0,
+		"halfrange": 2.04
+	},
+	"2027-04-29": {
+		"topscore": 50.0,
+		"halfrange": 2.63
+	},
+	"2027-04-30": {
+		"topscore": 52.0,
+		"halfrange": 3.46
+	},
+	"2027-04-31": {
+		"topscore": 45.0,
+		"halfrange": 1.32
+	},
+	"2027-05-01": {
+		"topscore": 51.0,
+		"halfrange": 1.4
+	},
+	"2027-05-02": {
+		"topscore": 52.0,
+		"halfrange": 3.01
+	},
+	"2027-05-03": {
+		"topscore": 40.0,
+		"halfrange": 3.2
+	},
+	"2027-05-04": {
+		"topscore": 47.0,
+		"halfrange": 2.8
+	},
+	"2027-05-05": {
+		"topscore": 58.0,
+		"halfrange": 3.09
+	},
+	"2027-05-06": {
+		"topscore": 58.0,
+		"halfrange": 3.07
+	},
+	"2027-05-07": {
+		"topscore": 57.0,
+		"halfrange": 1.49
+	},
+	"2027-05-08": {
+		"topscore": 55.0,
+		"halfrange": 1.41
+	},
+	"2027-05-09": {
+		"topscore": 51.0,
+		"halfrange": 1.92
+	},
+	"2027-05-10": {
+		"topscore": 52.0,
+		"halfrange": 5.13
+	},
+	"2027-05-11": {
+		"topscore": 54.0,
+		"halfrange": 0.61
+	},
+	"2027-05-12": {
+		"topscore": 50.0,
+		"halfrange": 5.17
+	},
+	"2027-05-13": {
+		"topscore": 51.0,
+		"halfrange": 4.05
+	},
+	"2027-05-14": {
+		"topscore": 49.0,
+		"halfrange": 6.82
+	},
+	"2027-05-15": {
+		"topscore": 55.0,
+		"halfrange": 3.31
+	},
+	"2027-05-16": {
+		"topscore": 51.0,
+		"halfrange": 3.97
+	},
+	"2027-05-17": {
+		"topscore": 53.0,
+		"halfrange": 1.89
+	},
+	"2027-05-18": {
+		"topscore": 45.0,
+		"halfrange": 2.12
+	},
+	"2027-05-19": {
+		"topscore": 58.0,
+		"halfrange": 2.77
+	},
+	"2027-05-20": {
+		"topscore": 54.0,
+		"halfrange": 4.26
+	},
+	"2027-05-21": {
+		"topscore": 49.0,
+		"halfrange": 1.93
+	},
+	"2027-05-22": {
+		"topscore": 46.0,
+		"halfrange": 3.48
+	},
+	"2027-05-23": {
+		"topscore": 50.0,
+		"halfrange": 5.51
+	},
+	"2027-05-24": {
+		"topscore": 51.0,
+		"halfrange": 1.16
+	},
+	"2027-05-25": {
+		"topscore": 49.0,
+		"halfrange": 1.57
+	},
+	"2027-05-26": {
+		"topscore": 50.0,
+		"halfrange": 1.21
+	},
+	"2027-05-27": {
+		"topscore": 43.0,
+		"halfrange": 2.28
+	},
+	"2027-05-28": {
+		"topscore": 55.0,
+		"halfrange": 0.68
+	},
+	"2027-05-29": {
+		"topscore": 43.0,
+		"halfrange": 2.26
+	},
+	"2027-05-30": {
+		"topscore": 49.0,
+		"halfrange": 3.65
+	},
+	"2027-05-31": {
+		"topscore": 56.0,
+		"halfrange": 1.39
+	},
+	"2027-06-01": {
+		"topscore": 50.0,
+		"halfrange": 0.56
+	},
+	"2027-06-02": {
+		"topscore": 52.0,
+		"halfrange": 3.46
+	},
+	"2027-06-03": {
+		"topscore": 64.0,
+		"halfrange": 1.09
+	},
+	"2027-06-04": {
+		"topscore": 53.0,
+		"halfrange": 2.12
+	},
+	"2027-06-05": {
+		"topscore": 28.0,
+		"halfrange": 13.16
+	},
+	"2027-06-06": {
+		"topscore": 62.0,
+		"halfrange": 2.42
+	},
+	"2027-06-07": {
+		"topscore": 47.0,
+		"halfrange": 6.0
+	},
+	"2027-06-08": {
+		"topscore": 60.0,
+		"halfrange": 5.19
+	},
+	"2027-06-09": {
+		"topscore": 47.0,
+		"halfrange": 0.56
+	},
+	"2027-06-10": {
+		"topscore": 46.0,
+		"halfrange": 12.51
+	},
+	"2027-06-11": {
+		"topscore": 55.0,
+		"halfrange": 2.21
+	},
+	"2027-06-12": {
+		"topscore": 49.0,
+		"halfrange": 4.79
+	},
+	"2027-06-13": {
+		"topscore": 50.0,
+		"halfrange": 3.06
+	},
+	"2027-06-14": {
+		"topscore": 51.0,
+		"halfrange": 1.75
+	},
+	"2027-06-15": {
+		"topscore": 58.0,
+		"halfrange": 3.43
+	},
+	"2027-06-16": {
+		"topscore": 48.0,
+		"halfrange": 1.74
+	},
+	"2027-06-17": {
+		"topscore": 48.0,
+		"halfrange": 4.3
+	},
+	"2027-06-18": {
+		"topscore": 60.0,
+		"halfrange": 1.33
+	},
+	"2027-06-19": {
+		"topscore": 48.0,
+		"halfrange": 1.7
+	},
+	"2027-06-20": {
+		"topscore": 63.0,
+		"halfrange": 2.31
+	},
+	"2027-06-21": {
+		"topscore": 54.0,
+		"halfrange": 4.07
+	},
+	"2027-06-22": {
+		"topscore": 47.0,
+		"halfrange": 0.36
+	},
+	"2027-06-23": {
+		"topscore": 54.0,
+		"halfrange": 0.85
+	},
+	"2027-06-24": {
+		"topscore": 50.0,
+		"halfrange": 3.23
+	},
+	"2027-06-25": {
+		"topscore": 38.0,
+		"halfrange": 6.09
+	},
+	"2027-06-26": {
+		"topscore": 49.0,
+		"halfrange": 1.29
+	},
+	"2027-06-27": {
+		"topscore": 55.0,
+		"halfrange": 3.08
+	},
+	"2027-06-28": {
+		"topscore": 54.0,
+		"halfrange": 3.25
+	},
+	"2027-06-29": {
+		"topscore": 55.0,
+		"halfrange": 0.93
+	},
+	"2027-06-30": {
+		"topscore": 60.0,
+		"halfrange": 2.93
+	},
+	"2027-06-31": {
+		"topscore": 45.0,
+		"halfrange": 1.32
+	},
+	"2027-07-01": {
+		"topscore": 58.0,
+		"halfrange": 4.02
+	},
+	"2027-07-02": {
+		"topscore": 53.0,
+		"halfrange": 2.8
+	},
+	"2027-07-03": {
+		"topscore": 51.0,
+		"halfrange": 1.08
+	},
+	"2027-07-04": {
+		"topscore": 47.0,
+		"halfrange": 2.27
+	},
+	"2027-07-05": {
+		"topscore": 50.0,
+		"halfrange": 4.19
+	},
+	"2027-07-06": {
+		"topscore": 47.0,
+		"halfrange": 1.1
+	},
+	"2027-07-07": {
+		"topscore": 57.0,
+		"halfrange": 2.07
+	},
+	"2027-07-08": {
+		"topscore": 47.0,
+		"halfrange": 3.01
+	},
+	"2027-07-09": {
+		"topscore": 52.0,
+		"halfrange": 3.16
+	},
+	"2027-07-10": {
+		"topscore": 55.0,
+		"halfrange": 3.97
+	},
+	"2027-07-11": {
+		"topscore": 53.0,
+		"halfrange": 1.27
+	},
+	"2027-07-12": {
+		"topscore": 62.0,
+		"halfrange": 1.76
+	},
+	"2027-07-13": {
+		"topscore": 48.0,
+		"halfrange": 3.3
+	},
+	"2027-07-14": {
+		"topscore": 54.0,
+		"halfrange": 1.54
+	},
+	"2027-07-15": {
+		"topscore": 42.0,
+		"halfrange": 1.96
+	},
+	"2027-07-16": {
+		"topscore": 51.0,
+		"halfrange": 4.84
+	},
+	"2027-07-17": {
+		"topscore": 57.0,
+		"halfrange": 0.76
+	},
+	"2027-07-18": {
+		"topscore": 51.0,
+		"halfrange": 3.21
+	},
+	"2027-07-19": {
+		"topscore": 37.0,
+		"halfrange": 6.16
+	},
+	"2027-07-20": {
+		"topscore": 41.0,
+		"halfrange": 3.64
+	},
+	"2027-07-21": {
+		"topscore": 49.0,
+		"halfrange": 1.54
+	},
+	"2027-07-22": {
+		"topscore": 53.0,
+		"halfrange": 2.74
+	},
+	"2027-07-23": {
+		"topscore": 57.0,
+		"halfrange": 1.95
+	},
+	"2027-07-24": {
+		"topscore": 48.0,
+		"halfrange": 1.57
+	},
+	"2027-07-25": {
+		"topscore": 47.0,
+		"halfrange": 3.02
+	},
+	"2027-07-26": {
+		"topscore": 55.0,
+		"halfrange": 1.36
+	},
+	"2027-07-27": {
+		"topscore": 53.0,
+		"halfrange": 2.01
+	},
+	"2027-07-28": {
+		"topscore": 43.0,
+		"halfrange": 6.6
+	},
+	"2027-07-29": {
+		"topscore": 44.0,
+		"halfrange": 4.61
+	},
+	"2027-07-30": {
+		"topscore": 57.0,
+		"halfrange": 4.19
+	},
+	"2027-07-31": {
+		"topscore": 49.0,
+		"halfrange": 6.28
+	},
+	"2027-08-01": {
+		"topscore": 50.0,
+		"halfrange": 7.69
+	}
+}

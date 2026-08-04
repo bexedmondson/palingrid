@@ -101,7 +101,7 @@ func gen_particular_date():
 		print(r)
 	
 	if output_to_file:
-		var json = JSON.stringify(results)
+		var json = JSON.stringify(results," ")
 		var filename = "res://notes/letter_sets_" + results[0]["date"] + "-" + results[-1]["date"] + ".json"
 		print(filename)
 		var file = FileAccess.open(filename, FileAccess.WRITE)
