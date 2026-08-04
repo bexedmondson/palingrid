@@ -87,7 +87,7 @@ func gen_particular_date():
 					var letterSetString = ""
 					for character in letterSetArray:
 						letterSetString += character
-					dict["date"] = "%04d-%02d-%02d" % [year, start_month, day]
+					dict["date"] = "%04d-%02d-%02d" % [year, month, day]
 					dict["letterset"] = letterSetString
 					results.append(dict)
 					day += 1
@@ -100,7 +100,7 @@ func gen_particular_date():
 	for r in results:
 		print(r)
 	
-	if true:
+	if output_to_file:
 		var json = JSON.stringify(results)
 		var filename = "res://notes/letter_sets_" + results[0]["date"] + "-" + results[-1]["date"] + ".json"
 		print(filename)
