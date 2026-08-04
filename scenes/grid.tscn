@@ -9,7 +9,7 @@
 [ext_resource type="JSON" path="res://stats.json" id="4_docto"]
 [ext_resource type="Script" uid="uid://dwjborv268g4q" path="res://scripts/DisableScrollOnDrag.gd" id="5_wnhym"]
 [ext_resource type="Script" uid="uid://fusem4g6wje" path="res://scripts/BestScoreIndicator.gd" id="6_2bxyt"]
-[ext_resource type="Script" uid="uid://cro6oq27eeo4" path="res://DebugLetterSetGenerator.gd" id="7_01tbl"]
+[ext_resource type="Script" uid="uid://cro6oq27eeo4" path="res://scripts/DebugLetterSetGenerator.gd" id="7_7wdiv"]
 [ext_resource type="Texture2D" uid="uid://dsialahwm1iv2" path="res://textures/toggle-light-on.svg" id="8_f2tft"]
 [ext_resource type="Texture2D" uid="uid://b8hl8ae172l0h" path="res://textures/toggle-light-off.svg" id="8_idg7c"]
 [ext_resource type="Script" uid="uid://k5jcxqfps3fk" path="res://scripts/LightDarkMode.gd" id="9_0enuu"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dio3u62awig2g" path="res://textures/podium-complex.svg" id="13_ne81u"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://themes/text_shine.tres" id="13_xfqe3"]
 [ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="14_gsnlb"]
+[ext_resource type="PackedScene" uid="uid://dm0m1523pll6l" path="res://scenes/goal_progress_bar.tscn" id="14_x36ys"]
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://scenes/cell.tscn" id="15_01tbl"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://scripts/GridRippleAnimator.gd" id="16_tvpgl"]
 [ext_resource type="Texture2D" uid="uid://dkuycxmj6cfv" path="res://textures/return-arrow.svg" id="19_eudc0"]
@@ -36,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://cdxjmnx1yv3ih" path="res://textures/tutorial_images/valid_word_placements4.png" id="28_cl3o7"]
 [ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://scripts/WelcomeToast.gd" id="29_7swsl"]
 [ext_resource type="Texture2D" uid="uid://kd7tpx8rqas0" path="res://textures/tutorial_images/valid_word_placements5.png" id="29_18g0k"]
+[ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="29_64acc"]
 [ext_resource type="Texture2D" uid="uid://b730uqrmfx3qt" path="res://textures/tutorial_images/valid_word_placements6.png" id="30_docto"]
 [ext_resource type="Texture2D" uid="uid://dbhxy5rmniw0g" path="res://textures/tutorial_images/score1word.png" id="31_wnhym"]
 [ext_resource type="Texture2D" uid="uid://pbu3g6w3bprs" path="res://textures/tutorial_images/score2word.png" id="32_2bxyt"]
@@ -149,9 +151,13 @@ script = ExtResource("3_18g0k")
 statsFile = ExtResource("4_docto")
 
 [node name="DebugLetterSetGenerator" type="Node" parent="CanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
-script = ExtResource("7_01tbl")
+script = ExtResource("7_7wdiv")
 generator = NodePath("..")
-start_day = 24
+start_day = 3
+start_month = 8
+is_range = true
+end_month = 8
+end_year = 2027
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
@@ -169,7 +175,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LightDarkModeButton" type="TextureButton" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1281457744 node_paths=PackedStringArray("rootNode", "saveFileHandler")]
+[node name="LightDarkModeButton" type="TextureButton" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1281457744 node_paths=PackedStringArray("saveFileHandler")]
 custom_maximum_size = Vector2(217.834, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -180,11 +186,10 @@ texture_pressed = ExtResource("8_f2tft")
 script = ExtResource("9_0enuu")
 light = ExtResource("1_wqld8")
 dark = ExtResource("1_f2tft")
-rootNode = NodePath("../../../..")
 saveFileHandler = NodePath("../../../../SaveFileHandler")
 
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -221,6 +226,10 @@ grid = NodePath("../../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxCo
 scoreboard = NodePath("../../../../../../Scoreboard")
 saveFileHandler = NodePath("../../../../../../SaveFileHandler")
 lightDarkMode = NodePath("../../../LightDarkModeButton")
+
+[node name="GoalProgressBar" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=372927344 node_paths=PackedStringArray("grid") instance=ExtResource("14_x36ys")]
+layout_mode = 2
+grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2
@@ -649,20 +658,23 @@ last_wrap_alignment = 2
 [node name="WordPanel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer/VBoxContainer" unique_id=1288653546 instance_placeholder="res://scenes/word.tscn"]
 layout_mode = 2
 
-[node name="Scoreboard" parent="CanvasLayer/PanelContainer" unique_id=531030568 node_paths=PackedStringArray("login_handler") instance=ExtResource("21_aktff")]
+[node name="Scoreboard" parent="CanvasLayer/PanelContainer" unique_id=531030568 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 2
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../LoginHandler")
+name_change_handler = NodePath("../NameEntryPanel")
 
 [node name="ShareButton" parent="CanvasLayer/PanelContainer/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(531030568, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../LetterSetGenerator")
 
-[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer/Scoreboard" index="2" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator")]
-loginHandler = NodePath("../../LoginHandler")
-best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
+[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
+visible = false
+layout_mode = 2
+loginHandler = NodePath("../LoginHandler")
+best_score_indicator = NodePath("../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 
 [node name="HowToPlay" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false

@@ -1003,6 +1003,7 @@ capon
 caps
 car
 carat
+carb
 carbs
 card
 cards
@@ -6800,6 +6801,7 @@ toddy
 toe
 toed
 toes
+toff
 toffy
 tofu
 tog
@@ -6940,6 +6942,7 @@ trot
 troth
 trots
 trout
+trove
 troy
 troys
 truce
@@ -6958,8 +6961,6 @@ try
 tryst
 tsar
 tsars
-tsp
-ttys
 tub
 tuba
 tubas

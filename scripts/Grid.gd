@@ -9,6 +9,8 @@ extends Control
 @export var score : Label
 @export var bestScore : BestScoreIndicator
 
+signal score_updated(new_score: int)
+
 var lineSlotIndexes = [
 	[0,  1,  2,  3,  4], 
 	[5,  6,  7,  8,  9], 
@@ -99,9 +101,13 @@ func update(_slot: DropSlot):
 	for word in wordInstanceMap:
 		total += wordInstanceMap[word].get_points()
 	
+	if score.text == str(total):
+		return
+	
 	score.text = "SCORE: " + str(total)
 	
 	bestScore.update(total)
+	score_updated.emit(total)
 
 func add_line_words(line: Array, words: Dictionary):
 	#print(str(line))
