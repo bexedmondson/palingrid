@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bhyowc0bxhtts" path="res://scripts/GoalProgressTick.gd" id="1_gbtqu"]
 [ext_resource type="StyleBox" uid="uid://o18mgxrpxxlu" path="res://themes/goal_progress_tick_filled.tres" id="1_lsitv"]
 [ext_resource type="StyleBox" uid="uid://b2syymu18u30q" path="res://themes/goal_progress_tick_empty.tres" id="3_1yeyr"]
+[ext_resource type="StyleBox" uid="uid://iuehcnny5cf5" path="res://themes/goal_progress_tick_outline.tres" id="4_1yeyr"]
 
 [node name="TickPanel" type="Panel" unique_id=2002151849]
 anchors_preset = 4
@@ -16,5 +17,5 @@ script = ExtResource("1_gbtqu")
 state_styleboxes = Dictionary[int, StyleBox]({
 0: ExtResource("3_1yeyr"),
 1: ExtResource("1_lsitv"),
-2: null
+2: ExtResource("4_1yeyr")
 })

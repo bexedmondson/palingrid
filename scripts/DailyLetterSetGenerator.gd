@@ -3,7 +3,9 @@ class_name DailyLetterSetGenerator extends Node
 
 @export var statsFile : JSON
 
-var data = {}
+var today_dict
+
+var cumulative_letter_distribution_data = {}
 var generated_set = []
 
 var minvowels = 7
@@ -40,8 +42,8 @@ func gen_date(count, day, month, year):
 					vowel_count += 1
 					break
 		else:
-			for d in data:
-				if (r < data[d]):
+			for d in cumulative_letter_distribution_data:
+				if (r < cumulative_letter_distribution_data[d]):
 					generated_set.append(d)
 					if d in vowels:
 						vowel_count += 1
@@ -51,15 +53,15 @@ func gen_date(count, day, month, year):
 
 
 func generate(count: int):
-	var date = Time.get_date_dict_from_system(true)
-	gen_date(count, 31, 7, date["year"])
+	today_dict = Time.get_date_dict_from_system(true)
+	gen_date(count, today_dict["day"], today_dict["month"], today_dict["year"])
 	return generated_set
 
 
 func load_letter_distribution() -> void:
 	var rawdata = statsFile.data
-	data = {}
+	cumulative_letter_distribution_data = {}
 	var cumulative = 0.0
 	for d in rawdata:
 		cumulative += rawdata[d]
-		data[d] = cumulative
+		cumulative_letter_distribution_data[d] = cumulative

@@ -1,23 +1,53 @@
 class_name GoalProgressBar
 extends ProgressBar
 
+@export var score_prediction_file : JSON
+
 @export var grid : Grid
 @export var ticks : Array[GoalProgressTick]
+
+var predicted_top_score : int
+var model_prediction_halfrange : float
+
+var goals = []
 
 func _ready() -> void:
 	self.value = 0
 	
 	if grid.is_node_ready():
-		_initialise()
+		_initialise_bar()
 	else:
-		grid.ready.connect(_initialise)
+		grid.ready.connect(_initialise_bar)
 	grid.score_updated.connect(_on_score_updated)
 
-func _initialise():
-	#do tick target setup here
-	self.max_value = 50
+func _initialise_bar():
+	var score_prediction_data = score_prediction_file.data
+	var today_dict = grid.generator.today_dict
+	var today_prediction_data = score_prediction_data["%d-%02d-%02d" % [ today_dict["year"], today_dict["month"], today_dict["day"] ]]
+	predicted_top_score = today_prediction_data["topscore"]
+	model_prediction_halfrange = today_prediction_data["halfrange"]
+	
+	#get reasonable highest goal value from predicted top score and halfrange
+	var top_goal = predicted_top_score
+	
+	if model_prediction_halfrange < 1:
+		top_goal -= 1
+	elif model_prediction_halfrange > 5:
+		top_goal -= 5
+	
+	#ensure halfrange value isn't disproportionately big or small to ensure tick separation is sensible
+	var tick_diff = round(model_prediction_halfrange)
+	tick_diff = max(3, tick_diff)
+	
+	#making sure the minimum possible goal is around 16, because that should be doable i hope
+	var max_tick_diff = round((top_goal - 16.0) / (ticks.size() - 1))
+	tick_diff = min(max_tick_diff, tick_diff)
+	
+	#TODO add bonus goal that's same as predicted top score, that only appears after reaching the original top goal
+	
+	self.max_value = top_goal # TODO make these spaced out a lot more!!
 	for i in ticks.size():
-		ticks[i].set_target(10 * (i + 1), self.max_value)
+		ticks[i].set_target(self.max_value - tick_diff * i, self.max_value)
 	
 	var best = grid.bestScore.best
 	for t in ticks:

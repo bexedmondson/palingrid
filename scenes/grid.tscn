@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dio3u62awig2g" path="res://textures/podium-complex.svg" id="13_ne81u"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://themes/text_shine.tres" id="13_xfqe3"]
 [ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="14_gsnlb"]
+[ext_resource type="PackedScene" uid="uid://dm0m1523pll6l" path="res://scenes/goal_progress_bar.tscn" id="14_x36ys"]
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://scenes/cell.tscn" id="15_01tbl"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://scripts/GridRippleAnimator.gd" id="16_tvpgl"]
 [ext_resource type="Texture2D" uid="uid://dkuycxmj6cfv" path="res://textures/return-arrow.svg" id="19_eudc0"]
@@ -151,11 +152,11 @@ statsFile = ExtResource("4_docto")
 [node name="DebugLetterSetGenerator" type="Node" parent="CanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
 script = ExtResource("7_7wdiv")
 generator = NodePath("..")
-output_to_file = false
-start_day = 31
+start_day = 3
+start_month = 8
 is_range = true
-end_day = 3
 end_month = 8
+end_year = 2027
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
@@ -187,7 +188,7 @@ dark = ExtResource("1_f2tft")
 saveFileHandler = NodePath("../../../../SaveFileHandler")
 
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -224,6 +225,10 @@ grid = NodePath("../../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxCo
 scoreboard = NodePath("../../../../../../Scoreboard")
 saveFileHandler = NodePath("../../../../../../SaveFileHandler")
 lightDarkMode = NodePath("../../../LightDarkModeButton")
+
+[node name="GoalProgressBar" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=372927344 node_paths=PackedStringArray("grid") instance=ExtResource("14_x36ys")]
+layout_mode = 2
+grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2
@@ -662,10 +667,6 @@ login_handler = NodePath("../LoginHandler")
 [node name="ShareButton" parent="CanvasLayer/PanelContainer/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(531030568, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../LetterSetGenerator")
-
-[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer/Scoreboard" index="2" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator")]
-loginHandler = NodePath("../../LoginHandler")
-best_score_indicator = NodePath("../../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 
 [node name="HowToPlay" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false
