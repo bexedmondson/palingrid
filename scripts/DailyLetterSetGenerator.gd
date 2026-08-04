@@ -19,6 +19,9 @@ var vowels = {
 
 var daySeed : int
 
+func _enter_tree() -> void:
+	ScoreSubmitter.on_generator_enter_tree(self)
+
 func gen_date(count, day, month, year):
 	var date = { "year": year, "month": month, "day": day }
 	daySeed = Time.get_unix_time_from_datetime_dict(date)

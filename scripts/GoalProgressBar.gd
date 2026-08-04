@@ -10,6 +10,7 @@ var predicted_top_score : int
 var model_prediction_halfrange : float
 
 var goals = []
+var bar_tween : Tween
 
 func _ready() -> void:
 	self.value = 0
@@ -37,14 +38,15 @@ func _initialise_bar():
 	
 	#ensure halfrange value isn't disproportionately big or small to ensure tick separation is sensible
 	var tick_diff = round(model_prediction_halfrange)
-	tick_diff = max(3, tick_diff)
+	tick_diff = max(5, tick_diff)
 	
 	#making sure the minimum possible goal is around 16, because that should be doable i hope
 	var max_tick_diff = round((top_goal - 16.0) / (ticks.size() - 1))
 	tick_diff = min(max_tick_diff, tick_diff)
 	
 	#TODO add bonus goal that's same as predicted top score, that only appears after reaching the original top goal
-	
+	print("tick diff " + str(tick_diff))
+	print("halfrange " + str(model_prediction_halfrange))
 	self.max_value = top_goal # TODO make these spaced out a lot more!!
 	for i in ticks.size():
 		ticks[i].set_target(self.max_value - tick_diff * i, self.max_value)
@@ -57,16 +59,26 @@ func _initialise_bar():
 			t.set_state(GoalProgressTick.TickState.NOT_REACHED)
 
 func _on_score_updated(new_score : int):
+	if bar_tween != null and bar_tween.is_running():
+		bar_tween.kill()
+	
+	bar_tween = create_tween()
+	bar_tween.set_ease(Tween.EASE_IN_OUT)
+	bar_tween.tween_method(_update_bar, self.value, new_score, 0.3)
+	bar_tween.play()
+
+func _update_bar(tween_value):
+	self.value = tween_value
+	var best = grid.bestScore.best
 	for t in ticks:
-		if t.target_amount <= new_score:
-			if t.state == GoalProgressTick.TickState.NOT_REACHED:
+		if t.target_amount <= tween_value:
+			if t.state == GoalProgressTick.TickState.NOT_REACHED or t.state == GoalProgressTick.TickState.RESET:
 				#TODO change to tween anim
 				t.set_state(GoalProgressTick.TickState.REACHED_CURRENT)
 			else:
 				t.set_state(GoalProgressTick.TickState.REACHED_CURRENT)
 		else:
-			if t.state == GoalProgressTick.TickState.NOT_REACHED:
-				#TODO change to tween anim
+			if t.target_amount <= best:
 				t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS)
 			else:
 				t.set_state(GoalProgressTick.TickState.NOT_REACHED)

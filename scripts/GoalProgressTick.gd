@@ -5,13 +5,14 @@ enum TickState
 {
 	NOT_REACHED,
 	REACHED_CURRENT,
-	REACHED_PREVIOUS
+	REACHED_PREVIOUS,
+	RESET
 }
 
 @export var state_styleboxes : Dictionary[TickState, StyleBox]
 
 var target_amount : int
-var state : TickState
+var state : TickState = TickState.RESET
 
 func set_target(target : int, progress_bar_max : int):
 	target_amount = target

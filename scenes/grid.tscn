@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://cdxjmnx1yv3ih" path="res://textures/tutorial_images/valid_word_placements4.png" id="28_cl3o7"]
 [ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://scripts/WelcomeToast.gd" id="29_7swsl"]
 [ext_resource type="Texture2D" uid="uid://kd7tpx8rqas0" path="res://textures/tutorial_images/valid_word_placements5.png" id="29_18g0k"]
+[ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="29_64acc"]
 [ext_resource type="Texture2D" uid="uid://b730uqrmfx3qt" path="res://textures/tutorial_images/valid_word_placements6.png" id="30_docto"]
 [ext_resource type="Texture2D" uid="uid://dbhxy5rmniw0g" path="res://textures/tutorial_images/score1word.png" id="31_wnhym"]
 [ext_resource type="Texture2D" uid="uid://pbu3g6w3bprs" path="res://textures/tutorial_images/score2word.png" id="32_2bxyt"]
@@ -657,16 +658,23 @@ last_wrap_alignment = 2
 [node name="WordPanel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer/VBoxContainer" unique_id=1288653546 instance_placeholder="res://scenes/word.tscn"]
 layout_mode = 2
 
-[node name="Scoreboard" parent="CanvasLayer/PanelContainer" unique_id=531030568 node_paths=PackedStringArray("login_handler") instance=ExtResource("21_aktff")]
+[node name="Scoreboard" parent="CanvasLayer/PanelContainer" unique_id=531030568 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 2
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../LoginHandler")
+name_change_handler = NodePath("../NameEntryPanel")
 
 [node name="ShareButton" parent="CanvasLayer/PanelContainer/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(531030568, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../LetterSetGenerator")
+
+[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
+visible = false
+layout_mode = 2
+loginHandler = NodePath("../LoginHandler")
+best_score_indicator = NodePath("../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 
 [node name="HowToPlay" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false

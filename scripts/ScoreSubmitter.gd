@@ -1,6 +1,9 @@
 extends Node
 
-@export var letter_set_generator : DailyLetterSetGenerator
+var letter_set_generator : DailyLetterSetGenerator
+
+func on_generator_enter_tree(generator):
+	letter_set_generator = generator
 
 func submit_score(score):
 	var date = Time.get_date_dict_from_system(true)

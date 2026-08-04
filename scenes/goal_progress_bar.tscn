@@ -18,7 +18,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = ExtResource("1_tsakl")
 theme_override_styles/fill = ExtResource("2_14xqa")
-value = 15.65
 show_percentage = false
 script = ExtResource("1_j7iog")
 score_prediction_file = ExtResource("4_14xqa")
