@@ -12,6 +12,8 @@ extends ProgressBar
 var predicted_top_score : int
 var model_prediction_halfrange : float
 
+var current_displayed_score = 0
+
 var goals = []
 var bar_tween : Tween
 
@@ -53,7 +55,7 @@ func _initialise_bar():
 	self.max_value = top_goal # TODO make these spaced out a lot more!!
 	best_bar.max_value = top_goal
 	for i in ticks.size():
-		ticks[i].set_target(self.max_value - tick_diff * i, self.max_value)
+		ticks[i].set_target(self.max_value - tick_diff * (ticks.size() - i - 1), self)
 	
 	var best = grid.bestScore.best
 	best_bar.value = best
@@ -65,17 +67,23 @@ func _initialise_bar():
 			t.set_state(GoalProgressTick.TickState.NOT_REACHED)
 
 func _on_score_updated(new_score : int):
+	print("score updated to " + str(new_score))
 	if bar_tween != null and bar_tween.is_running():
 		bar_tween.kill()
 	
 	bar_tween = create_tween()
 	bar_tween.set_ease(Tween.EASE_IN_OUT)
 	bar_tween.set_trans(Tween.TRANS_QUAD)
-	bar_tween.tween_method(_update_bar, self.value, new_score, 0.3)
+	bar_tween.tween_method(_update_bar, float(current_displayed_score), float(new_score), 0.3)
+	
 	bar_tween.play()
 
-func _update_bar(tween_value):
-	self.value = tween_value
+func _update_bar(tween_value : float):
+	current_displayed_score = tween_value
+	print("updating bar to " + str(tween_value))
+	var proportion = get_bar_proportion(tween_value)
+	
+	self.value = proportion * max_value
 	
 	var best = grid.bestScore.best
 	if best_bar.value < best:
@@ -95,3 +103,9 @@ func _update_bar(tween_value):
 				t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS)
 			else:
 				t.set_state(GoalProgressTick.TickState.NOT_REACHED)
+
+func get_bar_proportion(amount):
+	var lowest_goal = ticks[0].target_amount
+	var x_proportion_before_first_goal = 0.4 * min(amount, lowest_goal) / lowest_goal
+	var x_proportion_after_first_goal = 0.6 * max(0, amount - lowest_goal) / (self.max_value - lowest_goal)
+	return x_proportion_before_first_goal + x_proportion_after_first_goal
