@@ -174,6 +174,7 @@ size_flags_horizontal = 3
 [node name="HeaderMarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer" unique_id=1132622539]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_top = 20
 
 [node name="LightDarkModeButton" type="TextureButton" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1281457744 node_paths=PackedStringArray("saveFileHandler")]
 custom_maximum_size = Vector2(217.834, 100)
@@ -193,7 +194,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="TotalLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=1348282677]
@@ -203,6 +204,7 @@ text = "SCORE: 0"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=1565934058]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -230,6 +232,10 @@ lightDarkMode = NodePath("../../../LightDarkModeButton")
 [node name="GoalProgressBar" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=372927344 node_paths=PackedStringArray("grid") instance=ExtResource("14_x36ys")]
 layout_mode = 2
 grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+
+[node name="BestPointerLabel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar/BestPointer/BestPointerBGPanelContainer" parent_id_path=PackedInt32Array(372927344, 1530217380) index="0" unique_id=1083228574]
+theme_type_variation = &"LabelSubheading"
+text = "BEST: 0"
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2
@@ -973,4 +979,5 @@ text = "testing 123"
 [connection signal="pressed" from="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="CanvasLayer/PanelContainer/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="CanvasLayer/DebugButton" to="CanvasLayer/DebugButton" method="on_click"]
 
+[editable path="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar"]
 [editable path="CanvasLayer/PanelContainer/Scoreboard"]

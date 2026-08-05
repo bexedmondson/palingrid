@@ -6,6 +6,8 @@ extends ProgressBar
 @export var grid : Grid
 @export var ticks : Array[GoalProgressTick]
 @export var best_bar : ProgressBar
+@export var best_label : Label
+@export var best_pointer : Control
 
 var predicted_top_score : int
 var model_prediction_halfrange : float
@@ -68,6 +70,7 @@ func _on_score_updated(new_score : int):
 	
 	bar_tween = create_tween()
 	bar_tween.set_ease(Tween.EASE_IN_OUT)
+	bar_tween.set_trans(Tween.TRANS_QUAD)
 	bar_tween.tween_method(_update_bar, self.value, new_score, 0.3)
 	bar_tween.play()
 
@@ -77,6 +80,8 @@ func _update_bar(tween_value):
 	var best = grid.bestScore.best
 	if best_bar.value < best:
 		best_bar.value = tween_value
+		best_pointer.position.x = self.size.x / self.max_value * tween_value
+		best_label.text = "best: %d" % (round(tween_value))
 	
 	for t in ticks:
 		if t.target_amount <= tween_value:

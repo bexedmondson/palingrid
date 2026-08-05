@@ -1,11 +1,30 @@
 [gd_scene format=3 uid="uid://dm0m1523pll6l"]
 
 [ext_resource type="Script" uid="uid://bisoco1s20e5r" path="res://scripts/GoalProgressBar.gd" id="1_j7iog"]
-[ext_resource type="Theme" uid="uid://dsjemrfw3gdrr" path="res://themes/dark/dark_theme.tres" id="1_tsakl"]
 [ext_resource type="JSON" path="res://target_score_data.json" id="4_14xqa"]
 [ext_resource type="PackedScene" uid="uid://qr2rabnskuxj" path="res://scenes/goal_progress_tick.tscn" id="4_tsakl"]
 
-[node name="GoalProgressBar" type="ProgressBar" unique_id=372927344 node_paths=PackedStringArray("ticks", "best_bar")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moutm"]
+bg_color = Color(0.1298, 0.59, 0.57466, 1)
+corner_radius_top_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsakl"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.091, 0.14, 0.13265, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1298, 0.59, 0.57466, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="GoalProgressBar" type="ProgressBar" unique_id=372927344 node_paths=PackedStringArray("ticks", "best_bar", "best_label", "best_pointer")]
 custom_minimum_size = Vector2(0, 10)
 anchors_preset = 14
 anchor_top = 0.5
@@ -15,13 +34,14 @@ offset_top = -13.5
 offset_bottom = -3.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_tsakl")
 value = 23.66
 show_percentage = false
 script = ExtResource("1_j7iog")
 score_prediction_file = ExtResource("4_14xqa")
 ticks = [NodePath("TickPanel"), NodePath("TickPanel2"), NodePath("TickPanel3"), NodePath("TickPanel4"), NodePath("TickPanel5")]
 best_bar = NodePath("BestScoreProgressBar")
+best_label = NodePath("BestPointer/BestPointerBGPanelContainer/BestPointerLabel")
+best_pointer = NodePath("BestPointer")
 
 [node name="BestScoreProgressBar" type="ProgressBar" parent="." unique_id=1315810449]
 show_behind_parent = true
@@ -59,3 +79,45 @@ offset_right = 0.0
 layout_mode = 1
 offset_left = 0.0
 offset_right = 0.0
+
+[node name="BestPointer" type="Control" parent="." unique_id=1011538738]
+layout_mode = 1
+anchors_preset = 0
+scale = Vector2(0.9, 0.9)
+
+[node name="BestPointerArrow" type="Panel" parent="BestPointer" unique_id=1425268127]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_right = 15.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -2.3561945
+theme_override_styles/panel = SubResource("StyleBoxFlat_moutm")
+
+[node name="BestPointerBGPanelContainer" type="PanelContainer" parent="BestPointer" unique_id=1530217380]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -50.349
+offset_right = 25.0
+offset_bottom = -12.348999
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_tsakl")
+
+[node name="BestPointerLabel" type="Label" parent="BestPointer/BestPointerBGPanelContainer" unique_id=1083228574]
+layout_mode = 2
+text = "best: 00"
+horizontal_alignment = 1
+vertical_alignment = 1
