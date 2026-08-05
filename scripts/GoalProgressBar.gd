@@ -67,7 +67,6 @@ func _initialise_bar():
 			t.set_state(GoalProgressTick.TickState.NOT_REACHED)
 
 func _on_score_updated(new_score : int):
-	print("score updated to " + str(new_score))
 	if bar_tween != null and bar_tween.is_running():
 		bar_tween.kill()
 	
@@ -80,7 +79,6 @@ func _on_score_updated(new_score : int):
 
 func _update_bar(tween_value : float):
 	current_displayed_score = tween_value
-	print("updating bar to " + str(tween_value))
 	var proportion = get_bar_proportion(tween_value)
 	
 	self.value = proportion * max_value
