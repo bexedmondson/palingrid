@@ -70,6 +70,14 @@ func _initialise_bar():
 	
 	best_pointer.position.x = self.size.x * get_bar_proportion(current_displayed_best)
 	best_label.text = "best: %d" % best
+	
+	do_start_game_anim()
+	
+func do_start_game_anim():
+	var start_anim_tween = create_tween()
+	start_anim_tween.set_parallel(true)
+	for i in ticks.size():
+		start_anim_tween.tween_callback(ticks[i].on_tooltip_show).set_delay(i * 0.5)
 
 func _on_score_updated(new_score : int):
 	if bar_tween != null and bar_tween.is_running():

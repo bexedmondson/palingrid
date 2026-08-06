@@ -4,8 +4,9 @@
 [ext_resource type="StyleBox" uid="uid://o18mgxrpxxlu" path="res://themes/goal_progress_tick_filled.tres" id="1_lsitv"]
 [ext_resource type="StyleBox" uid="uid://b2syymu18u30q" path="res://themes/goal_progress_tick_empty.tres" id="3_1yeyr"]
 [ext_resource type="StyleBox" uid="uid://iuehcnny5cf5" path="res://themes/goal_progress_tick_outline.tres" id="4_1yeyr"]
+[ext_resource type="Theme" uid="uid://dsjemrfw3gdrr" path="res://themes/dark/dark_theme.tres" id="5_ugu4l"]
 
-[node name="TickPanel" type="Panel" unique_id=2002151849]
+[node name="TickPanel" type="Panel" unique_id=2002151849 node_paths=PackedStringArray("tooltip", "tooltip_label")]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -19,3 +20,46 @@ state_styleboxes = Dictionary[int, StyleBox]({
 1: ExtResource("1_lsitv"),
 2: ExtResource("4_1yeyr")
 })
+tooltip = NodePath("Tooltip")
+tooltip_label = NodePath("Tooltip/Label")
+
+[node name="Tooltip" type="PanelContainer" parent="." unique_id=1090251574]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -17.5
+offset_right = 18.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("5_ugu4l")
+theme_type_variation = &"PanelContainerThinMargins"
+theme_override_styles/panel = ExtResource("1_lsitv")
+
+[node name="Label" type="Label" parent="Tooltip" unique_id=1277424145]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.091, 0.14, 0.13265, 1)
+text = "00"
+
+[node name="Button" type="Button" parent="." unique_id=1752998379]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="on_tooltip_show"]
