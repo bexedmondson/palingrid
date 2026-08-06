@@ -3,8 +3,6 @@ extends Label
 
 @export var gridAnimationPlayer : GridRippleAnimator 
 @export var dailyGenerator : DailyLetterSetGenerator
-@export var bestLabel : Label
-@export var bestContainer : Control
 @export var grid : Grid
 @export var scoreboard : Scoreboard
 @export var saveFileHandler : SaveFileHandler
@@ -54,12 +52,10 @@ func update(current: int) -> void:
 				themeColour = active_theme.get_color("font_color", active_theme.get_type_variation_base(self.theme_type_variation))
 		
 		self.add_theme_color_override("font_color", themeColour)
-		bestLabel.add_theme_color_override("font_color", themeColour)
 		
 		font_color_flash_tween = self.create_tween()
 		font_color_flash_tween.set_parallel()
 		font_color_flash_tween.tween_property(self, "theme_override_colors/font_color", themeColour, 1.0).from(Color.YELLOW)
-		font_color_flash_tween.tween_property(bestLabel, "theme_override_colors/font_color", themeColour, 1.0).from(Color.YELLOW)
 		font_color_flash_tween.finished.connect(on_font_flash_finished)
 		font_color_flash_tween.play()
 	else:
@@ -73,7 +69,6 @@ func update(current: int) -> void:
 	
 func on_font_flash_finished():
 	self.remove_theme_color_override("font_color")
-	bestLabel.remove_theme_color_override("font_color")
 
 func show_scoreboard(score: int):
 	if !CheddaBoards.is_authenticated():

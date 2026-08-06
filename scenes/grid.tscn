@@ -213,7 +213,7 @@ layout_mode = 2
 theme_type_variation = &"LabelSubheading"
 text = "TODAY'S BEST:"
 
-[node name="BestScoreLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "bestLabel", "bestContainer", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
+[node name="BestScoreLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 theme_type_variation = &"LabelSubheading"
@@ -222,8 +222,6 @@ horizontal_alignment = 1
 script = ExtResource("6_2bxyt")
 gridAnimationPlayer = NodePath("../../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/GridRippleAnimator")
 dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
-bestLabel = NodePath("../BestSoFarLabel")
-bestContainer = NodePath("..")
 grid = NodePath("../../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 scoreboard = NodePath("../../../../../../Scoreboard")
 saveFileHandler = NodePath("../../../../../../SaveFileHandler")
