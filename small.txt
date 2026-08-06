@@ -5794,6 +5794,7 @@ serer
 serf
 serfs
 serge
+serif
 serum
 serve
 servo

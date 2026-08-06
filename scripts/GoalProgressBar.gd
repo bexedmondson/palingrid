@@ -5,7 +5,6 @@ extends ProgressBar
 
 @export var grid : Grid
 @export var ticks : Array[GoalProgressTick]
-@export var best_bar : ProgressBar
 @export var best_label : Label
 @export var best_pointer : Control
 
@@ -13,13 +12,13 @@ var predicted_top_score : int
 var model_prediction_halfrange : float
 
 var current_displayed_score = 0
+var current_displayed_best = 0
 
 var goals = []
 var bar_tween : Tween
 
 func _ready() -> void:
 	self.value = 0
-	best_bar.value = 0
 	
 	if grid.is_node_ready():
 		_initialise_bar()
@@ -50,21 +49,27 @@ func _initialise_bar():
 	var max_tick_diff = round((top_goal - 16.0) / (ticks.size() - 1))
 	tick_diff = min(max_tick_diff, tick_diff)
 	
-	#TODO add bonus goal that's same as predicted top score, that only appears after reaching the original top goal
-	
-	self.max_value = top_goal # TODO make these spaced out a lot more!!
-	best_bar.max_value = top_goal
-	for i in ticks.size():
-		ticks[i].set_target(self.max_value - tick_diff * (ticks.size() - i - 1), self)
-	
+	#TODO add bonus goal that's same as predicted top score, that only appears after reaching the original top goal?
+
 	var best = grid.bestScore.best
-	best_bar.value = best
+	current_displayed_best = best
+	
+	self.max_value = max(top_goal, best)
+	for i in ticks.size():
+		ticks[i].set_target(top_goal - tick_diff * (ticks.size() - i - 1))
+		print("setting tick goal to " + str(top_goal - tick_diff * (ticks.size() - i - 1)))
+	
+	for tick in ticks:
+		tick.update_position()
 	
 	for t in ticks:
 		if t.target_amount <= best:
 			t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS)
 		else:
 			t.set_state(GoalProgressTick.TickState.NOT_REACHED)
+	
+	best_pointer.position.x = self.size.x * get_bar_proportion(current_displayed_best)
+	best_label.text = "best: %d" % best
 
 func _on_score_updated(new_score : int):
 	if bar_tween != null and bar_tween.is_running():
@@ -81,15 +86,24 @@ func _update_bar(tween_value : float):
 	current_displayed_score = tween_value
 	var proportion = get_bar_proportion(tween_value)
 	
+	var best = grid.bestScore.best
+	var highest_goal = ticks[-1].target_amount
+
+	#TODO update with bar proportion after best > top goal as in get_bar_proportion
+	self.max_value = max(highest_goal, best)
 	self.value = proportion * max_value
 	
-	var best = grid.bestScore.best
-	if best_bar.value < best:
-		best_bar.value = tween_value
-		best_pointer.position.x = self.size.x / self.max_value * tween_value
-		best_label.text = "best: %d" % (round(tween_value))
+	if current_displayed_best < best:
+		current_displayed_best = tween_value
+		best_pointer.position.x = self.size.x * get_bar_proportion(current_displayed_best)
+		best_label.text = "best: %d" % (round(current_displayed_best))
+		
+	var best_higher_than_top_goal = best > ticks[-1].target_amount
 	
 	for t in ticks:
+		if best_higher_than_top_goal:
+			t.update_position()
+		
 		if t.target_amount <= tween_value:
 			if t.state == GoalProgressTick.TickState.NOT_REACHED or t.state == GoalProgressTick.TickState.RESET:
 				#TODO change to tween anim
@@ -103,7 +117,14 @@ func _update_bar(tween_value : float):
 				t.set_state(GoalProgressTick.TickState.NOT_REACHED)
 
 func get_bar_proportion(amount):
+	#var best = grid.bestScore.best
 	var lowest_goal = ticks[0].target_amount
-	var x_proportion_before_first_goal = 0.4 * min(amount, lowest_goal) / lowest_goal
-	var x_proportion_after_first_goal = 0.6 * max(0, amount - lowest_goal) / (self.max_value - lowest_goal)
-	return x_proportion_before_first_goal + x_proportion_after_first_goal
+	var highest_goal = ticks[-1].target_amount
+	
+	var x_proportion_before_lowest_goal = 0.4 * min(amount, lowest_goal) / lowest_goal
+	var x_proportion_after_lowest_goal = min(0.6, 0.6 * max(0, amount - lowest_goal) / (highest_goal - lowest_goal))
+	
+	var scale_for_best_higher_than_top_goal = 1.0 if current_displayed_best <= highest_goal else (highest_goal / float(current_displayed_best))
+	var x_proportion_after_highest_goal = 0 if amount <= highest_goal else (amount - highest_goal) / float(amount)
+	
+	return (x_proportion_before_lowest_goal + x_proportion_after_lowest_goal) * scale_for_best_higher_than_top_goal + x_proportion_after_highest_goal

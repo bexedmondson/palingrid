@@ -233,10 +233,6 @@ lightDarkMode = NodePath("../../../LightDarkModeButton")
 layout_mode = 2
 grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 
-[node name="BestPointerLabel" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar/BestPointer/BestPointerBGPanelContainer" parent_id_path=PackedInt32Array(372927344, 1530217380) index="0" unique_id=1083228574]
-theme_type_variation = &"LabelSubheading"
-text = "BEST: 0"
-
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -979,5 +975,4 @@ text = "testing 123"
 [connection signal="pressed" from="CanvasLayer/PanelContainer/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="CanvasLayer/PanelContainer/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="CanvasLayer/DebugButton" to="CanvasLayer/DebugButton" method="on_click"]
 
-[editable path="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar"]
 [editable path="CanvasLayer/PanelContainer/Scoreboard"]

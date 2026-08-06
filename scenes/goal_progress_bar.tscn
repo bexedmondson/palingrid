@@ -24,7 +24,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="GoalProgressBar" type="ProgressBar" unique_id=372927344 node_paths=PackedStringArray("ticks", "best_bar", "best_label", "best_pointer")]
+[node name="GoalProgressBar" type="ProgressBar" unique_id=372927344 node_paths=PackedStringArray("ticks", "best_label", "best_pointer")]
 custom_minimum_size = Vector2(0, 10)
 anchors_preset = 14
 anchor_top = 0.5
@@ -39,46 +39,38 @@ show_percentage = false
 script = ExtResource("1_j7iog")
 score_prediction_file = ExtResource("4_14xqa")
 ticks = [NodePath("TickPanel"), NodePath("TickPanel2"), NodePath("TickPanel3"), NodePath("TickPanel4"), NodePath("TickPanel5")]
-best_bar = NodePath("BestScoreProgressBar")
 best_label = NodePath("BestPointer/BestPointerBGPanelContainer/BestPointerLabel")
 best_pointer = NodePath("BestPointer")
 
-[node name="BestScoreProgressBar" type="ProgressBar" parent="." unique_id=1315810449]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"ProgressBarBestScore"
-value = 55.89
-show_percentage = false
-
-[node name="TickPanel" parent="." unique_id=2002151849 instance=ExtResource("4_tsakl")]
+[node name="TickPanel" parent="." unique_id=2002151849 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
 offset_left = 0.0
 offset_right = 0.0
+progress_bar = NodePath("..")
 
-[node name="TickPanel2" parent="." unique_id=2018094678 instance=ExtResource("4_tsakl")]
+[node name="TickPanel2" parent="." unique_id=2018094678 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
 offset_left = 0.0
 offset_right = 0.0
+progress_bar = NodePath("..")
 
-[node name="TickPanel3" parent="." unique_id=1972956041 instance=ExtResource("4_tsakl")]
+[node name="TickPanel3" parent="." unique_id=1972956041 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
 offset_left = 0.0
 offset_right = 0.0
+progress_bar = NodePath("..")
 
-[node name="TickPanel4" parent="." unique_id=1178375342 instance=ExtResource("4_tsakl")]
+[node name="TickPanel4" parent="." unique_id=1178375342 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
 offset_left = 0.0
 offset_right = 0.0
+progress_bar = NodePath("..")
 
-[node name="TickPanel5" parent="." unique_id=230957621 instance=ExtResource("4_tsakl")]
+[node name="TickPanel5" parent="." unique_id=230957621 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
 offset_left = 0.0
 offset_right = 0.0
+progress_bar = NodePath("..")
 
 [node name="BestPointer" type="Control" parent="." unique_id=1011538738]
 layout_mode = 1
