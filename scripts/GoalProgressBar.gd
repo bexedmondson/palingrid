@@ -4,7 +4,8 @@ extends ProgressBar
 @export var score_prediction_file : JSON
 
 @export var grid : Grid
-@export var ticks : Array[GoalProgressTick]
+@export var evenly_spaced_ticks : Array[GoalProgressTick]
+@export var low_ticks : Array[GoalProgressTick]
 @export var best_label : Label
 @export var best_pointer : Control
 
@@ -14,11 +15,13 @@ var model_prediction_halfrange : float
 var current_displayed_score = 0
 var current_displayed_best = 0
 
-var goals = []
+var all_ticks = []
 var bar_tween : Tween
 
 func _ready() -> void:
 	self.value = 0
+	all_ticks.append_array(low_ticks)
+	all_ticks.append_array(evenly_spaced_ticks)
 	
 	if grid.is_node_ready():
 		_initialise_bar()
@@ -45,8 +48,8 @@ func _initialise_bar():
 	var tick_diff = round(model_prediction_halfrange)
 	tick_diff = max(5, tick_diff)
 	
-	#making sure the minimum possible goal is around 16, because that should be doable i hope
-	var max_tick_diff = round((top_goal - 16.0) / (ticks.size() - 1))
+	#making sure the minimum evenly spaced goal is around 16 to make all the top ones actually decently challenging
+	var max_tick_diff = round((top_goal - 16.0) / (evenly_spaced_ticks.size() - 1))
 	tick_diff = min(max_tick_diff, tick_diff)
 	
 	#TODO add bonus goal that's same as predicted top score, that only appears after reaching the original top goal?
@@ -55,14 +58,19 @@ func _initialise_bar():
 	current_displayed_best = best
 	
 	self.max_value = max(top_goal, best)
-	for i in ticks.size():
-		ticks[i].set_target(top_goal - tick_diff * (ticks.size() - i - 1))
-		print("setting tick goal to " + str(top_goal - tick_diff * (ticks.size() - i - 1)))
+	for i in evenly_spaced_ticks.size():
+		evenly_spaced_ticks[i].set_target(top_goal - tick_diff * (evenly_spaced_ticks.size() - i - 1))
+		print("setting tick goal to " + str(top_goal - tick_diff * (evenly_spaced_ticks.size() - i - 1)))
 	
-	for tick in ticks:
+	var lowest_evenly_spaced_goal = evenly_spaced_ticks[0].target_amount
+	var low_tick_spacing = lowest_evenly_spaced_goal / float(low_ticks.size() + 1)
+	for i in low_ticks.size():
+		low_ticks[i].set_target(round(low_tick_spacing * (i + 1)))
+	
+	for tick in all_ticks:
 		tick.update_position()
 	
-	for t in ticks:
+	for t in all_ticks:
 		if t.target_amount <= best:
 			t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS)
 		else:
@@ -76,8 +84,8 @@ func _initialise_bar():
 func do_start_game_anim():
 	var start_anim_tween = create_tween()
 	start_anim_tween.set_parallel(true)
-	for i in ticks.size():
-		start_anim_tween.tween_callback(ticks[i].on_tooltip_show).set_delay(i * 0.5)
+	for i in all_ticks.size():
+		start_anim_tween.tween_callback(all_ticks[i].on_tooltip_show).set_delay(i * 0.5)
 
 func _on_score_updated(new_score : int):
 	if bar_tween != null and bar_tween.is_running():
@@ -91,11 +99,14 @@ func _on_score_updated(new_score : int):
 	bar_tween.play()
 
 func _update_bar(tween_value : float):
+	if current_displayed_score == tween_value:
+		return
+		
 	current_displayed_score = tween_value
 	var proportion = get_bar_proportion(tween_value)
 	
 	var best = grid.bestScore.best
-	var highest_goal = ticks[-1].target_amount
+	var highest_goal = evenly_spaced_ticks[-1].target_amount
 
 	#TODO update with bar proportion after best > top goal as in get_bar_proportion
 	self.max_value = max(highest_goal, best)
@@ -106,31 +117,29 @@ func _update_bar(tween_value : float):
 		best_pointer.position.x = self.size.x * get_bar_proportion(current_displayed_best)
 		best_label.text = "best: %d" % (round(current_displayed_best))
 		
-	var best_higher_than_top_goal = best > ticks[-1].target_amount
+	var best_higher_than_top_goal = best > evenly_spaced_ticks[-1].target_amount
 	
-	for t in ticks:
+	for t in all_ticks:
 		if best_higher_than_top_goal:
 			t.update_position()
 		
 		if t.target_amount <= tween_value:
-			if t.state == GoalProgressTick.TickState.NOT_REACHED or t.state == GoalProgressTick.TickState.RESET:
-				#TODO change to tween anim
-				t.set_state(GoalProgressTick.TickState.REACHED_CURRENT)
-			else:
-				t.set_state(GoalProgressTick.TickState.REACHED_CURRENT)
+			if t.state == GoalProgressTick.TickState.RESET or t.state == GoalProgressTick.TickState.NOT_REACHED:
+				#t.burst_effect_tween_composer.play_tween()
+				t.do_first_hit_anim()
+			t.set_state(GoalProgressTick.TickState.REACHED_CURRENT)
 		else:
-			if t.target_amount <= best:
-				t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS)
-			else:
-				t.set_state(GoalProgressTick.TickState.NOT_REACHED)
+			t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS 
+							if t.target_amount <= current_displayed_best
+							else GoalProgressTick.TickState.NOT_REACHED)
 
 func get_bar_proportion(amount):
-	#var best = grid.bestScore.best
-	var lowest_goal = ticks[0].target_amount
-	var highest_goal = ticks[-1].target_amount
+	var lowest_evenly_spaced_goal = evenly_spaced_ticks[0].target_amount
+	var highest_goal = evenly_spaced_ticks[-1].target_amount
 	
-	var x_proportion_before_lowest_goal = 0.4 * min(amount, lowest_goal) / lowest_goal
-	var x_proportion_after_lowest_goal = min(0.6, 0.6 * max(0, amount - lowest_goal) / (highest_goal - lowest_goal))
+	var low_ticks_bar_proportion = (low_ticks.size() + 1) / float(all_ticks.size())
+	var x_proportion_before_lowest_goal = low_ticks_bar_proportion * min(amount, lowest_evenly_spaced_goal) / lowest_evenly_spaced_goal
+	var x_proportion_after_lowest_goal = min(1 - low_ticks_bar_proportion, (1 - low_ticks_bar_proportion) * max(0, amount - lowest_evenly_spaced_goal) / (highest_goal - lowest_evenly_spaced_goal))
 	
 	var scale_for_best_higher_than_top_goal = 1.0 if current_displayed_best <= highest_goal else (highest_goal / float(current_displayed_best))
 	var x_proportion_after_highest_goal = 0 if amount <= highest_goal else (amount - highest_goal) / float(amount)

@@ -1,17 +1,24 @@
 [gd_scene format=3 uid="uid://qr2rabnskuxj"]
 
+[ext_resource type="Shader" uid="uid://b6syj02d4c0l4" path="res://themes/grid_bg_shine.gdshader" id="1_equ84"]
 [ext_resource type="Script" uid="uid://bhyowc0bxhtts" path="res://scripts/GoalProgressTick.gd" id="1_gbtqu"]
 [ext_resource type="StyleBox" uid="uid://o18mgxrpxxlu" path="res://themes/goal_progress_tick_filled.tres" id="1_lsitv"]
 [ext_resource type="StyleBox" uid="uid://b2syymu18u30q" path="res://themes/goal_progress_tick_empty.tres" id="3_1yeyr"]
 [ext_resource type="StyleBox" uid="uid://iuehcnny5cf5" path="res://themes/goal_progress_tick_outline.tres" id="4_1yeyr"]
-[ext_resource type="Theme" uid="uid://dsjemrfw3gdrr" path="res://themes/dark/dark_theme.tres" id="5_ugu4l"]
+[ext_resource type="Texture2D" uid="uid://dmr1i8l8dmhbi" path="res://textures/radial-burst.svg" id="5_ugu4l"]
 
-[node name="TickPanel" type="Panel" unique_id=2002151849 node_paths=PackedStringArray("tooltip", "tooltip_label")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p60t6"]
+shader = ExtResource("1_equ84")
+shader_parameter/shine_color = Color(1, 1, 0.8352941, 1)
+shader_parameter/shine_size = 0.3999999910592
+shader_parameter/shine_angle = 45.0
+shader_parameter/control_size = 30.0
+
+[node name="TickPanel" type="Panel" unique_id=2002151849 node_paths=PackedStringArray("tooltip", "tooltip_label", "burst")]
+material = SubResource("ShaderMaterial_p60t6")
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 30.0
-offset_right = 30.0
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_lsitv")
 script = ExtResource("1_gbtqu")
@@ -22,8 +29,10 @@ state_styleboxes = Dictionary[int, StyleBox]({
 })
 tooltip = NodePath("Tooltip")
 tooltip_label = NodePath("Tooltip/Label")
+burst = NodePath("BurstTextureRect")
 
 [node name="Tooltip" type="PanelContainer" parent="." unique_id=1090251574]
+self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
 anchors_preset = 8
@@ -37,8 +46,8 @@ offset_right = 18.0
 offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 1)
-theme = ExtResource("5_ugu4l")
+scale = Vector2(1e-05, 1e-05)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_type_variation = &"PanelContainerThinMargins"
 theme_override_styles/panel = ExtResource("1_lsitv")
 
@@ -61,5 +70,25 @@ offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[node name="BurstTextureRect" type="TextureRect" parent="." unique_id=801400623]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 0.7882353, 0.3019608, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("5_ugu4l")
+expand_mode = 5
+stretch_mode = 5
 
 [connection signal="pressed" from="Button" to="." method="on_tooltip_show"]

@@ -15,6 +15,8 @@ enum TickState
 @export var tooltip : Control
 @export var tooltip_label : Label
 
+@export var burst : Control
+
 var target_amount : int
 var state : TickState = TickState.RESET
 
@@ -57,3 +59,25 @@ func on_tooltip_show():
 	tooltip_tween.parallel().tween_property(tooltip, "scale", Vector2.ZERO, 0.3)
 	tooltip_tween.play()
 	
+func do_first_hit_anim():
+	var first_hit_anim = create_tween()
+	first_hit_anim.set_trans(Tween.TRANS_SINE)
+	first_hit_anim.set_ease(Tween.EASE_IN_OUT)
+	first_hit_anim.tween_property(self, "scale", Vector2.ONE * 1.4, 0.3)
+	
+	first_hit_anim.set_parallel(true)
+	first_hit_anim.set_ease(Tween.EASE_OUT_IN)
+	first_hit_anim.tween_property(self, "instance_shader_parameters/shine_progress", 1.0, 0.8).set_delay(0.2)
+	
+	first_hit_anim.set_parallel(true)
+	first_hit_anim.set_ease(Tween.EASE_IN_OUT)
+	first_hit_anim.tween_property(self, "scale", Vector2.ONE, 0.4).set_delay(0.8)
+
+	first_hit_anim.set_parallel(true)
+	first_hit_anim.set_ease(Tween.EASE_OUT)
+	first_hit_anim.tween_property(burst, "scale", Vector2.ONE * 1.8, 1)
+
+	first_hit_anim.set_parallel(true)
+	first_hit_anim.set_trans(Tween.TRANS_QUINT)
+	first_hit_anim.set_ease(Tween.EASE_IN)
+	first_hit_anim.tween_property(burst, "modulate:a", 0, 1).from(1.0)

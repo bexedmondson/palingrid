@@ -1,5 +1,5 @@
 class_name BestScoreIndicator
-extends Label
+extends Node
 
 @export var gridAnimationPlayer : GridRippleAnimator 
 @export var dailyGenerator : DailyLetterSetGenerator
@@ -33,32 +33,11 @@ func update(current: int) -> void:
 		return
 	
 	best = current
-	self.text = str(best)
-	
 	save(current)
 	
 	# in these specific circumstances, even though this is your best score we DON'T want to trigger the big celebration
 	# - basically when you're filling in the grid for the first time, we don't want to celebrate every move
-	if grid.filled_slot_count() < grid.letter_count() and not had_best_score_at_start_of_session and not has_filled_board_this_session:
-		if font_color_flash_tween != null && font_color_flash_tween.is_valid():
-			font_color_flash_tween.kill()
-		
-		var active_theme = lightDarkMode.get_active_theme()
-		var themeColour : Color
-		if not self.has_theme_color_override("font_color"):
-			if active_theme.has_color("font_color", self.theme_type_variation):
-				themeColour = active_theme.get_color("font_color", self.theme_type_variation)
-			else:
-				themeColour = active_theme.get_color("font_color", active_theme.get_type_variation_base(self.theme_type_variation))
-		
-		self.add_theme_color_override("font_color", themeColour)
-		
-		font_color_flash_tween = self.create_tween()
-		font_color_flash_tween.set_parallel()
-		font_color_flash_tween.tween_property(self, "theme_override_colors/font_color", themeColour, 1.0).from(Color.YELLOW)
-		font_color_flash_tween.finished.connect(on_font_flash_finished)
-		font_color_flash_tween.play()
-	else:
+	if grid.filled_slot_count() == grid.letter_count() or has_filled_board_this_session:
 		gridAnimationPlayer.do()
 		session_done_anim = true
 		
@@ -66,9 +45,6 @@ func update(current: int) -> void:
 		return	
 	
 	has_filled_board_this_session = true
-	
-func on_font_flash_finished():
-	self.remove_theme_color_override("font_color")
 
 func show_scoreboard(score: int):
 	if !CheddaBoards.is_authenticated():
@@ -110,6 +86,3 @@ func load():
 		best = allScores[dailyGenerator.daySeed]
 		if best > 5:
 			had_best_score_at_start_of_session = true
-	
-	var best_text = str(best)
-	self.text = best_text

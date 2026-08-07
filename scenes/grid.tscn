@@ -159,6 +159,15 @@ is_range = true
 end_month = 8
 end_year = 2027
 
+[node name="BestScoreHandler" type="Node" parent="CanvasLayer/PanelContainer" unique_id=1188113161 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
+script = ExtResource("6_2bxyt")
+gridAnimationPlayer = NodePath("../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/GridRippleAnimator")
+dailyGenerator = NodePath("../LetterSetGenerator")
+grid = NodePath("../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+scoreboard = NodePath("../Scoreboard")
+saveFileHandler = NodePath("../SaveFileHandler")
+lightDarkMode = NodePath("../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/LightDarkModeButton")
+
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
 layout_mode = 2
@@ -202,30 +211,6 @@ layout_mode = 2
 theme_type_variation = &"LabelHeading"
 text = "SCORE: 0"
 horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=1565934058]
-visible = false
-layout_mode = 2
-alignment = 1
-
-[node name="BestSoFarLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=457676338]
-layout_mode = 2
-theme_type_variation = &"LabelSubheading"
-text = "TODAY'S BEST:"
-
-[node name="BestScoreLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer" unique_id=586686390 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
-custom_minimum_size = Vector2(35, 0)
-layout_mode = 2
-theme_type_variation = &"LabelSubheading"
-text = "0"
-horizontal_alignment = 1
-script = ExtResource("6_2bxyt")
-gridAnimationPlayer = NodePath("../../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/GridRippleAnimator")
-dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
-grid = NodePath("../../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-scoreboard = NodePath("../../../../../../Scoreboard")
-saveFileHandler = NodePath("../../../../../../SaveFileHandler")
-lightDarkMode = NodePath("../../../LightDarkModeButton")
 
 [node name="GoalProgressBar" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=372927344 node_paths=PackedStringArray("grid") instance=ExtResource("14_x36ys")]
 layout_mode = 2
@@ -288,6 +273,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Grid" type="MarginContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
+z_index = 1
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 script = ExtResource("12_eudc0")
@@ -297,7 +283,7 @@ slots = [NodePath("VBoxContainer/Row/Cell1"), NodePath("VBoxContainer/Row/Cell2"
 tiles = [NodePath("../../../TileDockPanel/Tiles/Tile"), NodePath("../../../TileDockPanel/Tiles/Tile2"), NodePath("../../../TileDockPanel/Tiles/Tile3"), NodePath("../../../TileDockPanel/Tiles/Tile4"), NodePath("../../../TileDockPanel/Tiles/Tile5"), NodePath("../../../TileDockPanel/Tiles/Tile6"), NodePath("../../../TileDockPanel/Tiles/Tile7"), NodePath("../../../TileDockPanel/Tiles/Tile8"), NodePath("../../../TileDockPanel/Tiles/Tile9"), NodePath("../../../TileDockPanel/Tiles/Tile10"), NodePath("../../../TileDockPanel/Tiles/Tile11"), NodePath("../../../TileDockPanel/Tiles/Tile12"), NodePath("../../../TileDockPanel/Tiles/Tile13"), NodePath("../../../TileDockPanel/Tiles/Tile14"), NodePath("../../../TileDockPanel/Tiles/Tile15"), NodePath("../../../TileDockPanel/Tiles/Tile16"), NodePath("../../../TileDockPanel/Tiles/Tile17"), NodePath("../../../TileDockPanel/Tiles/Tile18"), NodePath("../../../TileDockPanel/Tiles/Tile19"), NodePath("../../../TileDockPanel/Tiles/Tile20"), NodePath("../../../TileDockPanel/Tiles/Tile21"), NodePath("../../../TileDockPanel/Tiles/Tile22"), NodePath("../../../TileDockPanel/Tiles/Tile23"), NodePath("../../../TileDockPanel/Tiles/Tile24"), NodePath("../../../TileDockPanel/Tiles/Tile25")]
 wordScene = NodePath("../../../../WordListContainer/ScrollContainer/VBoxContainer/WordPanel")
 score = NodePath("../../../../../HeaderMarginContainer/ScoreVBoxContainer/TotalLabel")
-bestScore = NodePath("../../../../../HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
+bestScore = NodePath("../../../../../../../BestScoreHandler")
 
 [node name="Control" type="Control" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=1443428867]
 show_behind_parent = true
@@ -670,14 +656,13 @@ name_change_handler = NodePath("../NameEntryPanel")
 grid = NodePath("../../../../../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../LetterSetGenerator")
 
-[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
+[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer" unique_id=1648906337 node_paths=PackedStringArray("loginHandler") instance=ExtResource("29_64acc")]
 visible = false
 custom_minimum_size = Vector2(600, 800)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 loginHandler = NodePath("../LoginHandler")
-best_score_indicator = NodePath("../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/HBoxContainer/BestScoreLabel")
 
 [node name="HowToPlay" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false
