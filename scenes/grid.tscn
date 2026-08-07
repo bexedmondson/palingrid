@@ -649,6 +649,7 @@ layout_mode = 2
 
 [node name="Scoreboard" parent="CanvasLayer/PanelContainer" unique_id=531030568 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
 visible = false
+z_index = 3
 layout_mode = 2
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
@@ -661,6 +662,7 @@ letter_set_generator = NodePath("../../../../../LetterSetGenerator")
 
 [node name="NameEntryPanel" parent="CanvasLayer/PanelContainer" unique_id=1648906337 node_paths=PackedStringArray("loginHandler") instance=ExtResource("29_64acc")]
 visible = false
+z_index = 3
 custom_minimum_size = Vector2(600, 800)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -669,7 +671,7 @@ loginHandler = NodePath("../LoginHandler")
 
 [node name="HowToPlay" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false
-z_index = 2
+z_index = 3
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
 script = ExtResource("23_1s87h")
