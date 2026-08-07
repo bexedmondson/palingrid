@@ -213,9 +213,10 @@ theme_type_variation = &"LabelHeading"
 text = "SCORE: 0"
 horizontal_alignment = 1
 
-[node name="GoalProgressBar" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=372927344 node_paths=PackedStringArray("grid") instance=ExtResource("14_x36ys")]
+[node name="GoalProgressBar" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=372927344 node_paths=PackedStringArray("grid", "light_dark_mode") instance=ExtResource("14_x36ys")]
 layout_mode = 2
 grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+light_dark_mode = NodePath("../../LightDarkModeButton")
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2

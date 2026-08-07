@@ -10,7 +10,8 @@ enum TickState
 }
 
 @export var progress_bar : GoalProgressBar
-@export var state_styleboxes : Dictionary[TickState, StyleBox]
+@export var state_styleboxes_dark : Dictionary[TickState, StyleBox]
+@export var state_styleboxes_light : Dictionary[TickState, StyleBox]
 
 @export var tooltip : Control
 @export var tooltip_label : Label
@@ -20,11 +21,20 @@ enum TickState
 var target_amount : int
 var state : TickState = TickState.RESET
 
+var theme_is_light : bool
 var tooltip_tween : Tween
 
 func _enter_tree() -> void:
 	tooltip.scale = Vector2.ZERO
 	tooltip.self_modulate.a = 0
+	
+func setup_theme_listener(light_dark_mode: LightDarkMode):
+	light_dark_mode.on_theme_changed.connect(_on_theme_changed)
+	_on_theme_changed(light_dark_mode.is_pressed())
+
+func _on_theme_changed(is_light : bool):
+	theme_is_light = is_light
+	
 
 func set_target(target : int):
 	target_amount = target
@@ -35,7 +45,7 @@ func set_state(new_state : TickState):
 	if state == new_state:
 		return
 	state = new_state
-	add_theme_stylebox_override("panel", state_styleboxes[state])
+	add_theme_stylebox_override("panel", state_styleboxes_light[state] if theme_is_light else state_styleboxes_dark[state])
 
 func update_position():
 	self.position.x = self.get_parent_control().size.x * progress_bar.get_bar_proportion(target_amount)

@@ -8,6 +8,7 @@ extends ProgressBar
 @export var low_ticks : Array[GoalProgressTick]
 @export var best_label : Label
 @export var best_pointer : Control
+@export var light_dark_mode : LightDarkMode
 
 @export var goal_names : Array[String]
 
@@ -71,6 +72,7 @@ func _initialise_bar():
 	
 	for tick in all_ticks:
 		tick.update_position()
+		tick.setup_theme_listener(light_dark_mode)
 	
 	for t in all_ticks:
 		if t.target_amount <= best:
