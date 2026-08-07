@@ -73,7 +73,7 @@ flat = true
 
 [node name="BurstTextureRect" type="TextureRect" parent="." unique_id=801400623]
 modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 0.7882353, 0.3019608, 1)
+self_modulate = Color(0.96862745, 0.7294118, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

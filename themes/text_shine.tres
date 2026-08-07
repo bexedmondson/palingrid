@@ -6,7 +6,6 @@
 resource_local_to_scene = true
 shader = ExtResource("1_elfxl")
 shader_parameter/shine_color = Color(0.9254902, 1, 1, 1)
-shader_parameter/shine_progress = 0.0
 shader_parameter/shine_size = 0.29999999329439997
 shader_parameter/shine_angle = 45.0
 shader_parameter/control_size = 560.0

@@ -9,6 +9,8 @@ extends ProgressBar
 @export var best_label : Label
 @export var best_pointer : Control
 
+@export var goal_names : Array[String]
+
 var predicted_top_score : int
 var model_prediction_halfrange : float
 
