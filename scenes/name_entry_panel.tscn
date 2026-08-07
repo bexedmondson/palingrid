@@ -37,10 +37,10 @@ show_behind_parent = true
 custom_minimum_size = Vector2(3000, 3000)
 propagate_maximum_size = true
 layout_mode = 0
-offset_left = -500.0
+offset_left = -1200.0
 offset_top = -500.0
-offset_right = 1500.0
-offset_bottom = 1500.0
+offset_right = 1800.0
+offset_bottom = 2500.0
 color = Color(0, 0, 0, 0.21960784)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1019914599]

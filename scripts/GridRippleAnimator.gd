@@ -16,7 +16,7 @@ func do():
 	var tween = create_tween()
 	tween.set_parallel()
 	
-	tween.tween_property(grid_bg.material, "shader_parameter/shine_progress", 1.0, 1.8).from(0.0)
+	tween.tween_property(grid_bg, "instance_shader_parameters/shine_progress", 1.0, 1.8).from(0.0)
 	
 	update_confetti_size()
 	

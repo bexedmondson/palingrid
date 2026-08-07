@@ -27,11 +27,17 @@
 [ext_resource type="StyleBox" uid="uid://ga3enhjw5mqu" path="res://themes/dark/panel_container_inset_dark.tres" id="23_n0c1d"]
 [ext_resource type="StyleBox" uid="uid://ee2xiv4dfex5" path="res://themes/dark/panel_container_thin_margins_dark.tres" id="24_yhwvv"]
 [ext_resource type="StyleBox" uid="uid://c0frlr2oy6w2i" path="res://themes/dark/panel_floating_toast_dark.tres" id="25_q3hf3"]
+[ext_resource type="StyleBox" uid="uid://c2x1i704o1meq" path="res://themes/dark/panel_container_best_pointer_dark.tres" id="26_33308"]
 [ext_resource type="StyleBox" uid="uid://oenswqf8lj0" path="res://themes/dark/panel_floating_dark.tres" id="26_n2nkp"]
 [ext_resource type="StyleBox" uid="uid://c48r6uemdnc0n" path="res://themes/dark/panel_container_expand_margins_dark.tres" id="26_pstdu"]
 [ext_resource type="StyleBox" uid="uid://dl86w1x70sowk" path="res://themes/dark/panel_grid_dark.tres" id="27_wldaw"]
 [ext_resource type="StyleBox" uid="uid://ddiiljqhsk3b2" path="res://themes/dark/panel_tile_dark.tres" id="28_3a7b3"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
+[ext_resource type="StyleBox" uid="uid://1smleun01y7i" path="res://themes/goal_progress_bar_fill.tres" id="33_12gmn"]
+[ext_resource type="StyleBox" uid="uid://coqb6uqy106cc" path="res://themes/dark/goal_progress_bar_bg_dark.tres" id="34_sk8j7"]
+[ext_resource type="StyleBox" uid="uid://cw36c4h5qm20r" path="res://themes/goal_progress_bar_best_fill.tres" id="35_50rey"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk8j7"]
 
 [resource]
 BoxContainer/constants/separation = 10
@@ -130,6 +136,8 @@ PanelCell/styles/panel = ExtResource("20_6f3gp")
 PanelCellHighlight/base_type = &"Panel"
 PanelCellHighlight/styles/panel = ExtResource("21_o8oj6")
 PanelContainer/styles/panel = ExtResource("22_ajk1w")
+PanelContainerBestPointer/base_type = &"PanelContainer"
+PanelContainerBestPointer/styles/panel = ExtResource("26_33308")
 PanelContainerExpandMargins/base_type = &"PanelContainer"
 PanelContainerExpandMargins/styles/panel = ExtResource("26_pstdu")
 PanelContainerGameBG/base_type = &"PanelContainer"
@@ -146,6 +154,11 @@ PanelGrid/base_type = &"Panel"
 PanelGrid/styles/panel = ExtResource("27_wldaw")
 PanelTile/base_type = &"Panel"
 PanelTile/styles/panel = ExtResource("28_3a7b3")
+ProgressBar/styles/background = ExtResource("34_sk8j7")
+ProgressBar/styles/fill = ExtResource("33_12gmn")
+ProgressBarBestScore/base_type = &"ProgressBar"
+ProgressBarBestScore/styles/background = SubResource("StyleBoxEmpty_sk8j7")
+ProgressBarBestScore/styles/fill = ExtResource("35_50rey")
 RichTextLabel/colors/default_color = Color(0.92941177, 0.9019608, 0.8745098, 1)
 RichTextLabel/font_sizes/bold_font_size = 24
 RichTextLabel/font_sizes/bold_italics_font_size = 24

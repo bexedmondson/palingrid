@@ -38,6 +38,10 @@ window/handheld/orientation=6
 
 enabled=PackedStringArray("res://addons/collapsible_container/plugin.cfg", "res://addons/minimize_html_build/plugin.cfg")
 
+[gui]
+
+common/snap_controls_to_pixels=false
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
