@@ -34,7 +34,9 @@ func setup_theme_listener(light_dark_mode: LightDarkMode):
 
 func _on_theme_changed(is_light : bool):
 	theme_is_light = is_light
-	
+	if state == TickState.RESET:
+		state = TickState.NOT_REACHED
+	add_theme_stylebox_override("panel", state_styleboxes_light[state] if theme_is_light else state_styleboxes_dark[state])
 
 func set_target(target : int):
 	target_amount = target
