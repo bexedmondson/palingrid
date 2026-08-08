@@ -62,6 +62,7 @@ theme_override_styles/panel = ExtResource("1_lsitv")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.091, 0.14, 0.13265, 1)
 text = "00"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=1752998379]
 layout_mode = 1
