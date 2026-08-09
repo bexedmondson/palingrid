@@ -200,7 +200,7 @@ nodesToToggleTheme = [NodePath("../../../..")]
 saveFileHandler = NodePath("../../../../SaveFileHandler")
 
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(400, 79.235)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -208,13 +208,16 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="TotalLabel" type="Label" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=1348282677]
+visible = false
 layout_mode = 2
 theme_type_variation = &"LabelHeading"
 text = "SCORE: 0"
 horizontal_alignment = 1
 
 [node name="GoalProgressBar" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer" unique_id=372927344 node_paths=PackedStringArray("grid", "light_dark_mode") instance=ExtResource("14_x36ys")]
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
+size_flags_vertical = 0
 grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 light_dark_mode = NodePath("../../LightDarkModeButton")
 

@@ -32,9 +32,11 @@
 [ext_resource type="StyleBox" uid="uid://c48db3gig8bw8" path="res://themes/light/panel_floating_toast_light.tres" id="25_krt1t"]
 [ext_resource type="StyleBox" uid="uid://c3bbdiqyfmc4p" path="res://themes/light/panel_container_best_pointer_light.tres" id="26_2ihl8"]
 [ext_resource type="StyleBox" uid="uid://c8x3wnv7tajmb" path="res://themes/light/panel_container_expand_margins_light.tres" id="26_tq8i7"]
+[ext_resource type="StyleBox" uid="uid://c1vcmfrd2vceh" path="res://themes/light/panel_container_score_pointer_light.tres" id="29_jam87"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
 [ext_resource type="StyleBox" uid="uid://1smleun01y7i" path="res://themes/goal_progress_bar_fill.tres" id="33_12gmn"]
 [ext_resource type="StyleBox" uid="uid://db361meglfku" path="res://themes/light/goal_progress_bar_bg_light.tres" id="34_2ihl8"]
+[ext_resource type="StyleBox" uid="uid://8w2i3xllspcm" path="res://themes/light/panel_pointer_arrow_light.tres" id="34_jhrgo"]
 [ext_resource type="StyleBox" uid="uid://cw36c4h5qm20r" path="res://themes/goal_progress_bar_best_fill.tres" id="35_50rey"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk8j7"]
@@ -142,6 +144,8 @@ PanelContainerGameBG/base_type = &"PanelContainer"
 PanelContainerGameBG/styles/panel = ExtResource("3_tvg4m")
 PanelContainerInset/base_type = &"PanelContainer"
 PanelContainerInset/styles/panel = ExtResource("11_jnuea")
+PanelContainerScorePointer/base_type = &"PanelContainer"
+PanelContainerScorePointer/styles/panel = ExtResource("29_jam87")
 PanelContainerThinMargins/base_type = &"PanelContainer"
 PanelContainerThinMargins/styles/panel = ExtResource("12_bsmx7")
 PanelContainerToast/base_type = &"PanelContainer"
@@ -150,6 +154,8 @@ PanelFloating/base_type = &"Panel"
 PanelFloating/styles/panel = ExtResource("11_1lbab")
 PanelGrid/base_type = &"Panel"
 PanelGrid/styles/panel = ExtResource("5_hb1pw")
+PanelPointerArrow/base_type = &"Panel"
+PanelPointerArrow/styles/panel = ExtResource("34_jhrgo")
 PanelTile/base_type = &"Panel"
 PanelTile/styles/panel = ExtResource("8_nq408")
 ProgressBar/styles/background = ExtResource("34_2ihl8")

@@ -1,13 +1,20 @@
 class_name GoalProgressBar
-extends ProgressBar
+extends Control
 
 @export var score_prediction_file : JSON
+
+@export var bar : ProgressBar
 
 @export var grid : Grid
 @export var evenly_spaced_ticks : Array[GoalProgressTick]
 @export var low_ticks : Array[GoalProgressTick]
+
 @export var best_label : Label
 @export var best_pointer : Control
+
+@export var score_label : Label
+@export var score_pointer : Control
+
 @export var light_dark_mode : LightDarkMode
 
 @export var goal_names : Array[String]
@@ -22,7 +29,7 @@ var all_ticks = []
 var bar_tween : Tween
 
 func _ready() -> void:
-	self.value = 0
+	bar.value = 0
 	all_ticks.append_array(low_ticks)
 	all_ticks.append_array(evenly_spaced_ticks)
 	
@@ -57,11 +64,10 @@ func _initialise_bar():
 
 	var best = grid.bestScore.best
 	current_displayed_best = best
-	
-	self.max_value = max(top_goal, best)
+
+	bar.max_value = max(top_goal, best)
 	for i in evenly_spaced_ticks.size():
 		evenly_spaced_ticks[i].set_target(top_goal - tick_diff * (evenly_spaced_ticks.size() - i - 1))
-		print("setting tick goal to " + str(top_goal - tick_diff * (evenly_spaced_ticks.size() - i - 1)))
 	
 	var lowest_evenly_spaced_goal = evenly_spaced_ticks[0].target_amount
 	var low_tick_spacing = lowest_evenly_spaced_goal / float(low_ticks.size() + 1)
@@ -77,9 +83,12 @@ func _initialise_bar():
 			t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS)
 		else:
 			t.set_state(GoalProgressTick.TickState.NOT_REACHED)
+
+	best_pointer.position.x = bar.size.x * get_bar_proportion(current_displayed_best)
+	best_label.text = "best: %d" % current_displayed_best
 	
-	best_pointer.position.x = self.size.x * get_bar_proportion(current_displayed_best)
-	best_label.text = "best: %d" % best
+	score_pointer.position.x = bar.size.x * get_bar_proportion(current_displayed_score)
+	score_label.text = str(current_displayed_score)
 	
 	do_start_game_anim()
 	
@@ -96,7 +105,7 @@ func _on_score_updated(new_score : int):
 	bar_tween = create_tween()
 	bar_tween.set_ease(Tween.EASE_IN_OUT)
 	bar_tween.set_trans(Tween.TRANS_QUAD)
-	bar_tween.tween_method(_update_bar, float(current_displayed_score), float(new_score), 0.3)
+	bar_tween.tween_method(_update_bar, float(current_displayed_score), float(new_score), 0.5)
 	
 	bar_tween.play()
 
@@ -110,13 +119,16 @@ func _update_bar(tween_value : float):
 	var best = grid.bestScore.best
 	var highest_goal = evenly_spaced_ticks[-1].target_amount
 
-	self.max_value = max(highest_goal, best)
-	self.value = proportion * max_value
+	bar.max_value = max(highest_goal, best)
+	bar.value = proportion * bar.max_value
 	
 	if current_displayed_best < best:
 		current_displayed_best = tween_value
-		best_pointer.position.x = self.size.x * get_bar_proportion(current_displayed_best)
+		best_pointer.position.x = bar.size.x * get_bar_proportion(current_displayed_best)
 		best_label.text = "best: %d" % (round(current_displayed_best))
+	
+	score_pointer.position.x = bar.size.x * get_bar_proportion(current_displayed_score)
+	score_label.text = str(int(current_displayed_score))
 		
 	var best_higher_than_top_goal = best > evenly_spaced_ticks[-1].target_amount
 	

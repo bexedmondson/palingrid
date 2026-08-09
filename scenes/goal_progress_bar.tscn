@@ -1,15 +1,13 @@
 [gd_scene format=3 uid="uid://dm0m1523pll6l"]
 
+[ext_resource type="Theme" uid="uid://brqal24634wvg" path="res://themes/light/light_theme.tres" id="1_14xqa"]
 [ext_resource type="Script" uid="uid://bisoco1s20e5r" path="res://scripts/GoalProgressBar.gd" id="1_j7iog"]
 [ext_resource type="JSON" path="res://target_score_data.json" id="4_14xqa"]
 [ext_resource type="PackedScene" uid="uid://qr2rabnskuxj" path="res://scenes/goal_progress_tick.tscn" id="4_tsakl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moutm"]
-bg_color = Color(0.1298, 0.59, 0.57466, 1)
-corner_radius_top_left = 2
-
-[node name="GoalProgressBar" type="ProgressBar" unique_id=372927344 node_paths=PackedStringArray("evenly_spaced_ticks", "low_ticks", "best_label", "best_pointer")]
-custom_minimum_size = Vector2(0, 10)
+[node name="GoalProgressBar" type="Control" unique_id=1576680616 node_paths=PackedStringArray("bar", "evenly_spaced_ticks", "low_ticks", "best_label", "best_pointer", "score_label", "score_pointer")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 3
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -18,57 +16,113 @@ offset_top = -13.5
 offset_bottom = -3.5
 grow_horizontal = 2
 grow_vertical = 2
-value = 23.66
-show_percentage = false
+theme = ExtResource("1_14xqa")
 script = ExtResource("1_j7iog")
 score_prediction_file = ExtResource("4_14xqa")
-evenly_spaced_ticks = [NodePath("TickPanel"), NodePath("TickPanel2"), NodePath("TickPanel3")]
-low_ticks = [NodePath("TickPanel4"), NodePath("TickPanel5")]
-best_label = NodePath("BestPointer/BestPointerBGPanelContainer/BestPointerLabel")
-best_pointer = NodePath("BestPointer")
-goal_names = Array[String](["good", "solid", "great", "", "spectacular"])
+bar = NodePath("ProgressBar")
+evenly_spaced_ticks = [NodePath("ProgressBar/TickPanel"), NodePath("ProgressBar/TickPanel2"), NodePath("ProgressBar/TickPanel3")]
+low_ticks = [NodePath("ProgressBar/TickPanel4"), NodePath("ProgressBar/TickPanel5")]
+best_label = NodePath("ProgressBar/BestPointer/BestPointerBGPanelContainer/BestPointerLabel")
+best_pointer = NodePath("ProgressBar/BestPointer")
+score_label = NodePath("ProgressBar/ScorePointer/ScorePointerBGPanelContainer/ScorePointerLabel")
+score_pointer = NodePath("ProgressBar/ScorePointer")
+goal_names = Array[String](["good", "solid", "great", "brilliant", "spectacular"])
 
-[node name="TickPanel" parent="." unique_id=2002151849 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=605300343]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 1
-progress_bar = NodePath("..")
+anchors_preset = -1
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+value = 25.0
+show_percentage = false
 
-[node name="TickPanel2" parent="." unique_id=2018094678 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
+[node name="TickPanel" parent="ProgressBar" unique_id=2002151849 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
-progress_bar = NodePath("..")
+progress_bar = NodePath("../..")
 
-[node name="TickPanel3" parent="." unique_id=1972956041 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
+[node name="TickPanel2" parent="ProgressBar" unique_id=2018094678 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
-progress_bar = NodePath("..")
+progress_bar = NodePath("../..")
 
-[node name="TickPanel4" parent="." unique_id=1178375342 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
+[node name="TickPanel3" parent="ProgressBar" unique_id=1972956041 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
-progress_bar = NodePath("..")
+progress_bar = NodePath("../..")
 
-[node name="TickPanel5" parent="." unique_id=230957621 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
+[node name="TickPanel4" parent="ProgressBar" unique_id=1178375342 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
-progress_bar = NodePath("..")
+progress_bar = NodePath("../..")
 
-[node name="BestPointer" type="Control" parent="." unique_id=1011538738]
+[node name="TickPanel5" parent="ProgressBar" unique_id=230957621 node_paths=PackedStringArray("progress_bar") instance=ExtResource("4_tsakl")]
 layout_mode = 1
-anchors_preset = 0
+progress_bar = NodePath("../..")
+
+[node name="BestPointer" type="Control" parent="ProgressBar" unique_id=1011538738]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
 scale = Vector2(0.9, 0.9)
 
-[node name="BestPointerArrow" type="Panel" parent="BestPointer" unique_id=1425268127]
+[node name="BestPointerArrow" type="Panel" parent="ProgressBar/BestPointer" unique_id=1425268127]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -3.0
 offset_right = 15.0
-offset_bottom = 12.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.7853982
+theme_type_variation = &"PanelPointerArrow"
+
+[node name="BestPointerBGPanelContainer" type="PanelContainer" parent="ProgressBar/BestPointer" unique_id=1530217380]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_top = 9.852
+offset_right = 58.0
+offset_bottom = 50.852
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 1)
+theme_type_variation = &"PanelContainerBestPointer"
+
+[node name="BestPointerLabel" type="Label" parent="ProgressBar/BestPointer/BestPointerBGPanelContainer" unique_id=1083228574]
+layout_mode = 2
+text = "best: 00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePointer" type="Control" parent="ProgressBar" unique_id=973246636]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 86.819
+offset_right = 86.819
+scale = Vector2(0.9, 0.9)
+
+[node name="ScorePointerArrow" type="Panel" parent="ProgressBar/ScorePointer" unique_id=566386107]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 15.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
 rotation = -2.3561945
-theme_override_styles/panel = SubResource("StyleBoxFlat_moutm")
+theme_type_variation = &"PanelPointerArrow"
 
-[node name="BestPointerBGPanelContainer" type="PanelContainer" parent="BestPointer" unique_id=1530217380]
+[node name="ScorePointerBGPanelContainer" type="PanelContainer" parent="ProgressBar/ScorePointer" unique_id=355669439]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -76,16 +130,18 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -25.0
-offset_top = -50.349
+offset_top = -47.349
 offset_right = 25.0
-offset_bottom = -12.348999
+offset_bottom = -9.348999
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
-theme_type_variation = &"PanelContainerBestPointer"
+theme_type_variation = &"PanelContainerScorePointer"
 
-[node name="BestPointerLabel" type="Label" parent="BestPointer/BestPointerBGPanelContainer" unique_id=1083228574]
+[node name="ScorePointerLabel" type="Label" parent="ProgressBar/ScorePointer/ScorePointerBGPanelContainer" unique_id=1999567425]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
-text = "best: 00"
+theme_type_variation = &"LabelHeading"
+text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1

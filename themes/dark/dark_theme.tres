@@ -32,8 +32,10 @@
 [ext_resource type="StyleBox" uid="uid://c48r6uemdnc0n" path="res://themes/dark/panel_container_expand_margins_dark.tres" id="26_pstdu"]
 [ext_resource type="StyleBox" uid="uid://dl86w1x70sowk" path="res://themes/dark/panel_grid_dark.tres" id="27_wldaw"]
 [ext_resource type="StyleBox" uid="uid://ddiiljqhsk3b2" path="res://themes/dark/panel_tile_dark.tres" id="28_3a7b3"]
+[ext_resource type="StyleBox" uid="uid://bik6jq4wwqph" path="res://themes/dark/panel_container_score_pointer_dark.tres" id="29_dlk7s"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
 [ext_resource type="StyleBox" uid="uid://1smleun01y7i" path="res://themes/goal_progress_bar_fill.tres" id="33_12gmn"]
+[ext_resource type="StyleBox" uid="uid://bb3xpdvhrnu6w" path="res://themes/dark/panel_pointer_arrow_dark.tres" id="34_2onyq"]
 [ext_resource type="StyleBox" uid="uid://coqb6uqy106cc" path="res://themes/dark/goal_progress_bar_bg_dark.tres" id="34_sk8j7"]
 [ext_resource type="StyleBox" uid="uid://cw36c4h5qm20r" path="res://themes/goal_progress_bar_best_fill.tres" id="35_50rey"]
 
@@ -144,6 +146,8 @@ PanelContainerGameBG/base_type = &"PanelContainer"
 PanelContainerGameBG/styles/panel = ExtResource("19_ft1cl")
 PanelContainerInset/base_type = &"PanelContainer"
 PanelContainerInset/styles/panel = ExtResource("23_n0c1d")
+PanelContainerScorePointer/base_type = &"PanelContainer"
+PanelContainerScorePointer/styles/panel = ExtResource("29_dlk7s")
 PanelContainerThinMargins/base_type = &"PanelContainer"
 PanelContainerThinMargins/styles/panel = ExtResource("24_yhwvv")
 PanelContainerToast/base_type = &"PanelContainer"
@@ -152,6 +156,8 @@ PanelFloating/base_type = &"Panel"
 PanelFloating/styles/panel = ExtResource("26_n2nkp")
 PanelGrid/base_type = &"Panel"
 PanelGrid/styles/panel = ExtResource("27_wldaw")
+PanelPointerArrow/base_type = &"Panel"
+PanelPointerArrow/styles/panel = ExtResource("34_2onyq")
 PanelTile/base_type = &"Panel"
 PanelTile/styles/panel = ExtResource("28_3a7b3")
 ProgressBar/styles/background = ExtResource("34_sk8j7")
