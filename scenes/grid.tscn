@@ -179,6 +179,7 @@ script = ExtResource("5_wnhym")
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer" unique_id=418581970]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 15
 
 [node name="HeaderMarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer" unique_id=1132622539]
 layout_mode = 2
