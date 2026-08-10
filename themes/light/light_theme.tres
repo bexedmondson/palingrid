@@ -31,7 +31,7 @@
 [ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/leaderboard_entry_rankodd.tres" id="15_k4jnt"]
 [ext_resource type="StyleBox" uid="uid://c48db3gig8bw8" path="res://themes/light/panel_floating_toast_light.tres" id="25_krt1t"]
 [ext_resource type="StyleBox" uid="uid://c3bbdiqyfmc4p" path="res://themes/light/panel_container_best_pointer_light.tres" id="26_2ihl8"]
-[ext_resource type="StyleBox" uid="uid://c8x3wnv7tajmb" path="res://themes/light/panel_container_expand_margins_light.tres" id="26_tq8i7"]
+[ext_resource type="StyleBox" uid="uid://c8x3wnv7tajmb" path="res://themes/light/panel_container_menu_expand_margins_light.tres" id="26_tq8i7"]
 [ext_resource type="StyleBox" uid="uid://c1vcmfrd2vceh" path="res://themes/light/panel_container_score_pointer_light.tres" id="29_jam87"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
 [ext_resource type="StyleBox" uid="uid://1smleun01y7i" path="res://themes/goal_progress_bar_fill.tres" id="33_12gmn"]
