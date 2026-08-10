@@ -664,7 +664,7 @@ name_change_handler = NodePath("../NameEntryPanel")
 grid = NodePath("../../../../../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../LetterSetGenerator")
 
-[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer" unique_id=1648906337 node_paths=PackedStringArray("loginHandler") instance=ExtResource("29_64acc")]
+[node name="NameEntryPanel" parent="CanvasLayer/PanelContainer" unique_id=1648906337 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
 visible = false
 z_index = 3
 custom_minimum_size = Vector2(600, 800)
@@ -672,6 +672,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 loginHandler = NodePath("../LoginHandler")
+best_score_indicator = NodePath("../BestScoreHandler")
 
 [node name="HowToPlay" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=1627899214 node_paths=PackedStringArray("saveFileHandler")]
 visible = false

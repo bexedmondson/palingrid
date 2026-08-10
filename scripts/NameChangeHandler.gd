@@ -12,13 +12,13 @@ signal on_closed
 @export var confirm_button : Button
 @export var back_button : Button
 
-const MIN_NAME_LENGTH: int = 2
-const MAX_NAME_LENGTH: int = 16
+const MIN_NAME_LENGTH: int = 3
+const MAX_NAME_LENGTH: int = 12
 
 const valid_chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-				'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-				'0','1','2','3','4','5','6','7','8','9',
-				'_']
+					'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+					'0','1','2','3','4','5','6','7','8','9',
+					'_']
 
 var is_rename = false
 
@@ -161,12 +161,11 @@ func _on_nickname_change_success(new_nickname: String):
 		print("[NameChangeHandler] Renamed successfully to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
 		on_closed.emit()
 		self.visible = false
+		confirm_button.disabled = false
+		back_button.disabled = false
 	else:
 		print("[NameChangeHandler] Starting game successfully as: %s (loginHandler nickname: %s) (cheddaboards nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards._nickname, CheddaBoards.get_player_id()])
 		do_first_score_submit()
-	
-	confirm_button.disabled = false
-	back_button.disabled = false
 
 func do_first_score_submit():
 	if !CheddaBoards.score_submitted.is_connected(_on_first_score_submitted):
@@ -176,7 +175,7 @@ func do_first_score_submit():
 		
 	ScoreSubmitter.submit_score(best_score_indicator.best)
 
-func _on_first_score_submitted():
+func _on_first_score_submitted(score, streak):
 	if CheddaBoards.score_submitted.is_connected(_on_first_score_submitted):
 		CheddaBoards.score_submitted.disconnect(_on_first_score_submitted)
 	if CheddaBoards.score_error.is_connected(_on_first_score_submitted):
@@ -191,6 +190,9 @@ func _on_first_score_submitted():
 
 	CheddaBoards.change_nickname(new_set_nickname)
 	await CheddaBoards.nickname_changed
+	
+	confirm_button.disabled = false
+	back_button.disabled = false
 
 	#TODO close
 	on_closed.emit()
