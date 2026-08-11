@@ -1,5 +1,5 @@
 class_name AccountPopup
-extends Node
+extends Control
 
 @export var name_change_handler : NameChangeHandler
 @export var login_handler : LoginHandler
@@ -13,6 +13,8 @@ var show_hide_tween : Tween
 func do_show():
 	connection_warning.visible = !CheddaBoards.is_logged_in()
 	name_label.text = "Hello %s!" % login_handler.nickname
+	
+	super.show()
 	
 	if show_hide_tween != null and show_hide_tween.is_valid():
 		show_hide_tween.kill()
@@ -32,6 +34,8 @@ func on_rename_pressed():
 
 func _on_name_change_prompt_closed():
 	name_change_handler.on_closed.disconnect(_on_name_change_prompt_closed)
+	connection_warning.visible = !CheddaBoards.is_logged_in()
+	name_label.text = "Hello %s!" % login_handler.nickname
 
 
 func _on_back_pressed():
