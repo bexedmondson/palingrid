@@ -52,10 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
-[ext_resource type="Script" uid="uid://cjb5hurxpbpdp" path="res://scripts/AccountPopup.gd" id="49_0uv86"]
-[ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="50_idbgw"]
-[ext_resource type="Texture2D" uid="uid://66nf847ass0e" path="res://textures/tool-pencil.svg" id="51_xvihj"]
-[ext_resource type="Texture2D" uid="uid://ctufowlq4oai2" path="res://textures/timer_0.svg" id="52_tkjpc"]
+[ext_resource type="PackedScene" uid="uid://cpcfskn5ickc2" path="res://scenes/account_popup.tscn" id="48_idbgw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01tbl"]
 content_margin_left = 30.0
@@ -765,6 +762,7 @@ mouse_filter = 2
 theme = ExtResource("1_f2tft")
 
 [node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1030,183 +1028,24 @@ texture = ExtResource("37_ne81u")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="AccountPopup" type="Panel" parent="PopupCanvasLayer/PopupThemeController" unique_id=984838380 node_paths=PackedStringArray("name_change_handler", "login_handler", "name_label", "connection_warning", "loading_indicator")]
-visible = false
-z_index = 2
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -510.0
-offset_top = -510.0
-offset_right = 510.0
-offset_bottom = 510.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_5816i")
-script = ExtResource("49_0uv86")
+[node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler") instance=ExtResource("48_idbgw")]
+layout_mode = 0
+anchors_preset = 0
 name_change_handler = NodePath("../NameEntryPanel")
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
-name_label = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
-connection_warning = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/ConnectionIconTextureRect")
-loading_indicator = NodePath("Panel/AccountMarginContainer/LoadingSpinner")
 
-[node name="ColorRect" type="ColorRect" parent="PopupCanvasLayer/PopupThemeController/AccountPopup" unique_id=1737633248]
-custom_minimum_size = Vector2(3000, 3000)
-propagate_maximum_size = true
-layout_mode = 0
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 1500.0
-offset_bottom = 1500.0
-color = Color(0, 0, 0, 0.21960784)
-
-[node name="Panel" type="Panel" parent="PopupCanvasLayer/PopupThemeController/AccountPopup" unique_id=1649617781]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"PanelFloating"
-
-[node name="AccountMarginContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel" unique_id=421786009]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_0g56i")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer" unique_id=839702078]
-layout_mode = 2
-horizontal_scroll_mode = 0
-scroll_deadzone = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer" unique_id=1360112683]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 20
-
-[node name="TitleLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer" unique_id=6744500]
-layout_mode = 2
-size_flags_vertical = 1
-theme_type_variation = &"LabelHeading"
-text = "YOUR ACCOUNT"
-horizontal_alignment = 1
-
-[node name="BackButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=960567276]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-offset_right = 70.0
-offset_bottom = 70.0
-pivot_offset_ratio = Vector2(1, 1)
-size_flags_horizontal = 8
-size_flags_vertical = 0
-icon = ExtResource("24_1s87h")
-icon_alignment = 1
-expand_icon = true
-
-[node name="ConnectionIconTextureRect" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=560149415]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
-texture = ExtResource("50_idbgw")
-
-[node name="TextureRect" type="TextureRect" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/ConnectionIconTextureRect" unique_id=1781084451]
-self_modulate = Color(1, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -42.0
-offset_top = -13.5
-offset_right = 18.00003
-offset_bottom = 46.5
-grow_horizontal = 0
-texture = ExtResource("14_gsnlb")
-expand_mode = 5
-
-[node name="NameHBoxContainer" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer" unique_id=1171838781]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="NameLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=1521057318]
-layout_mode = 2
-text = "Hello [name]!"
-
-[node name="ChangeNameButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=1153777204]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-icon = ExtResource("51_xvihj")
-autowrap_mode = 2
-clip_text = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="LoadingSpinner" type="Label" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer" unique_id=1754701102]
+[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
 visible = false
-layout_mode = 2
-size_flags_vertical = 1
-text = "loading..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/LoadingSpinner" unique_id=668233545]
-z_index = 9
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5707964
-pivot_offset_ratio = Vector2(0.5, 0.5)
-step = 0.01
-value = 32.87
-fill_mode = 4
-radial_initial_angle = 104.8
-nine_patch_stretch = true
-texture_progress = ExtResource("52_tkjpc")
-tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/LoadingSpinner" unique_id=550094615]
-z_index = 9
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-step = 0.01
-value = 16.19
-fill_mode = 4
-radial_initial_angle = 104.8
-nine_patch_stretch = true
-texture_progress = ExtResource("52_tkjpc")
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+loginHandler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
+best_score_indicator = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
 
 [node name="ToastControl" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1503642689]
 z_index = 50
@@ -1237,19 +1076,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Welcome, !"
 horizontal_alignment = 1
-
-[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-loginHandler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
-best_score_indicator = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="." unique_id=1693715868]
 layer = 3
@@ -1284,15 +1110,12 @@ text = "testing 123"
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/CloseMenuButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer" method="close"]
 [connection signal="toggled" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/AccountButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer" method="close"]
-[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="PopupCanvasLayer/PopupThemeController/Scoreboard" method="show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
-[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="_on_back_pressed"]
-[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/AccountPopup/Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/ChangeNameButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="on_rename_pressed"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]

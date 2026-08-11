@@ -10,6 +10,9 @@ extends Control
 
 var show_hide_tween : Tween
 
+func _enter_tree() -> void:
+	hide()
+
 func do_show():
 	connection_warning.visible = !CheddaBoards.is_logged_in()
 	name_label.text = "Hello %s!" % login_handler.nickname

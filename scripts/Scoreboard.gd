@@ -14,7 +14,7 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 # COLORS — CheddaBoards brand palette
 # ============================================================
 
-@export var COLOR_ACCENT: Color = Color("f5a623")         # CheddaBoards gold/cheese
+@export var COLOR_ACCENT: Color = Color("f5a623")
 @export var COLOR_TEXT: Color = Color("e0e0e0")
 @export var COLOR_TEXT_DIM: Color = Color("888888")
 @export var COLOR_HIGHLIGHT_PLAYER: Color = Color(0.2, 0.5, 0.2, 0.4)
