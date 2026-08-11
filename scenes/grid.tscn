@@ -24,7 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://scenes/cell.tscn" id="15_01tbl"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://scripts/GridRippleAnimator.gd" id="16_tvpgl"]
 [ext_resource type="Texture2D" uid="uid://drou0ud8fjy2n" path="res://textures/person.svg" id="17_ttir5"]
-[ext_resource type="Texture2D" uid="uid://dkuycxmj6cfv" path="res://textures/return-arrow.svg" id="19_eudc0"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://scenes/tile.tscn" id="20_64acc"]
 [ext_resource type="Script" uid="uid://cy621e4uj10q5" path="res://scripts/CellTileResizer.gd" id="21_7wdiv"]
@@ -35,13 +34,16 @@
 [ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="24_1s87h"]
 [ext_resource type="Script" uid="uid://cvuw6t8ehs56n" path="res://scripts/KofiButton.gd" id="24_02pyl"]
 [ext_resource type="Texture2D" uid="uid://cphyepf8of4rt" path="res://textures/tutorial_images/valid_word_placements1.png" id="25_o46hl"]
+[ext_resource type="Script" uid="uid://b28ttolf2qibo" path="res://scripts/GridRotator.gd" id="25_tkjpc"]
 [ext_resource type="Texture2D" uid="uid://dhbutai54wrxf" path="res://textures/tutorial_images/valid_word_placements2.png" id="26_jh3ig"]
 [ext_resource type="Texture2D" uid="uid://bffwwsp5ys3at" path="res://textures/tutorial_images/valid_word_placements3.png" id="27_7swsl"]
 [ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://scripts/DebugUtils.gd" id="28_5816i"]
 [ext_resource type="Texture2D" uid="uid://cdxjmnx1yv3ih" path="res://textures/tutorial_images/valid_word_placements4.png" id="28_cl3o7"]
+[ext_resource type="Texture2D" uid="uid://cygs88cfooyw7" path="res://textures/hard-drive-download.svg" id="28_idbgw"]
 [ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://scripts/WelcomeToast.gd" id="29_7swsl"]
 [ext_resource type="Texture2D" uid="uid://kd7tpx8rqas0" path="res://textures/tutorial_images/valid_word_placements5.png" id="29_18g0k"]
 [ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="29_64acc"]
+[ext_resource type="Texture2D" uid="uid://dcxhis2s0mfv5" path="res://textures/rotate-square.svg" id="29_xvihj"]
 [ext_resource type="Texture2D" uid="uid://b730uqrmfx3qt" path="res://textures/tutorial_images/valid_word_placements6.png" id="30_docto"]
 [ext_resource type="Texture2D" uid="uid://dbhxy5rmniw0g" path="res://textures/tutorial_images/score1word.png" id="31_wnhym"]
 [ext_resource type="Texture2D" uid="uid://pbu3g6w3bprs" path="res://textures/tutorial_images/score2word.png" id="32_2bxyt"]
@@ -375,7 +377,7 @@ custom_minimum_size = Vector2(540, 540)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "score", "bestScore")]
+[node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "bestScore")]
 z_index = 1
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
@@ -385,8 +387,11 @@ tileHolder = NodePath("../../../TileDockPanel/Tiles")
 slots = [NodePath("VBoxContainer/Row/Cell1"), NodePath("VBoxContainer/Row/Cell2"), NodePath("VBoxContainer/Row/Cell3"), NodePath("VBoxContainer/Row/Cell4"), NodePath("VBoxContainer/Row/Cell5"), NodePath("VBoxContainer/Row2/Cell6"), NodePath("VBoxContainer/Row2/Cell7"), NodePath("VBoxContainer/Row2/Cell8"), NodePath("VBoxContainer/Row2/Cell9"), NodePath("VBoxContainer/Row2/Cell10"), NodePath("VBoxContainer/Row3/Cell11"), NodePath("VBoxContainer/Row3/Cell12"), NodePath("VBoxContainer/Row3/Cell13"), NodePath("VBoxContainer/Row3/Cell14"), NodePath("VBoxContainer/Row3/Cell15"), NodePath("VBoxContainer/Row4/Cell16"), NodePath("VBoxContainer/Row4/Cell17"), NodePath("VBoxContainer/Row4/Cell18"), NodePath("VBoxContainer/Row4/Cell19"), NodePath("VBoxContainer/Row4/Cell20"), NodePath("VBoxContainer/Row5/Cell21"), NodePath("VBoxContainer/Row5/Cell22"), NodePath("VBoxContainer/Row5/Cell23"), NodePath("VBoxContainer/Row5/Cell24"), NodePath("VBoxContainer/Row5/Cell25")]
 tiles = [NodePath("../../../TileDockPanel/Tiles/Tile"), NodePath("../../../TileDockPanel/Tiles/Tile2"), NodePath("../../../TileDockPanel/Tiles/Tile3"), NodePath("../../../TileDockPanel/Tiles/Tile4"), NodePath("../../../TileDockPanel/Tiles/Tile5"), NodePath("../../../TileDockPanel/Tiles/Tile6"), NodePath("../../../TileDockPanel/Tiles/Tile7"), NodePath("../../../TileDockPanel/Tiles/Tile8"), NodePath("../../../TileDockPanel/Tiles/Tile9"), NodePath("../../../TileDockPanel/Tiles/Tile10"), NodePath("../../../TileDockPanel/Tiles/Tile11"), NodePath("../../../TileDockPanel/Tiles/Tile12"), NodePath("../../../TileDockPanel/Tiles/Tile13"), NodePath("../../../TileDockPanel/Tiles/Tile14"), NodePath("../../../TileDockPanel/Tiles/Tile15"), NodePath("../../../TileDockPanel/Tiles/Tile16"), NodePath("../../../TileDockPanel/Tiles/Tile17"), NodePath("../../../TileDockPanel/Tiles/Tile18"), NodePath("../../../TileDockPanel/Tiles/Tile19"), NodePath("../../../TileDockPanel/Tiles/Tile20"), NodePath("../../../TileDockPanel/Tiles/Tile21"), NodePath("../../../TileDockPanel/Tiles/Tile22"), NodePath("../../../TileDockPanel/Tiles/Tile23"), NodePath("../../../TileDockPanel/Tiles/Tile24"), NodePath("../../../TileDockPanel/Tiles/Tile25")]
 wordScene = NodePath("../../../../WordListContainer/ScrollContainer/VBoxContainer/WordPanel")
-score = NodePath("../../../../../HeaderMarginContainer/ScoreVBoxContainer/TotalLabel")
 bestScore = NodePath("../../../../../../../BestScoreHandler")
+
+[node name="GridRotator" type="Node" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=1731201554 node_paths=PackedStringArray("grid")]
+script = ExtResource("25_tkjpc")
+grid = NodePath("..")
 
 [node name="Control" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=1443428867]
 show_behind_parent = true
@@ -596,13 +601,23 @@ mouse_filter = 1
 
 [node name="GridButtonVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer" unique_id=947021112]
 layout_mode = 2
+theme_override_constants/separation = 25
 
 [node name="ResetTilesButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=1148351401]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-icon = ExtResource("19_eudc0")
+icon = ExtResource("28_idbgw")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RotateGridButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=2104542325]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("29_xvihj")
 icon_alignment = 1
 expand_icon = true
 
@@ -1031,6 +1046,16 @@ stretch_mode = 5
 [node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler") instance=ExtResource("48_idbgw")]
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1020.0
+offset_bottom = 1020.0
+grow_horizontal = 1
+grow_vertical = 1
 name_change_handler = NodePath("../NameEntryPanel")
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 
@@ -1114,6 +1139,7 @@ text = "testing 123"
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="PopupCanvasLayer/PopupThemeController/Scoreboard" method="show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/RotateGridButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridRotator" method="rotate"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]

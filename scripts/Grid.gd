@@ -6,7 +6,6 @@ extends Control
 @export var slots : Array[DropSlot]
 @export var tiles : Array[DropTile]
 @export var wordScene : InstancePlaceholder
-@export var score : Label
 @export var bestScore : BestScoreIndicator
 
 signal score_updated(new_score: int)
@@ -100,11 +99,6 @@ func update(_slot: DropSlot):
 	total = 0
 	for word in wordInstanceMap:
 		total += wordInstanceMap[word].get_points()
-	
-	if score.text == str(total):
-		return
-	
-	score.text = "SCORE: " + str(total)
 	
 	bestScore.update(total)
 	score_updated.emit(total)
