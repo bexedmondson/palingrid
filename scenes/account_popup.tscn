@@ -11,8 +11,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0g56i"]
 
-[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler", "name_label", "connection_warning", "loading_indicator")]
-visible = false
+[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "loading_indicator")]
 z_index = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -27,8 +26,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5816i")
 script = ExtResource("1_2uy5s")
-name_change_handler = NodePath("")
-login_handler = NodePath("")
 name_label = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
 connection_warning = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/ConnectionIconTextureRect")
 loading_indicator = NodePath("Panel/AccountMarginContainer/LoadingSpinner")
