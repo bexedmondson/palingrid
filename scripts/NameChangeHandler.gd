@@ -159,8 +159,7 @@ func _on_nickname_change_success(new_nickname: String):
 	
 	if is_rename:
 		print("[NameChangeHandler] Renamed successfully to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
-		on_closed.emit()
-		self.visible = false
+		do_hide()
 	else:
 		print("[NameChangeHandler] Starting game successfully as: %s (loginHandler nickname: %s) (cheddaboards nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards._nickname, CheddaBoards.get_player_id()])
 		do_first_score_submit()
@@ -193,8 +192,7 @@ func _on_first_score_submitted():
 	await CheddaBoards.nickname_changed
 
 	#TODO close
-	on_closed.emit()
-	self.visible = false
+	do_hide()
 
 
 func _on_nickname_changed_error(error):
@@ -210,7 +208,9 @@ func _on_nickname_changed_error(error):
 
 func _on_cancel_name_pressed():
 	"""Cancel name entry, go back to previous panel"""
-	
+	do_hide()
+
+func do_hide():
 	if show_hide_tween != null and show_hide_tween.is_valid():
 		show_hide_tween.kill()
 	show_hide_tween = create_tween()
@@ -220,3 +220,4 @@ func _on_cancel_name_pressed():
 	
 	await show_hide_tween.finished
 	self.visible = false
+	on_closed.emit()

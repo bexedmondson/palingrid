@@ -40,9 +40,7 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 @export var entry_placeholder : InstancePlaceholder
 
 # Loading display
-@export var spinner_bar : Control
-@export var spinner_bar2 : Control
-@export var spinner_label : Label
+@export var loading_spinner : LoadingSpinnerTweenController
 
 # Footer
 @export var status_label: Label
@@ -51,10 +49,6 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 var setup : bool = false
 
 var has_shown_set_name_prompt : bool
-
-var spinner_tween1 : Tween
-var spinner_tween2 : Tween
-var spinner_tweenValue : Tween
 
 var entry_displays = []
 
@@ -163,38 +157,9 @@ func _set_loading(loading: bool, message: String = ""):
 	change_name_button.disabled = loading
 	
 	if loading:
-		if spinner_tween1 == null or not spinner_tween1.is_valid():
-			spinner_tween1 = create_tween()
-			spinner_tween1.set_loops()
-			spinner_tween1.set_loops()
-			spinner_tween1.tween_property(spinner_bar, "rotation_degrees", 360.0, 1.5).from(0.0)
-			
-		if spinner_tween2 == null or not spinner_tween2.is_valid():
-			spinner_tween2 = create_tween()
-			spinner_tween2.set_loops()
-			spinner_tween2.tween_property(spinner_bar2, "rotation_degrees", 360.0, 2.5).from(0.0)
-		
-		if spinner_tweenValue == null or not spinner_tweenValue.is_valid():
-			
-			spinner_tweenValue = create_tween()
-			spinner_tweenValue.set_loops()
-			spinner_tweenValue.tween_property(spinner_bar, "value", 10.0, 0.5).from(28.0)
-			spinner_tweenValue.tween_property(spinner_bar, "value", 28.0, 0.5)
-			
-		
-		spinner_tween1.play()
-		spinner_tween2.play()
-		spinner_tweenValue.play()
-		
-		spinner_label.show()
+		loading_spinner.play()
 	else: 
-		if spinner_tween1 != null and spinner_tween1.is_valid():
-			spinner_tween1.pause()
-		if spinner_tween2 != null and spinner_tween2.is_valid():
-			spinner_tween2.pause()
-		if spinner_tweenValue != null and spinner_tweenValue.is_valid():
-			spinner_tweenValue.pause()
-		spinner_label.hide()
+		loading_spinner.stop()
 
 
 func _clear_leaderboard():

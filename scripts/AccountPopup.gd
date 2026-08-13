@@ -18,6 +18,7 @@ func _enter_tree() -> void:
 func do_show():
 	connection_warning.visible = !CheddaBoards.is_logged_in()
 	update_name_label()
+	link_account_section.visible = !CheddaBoards.has_account()
 	
 	super.show()
 	
@@ -58,3 +59,6 @@ func _on_back_pressed():
 
 	self.visible = false;
 
+
+func on_link_account_pressed():
+	CheddaBoards.login_with_device_code()
