@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://b730uqrmfx3qt" path="res://textures/tutorial_images/valid_word_placements6.png" id="30_docto"]
 [ext_resource type="Texture2D" uid="uid://dbhxy5rmniw0g" path="res://textures/tutorial_images/score1word.png" id="31_wnhym"]
 [ext_resource type="Texture2D" uid="uid://pbu3g6w3bprs" path="res://textures/tutorial_images/score2word.png" id="32_2bxyt"]
+[ext_resource type="Texture2D" uid="uid://c6f6mlsv0tipw" path="res://textures/icon-twitch.svg" id="32_xvihj"]
 [ext_resource type="Texture2D" uid="uid://h8xfh6jvn73d" path="res://textures/tutorial_images/score3word.png" id="33_rccgx"]
 [ext_resource type="Texture2D" uid="uid://npurgoymbbai" path="res://textures/tutorial_images/score3points.png" id="34_jffns"]
 [ext_resource type="Texture2D" uid="uid://b3qobrpixwagc" path="res://textures/tutorial_images/score1points.png" id="34_lr6w7"]
@@ -669,13 +670,13 @@ process_mode = 3
 editor_description = "Control node capable of hiding and revealing its children by folding and unfolding.
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 z_index = 2
-custom_minimum_size = Vector2(505, 325)
+custom_minimum_size = Vector2(513, 455)
 layout_mode = 1
 anchors_preset = 0
 offset_left = 50.0
 offset_top = 65.0
-offset_right = 555.0
-offset_bottom = 390.0
+offset_right = 563.0
+offset_bottom = 520.0
 size_flags_horizontal = 0
 script = ExtResource("11_0g56i")
 starts_opened = false
@@ -742,6 +743,15 @@ theme_override_font_sizes/font_size = 32
 text = "account"
 icon = ExtResource("17_ttir5")
 alignment = 0
+
+[node name="AccountButton2" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "watch palingrid development live!"
+icon = ExtResource("32_xvihj")
+flat = true
+alignment = 0
+autowrap_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=245448147]
 layout_mode = 2
@@ -1103,6 +1113,8 @@ text = "testing 123"
 [connection signal="toggled" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton2" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton2" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]

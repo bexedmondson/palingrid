@@ -8,6 +8,8 @@ extends Control
 @export var connection_warning : Control
 @export var loading_indicator : Control
 
+@export var link_account_section : Control
+
 var show_hide_tween : Tween
 
 func _enter_tree() -> void:
@@ -15,7 +17,7 @@ func _enter_tree() -> void:
 
 func do_show():
 	connection_warning.visible = !CheddaBoards.is_logged_in()
-	name_label.text = "Hello %s!" % login_handler.nickname
+	update_name_label()
 	
 	super.show()
 	
@@ -25,6 +27,9 @@ func do_show():
 	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	show_hide_tween.tween_property(self, "scale", Vector2(1,1), 0.2).from(Vector2.ZERO)
 	show_hide_tween.play()
+	
+func update_name_label():
+	name_label.text = "Hello %s!" % (login_handler.nickname if login_handler.nickname != "" else "Guest")
 
 
 func on_rename_pressed():
@@ -38,7 +43,7 @@ func on_rename_pressed():
 func _on_name_change_prompt_closed():
 	name_change_handler.on_closed.disconnect(_on_name_change_prompt_closed)
 	connection_warning.visible = !CheddaBoards.is_logged_in()
-	name_label.text = "Hello %s!" % login_handler.nickname
+	update_name_label()
 
 
 func _on_back_pressed():
@@ -52,3 +57,4 @@ func _on_back_pressed():
 	await show_hide_tween.finished
 
 	self.visible = false;
+
