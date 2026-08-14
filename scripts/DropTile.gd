@@ -16,9 +16,13 @@ func _process(delta: float) -> void:
 		doubleTapTimeout -= delta
 
 func get_preview() -> Control:
-	var dupe = letter_label.duplicate()
 	self.modulate = Color.TRANSPARENT
-	return dupe
+	
+	var drag_parent = Control.new()
+	var dupe = letter_label.duplicate()
+	dupe.set_anchors_and_offsets_preset(PRESET_CENTER)
+	drag_parent.add_child(dupe)
+	return drag_parent
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	set_drag_preview(get_preview())

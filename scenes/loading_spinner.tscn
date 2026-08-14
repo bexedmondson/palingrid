@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dcx3d4148bqpv"]
+
+[ext_resource type="Script" uid="uid://c30eolie46461" path="res://scripts/LoadingSpinnerTweenController.gd" id="1_6e6rl"]
+[ext_resource type="Texture2D" uid="uid://ctufowlq4oai2" path="res://textures/timer_0.svg" id="2_br87l"]
+
+[node name="LoadingSpinnerController" type="Control" unique_id=545174538 node_paths=PackedStringArray("_spinner_bar", "_spinner_bar2")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("1_6e6rl")
+_spinner_bar = NodePath("TextureProgressBar")
+_spinner_bar2 = NodePath("TextureProgressBar2")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=40354911]
+visible = false
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 16.19
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("2_br87l")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="." unique_id=2027828781]
+visible = false
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+step = 0.01
+value = 32.87
+fill_mode = 4
+radial_initial_angle = 104.8
+nine_patch_stretch = true
+texture_progress = ExtResource("2_br87l")
+tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)

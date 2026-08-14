@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://b730uqrmfx3qt" path="res://textures/tutorial_images/valid_word_placements6.png" id="30_docto"]
 [ext_resource type="Texture2D" uid="uid://dbhxy5rmniw0g" path="res://textures/tutorial_images/score1word.png" id="31_wnhym"]
 [ext_resource type="Texture2D" uid="uid://pbu3g6w3bprs" path="res://textures/tutorial_images/score2word.png" id="32_2bxyt"]
+[ext_resource type="Texture2D" uid="uid://c6f6mlsv0tipw" path="res://textures/icon-twitch.svg" id="32_xvihj"]
 [ext_resource type="Texture2D" uid="uid://h8xfh6jvn73d" path="res://textures/tutorial_images/score3word.png" id="33_rccgx"]
 [ext_resource type="Texture2D" uid="uid://npurgoymbbai" path="res://textures/tutorial_images/score3points.png" id="34_jffns"]
 [ext_resource type="Texture2D" uid="uid://b3qobrpixwagc" path="res://textures/tutorial_images/score1points.png" id="34_lr6w7"]
@@ -173,7 +174,7 @@ dailyGenerator = NodePath("../LetterSetGenerator")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 scoreboard = NodePath("../../../PopupCanvasLayer/PopupThemeController/Scoreboard")
 saveFileHandler = NodePath("../SaveFileHandler")
-lightDarkMode = NodePath("../FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton")
+lightDarkMode = NodePath("../../../PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton")
 
 [node name="FullScreenScrollContainer" type="ScrollContainer" parent="MainCanvasLayer/PanelContainer" unique_id=384962350]
 clip_contents = false
@@ -202,103 +203,6 @@ icon = ExtResource("10_5816i")
 icon_alignment = 1
 expand_icon = true
 
-[node name="CollapsibleContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" unique_id=507913925]
-process_mode = 3
-editor_description = "Control node capable of hiding and revealing its children by folding and unfolding.
-Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
-z_index = 2
-custom_minimum_size = Vector2(505, 325)
-clip_contents = true
-layout_mode = 1
-anchors_preset = 0
-offset_right = 505.0
-offset_bottom = 325.0
-size_flags_horizontal = 0
-script = ExtResource("11_0g56i")
-starts_opened = false
-sizing_node = NodePath("MenuVBoxContainer")
-use_custom_close_size = true
-tween_duration_sec = 0.30000000000000004
-tween_transition_type = 3
-metadata/_custom_type_script = "uid://btlh4wrv04rc3"
-
-[node name="PanelContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer" unique_id=2042618385]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"PanelContainerExpandMargins"
-
-[node name="MenuVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer" unique_id=2100299325]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MenuHeaderHBoxContainer" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer" unique_id=230418286]
-layout_mode = 2
-
-[node name="CloseMenuButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer" unique_id=786856511]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-size_flags_horizontal = 0
-icon = ExtResource("12_j4jdq")
-icon_alignment = 1
-expand_icon = true
-
-[node name="MarginContainer" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer" unique_id=1789253597]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="LightDarkModeButton" type="TextureButton" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer" unique_id=521705004 node_paths=PackedStringArray("nodesToToggleTheme", "saveFileHandler")]
-custom_maximum_size = Vector2(217.834, 100)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-toggle_mode = true
-texture_normal = ExtResource("8_idg7c")
-texture_pressed = ExtResource("8_f2tft")
-script = ExtResource("9_0enuu")
-light = ExtResource("1_wqld8")
-dark = ExtResource("1_f2tft")
-nodesToToggleTheme = [NodePath("../../../../../../../../.."), NodePath("../../../../../../../../../../../PopupCanvasLayer/PopupThemeController")]
-saveFileHandler = NodePath("../../../../../../../../../SaveFileHandler")
-
-[node name="AccountButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer" unique_id=1545352112]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "account"
-icon = ExtResource("17_ttir5")
-alignment = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer" unique_id=245448147]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="KofiButton" type="TextureButton" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MarginContainer" unique_id=320335256 groups=["layout_size_change"]]
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-texture_normal = ExtResource("22_eudc0")
-texture_pressed = ExtResource("23_xfqe3")
-texture_hover = ExtResource("22_eudc0")
-texture_disabled = ExtResource("22_eudc0")
-texture_focused = ExtResource("22_eudc0")
-stretch_mode = 4
-script = ExtResource("24_02pyl")
-min_size_vertical_layout = Vector2(400, 80)
-min_size_horizontal_layout = Vector2(250, 50)
-
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(400, 79.235)
 layout_mode = 2
@@ -319,7 +223,7 @@ custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_vertical = 0
 grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-light_dark_mode = NodePath("../../OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton")
+light_dark_mode = NodePath("../../../../../../../PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton")
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2
@@ -776,24 +680,128 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_f2tft")
 
+[node name="MenuCollapsibleContainer" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=507913925]
+process_mode = 3
+editor_description = "Control node capable of hiding and revealing its children by folding and unfolding.
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+z_index = 2
+custom_minimum_size = Vector2(400, 324)
+layout_mode = 1
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 65.0
+offset_right = 450.0
+offset_bottom = 389.0
+size_flags_horizontal = 0
+script = ExtResource("11_0g56i")
+starts_opened = false
+sizing_node = NodePath("MenuVBoxContainer")
+use_custom_close_size = true
+tween_duration_sec = 0.30000000000000004
+tween_transition_type = 3
+_preview_starts_opened = false
+metadata/_custom_type_script = "uid://btlh4wrv04rc3"
+
+[node name="PanelContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" unique_id=2042618385]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_type_variation = &"PanelContainerMenuExpandMargins"
+
+[node name="MenuVBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" unique_id=2100299325]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuHeaderHBoxContainer" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=230418286]
+layout_mode = 2
+
+[node name="CloseMenuButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer" unique_id=786856511]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+icon = ExtResource("12_j4jdq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer" unique_id=1789253597]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="LightDarkModeButton" type="TextureButton" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer" unique_id=521705004 node_paths=PackedStringArray("nodesToToggleTheme", "saveFileHandler")]
+custom_maximum_size = Vector2(217.834, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("8_idg7c")
+texture_pressed = ExtResource("8_f2tft")
+script = ExtResource("9_0enuu")
+light = ExtResource("1_wqld8")
+dark = ExtResource("1_f2tft")
+nodesToToggleTheme = [NodePath("../../../../../../../MainCanvasLayer/PanelContainer"), NodePath("../../../../..")]
+saveFileHandler = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/SaveFileHandler")
+
+[node name="AccountButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1545352112]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+text = "account"
+icon = ExtResource("17_ttir5")
+expand_icon = true
+
+[node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+text = "watch palingrid 
+development live!"
+icon = ExtResource("32_xvihj")
+flat = true
+autowrap_mode = 2
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=245448147]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="KofiButton" type="TextureButton" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer" unique_id=320335256 groups=["layout_size_change"]]
+custom_minimum_size = Vector2(247, 50)
+layout_mode = 2
+texture_normal = ExtResource("22_eudc0")
+texture_pressed = ExtResource("23_xfqe3")
+texture_hover = ExtResource("22_eudc0")
+texture_disabled = ExtResource("22_eudc0")
+texture_focused = ExtResource("22_eudc0")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("24_02pyl")
+min_size_vertical_layout = Vector2(356, 72)
+min_size_horizontal_layout = Vector2(356, 72)
+
 [node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -510.0
-offset_top = -510.0
-offset_right = 510.0
-offset_bottom = 510.0
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 name_change_handler = NodePath("../NameEntryPanel")
 
-[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1948943594, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
+[node name="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer" parent_id_path=PackedInt32Array(1948943594, 1091344264) index="0" unique_id=510556136]
+visible = false
+
+[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
 
@@ -1044,31 +1052,15 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler") instance=ExtResource("48_idbgw")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 1020.0
-offset_bottom = 1020.0
-grow_horizontal = 1
-grow_vertical = 1
+visible = false
+layout_mode = 1
 name_change_handler = NodePath("../NameEntryPanel")
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 
 [node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
 grow_horizontal = 1
-grow_vertical = 1
 loginHandler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 best_score_indicator = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
 
@@ -1131,17 +1123,21 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("45_quncq")
 text = "testing 123"
 
-[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer" method="open"]
-[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/CloseMenuButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer" method="close"]
-[connection signal="toggled" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
-[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/AccountButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer" method="close"]
-[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/CollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="open"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="PopupCanvasLayer/PopupThemeController/Scoreboard" method="show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/RotateGridButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridRotator" method="rotate"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/CloseMenuButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="toggled" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]
+[editable path="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/LoadingSpinnerController"]
