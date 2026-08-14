@@ -670,13 +670,13 @@ process_mode = 3
 editor_description = "Control node capable of hiding and revealing its children by folding and unfolding.
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 z_index = 2
-clip_contents = true
+custom_minimum_size = Vector2(400, 324)
 layout_mode = 1
 anchors_preset = 0
 offset_left = 50.0
 offset_top = 65.0
-offset_right = 50.0
-offset_bottom = 65.0
+offset_right = 450.0
+offset_bottom = 389.0
 size_flags_horizontal = 0
 script = ExtResource("11_0g56i")
 starts_opened = false
@@ -702,7 +702,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -738,41 +737,43 @@ nodesToToggleTheme = [NodePath("../../../../../../../MainCanvasLayer/PanelContai
 saveFileHandler = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/SaveFileHandler")
 
 [node name="AccountButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1545352112]
+custom_minimum_size = Vector2(0, 82)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
 text = "account"
 icon = ExtResource("17_ttir5")
-alignment = 0
+expand_icon = true
 
-[node name="AccountButton2" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+[node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+custom_minimum_size = Vector2(0, 82)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "watch palingrid development live!"
+text = "watch palingrid 
+development live!"
 icon = ExtResource("32_xvihj")
 flat = true
-alignment = 0
 autowrap_mode = 2
+expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=245448147]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_bottom = 0
 
 [node name="KofiButton" type="TextureButton" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer" unique_id=320335256 groups=["layout_size_change"]]
-custom_minimum_size = Vector2(250, 50)
+custom_minimum_size = Vector2(247, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 texture_normal = ExtResource("22_eudc0")
 texture_pressed = ExtResource("23_xfqe3")
 texture_hover = ExtResource("22_eudc0")
 texture_disabled = ExtResource("22_eudc0")
 texture_focused = ExtResource("22_eudc0")
-stretch_mode = 4
+ignore_texture_size = true
+stretch_mode = 5
 script = ExtResource("24_02pyl")
-min_size_vertical_layout = Vector2(400, 80)
-min_size_horizontal_layout = Vector2(250, 50)
+min_size_vertical_layout = Vector2(356, 72)
+min_size_horizontal_layout = Vector2(356, 72)
 
 [node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
 visible = false
@@ -782,7 +783,10 @@ COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 name_change_handler = NodePath("../NameEntryPanel")
 
-[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1948943594, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
+[node name="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer" parent_id_path=PackedInt32Array(1948943594, 1091344264) index="0" unique_id=510556136]
+visible = false
+
+[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
 
@@ -1113,8 +1117,8 @@ text = "testing 123"
 [connection signal="toggled" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
-[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton2" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
-[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton2" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
