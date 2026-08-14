@@ -53,6 +53,8 @@ func rotate():
 		tile.offset_transform_position = tileToOriginalGlobalPositionMap[tile] - tile.global_position
 		_rotate_tween.tween_property(tile, "offset_transform_position", Vector2.ZERO, 0.6)
 	
+	##TODO to get tiles moving in arcs around the center point, consider offsetting to have the pivot at the grid centre and then rotating around maybe? but keeping y up obvs
+	
 	_rotate_tween.play()
 
 	
