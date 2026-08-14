@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://drou0ud8fjy2n" path="res://textures/person.svg" id="17_ttir5"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://scenes/tile.tscn" id="20_64acc"]
+[ext_resource type="Texture2D" uid="uid://dxyfh8dmqnnka" path="res://textures/rotate-square.svg" id="20_5816i"]
 [ext_resource type="Script" uid="uid://cy621e4uj10q5" path="res://scripts/CellTileResizer.gd" id="21_7wdiv"]
 [ext_resource type="PackedScene" uid="uid://cu1ciow3fnymq" path="res://scenes/scoreboard.tscn" id="21_aktff"]
 [ext_resource type="Texture2D" uid="uid://bb7838h81l1r2" path="res://textures/support_me_on_kofi_beige.png" id="22_eudc0"]
@@ -43,7 +44,6 @@
 [ext_resource type="Script" uid="uid://cal7hxxwwy55t" path="res://scripts/WelcomeToast.gd" id="29_7swsl"]
 [ext_resource type="Texture2D" uid="uid://kd7tpx8rqas0" path="res://textures/tutorial_images/valid_word_placements5.png" id="29_18g0k"]
 [ext_resource type="PackedScene" uid="uid://d3ous8x3sgirx" path="res://scenes/name_entry_panel.tscn" id="29_64acc"]
-[ext_resource type="Texture2D" uid="uid://dcxhis2s0mfv5" path="res://textures/rotate-square.svg" id="29_xvihj"]
 [ext_resource type="Texture2D" uid="uid://b730uqrmfx3qt" path="res://textures/tutorial_images/valid_word_placements6.png" id="30_docto"]
 [ext_resource type="Texture2D" uid="uid://dbhxy5rmniw0g" path="res://textures/tutorial_images/score1word.png" id="31_wnhym"]
 [ext_resource type="Texture2D" uid="uid://pbu3g6w3bprs" path="res://textures/tutorial_images/score2word.png" id="32_2bxyt"]
@@ -521,7 +521,7 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-icon = ExtResource("29_xvihj")
+icon = ExtResource("20_5816i")
 icon_alignment = 1
 expand_icon = true
 
