@@ -19,6 +19,9 @@ extends Control
 
 @export var goal_names : Array[String]
 
+@export var goal_name_animator_scene : PackedScene
+@export var goal_name_animator_container : Control
+
 var predicted_top_score : int
 var model_prediction_halfrange : float
 
@@ -140,6 +143,7 @@ func _update_bar(tween_value : float):
 			if t.state == GoalProgressTick.TickState.RESET or t.state == GoalProgressTick.TickState.NOT_REACHED:
 				#t.burst_effect_tween_composer.play_tween()
 				t.do_first_hit_anim()
+				on_goal_reached(all_ticks.find(t))
 			t.set_state(GoalProgressTick.TickState.REACHED_CURRENT)
 		else:
 			t.set_state(GoalProgressTick.TickState.REACHED_PREVIOUS 
@@ -158,3 +162,8 @@ func get_bar_proportion(amount):
 	var x_proportion_after_highest_goal = 0 if amount <= highest_goal else (amount - highest_goal) / float(amount)
 	
 	return (x_proportion_before_lowest_goal + x_proportion_after_lowest_goal) * scale_for_best_higher_than_top_goal + x_proportion_after_highest_goal
+
+func on_goal_reached(goal_index: int):
+	var animation = goal_name_animator_scene.instantiate()
+	goal_name_animator_container.add_child(animation)
+	animation.animate_word(goal_names[goal_index])
