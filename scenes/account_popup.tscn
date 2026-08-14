@@ -6,13 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="3_0yqrv"]
 [ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="4_4rky0"]
 [ext_resource type="Texture2D" uid="uid://66nf847ass0e" path="res://textures/tool-pencil.svg" id="5_cho3s"]
-[ext_resource type="Texture2D" uid="uid://ctufowlq4oai2" path="res://textures/timer_0.svg" id="6_dt5tj"]
+[ext_resource type="PackedScene" uid="uid://dcx3d4148bqpv" path="res://scenes/loading_spinner.tscn" id="7_2h40v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5816i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0g56i"]
 
-[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "loading_indicator", "link_account_section")]
+[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "link_account_section", "loading_spinner", "link_error_message", "link_popup", "qr_code", "link_button", "code_label")]
 z_index = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,8 +30,13 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_5816i")
 script = ExtResource("1_2uy5s")
 name_label = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
 connection_warning = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/ConnectionIconTextureRect")
-loading_indicator = NodePath("Panel/AccountMarginContainer/LoadingSpinner")
 link_account_section = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer")
+loading_spinner = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/LoadingSpinnerController")
+link_error_message = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/LinkErrorLabel")
+link_popup = NodePath("LinkQRPopup")
+qr_code = NodePath("LinkQRPopup/PanelContainer/VBoxContainer/TextureRect")
+link_button = NodePath("")
+code_label = NodePath("LinkQRPopup/PanelContainer/VBoxContainer/CodeLabel")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=164429841]
 custom_minimum_size = Vector2(3000, 3000)
@@ -39,8 +44,8 @@ propagate_maximum_size = true
 layout_mode = 0
 offset_left = -500.0
 offset_top = -500.0
-offset_right = 1500.0
-offset_bottom = 1500.0
+offset_right = 2500.0
+offset_bottom = 2500.0
 color = Color(0, 0, 0, 0.21960784)
 
 [node name="Panel" type="Panel" parent="." unique_id=1019161293]
@@ -157,59 +162,105 @@ autowrap_mode = 2
 layout_mode = 2
 text = "link account"
 
-[node name="LoadingSpinner" type="Label" parent="Panel/AccountMarginContainer" unique_id=903763595]
+[node name="LinkErrorLabel" type="Label" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1174089157]
 visible = false
 layout_mode = 2
-size_flags_vertical = 1
-text = "loading..."
+theme_override_colors/font_color = Color(0.9372549, 0.23137255, 0.18431373, 1)
+theme_override_colors/font_outline_color = Color(0.039215688, 0.078431375, 0.07450981, 1)
+theme_override_constants/outline_size = 3
+text = "error message goes here"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="Panel/AccountMarginContainer/LoadingSpinner" unique_id=217043147]
-z_index = 9
+[node name="LoadingSpinnerController" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=545174538 instance=ExtResource("7_2h40v")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="LinkQRPopup" type="Panel" parent="." unique_id=1936892041]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 1.5707964
-pivot_offset_ratio = Vector2(0.5, 0.5)
-step = 0.01
-value = 32.87
-fill_mode = 4
-radial_initial_angle = 104.8
-nine_patch_stretch = true
-texture_progress = ExtResource("6_dt5tj")
-tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
+theme_type_variation = &"PanelFloating"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel/AccountMarginContainer/LoadingSpinner" unique_id=944070448]
-z_index = 9
+[node name="ColorRect" type="ColorRect" parent="LinkQRPopup" unique_id=653648776]
+show_behind_parent = true
+custom_minimum_size = Vector2(3000, 3000)
+propagate_maximum_size = true
+layout_mode = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 2500.0
+offset_bottom = 2500.0
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="PanelContainer" type="PanelContainer" parent="LinkQRPopup" unique_id=1509940560]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_left = -155.0
+offset_top = -243.0
+offset_right = 155.0
+offset_bottom = 243.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-step = 0.01
-value = 16.19
-fill_mode = 4
-radial_initial_angle = 104.8
-nine_patch_stretch = true
-texture_progress = ExtResource("6_dt5tj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LinkQRPopup/PanelContainer" unique_id=1284695607]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=879165194]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 5
+stretch_mode = 5
+
+[node name="LinkButton" type="Button" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=1330026183]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "or go to link directly (opens a new tab)"
+autowrap_mode = 2
+
+[node name="CodeDescriptionLabel" type="Label" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=1297366355]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "or enter code manually:"
+horizontal_alignment = 1
+
+[node name="CodeLabel" type="Label" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=763109883]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BackButton" type="Button" parent="LinkQRPopup" unique_id=1490468438]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+pivot_offset_ratio = Vector2(1, 1)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_2h40v")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/ChangeNameButton" to="." method="on_rename_pressed"]
+[connection signal="pressed" from="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/Button" to="." method="on_link_account_pressed"]
+[connection signal="pressed" from="LinkQRPopup/PanelContainer/VBoxContainer/LinkButton" to="." method="on_verification_link_button"]
+[connection signal="pressed" from="LinkQRPopup/BackButton" to="." method="on_cancel_device_code_button"]

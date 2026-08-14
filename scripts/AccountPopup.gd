@@ -6,14 +6,22 @@ extends Control
 
 @export var name_label : Label
 @export var connection_warning : Control
-@export var loading_indicator : Control
 
 @export var link_account_section : Control
+@export var loading_spinner : LoadingSpinnerTweenController
+@export var link_error_message : Label
+@export var link_popup : Control
+@export var qr_code : TextureRect
+@export var link_button : LinkButton
+@export var code_label : Label
+
+var _verification_url : String
 
 var show_hide_tween : Tween
 
 func _enter_tree() -> void:
 	hide()
+	link_popup.visible = false
 
 func do_show():
 	connection_warning.visible = !CheddaBoards.is_logged_in()
@@ -61,4 +69,85 @@ func _on_back_pressed():
 
 
 func on_link_account_pressed():
+	CheddaBoards.device_code_received.connect(on_device_code_received)
+	CheddaBoards.device_code_error.connect(on_device_code_error)
+	
+	link_error_message.visible = false
+	loading_spinner.play()
+	
 	CheddaBoards.login_with_device_code()
+
+func on_device_code_error(reason: String):
+	push_error("[AccountPopup] Device code error: " + reason)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+	
+	if CheddaBoards.device_code_received.is_connected(on_device_code_received):
+		CheddaBoards.device_code_received.disconnect(on_device_code_received)
+	if CheddaBoards.device_code_expired.is_connected(on_device_code_expired):
+		CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	
+	loading_spinner.stop()
+	link_popup.visible = false
+	link_error_message.text = "An error occurred. Please try again."
+	link_error_message.visible = true
+
+func on_device_code_received(user_code: String, verification_url: String, qr_data_url: String):
+	CheddaBoards.device_code_received.disconnect(on_device_code_received)
+	#note: keep the device code error signal connection here 
+	
+	loading_spinner.stop()
+	link_error_message.visible = false
+	link_popup.visible = true
+	_verification_url = verification_url
+	code_label.text = user_code
+
+	## Decode a base64 PNG data URL onto a TextureRect. Returns true on success.
+	# Strip the "data:image/png;base64," prefix
+	var comma = qr_data_url.find(",")
+	if comma == -1:
+		on_device_code_error("Invalid QR data URL (no comma found)")
+		return
+
+	var b64 = qr_data_url.substr(comma + 1)
+	var raw: PackedByteArray = Marshalls.base64_to_raw(b64)
+	if raw.is_empty():
+		on_device_code_error("Invalid QR data URL (could not convert to bytes)")
+		return
+
+	var img = Image.new()
+	if img.load_png_from_buffer(raw) != OK:
+		on_device_code_error("Invalid QR data URL (image load from buffer failed)")
+		return
+
+	CheddaBoards.device_code_expired.connect(on_device_code_expired)
+	CheddaBoards.device_code_approved.connect(on_device_code_approved)
+
+	qr_code.texture = ImageTexture.create_from_image(img)
+
+func on_verification_link_button():
+	OS.shell_open(_verification_url)
+	
+func on_device_code_expired():
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+	
+	link_error_message.text = "Code expired. Please try again."
+	link_error_message.visible = true
+	link_popup.visible = false
+
+
+func on_device_code_approved(nickname: String):
+	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	link_popup.visible = false
+	update_name_label()
+
+func on_cancel_device_code_button():
+	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	link_popup.visible = false
+	CheddaBoards.cancel_device_code()

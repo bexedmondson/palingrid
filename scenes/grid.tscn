@@ -1120,3 +1120,4 @@ text = "testing 123"
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]
+[editable path="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/LoadingSpinnerController"]
