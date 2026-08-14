@@ -7,6 +7,7 @@ extends Control
 @export var tiles : Array[DropTile]
 @export var wordScene : InstancePlaceholder
 @export var bestScore : BestScoreIndicator
+@export var gridRotator : GridRotator
 
 signal score_updated(new_score: int)
 
@@ -181,6 +182,9 @@ func filled_slot_count():
 	return letter_count() - tileHolder.tile_count()
 		
 func reset_tiles():
+	if gridRotator.get_is_rotating():
+		return
+	
 	for slot in slots:
 		if slot.slotTile == null:
 			continue
