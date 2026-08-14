@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
 [ext_resource type="PackedScene" uid="uid://hx0u0tuvv2rj" path="res://scenes/tile.tscn" id="20_64acc"]
 [ext_resource type="Texture2D" uid="uid://dxyfh8dmqnnka" path="res://textures/rotate-square.svg" id="20_5816i"]
+[ext_resource type="Texture2D" uid="uid://bfngqcod6xdcb" path="res://textures/shuffle.svg" id="21_0g56i"]
 [ext_resource type="Script" uid="uid://cy621e4uj10q5" path="res://scripts/CellTileResizer.gd" id="21_7wdiv"]
 [ext_resource type="PackedScene" uid="uid://cu1ciow3fnymq" path="res://scenes/scoreboard.tscn" id="21_aktff"]
 [ext_resource type="Texture2D" uid="uid://bb7838h81l1r2" path="res://textures/support_me_on_kofi_beige.png" id="22_eudc0"]
@@ -527,6 +528,15 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("20_5816i")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ShuffleButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=1404956794]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("21_0g56i")
 icon_alignment = 1
 expand_icon = true
 
@@ -1128,6 +1138,7 @@ text = "testing 123"
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/RotateGridButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridRotator" method="rotate"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ShuffleButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/TileDockPanel/Tiles" method="shuffle_tiles"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/CloseMenuButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="toggled" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
