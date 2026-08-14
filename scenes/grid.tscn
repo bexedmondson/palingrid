@@ -685,16 +685,17 @@ process_mode = 3
 editor_description = "Control node capable of hiding and revealing its children by folding and unfolding.
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 z_index = 2
-custom_minimum_size = Vector2(400, 324)
+clip_contents = true
 layout_mode = 1
 anchors_preset = 0
 offset_left = 50.0
 offset_top = 65.0
-offset_right = 450.0
-offset_bottom = 389.0
+offset_right = 50.0
+offset_bottom = 65.0
 size_flags_horizontal = 0
 script = ExtResource("11_0g56i")
 starts_opened = false
+auto_update_size = 1
 sizing_node = NodePath("MenuVBoxContainer")
 use_custom_close_size = true
 tween_duration_sec = 0.30000000000000004
@@ -714,11 +715,8 @@ theme_type_variation = &"PanelContainerMenuExpandMargins"
 
 [node name="MenuVBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" unique_id=2100299325]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 366.0
+offset_bottom = 346.0
 
 [node name="MenuHeaderHBoxContainer" type="HBoxContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=230418286]
 layout_mode = 2
@@ -770,14 +768,14 @@ expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=245448147]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
 [node name="KofiButton" type="TextureButton" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer" unique_id=320335256 groups=["layout_size_change"]]
-custom_minimum_size = Vector2(247, 50)
+custom_minimum_size = Vector2(356, 72)
 layout_mode = 2
 texture_normal = ExtResource("22_eudc0")
 texture_pressed = ExtResource("23_xfqe3")
