@@ -88,6 +88,7 @@ text = "YOUR ACCOUNT"
 horizontal_alignment = 1
 
 [node name="ConnectionIconTextureRect" type="TextureRect" parent="Panel/AccountPopupScrollContainer/HBoxContainer" unique_id=1504419966]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("3_0yqrv")
@@ -143,6 +144,7 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=613551320]
 layout_mode = 2
+theme_override_constants/separation = 25
 
 [node name="LinkAccountTitleLabel" type="Label" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1551084996]
 layout_mode = 2
@@ -156,6 +158,21 @@ layout_mode = 2
 text = "Linking your account with our leaderboard provider Cheddaboards allows you to use the same login across multiple devices."
 fit_content = true
 autowrap_mode = 2
+
+[node name="Label2" type="RichTextLabel" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1149819031]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.92941177, 0.17254902, 0.16862746, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "[b]WARNING: this will permanently merge this local account with any accounts that you may have linked to your Google/Apple/Internet Identity login. Make sure this account belongs to you! If not, use the logout button below [i][u]before[/u][/i] you use the link button."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=185369309]
 layout_mode = 2
