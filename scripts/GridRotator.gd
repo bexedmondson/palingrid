@@ -25,7 +25,7 @@ func _ready() -> void:
 func rotate():
 	if _is_rotating:
 		return
-		
+	
 	_is_rotating = true
 	
 	var cells = grid.slots
@@ -41,6 +41,10 @@ func rotate():
 		tileToCellIndexMap[cell.slotTile] = index
 		tileToOriginalGlobalPositionMap[cell.slotTile] = cell.slotTile.global_position
 		cell.remove_tile(cell.slotTile)
+	
+	if tileToCellIndexMap.size() == 0:
+		_is_rotating = false
+		return
 	
 	for tile in tileToCellIndexMap:
 		var currentCellIndex = tileToCellIndexMap[tile]

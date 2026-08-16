@@ -90,5 +90,5 @@ func load():
 
 func _on_logged_out():
 	best = 0
-	grid.update(null)
+	grid.update()
 	
