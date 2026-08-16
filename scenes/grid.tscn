@@ -240,6 +240,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="HowToPlayButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer" unique_id=2028854943]
+visible = false
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -770,6 +771,13 @@ text = "account"
 icon = ExtResource("17_ttir5")
 expand_icon = true
 
+[node name="HowToPlayButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1952138461]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+text = "how to play"
+icon = ExtResource("14_gsnlb")
+expand_icon = true
+
 [node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
 custom_minimum_size = Vector2(0, 82)
 layout_mode = 2
@@ -1145,6 +1153,8 @@ text = "testing 123"
 [connection signal="toggled" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
