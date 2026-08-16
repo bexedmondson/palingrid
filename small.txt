@@ -1762,6 +1762,7 @@ dots
 dotty
 doubt
 dough
+doula
 dour
 douse
 dove
@@ -3577,6 +3578,7 @@ knows
 koala
 koan
 koans
+koi
 kook
 kooks
 kooky
@@ -6002,6 +6004,7 @@ skim
 skimp
 skims
 skin
+skink
 skins
 skip
 skips
