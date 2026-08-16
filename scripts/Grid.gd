@@ -75,8 +75,10 @@ func _ready() -> void:
 var dash = "-"
 var total = 0
 
-func update(_slot: DropSlot):
-	#push_warning("grid - update from slot " + _slot.name)
+func update():
+	if gridRotator.get_is_rotating():
+		return
+	
 	var words = {}
 	for line in lineSlotIndexes:
 		add_line_words(line, words)
