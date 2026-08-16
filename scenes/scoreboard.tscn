@@ -86,7 +86,6 @@ grow_horizontal = 0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-button_mask = 0
 icon = ExtResource("2_fpta5")
 icon_alignment = 1
 expand_icon = true
@@ -199,5 +198,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="visibility_changed" from="." to="." method="on_visibility_changed"]
+[connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton" to="." method="_on_refresh_pressed"]
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton" to="." method="on_rename_pressed"]
+[connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" to="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" method="on_pressed"]
