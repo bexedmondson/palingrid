@@ -15,12 +15,12 @@
 [ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://themes/leaderboard_entry_rank2.tres" id="12_82fme"]
 [ext_resource type="StyleBox" uid="uid://c1lx8hwjcgomo" path="res://themes/dark/foldable_container_unfolded_title_dark.tres" id="12_pstdu"]
 [ext_resource type="StyleBox" uid="uid://cv571g73ibkjw" path="res://themes/leaderboard_entry_rank3.tres" id="13_ry2md"]
-[ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://themes/leaderboard_entry_rankeven.tres" id="14_u4yh4"]
-[ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/leaderboard_entry_rankodd.tres" id="15_cta6i"]
 [ext_resource type="StyleBox" uid="uid://dt8ukvi37hjy1" path="res://themes/dark/line_edit_focus_dark.tres" id="16_dea6o"]
 [ext_resource type="StyleBox" uid="uid://d3luti07v2s1p" path="res://themes/dark/line_edit_normal_dark.tres" id="17_gf0i2"]
+[ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://themes/dark/leaderboard_entry_rankeven_dark.tres" id="18_2onyq"]
 [ext_resource type="StyleBox" uid="uid://3pun112flhas" path="res://themes/dark/line_edit_disabled_dark.tres" id="18_6s5s4"]
 [ext_resource type="StyleBox" uid="uid://b3rsiq01vj7uf" path="res://themes/dark/panel_default_dark.tres" id="19_ft1cl"]
+[ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/dark/leaderboard_entry_rankodd_dark.tres" id="19_wcw0t"]
 [ext_resource type="StyleBox" uid="uid://bwajh23av3pxj" path="res://themes/dark/panel_cell_dark.tres" id="20_6f3gp"]
 [ext_resource type="StyleBox" uid="uid://8ayen67a2gpa" path="res://themes/dark/panel_cell_highlight_dark.tres" id="21_o8oj6"]
 [ext_resource type="StyleBox" uid="uid://dx8fjq8n7maqi" path="res://themes/dark/panel_container_default_dark.tres" id="22_ajk1w"]
@@ -105,6 +105,10 @@ LabelSubheading/fonts/font = ExtResource("9_ooi2h")
 LabelTile/base_type = &"Label"
 LabelTile/colors/font_color = Color(0.9607843, 0.9490196, 0.92941177, 1)
 LabelTile/font_sizes/font_size = 64
+LeaderboardEntryNotPlayer/base_type = &"Label"
+LeaderboardEntryNotPlayer/colors/font_color = Color(0.93, 0.9021, 0.8742, 1)
+LeaderboardEntryPlayer/base_type = &"Label"
+LeaderboardEntryPlayer/colors/font_color = Color(0.3254902, 0.8156863, 0.7607843, 1)
 LeaderboardEntryRank1/base_type = &"PanelContainer"
 LeaderboardEntryRank1/styles/panel = ExtResource("11_u535x")
 LeaderboardEntryRank2/base_type = &"PanelContainer"
@@ -112,9 +116,9 @@ LeaderboardEntryRank2/styles/panel = ExtResource("12_82fme")
 LeaderboardEntryRank3/base_type = &"PanelContainer"
 LeaderboardEntryRank3/styles/panel = ExtResource("13_ry2md")
 LeaderboardEntryRankEven/base_type = &"PanelContainer"
-LeaderboardEntryRankEven/styles/panel = ExtResource("14_u4yh4")
+LeaderboardEntryRankEven/styles/panel = ExtResource("18_2onyq")
 LeaderboardEntryRankOdd/base_type = &"PanelContainer"
-LeaderboardEntryRankOdd/styles/panel = ExtResource("15_cta6i")
+LeaderboardEntryRankOdd/styles/panel = ExtResource("19_wcw0t")
 LineEdit/colors/caret_color = Color(0.3254902, 0.8156863, 0.7607843, 1)
 LineEdit/colors/clear_button_color = Color(0.3254902, 0.8156863, 0.7607843, 1)
 LineEdit/colors/clear_button_color_pressed = Color(0.1298, 0.59, 0.57466, 1)

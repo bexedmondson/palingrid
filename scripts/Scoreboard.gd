@@ -68,6 +68,7 @@ var show_hide_tween : Tween
 # ============================================================
 
 func _enter_tree() -> void:
+	CheddaBoards.logout_success.connect(_on_logged_out)
 	hide()
 
 func _ready() -> void:
@@ -91,12 +92,6 @@ func on_visibility_changed():
 	if not CheddaBoards.is_ready():
 		status_label.text = "Connecting to leaderboard provider CheddaBoards..."
 		await CheddaBoards.wait_until_ready()
-	
-	# Connect other buttons
-	if not refresh_button.pressed.is_connected(_on_refresh_pressed):
-		refresh_button.pressed.connect(_on_refresh_pressed)
-	if not back_button.pressed.is_connected(_on_back_pressed):
-		back_button.pressed.connect(_on_back_pressed)
 	
 	# Connect CheddaBoards signals
 	if not CheddaBoards.scoreboard_loaded.is_connected(_on_scoreboard_loaded):
@@ -181,6 +176,7 @@ func _on_name_change_prompt_closed():
 func _on_scoreboard_loaded(sb_id: String, config: Dictionary, entries: Array):
 	if sb_id != scoreboard_id:
 		return
+	_set_loading(false)
 	_display_entries(entries)
 
 func _on_scoreboard_error(reason: String):
@@ -303,7 +299,6 @@ func _format_score(value: int) -> String:
 # ============================================================
 
 func on_rename_pressed():
-	refresh_button.disabled = true
 	_clear_leaderboard()
 	status_label.text = "Loading..."
 	status_label.add_theme_color_override("font_color", COLOR_TEXT)
@@ -329,6 +324,8 @@ func _on_back_pressed():
 	
 	self.visible = false;
 
+func _on_logged_out():
+	has_shown_set_name_prompt = false
 
 # ============================================================
 # TIMEOUT

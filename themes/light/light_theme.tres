@@ -27,8 +27,8 @@
 [ext_resource type="StyleBox" uid="uid://b3apx0l4ve2dt" path="res://themes/light/foldable_container_unfolded_title_light.tres" id="12_tq8i7"]
 [ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://themes/leaderboard_entry_rank2.tres" id="12_txn4r"]
 [ext_resource type="StyleBox" uid="uid://cv571g73ibkjw" path="res://themes/leaderboard_entry_rank3.tres" id="13_uddhy"]
-[ext_resource type="StyleBox" uid="uid://hig5fcfa733w" path="res://themes/leaderboard_entry_rankeven.tres" id="14_tlbd4"]
-[ext_resource type="StyleBox" uid="uid://bkn6m6iy4kdk5" path="res://themes/leaderboard_entry_rankodd.tres" id="15_k4jnt"]
+[ext_resource type="StyleBox" uid="uid://cucnt5adb6aw5" path="res://themes/light/leaderboard_entry_rankeven_light.tres" id="18_jhrgo"]
+[ext_resource type="StyleBox" uid="uid://cvr7lcu0ud0je" path="res://themes/light/leaderboard_entry_rankodd_light.tres" id="19_tbkgh"]
 [ext_resource type="StyleBox" uid="uid://c48db3gig8bw8" path="res://themes/light/panel_floating_toast_light.tres" id="25_krt1t"]
 [ext_resource type="StyleBox" uid="uid://c3bbdiqyfmc4p" path="res://themes/light/panel_container_best_pointer_light.tres" id="26_2ihl8"]
 [ext_resource type="StyleBox" uid="uid://c8x3wnv7tajmb" path="res://themes/light/panel_container_menu_expand_margins_light.tres" id="26_tq8i7"]
@@ -104,6 +104,10 @@ LabelSubheading/fonts/font = ExtResource("9_krt1t")
 LabelTile/base_type = &"Label"
 LabelTile/colors/font_color = Color(0.091, 0.14, 0.13265, 1)
 LabelTile/font_sizes/font_size = 64
+LeaderboardEntryNotPlayer/base_type = &"Label"
+LeaderboardEntryNotPlayer/colors/font_color = Color(0.039215688, 0.078431375, 0.07450981, 1)
+LeaderboardEntryPlayer/base_type = &"Label"
+LeaderboardEntryPlayer/colors/font_color = Color(0.1298, 0.59, 0.57466, 1)
 LeaderboardEntryRank1/base_type = &"PanelContainer"
 LeaderboardEntryRank1/styles/panel = ExtResource("11_roldc")
 LeaderboardEntryRank2/base_type = &"PanelContainer"
@@ -111,9 +115,9 @@ LeaderboardEntryRank2/styles/panel = ExtResource("12_txn4r")
 LeaderboardEntryRank3/base_type = &"PanelContainer"
 LeaderboardEntryRank3/styles/panel = ExtResource("13_uddhy")
 LeaderboardEntryRankEven/base_type = &"PanelContainer"
-LeaderboardEntryRankEven/styles/panel = ExtResource("14_tlbd4")
+LeaderboardEntryRankEven/styles/panel = ExtResource("18_jhrgo")
 LeaderboardEntryRankOdd/base_type = &"PanelContainer"
-LeaderboardEntryRankOdd/styles/panel = ExtResource("15_k4jnt")
+LeaderboardEntryRankOdd/styles/panel = ExtResource("19_tbkgh")
 LineEdit/colors/caret_color = Color(0.15, 0.2, 0.19416668, 1)
 LineEdit/colors/clear_button_color = Color(0.15, 0.2, 0.19416668, 1)
 LineEdit/colors/clear_button_color_pressed = Color(0.091, 0.14, 0.13265, 1)
@@ -138,12 +142,12 @@ PanelCellHighlight/styles/panel = ExtResource("5_u0swb")
 PanelContainer/styles/panel = ExtResource("4_wtvwc")
 PanelContainerBestPointer/base_type = &"PanelContainer"
 PanelContainerBestPointer/styles/panel = ExtResource("26_2ihl8")
-PanelContainerExpandMargins/base_type = &"PanelContainer"
-PanelContainerExpandMargins/styles/panel = ExtResource("26_tq8i7")
 PanelContainerGameBG/base_type = &"PanelContainer"
 PanelContainerGameBG/styles/panel = ExtResource("3_tvg4m")
 PanelContainerInset/base_type = &"PanelContainer"
 PanelContainerInset/styles/panel = ExtResource("11_jnuea")
+PanelContainerMenuExpandMargins/base_type = &"PanelContainer"
+PanelContainerMenuExpandMargins/styles/panel = ExtResource("26_tq8i7")
 PanelContainerScorePointer/base_type = &"PanelContainer"
 PanelContainerScorePointer/styles/panel = ExtResource("29_jam87")
 PanelContainerThinMargins/base_type = &"PanelContainer"

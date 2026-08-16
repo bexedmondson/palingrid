@@ -19,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
 script = ExtResource("1_mmelj")
 title_label = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel")

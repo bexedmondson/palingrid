@@ -12,8 +12,9 @@ extends Control
 @export var link_error_message : Label
 @export var link_popup : Control
 @export var qr_code : TextureRect
-@export var link_button : LinkButton
 @export var code_label : Label
+
+@export var logout_section : Control
 
 var _verification_url : String
 
@@ -24,9 +25,7 @@ func _enter_tree() -> void:
 	link_popup.visible = false
 
 func do_show():
-	connection_warning.visible = !CheddaBoards.is_logged_in()
-	update_name_label()
-	link_account_section.visible = !CheddaBoards.has_account()
+	_refresh_ui()
 	
 	super.show()
 	
@@ -36,7 +35,16 @@ func do_show():
 	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	show_hide_tween.tween_property(self, "scale", Vector2(1,1), 0.2).from(Vector2.ZERO)
 	show_hide_tween.play()
-	
+
+
+func _refresh_ui():
+	link_popup.visible = false
+	connection_warning.visible = !CheddaBoards.is_logged_in()
+	link_account_section.visible = !CheddaBoards.has_account()
+	logout_section.visible = CheddaBoards.has_account() || CheddaBoards.get_nickname() != ""
+	update_name_label()
+
+
 func update_name_label():
 	name_label.text = "Hello %s!" % (login_handler.nickname if login_handler.nickname != "" else "Guest")
 
@@ -142,7 +150,7 @@ func on_device_code_approved(nickname: String):
 	CheddaBoards.device_code_error.disconnect(on_device_code_error)
 
 	link_popup.visible = false
-	update_name_label()
+	_refresh_ui()
 
 func on_cancel_device_code_button():
 	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
@@ -151,3 +159,10 @@ func on_cancel_device_code_button():
 
 	link_popup.visible = false
 	CheddaBoards.cancel_device_code()
+	
+func on_logout_button():
+	CheddaBoards.logout_success.connect(_on_logged_out)
+	CheddaBoards.logout()
+	
+func _on_logged_out():
+	_refresh_ui()

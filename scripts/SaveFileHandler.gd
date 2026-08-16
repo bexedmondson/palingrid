@@ -91,3 +91,11 @@ func get_save_path_for(saveType: SaveType):
 
 func update_save_data(saveType: SaveType, data):
 	loadedSaveDatas[saveType] = data
+
+func on_logged_out():
+	_clear_all()
+
+func _clear_all():
+	for s in saveTypeToFilePathMap:
+		if FileAccess.file_exists(saveTypeToFilePathMap[s]):
+			DirAccess.remove_absolute(saveTypeToFilePathMap[s])

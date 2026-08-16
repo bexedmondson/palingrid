@@ -10,9 +10,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5816i"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0g56i"]
-
-[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "link_account_section", "loading_spinner", "link_error_message", "link_popup", "qr_code", "link_button", "code_label")]
+[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "link_account_section", "loading_spinner", "link_error_message", "link_popup", "qr_code", "code_label", "logout_section")]
 z_index = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,18 +23,19 @@ offset_right = 510.0
 offset_bottom = 510.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = ExtResource("1_2h40v")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5816i")
 script = ExtResource("1_2uy5s")
-name_label = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
-connection_warning = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/ConnectionIconTextureRect")
-link_account_section = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer")
-loading_spinner = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/LoadingSpinnerController")
-link_error_message = NodePath("Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/LinkErrorLabel")
+name_label = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
+connection_warning = NodePath("Panel/AccountPopupScrollContainer/HBoxContainer/ConnectionIconTextureRect")
+link_account_section = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer")
+loading_spinner = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/LoadingSpinnerController")
+link_error_message = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/LinkErrorLabel")
 link_popup = NodePath("LinkQRPopup")
 qr_code = NodePath("LinkQRPopup/PanelContainer/VBoxContainer/TextureRect")
-link_button = NodePath("")
 code_label = NodePath("LinkQRPopup/PanelContainer/VBoxContainer/CodeLabel")
+logout_section = NodePath("Panel/AccountPopupScrollContainer/AccountLogoutFooterContainer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=164429841]
 custom_minimum_size = Vector2(3000, 3000)
@@ -59,54 +58,41 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"PanelFloating"
 
-[node name="AccountMarginContainer" type="PanelContainer" parent="Panel" unique_id=274511397]
+[node name="AccountPopupScrollContainer" type="VBoxContainer" parent="Panel" unique_id=446902657]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_0g56i")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/AccountMarginContainer" unique_id=1316933144]
-layout_mode = 2
-horizontal_scroll_mode = 0
-scroll_deadzone = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/AccountMarginContainer/ScrollContainer" unique_id=1885997408]
-layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="TitleLabel" type="Label" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer" unique_id=1018673213]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/AccountPopupScrollContainer" unique_id=1200050356]
 layout_mode = 2
-size_flags_vertical = 1
-theme_type_variation = &"LabelHeading"
-text = "YOUR ACCOUNT"
-horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=737293617]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-offset_right = 70.0
-offset_bottom = 70.0
-pivot_offset_ratio = Vector2(1, 1)
+[node name="BackButton" type="Button" parent="Panel/AccountPopupScrollContainer/HBoxContainer" unique_id=737293617]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("2_2h40v")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ConnectionIconTextureRect" type="TextureRect" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel" unique_id=1504419966]
+[node name="TitleLabel" type="Label" parent="Panel/AccountPopupScrollContainer/HBoxContainer" unique_id=1018673213]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LabelHeading"
+text = "YOUR ACCOUNT"
+horizontal_alignment = 1
+
+[node name="ConnectionIconTextureRect" type="TextureRect" parent="Panel/AccountPopupScrollContainer/HBoxContainer" unique_id=1504419966]
 custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
+layout_mode = 2
 texture = ExtResource("3_0yqrv")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/ConnectionIconTextureRect" unique_id=384962446]
+[node name="TextureRect" type="TextureRect" parent="Panel/AccountPopupScrollContainer/HBoxContainer/ConnectionIconTextureRect" unique_id=384962446]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 1
@@ -120,15 +106,28 @@ grow_horizontal = 0
 texture = ExtResource("4_4rky0")
 expand_mode = 5
 
-[node name="NameHBoxContainer" type="HBoxContainer" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer" unique_id=165664998]
+[node name="AccountMainScrollContainer" type="ScrollContainer" parent="Panel/AccountPopupScrollContainer" unique_id=1316933144]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 5
+scroll_deadzone = 3
+scroll_hint_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer" unique_id=1885997408]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="NameHBoxContainer" type="HBoxContainer" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer" unique_id=165664998]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NameLabel" type="Label" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=1315555866]
+[node name="NameLabel" type="Label" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=1315555866]
 layout_mode = 2
 text = "Hello [name]!"
 
-[node name="ChangeNameButton" type="Button" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=892521182]
+[node name="ChangeNameButton" type="Button" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/NameHBoxContainer" unique_id=892521182]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -139,30 +138,30 @@ clip_text = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="LinkAccountPanelContainer" type="PanelContainer" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer" unique_id=391176940]
+[node name="LinkAccountPanelContainer" type="PanelContainer" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer" unique_id=391176940]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=613551320]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=613551320]
 layout_mode = 2
 
-[node name="LinkAccountTitleLabel" type="Label" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1551084996]
+[node name="LinkAccountTitleLabel" type="Label" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1551084996]
 layout_mode = 2
 theme_type_variation = &"LabelSubheading"
 theme_override_font_sizes/font_size = 28
 text = "LINK ACCOUNT"
 horizontal_alignment = 1
 
-[node name="Label" type="RichTextLabel" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=206385247]
+[node name="Label" type="RichTextLabel" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=206385247]
 layout_mode = 2
 text = "Linking your account with our leaderboard provider Cheddaboards allows you to use the same login across multiple devices."
 fit_content = true
 autowrap_mode = 2
 
-[node name="Button" type="Button" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=185369309]
+[node name="Button" type="Button" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=185369309]
 layout_mode = 2
 text = "link account"
 
-[node name="LinkErrorLabel" type="Label" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1174089157]
+[node name="LinkErrorLabel" type="Label" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1174089157]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9372549, 0.23137255, 0.18431373, 1)
@@ -171,13 +170,31 @@ theme_override_constants/outline_size = 3
 text = "error message goes here"
 horizontal_alignment = 1
 
-[node name="LoadingSpinnerController" parent="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=545174538 instance=ExtResource("7_2h40v")]
+[node name="LoadingSpinnerController" parent="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=545174538 instance=ExtResource("7_2h40v")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
+[node name="AccountLogoutFooterContainer" type="HBoxContainer" parent="Panel/AccountPopupScrollContainer" unique_id=1497805942]
+layout_mode = 2
+alignment = 2
+
+[node name="NotYouLabel" type="Label" parent="Panel/AccountPopupScrollContainer/AccountLogoutFooterContainer" unique_id=1408469606]
+layout_mode = 2
+text = "not you?"
+
+[node name="LogoutButton" type="Button" parent="Panel/AccountPopupScrollContainer/AccountLogoutFooterContainer" unique_id=999954310]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "logout"
+icon_alignment = 1
+expand_icon = true
+
 [node name="LinkQRPopup" type="Panel" parent="." unique_id=1936892041]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -259,8 +276,9 @@ icon = ExtResource("2_2h40v")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/NameHBoxContainer/ChangeNameButton" to="." method="on_rename_pressed"]
-[connection signal="pressed" from="Panel/AccountMarginContainer/ScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/Button" to="." method="on_link_account_pressed"]
+[connection signal="pressed" from="Panel/AccountPopupScrollContainer/HBoxContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/NameHBoxContainer/ChangeNameButton" to="." method="on_rename_pressed"]
+[connection signal="pressed" from="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/Button" to="." method="on_link_account_pressed"]
+[connection signal="pressed" from="Panel/AccountPopupScrollContainer/AccountLogoutFooterContainer/LogoutButton" to="." method="on_logout_button"]
 [connection signal="pressed" from="LinkQRPopup/PanelContainer/VBoxContainer/LinkButton" to="." method="on_verification_link_button"]
 [connection signal="pressed" from="LinkQRPopup/BackButton" to="." method="on_cancel_device_code_button"]
