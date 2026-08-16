@@ -40,7 +40,6 @@ func _ready() -> void:
 	else:
 		CheddaBoards.sdk_ready.connect(_on_sdk_ready)
 
-
 func _on_sdk_ready():
 	if CheddaBoards.sdk_ready.is_connected(_on_sdk_ready):
 		CheddaBoards.sdk_ready.disconnect(_on_sdk_ready)
@@ -53,18 +52,19 @@ func _on_sdk_ready():
 		_create_new_device_id()
 
 	var has_data = _try_load_player_data()
-	print("[LoginHandler] found local data? " + str(has_data))
+	print("[LoginHandler] found local data? %s - anon? %s, auth? %s" % [str(has_data), str(CheddaBoards.is_anonymous()), str(CheddaBoards.has_account())])
 	
 	local_state = PlayerInfo.State.EXISTS if has_data else PlayerInfo.State.NONE_FOUND
 	
-	if local_state == PlayerInfo.State.EXISTS:
+	if local_state == PlayerInfo.State.EXISTS && CheddaBoards.is_anonymous():
 		CheddaBoards.login_anonymous(nickname)
 	
-	_load_anonymous_profile()
+	_load_profile()
 	# Connect CheddaBoards signals
 	CheddaBoards.profile_loaded.connect(_on_profile_loaded)
 	CheddaBoards.no_profile.connect(_on_no_profile)
 	CheddaBoards.nickname_changed.connect(_on_nickname_changed)
+	CheddaBoards.logout_success.connect(_on_logged_out)
 
 
 func _try_get_native_device_id() -> bool:
@@ -109,7 +109,7 @@ func _try_load_player_data() -> bool:
 
 		if data is Dictionary:
 			nickname = data.get("nickname", "")
-			print("[LoginHandler] Loaded anonymous data: nickname='%s'" % [nickname])
+			print("[LoginHandler] Loaded profile data: nickname='%s'" % [nickname])
 			return true
 	
 	return false
@@ -128,12 +128,20 @@ func _save_player_data():
 		print("[LoginHandler] Saved player data")
 	
 	local_state = PlayerInfo.State.EXISTS
-		
 
+func _on_logged_out():
+	"""Clear player data (anonymous nickname + has_played status)"""
+	if FileAccess.file_exists(leaderboardInfoFile):
+		DirAccess.remove_absolute(leaderboardInfoFile)
+	
+	local_state = PlayerInfo.State.NONE_FOUND
+	nickname = ""
+	_create_new_device_id()
+	
 
-func _load_anonymous_profile():
-	"""Load and display stats for anonymous player from CheddaBoards API"""
-	print("[LoginHandler] Loading anonymous profile...")
+func _load_profile():
+	"""Load and display stats for player from CheddaBoards API"""
+	print("[LoginHandler] Loading profile...")
 
 	var profile = CheddaBoards.get_cached_profile()
 
@@ -143,6 +151,7 @@ func _load_anonymous_profile():
 	else:
 		print("[LoginHandler] No cached profile")
 
+	print("[LoginHandler] Profile status: anonymous? %s, has account? %s" % [str(CheddaBoards.is_anonymous()), str(CheddaBoards.has_account())])
 	print("[LoginHandler] Requesting profile refresh...")
 	_request_profile_with_timeout()
 

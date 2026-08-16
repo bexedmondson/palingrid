@@ -4,24 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="2_fpta5"]
 [ext_resource type="Texture2D" uid="uid://66nf847ass0e" path="res://textures/tool-pencil.svg" id="3_fpta5"]
 [ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="4_fpta5"]
-[ext_resource type="Texture2D" uid="uid://ctufowlq4oai2" path="res://textures/timer_0.svg" id="5_7acvr"]
 [ext_resource type="Script" uid="uid://ce2oky6y0w4rh" path="res://scripts/ShareButton.gd" id="6_a2dux"]
 [ext_resource type="Texture2D" uid="uid://d34l53rv62v85" path="res://textures/share.svg" id="6_ocx8i"]
+[ext_resource type="PackedScene" uid="uid://dcx3d4148bqpv" path="res://scenes/loading_spinner.tscn" id="7_7acvr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7acvr"]
 
-[node name="Scoreboard" type="Panel" unique_id=531030568 node_paths=PackedStringArray("name_change_handler", "title_label", "refresh_button", "change_name_button", "column_header", "leaderboard_scroll", "leaderboard_list", "entry_placeholder", "spinner_bar", "spinner_bar2", "spinner_label", "status_label", "back_button")]
+[node name="Scoreboard" type="Panel" unique_id=531030568 node_paths=PackedStringArray("title_label", "refresh_button", "change_name_button", "column_header", "leaderboard_scroll", "leaderboard_list", "entry_placeholder", "loading_spinner", "status_label", "back_button")]
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4bqgu")
 script = ExtResource("1_mmelj")
-name_change_handler = NodePath("")
 title_label = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel")
 refresh_button = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton")
 change_name_button = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton")
@@ -29,9 +29,7 @@ column_header = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ColumnH
 leaderboard_scroll = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer")
 leaderboard_list = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
 entry_placeholder = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/LeaderboardEntry")
-spinner_bar = NodePath("Panel/LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar")
-spinner_bar2 = NodePath("Panel/LeaderboardMarginContainer/LoadingSpinner/TextureProgressBar2")
-spinner_label = NodePath("Panel/LeaderboardMarginContainer/LoadingSpinner")
+loading_spinner = NodePath("Panel/LeaderboardMarginContainer/LoadingSpinnerController")
 status_label = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/StatusLabel")
 back_button = NodePath("Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton")
 
@@ -89,7 +87,6 @@ grow_horizontal = 0
 pivot_offset_ratio = Vector2(1, 1)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-button_mask = 0
 icon = ExtResource("2_fpta5")
 icon_alignment = 1
 expand_icon = true
@@ -178,60 +175,31 @@ icon = ExtResource("6_ocx8i")
 icon_alignment = 2
 script = ExtResource("6_a2dux")
 
-[node name="LoadingSpinner" type="Label" parent="Panel/LeaderboardMarginContainer" unique_id=1895150791]
-visible = false
+[node name="LoadingSpinnerController" parent="Panel/LeaderboardMarginContainer" unique_id=545174538 node_paths=PackedStringArray("to_show_when_playing") instance=ExtResource("7_7acvr")]
 layout_mode = 2
+to_show_when_playing = [NodePath("LoadingSpinnerLabel")]
+
+[node name="LoadingSpinnerLabel" type="Label" parent="Panel/LeaderboardMarginContainer/LoadingSpinnerController" unique_id=1919493173]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -11.5
+offset_right = 35.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 1
 text = "loading..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="Panel/LeaderboardMarginContainer/LoadingSpinner" unique_id=500235717]
-z_index = 9
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5707964
-pivot_offset_ratio = Vector2(0.5, 0.5)
-step = 0.01
-value = 32.87
-fill_mode = 4
-radial_initial_angle = 104.8
-nine_patch_stretch = true
-texture_progress = ExtResource("5_7acvr")
-tint_progress = Color(0.26638728, 0.26638728, 0.26638728, 1)
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel/LeaderboardMarginContainer/LoadingSpinner" unique_id=1786489425]
-z_index = 9
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-step = 0.01
-value = 16.19
-fill_mode = 4
-radial_initial_angle = 104.8
-nine_patch_stretch = true
-texture_progress = ExtResource("5_7acvr")
-
 [connection signal="visibility_changed" from="." to="." method="on_visibility_changed"]
+[connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton" to="." method="_on_refresh_pressed"]
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton" to="." method="on_rename_pressed"]
+[connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" to="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" method="on_pressed"]

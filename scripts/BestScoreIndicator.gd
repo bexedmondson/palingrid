@@ -17,6 +17,7 @@ var font_color_flash_tween : Tween
 
 func _ready() -> void:
 	CheddaBoards.score_submitted.connect(_on_score_submitted)
+	CheddaBoards.logout_success.connect(_on_logged_out)
 	
 func _on_score_submitted(score: int, streak: int):
 	if score < best:
@@ -86,3 +87,8 @@ func load():
 		best = allScores[dailyGenerator.daySeed]
 		if best > 5:
 			had_best_score_at_start_of_session = true
+
+func _on_logged_out():
+	best = 0
+	grid.update()
+	

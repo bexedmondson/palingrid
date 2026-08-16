@@ -1,4 +1,4 @@
-# CheddaBoards.gd v2.2.1
+# CheddaBoards.gd v2.2.3
 # CheddaBoards integration for Godot 4.x
 # https://github.com/cheddatech/CheddaBoards-Godot
 # https://cheddaboards.com
@@ -9,6 +9,22 @@
 #   Player authenticates on their phone at cheddaboards.com/link
 # - Score submissions, play sessions, achievements: all via HTTP API
 #
+# v2.2.3:
+#   - Session persistence: the session token from device code auth is
+#     saved to user://cheddaboards_session.cfg and restored on startup,
+#     so logged-in players stay logged in across page reloads / app
+#     restarts instead of repeating device code auth every visit.
+#   - New session_expired signal: fired when the server rejects the
+#     stored token (401/403). The saved session is cleared and
+#     logout_success also fires so existing menus fall back to their
+#     login screen with no changes.
+#   - logout() now clears the saved session file.
+# v2.2.1:
+#   - Added submit_score_to_board(scoreboard_id, score, streak) for targeted
+#     "category" scoreboards (per-level / per-mode boards). Writes to one
+#     board only; does not fan out or touch the player's profile total.
+#     Emits score_submitted_to_board on success. The board must be configured
+#     as targeted in the dashboard. See docs/guides/category-scoreboards.md
 # v2.2.0:
 #   - profile_loaded signal now emits play_count as the 5th argument.
 #     Existing handlers with a 4-arg signature must add a trailing
@@ -97,6 +113,7 @@ signal init_error(reason: String)
 signal login_success(nickname: String)
 signal login_failed(reason: String)
 signal logout_success()
+signal session_expired()
 signal auth_error(reason: String)
 
 # --- Profile ---
@@ -109,6 +126,7 @@ signal nickname_error(reason: String)
 
 # --- Scores & Leaderboards (Legacy) ---
 signal score_submitted(score: int, streak: int)
+signal score_submitted_to_board(scoreboard_id: String, score: int, streak: int)
 signal score_error(reason: String)
 signal leaderboard_loaded(entries: Array)
 signal player_rank_loaded(rank: int, score: int, streak: int, total_players: int)
@@ -157,7 +175,7 @@ signal device_code_error(reason: String)
 ##     CheddaBoards.debug_logging = true
 ## All _log() calls are gated by this flag; push_error / push_warning for
 ## genuine failures fire regardless.
-var debug_logging: bool = true
+var debug_logging: bool = false
 
 ## HTTP API Configuration
 const API_BASE_URL = "https://api.cheddaboards.com"
@@ -211,6 +229,12 @@ var _device_code_expires_at: float = 0.0
 var _is_polling_device_code: bool = false
 var _device_code_poll_in_flight: bool = false
 var _device_code_approved: bool = false
+# Fresh-account nickname preservation: when device-code linking CREATES a new
+# account (isNewUser) while the player was anonymous, the account is born with
+# a server-generated name ("Player_2") and migration then stamps it over the
+# name the player actually chose. This holds the anon nickname so it can be
+# restored right after account_upgraded. Empty = nothing to restore.
+var _pending_nickname_restore: String = ""
 
 # ============================================================
 # HTTP REQUEST
@@ -232,6 +256,7 @@ var _deferred_achievements_synced: Array = []
 # ============================================================
 
 const DEVICE_ID_PATH = "user://cheddaboards_device.cfg"
+const SESSION_PATH = "user://cheddaboards_session.cfg"
 
 # ============================================================
 # INITIALIZATION
@@ -244,7 +269,8 @@ func _ready() -> void:
 	# to hang indefinitely.
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_setup_http_client()
-	_log("Initializing CheddaBoards v2.2.0 (HTTP API Mode)...")
+	_log("Initializing CheddaBoards v2.2.3 (HTTP API Mode)...")
+	_load_saved_session()
 	_init_complete = true
 	call_deferred("_emit_sdk_ready")
 
@@ -263,17 +289,17 @@ func _make_http_request_async(endpoint: String, method: int, body: Dictionary, r
 	if api_key.is_empty() and _session_token.is_empty():
 		_log("No credentials - skipping async request to %s" % endpoint)
 		return
-	
+
 	var http = HTTPRequest.new()
 	add_child(http)
 	http.process_mode = Node.PROCESS_MODE_ALWAYS
-	
+
 	var headers = _build_headers(request_type)
 	var url = API_BASE_URL + endpoint
 	var json_body = JSON.stringify(body) if body.size() > 0 else ""
-	
+
 	_log("HTTP async %s: %s" % [request_type, endpoint])
-	
+
 	http.request_completed.connect(func(result, code, _headers, response_body):
 		if code >= 200 and code < 300:
 			_log("Async %s complete (HTTP %d)" % [request_type, code])
@@ -281,7 +307,7 @@ func _make_http_request_async(endpoint: String, method: int, body: Dictionary, r
 			_log("Async %s failed (HTTP %d)" % [request_type, code])
 		http.queue_free()
 	)
-	
+
 	var error = http.request(url, headers, method, json_body)
 	if error != OK:
 		_log("Async request failed to start: %s" % error)
@@ -294,7 +320,7 @@ func _make_http_request_async(endpoint: String, method: int, body: Dictionary, r
 ## Build headers for an HTTP request based on auth state
 func _build_headers(request_type: String = "") -> PackedStringArray:
 	var headers: PackedStringArray = ["Content-Type: application/json"]
-	
+
 	# Session token takes priority over API key (mutually exclusive)
 	# EXCEPT: play sessions always use API key (game-level operation, skip_validation)
 	var force_api_key = request_type in ["start_play_session", "end_play_session"] and _session_token.is_empty()
@@ -302,10 +328,10 @@ func _build_headers(request_type: String = "") -> PackedStringArray:
 		headers.append("X-Session-Token: " + _session_token)
 	elif not api_key.is_empty():
 		headers.append("X-API-Key: " + api_key)
-	
+
 	if not game_id.is_empty():
 		headers.append("X-Game-ID: " + game_id)
-	
+
 	return headers
 
 # ============================================================
@@ -318,20 +344,29 @@ func _on_http_request_completed(result: int, response_code: int, headers: Packed
 		request_failed.emit(_current_endpoint, "Network error")
 		_emit_http_failure("Network error")
 		return
-	
+
 	var json = JSON.new()
 	var parse_result = json.parse(body.get_string_from_utf8())
-	
+
 	if parse_result != OK:
 		push_error("[CheddaBoards] Failed to parse JSON response")
 		request_failed.emit(_current_endpoint, "Invalid JSON response")
 		_emit_http_failure("Invalid JSON response")
 		return
-	
+
 	var response = json.data
-	
+
 	if response_code != 200:
 		var error_msg = response.get("error", "Unknown error")
+		# Server rejected our session token - expire it so the game
+		# falls back to the login screen instead of erroring forever
+		if response_code in [401, 403] and not _session_token.is_empty():
+			_expire_session()
+			_emit_http_failure(error_msg)
+			_current_meta = {}
+			_http_busy = false
+			_process_next_request()
+			return
 		# 404 on profile lookup is expected for new players
 		if response_code == 404 and _current_endpoint == "player_profile":
 			_log("Player profile not found (new player) - normal for first-time players")
@@ -348,9 +383,11 @@ func _on_http_request_completed(result: int, response_code: int, headers: Packed
 			_http_busy = false
 			_process_next_request()
 			return
-		# Migration errors are non-fatal
+		# Migration errors are non-fatal for login, but games need to know
 		if _current_endpoint == "migrate_account":
 			_log("Migration note: %s (non-fatal, continuing)" % error_msg)
+			_pending_nickname_restore = ""
+			account_upgrade_failed.emit(error_msg)
 			_current_meta = {}
 			_http_busy = false
 			_process_next_request()
@@ -364,13 +401,13 @@ func _on_http_request_completed(result: int, response_code: int, headers: Packed
 		request_failed.emit(_current_endpoint, error_msg)
 		_emit_http_failure(error_msg)
 		return
-	
+
 	if not response.get("ok", false):
 		var error_msg = response.get("error", "Unknown error")
 		request_failed.emit(_current_endpoint, error_msg)
 		_emit_http_failure(error_msg)
 		return
-	
+
 	var data = response.get("data", {})
 	_emit_http_success(data)
 
@@ -381,25 +418,32 @@ func _emit_http_success(data) -> void:
 			_log("Score submission successful: %d points, %d streak" % [_pending_score, _pending_streak])
 			score_submitted.emit(_pending_score, _pending_streak)
 			_flush_deferred_achievements()
-		
+
+		"submit_score_to_board":
+			var sb_id = _current_meta.get("scoreboard_id", "")
+			var sb_score = _safe_int(_current_meta.get("score", 0))
+			var sb_streak = _safe_int(_current_meta.get("streak", 0))
+			_log("Targeted submit to '%s' successful: %d points, %d streak" % [sb_id, sb_score, sb_streak])
+			score_submitted_to_board.emit(sb_id, sb_score, sb_streak)
+
 		"leaderboard":
 			var entries = data.get("leaderboard", [])
 			leaderboard_loaded.emit(entries)
-		
+
 		"player_rank":
 			var rank = _safe_int(data.get("rank", 0))
 			var score_val = _safe_int(data.get("score", 0))
 			var streak_val = _safe_int(data.get("streak", 0))
 			var total = _safe_int(data.get("totalPlayers", 0))
 			player_rank_loaded.emit(rank, score_val, streak_val, total)
-		
+
 		"player_profile":
 			_is_refreshing_profile = false
 			if data and not data.is_empty():
 				_update_cached_profile(data)
 			else:
 				no_profile.emit()
-		
+
 		"change_nickname":
 			var new_nick = str(data.get("nickname", ""))
 			if new_nick != "":
@@ -409,7 +453,7 @@ func _emit_http_success(data) -> void:
 					_cached_profile["nickname"] = new_nick
 				nickname_changed.emit(new_nick)
 				_log("Nickname changed to: %s" % new_nick)
-		
+
 		"change_nickname_anonymous":
 			var new_nick = str(data.get("nickname", ""))
 			if new_nick != "":
@@ -420,7 +464,7 @@ func _emit_http_success(data) -> void:
 				nickname_changed.emit(new_nick)
 				_log("Anonymous nickname changed to: %s" % new_nick)
 			get_player_profile()
-		
+
 		"unlock_achievement":
 			var ach_id = str(data.get("achievementId", ""))
 			achievement_unlocked.emit(ach_id)
@@ -432,7 +476,7 @@ func _emit_http_success(data) -> void:
 					_log("All deferred achievements done: %d synced" % _deferred_achievements_synced.size())
 					achievements_loaded.emit(_deferred_achievements_synced.duplicate())
 					_deferred_achievements_synced.clear()
-		
+
 		"unlock_achievement_batch":
 			var synced = data.get("synced", 0)
 			var results = data.get("results", [])
@@ -445,23 +489,23 @@ func _emit_http_success(data) -> void:
 			achievements_loaded.emit(_deferred_achievements_synced.duplicate())
 			_deferred_achievements_synced.clear()
 			_deferred_achievements_remaining = 0
-		
+
 		"achievements":
 			var achievements = data.get("achievements", [])
 			achievements_loaded.emit(achievements)
-		
+
 		"list_scoreboards":
 			var scoreboards = data.get("scoreboards", [])
 			scoreboards_loaded.emit(scoreboards)
 			_log("Loaded %d scoreboards" % scoreboards.size())
-		
+
 		"get_scoreboard":
 			var sb_id = _current_meta.get("scoreboard_id", "")
 			var config = data.get("config", {})
 			var entries = data.get("entries", [])
 			scoreboard_loaded.emit(sb_id, config, entries)
 			_log("Loaded scoreboard '%s' with %d entries" % [sb_id, entries.size()])
-		
+
 		"scoreboard_rank":
 			var sb_id = _current_meta.get("scoreboard_id", "")
 			var found = data.get("found", false)
@@ -473,29 +517,29 @@ func _emit_http_success(data) -> void:
 				scoreboard_rank_loaded.emit(sb_id, rank, score_val, streak_val, total)
 			else:
 				scoreboard_rank_loaded.emit(sb_id, 0, 0, 0, _safe_int(data.get("totalPlayers", 0)))
-		
+
 		"list_archives":
 			var sb_id = _current_meta.get("scoreboard_id", "")
 			var archives = data.get("archives", [])
 			archives_list_loaded.emit(sb_id, archives)
 			_log("Loaded %d archives for '%s'" % [archives.size(), sb_id])
-		
+
 		"get_archive", "get_last_archive":
 			var archive_id = data.get("archiveId", _current_meta.get("archive_id", ""))
 			var config = data.get("config", {})
 			var entries = data.get("entries", [])
 			archived_scoreboard_loaded.emit(archive_id, config, entries)
 			_log("Loaded archive '%s' with %d entries" % [archive_id, entries.size()])
-		
+
 		"archive_stats":
 			var total = _safe_int(data.get("totalArchives", 0))
 			var by_sb = data.get("byScoreboard", [])
 			archive_stats_loaded.emit(total, by_sb)
 			_log("Archive stats: %d total archives" % total)
-		
+
 		"game_info", "game_stats", "health":
 			_log("API response: %s" % str(data))
-		
+
 		"start_play_session":
 			if data.has("ok"):
 				_play_session_token = str(data.get("ok", ""))
@@ -511,10 +555,10 @@ func _emit_http_success(data) -> void:
 				return
 			_log("Play session started: %s" % _play_session_token.left(30))
 			play_session_started.emit(_play_session_token)
-		
+
 		"end_play_session":
 			_log("Play session ended on server successfully")
-		
+
 		"migrate_account":
 			var migrated_games = _safe_int(data.get("migratedGames", 0))
 			var migrated_sb = _safe_int(data.get("migratedScoreboards", 0))
@@ -523,8 +567,16 @@ func _emit_http_success(data) -> void:
 			account_upgraded.emit(_cached_profile, {
 				"migratedGames": migrated_games,
 				"migratedScoreboards": migrated_sb,
-			})
-		
+				})
+			# Fresh-account case: put the player's chosen anon name back on the
+			# new account (server validates; suffixes on collision). No-op for
+			# merges into existing accounts (_pending_nickname_restore empty).
+			if not _pending_nickname_restore.is_empty():
+				var restore_nick = _pending_nickname_restore
+				_pending_nickname_restore = ""
+				_log("Restoring player-chosen nickname on new account: %s" % restore_nick)
+				change_nickname(restore_nick)
+
 		"device_code_request":
 			var dc = str(data.get("device_code", ""))
 			var uc = str(data.get("user_code", ""))
@@ -532,21 +584,21 @@ func _emit_http_success(data) -> void:
 			var url_complete = str(data.get("verification_url_complete", ""))
 			var expires_in = _safe_int(data.get("expires_in", 300))
 			var interval = _safe_int(data.get("interval", 5))
-			
+
 			_device_code = dc
 			_device_user_code = uc
 			_device_code_poll_interval = float(interval)
 			_device_code_expires_at = Time.get_unix_time_from_system() + float(expires_in)
-			
+
 			var qr_data_url = str(data.get("qr_data_url", ""))
-			
+
 			_log("Device code received: %s (expires in %ds)" % [_redact_code(uc), expires_in])
 			device_code_received.emit(uc, url_complete if url_complete != "" else url, qr_data_url)
 			_start_device_code_polling()
-		
+
 		"device_code_token":
 			pass  # Handled in custom polling function
-	
+
 	_current_meta = {}
 	_http_busy = false
 	_process_next_request()
@@ -555,6 +607,10 @@ func _emit_http_failure(error: String) -> void:
 	match _current_endpoint:
 		"submit_score":
 			_is_submitting_score = false
+			score_error.emit(error)
+		"submit_score_to_board":
+			var sb_id = _current_meta.get("scoreboard_id", "")
+			_log("Targeted submit to '%s' failed: %s" % [sb_id, error])
 			score_error.emit(error)
 		"leaderboard":
 			leaderboard_loaded.emit([])
@@ -579,6 +635,10 @@ func _emit_http_failure(error: String) -> void:
 			_deferred_achievements_remaining = 0
 		"achievements":
 			achievements_loaded.emit([])
+		"migrate_account":
+			_log("Migration failed: %s" % error)
+			_pending_nickname_restore = ""
+			account_upgrade_failed.emit(error)
 		"list_scoreboards":
 			scoreboards_loaded.emit([])
 			scoreboard_error.emit(error)
@@ -609,7 +669,7 @@ func _emit_http_failure(error: String) -> void:
 		"archive_stats":
 			archive_stats_loaded.emit(0, [])
 			archive_error.emit(error)
-	
+
 	_current_meta = {}
 	_http_busy = false
 	_process_next_request()
@@ -618,7 +678,7 @@ func _make_http_request(endpoint: String, method: int, body: Dictionary, request
 	if api_key.is_empty() and _session_token.is_empty():
 		_log("No credentials set - skipping HTTP request to %s" % endpoint)
 		match request_type:
-			"submit_score":
+			"submit_score", "submit_score_to_board":
 				score_error.emit("No credentials set")
 			"player_profile":
 				no_profile.emit()
@@ -631,7 +691,7 @@ func _make_http_request(endpoint: String, method: int, body: Dictionary, request
 			"list_archives", "get_archive", "get_last_archive", "archive_stats":
 				archive_error.emit("No credentials set")
 		return
-	
+
 	var request_data = {
 		"endpoint": endpoint,
 		"method": method,
@@ -639,23 +699,23 @@ func _make_http_request(endpoint: String, method: int, body: Dictionary, request
 		"request_type": request_type,
 		"meta": meta
 	}
-	
+
 	if _http_busy:
 		_log("HTTP busy, queuing request: %s" % request_type)
 		_request_queue.append(request_data)
 		return
-	
+
 	_execute_http_request(request_data)
 
 func _execute_http_request(request_data: Dictionary) -> void:
 	_http_busy = true
 	_current_endpoint = request_data.request_type
 	_current_meta = request_data.get("meta", {})
-	
+
 	var headers = _build_headers(_current_endpoint)
 	var url = API_BASE_URL + request_data.endpoint
 	var json_body = JSON.stringify(request_data.body) if request_data.body.size() > 0 else ""
-	
+
 	var method_str = "GET"
 	if request_data.method == HTTPClient.METHOD_POST:
 		method_str = "POST"
@@ -664,7 +724,7 @@ func _execute_http_request(request_data: Dictionary) -> void:
 	elif request_data.method == HTTPClient.METHOD_DELETE:
 		method_str = "DELETE"
 	_log("HTTP %s: %s" % [method_str, url])
-	
+
 	var error = _http_request.request(url, headers, request_data.method, json_body)
 	if error != OK:
 		push_error("[CheddaBoards] HTTP request failed to start: %s" % error)
@@ -675,7 +735,7 @@ func _execute_http_request(request_data: Dictionary) -> void:
 func _process_next_request() -> void:
 	if _request_queue.is_empty():
 		return
-	
+
 	var next_request = _request_queue.pop_front()
 	_log("Processing queued request: %s" % next_request.request_type)
 	_execute_http_request(next_request)
@@ -697,14 +757,14 @@ func _update_cached_profile(profile: Dictionary) -> void:
 	_cached_profile = profile
 
 	var nickname: String = str(profile.get("nickname", profile.get("username", _get_default_nickname())))
-	
+
 	# Handle nested gameProfile from API
 	var game_profile = profile.get("gameProfile", {})
 	var score: int = 0
 	var streak: int = 0
 	var achievements: Array = []
 	var play_count: int = 0
-	
+
 	if game_profile and not game_profile.is_empty():
 		score = _safe_int(game_profile.get("score", 0))
 		streak = _safe_int(game_profile.get("streak", 0))
@@ -723,7 +783,7 @@ func _update_cached_profile(profile: Dictionary) -> void:
 		if achievements == null:
 			achievements = []
 		play_count = _safe_int(profile.get("playCount", profile.get("plays", 0)))
-	
+
 	_nickname = nickname
 	profile_loaded.emit(nickname, score, streak, achievements, play_count)
 
@@ -795,14 +855,14 @@ func has_nickname() -> bool:
 func get_nickname() -> String:
 	if _nickname != "" and not _nickname.begins_with("Player_p_") and not _nickname.begins_with("Player_dev_"):
 		return _nickname
-	
+
 	if not _cached_profile.is_empty():
 		var profile_nick = str(_cached_profile.get("nickname", ""))
 		if profile_nick != "" and not profile_nick.begins_with("Player_p_") and not profile_nick.begins_with("Player_dev_"):
 			return profile_nick
-	
-	# Return — callers should show "Guest" for unnamed anonymous players
-	return "Guest"
+
+	# Return empty string — callers should show "Guest" for unnamed anonymous players
+	return ""
 
 func get_high_score() -> int:
 	if _cached_profile.is_empty():
@@ -855,6 +915,7 @@ func set_game_id(id: String) -> void:
 func set_session_token(token: String) -> void:
 	_session_token = token
 	_log("Session token set")
+	_save_session()
 
 func set_player_id(player_id: String) -> void:
 	_player_id = _sanitize_player_id(player_id)
@@ -863,14 +924,14 @@ func set_player_id(player_id: String) -> void:
 func get_player_id() -> String:
 	if not _player_id.is_empty():
 		return _player_id
-	
+
 	# Try loading saved device ID from disk
 	var saved_id = _load_device_id()
 	if saved_id != "":
 		_player_id = saved_id
 		_log("Loaded persistent device ID: %s" % _player_id.left(12))
 		return _player_id
-	
+
 	# Generate new persistent device ID (first launch only)
 	randomize()
 	var timestamp = str(Time.get_unix_time_from_system()).replace(".", "")
@@ -897,25 +958,80 @@ func _load_device_id() -> String:
 		return config.get_value("device", "id", "")
 	return ""
 
+# ============================================================
+# PERSISTENT SESSION (v2.2.3)
+# Mirrors the device ID pattern: session token survives page
+# reloads / app restarts so logged-in players don't repeat
+# device code auth every visit. Cleared on logout or when the
+# server rejects the token (401/403 -> session_expired).
+# ============================================================
+
+func _save_session() -> void:
+	if _session_token.is_empty():
+		return
+	var config = ConfigFile.new()
+	config.set_value("session", "token", _session_token)
+	config.set_value("session", "nickname", _nickname)
+	config.set_value("session", "auth_type", _auth_type)
+	config.set_value("session", "saved_at", Time.get_unix_time_from_system())
+	var err = config.save(SESSION_PATH)
+	if err == OK:
+		_log("Session saved to %s" % SESSION_PATH)
+	else:
+		_log("WARNING: Failed to save session (error %d)" % err)
+
+func _load_saved_session() -> void:
+	var config = ConfigFile.new()
+	var err = config.load(SESSION_PATH)
+	if err != OK:
+		return
+	var token = str(config.get_value("session", "token", ""))
+	if token.is_empty():
+		return
+	_session_token = token
+	_nickname = str(config.get_value("session", "nickname", ""))
+	_auth_type = str(config.get_value("session", "auth_type", "google"))
+	_cached_profile = {"nickname": _nickname}
+	_log("Restored saved session for %s (validated on first request)" % _nickname)
+
+func _clear_saved_session() -> void:
+	if FileAccess.file_exists(SESSION_PATH):
+		var dir = DirAccess.open("user://")
+		if dir:
+			dir.remove(SESSION_PATH.trim_prefix("user://"))
+			_log("Saved session cleared")
+
+func _expire_session() -> void:
+	"""Server rejected the stored session token - clear everything
+	and tell the game so it can return to its login screen."""
+	_log("Session expired or rejected by server - clearing")
+	_session_token = ""
+	_auth_type = ""
+	_nickname = ""
+	_cached_profile = {}
+	_clear_saved_session()
+	session_expired.emit()
+	logout_success.emit()
+
 func _sanitize_player_id(raw_id: String) -> String:
 	if raw_id.is_empty():
 		return get_player_id()
-	
+
 	var sanitized = ""
 	for c in raw_id:
 		if (c >= "a" and c <= "z") or (c >= "A" and c <= "Z") or (c >= "0" and c <= "9") or c == "_" or c == "-":
 			sanitized += c
-	
+
 	if sanitized.is_empty():
 		randomize()
 		return "p_" + str(abs(raw_id.hash()))
-	
+
 	if sanitized[0] >= "0" and sanitized[0] <= "9":
 		sanitized = "p_" + sanitized
-	
+
 	if sanitized.length() > 100:
 		sanitized = sanitized.left(100)
-	
+
 	return sanitized
 
 # ============================================================
@@ -927,7 +1043,7 @@ func login_anonymous(nickname: String = "") -> void:
 	if api_key.is_empty():
 		login_failed.emit("API key not set. Call set_api_key() first.")
 		return
-	
+
 	# Only store a nickname if one was explicitly provided.
 	# Do NOT auto-generate a placeholder — the UI will show "Guest" instead.
 	_nickname = nickname if nickname != "" else ""
@@ -963,6 +1079,7 @@ func logout() -> void:
 	_nickname = ""
 	_session_token = ""
 	_play_session_token = ""
+	_clear_saved_session()
 	logout_success.emit()
 	_log("Logged out")
 
@@ -980,29 +1097,37 @@ func has_account() -> bool:
 func refresh_profile() -> void:
 	if _is_refreshing_profile:
 		return
-	
+
 	var current_time: float = Time.get_ticks_msec() / 1000.0
 	# Skip cooldown on first-ever call (_last_profile_refresh == 0.0)
 	if _last_profile_refresh > 0.0 and current_time - _last_profile_refresh < PROFILE_REFRESH_COOLDOWN:
 		return
-	
+
 	_is_refreshing_profile = true
 	_last_profile_refresh = current_time
 	get_player_profile()
 	_log("Profile refresh requested")
 
 func change_nickname(new_nickname: String = "") -> void:
-	if new_nickname.is_empty() or new_nickname.length() < 2:
-		nickname_error.emit("Nickname must be at least 2 characters")
+	# Canonical rule (matches proxy + canister): 3-16 chars, letters/numbers/underscores.
+	if new_nickname.is_empty() or new_nickname.length() < 3:
+		nickname_error.emit("Nickname must be at least 3 characters")
 		return
-	
+	if new_nickname.length() > 16:
+		nickname_error.emit("Nickname must be 16 characters or less")
+		return
+	for c in new_nickname:
+		if not "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_".contains(c):
+			nickname_error.emit("Nickname can only contain letters, numbers, and underscores")
+			return
+
 	# Anonymous players who haven't submitted a score yet don't exist on backend
 	if is_anonymous() and _cached_profile.is_empty():
 		_nickname = new_nickname
 		_log("Nickname set locally (no backend profile yet): %s" % new_nickname)
 		nickname_changed.emit(new_nickname)
 		return
-	
+
 	if not _session_token.is_empty():
 		# Authenticated users - session token path
 		var body = {"nickname": new_nickname}
@@ -1046,15 +1171,21 @@ func login_with_device_code() -> void:
 	if not _init_complete:
 		device_code_error.emit("CheddaBoards not ready")
 		return
-	
+
 	if game_id.is_empty():
 		device_code_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
+
 	_stop_device_code_polling()
-	
+
 	_log("Requesting device code for game: %s" % game_id)
 	var body = {"gameId": game_id}
+	# Seed the player's current nickname so that if this link CREATES a new
+	# account, it's born with the name they chose in-game (server suffixes
+	# on collision). Existing accounts are unaffected — the canister ignores
+	# the nickname for known users. Fixes new accounts landing as "Player_N".
+	if not _nickname.is_empty():
+		body["nickname"] = _nickname
 	_make_http_request("/auth/device/code", HTTPClient.METHOD_POST, body, "device_code_request")
 
 ## Cancel an in-progress device code login.
@@ -1099,7 +1230,7 @@ func _start_device_code_polling() -> void:
 	_is_polling_device_code = true
 	_device_code_poll_in_flight = false
 	_device_code_approved = false
-	
+
 	_device_code_poll_timer = Timer.new()
 	_device_code_poll_timer.wait_time = _device_code_poll_interval
 	_device_code_poll_timer.autostart = true
@@ -1120,10 +1251,10 @@ func _poll_device_code_token() -> void:
 	if not _is_polling_device_code or _device_code.is_empty():
 		_stop_device_code_polling()
 		return
-	
+
 	if _device_code_poll_in_flight:
 		return
-	
+
 	# Check expiry
 	if Time.get_unix_time_from_system() >= _device_code_expires_at:
 		_log("Device code expired: %s" % _redact_code(_device_user_code))
@@ -1132,26 +1263,26 @@ func _poll_device_code_token() -> void:
 		_device_user_code = ""
 		device_code_expired.emit()
 		return
-	
+
 	_device_code_poll_in_flight = true
-	
+
 	var http = HTTPRequest.new()
 	add_child(http)
 	http.process_mode = Node.PROCESS_MODE_ALWAYS
-	
+
 	var headers: PackedStringArray = ["Content-Type: application/json"]
 	if not game_id.is_empty():
 		headers.append("X-Game-ID: " + game_id)
-	
+
 	var body = JSON.stringify({"device_code": _device_code})
 	var url = API_BASE_URL + "/auth/device/token"
-	
+
 	http.request_completed.connect(func(result, code, _headers, response_body):
 		_device_code_poll_in_flight = false
 		_handle_device_code_poll_response(result, code, response_body)
 		http.queue_free()
 	)
-	
+
 	var error = http.request(url, headers, HTTPClient.METHOD_POST, body)
 	if error != OK:
 		_log("Device code poll request failed to start")
@@ -1162,22 +1293,22 @@ func _handle_device_code_poll_response(result: int, response_code: int, body: Pa
 	if result != HTTPRequest.RESULT_SUCCESS:
 		_log("Device code poll: network error")
 		return
-	
+
 	if _device_code_approved:
 		_log("Device code poll: ignoring response (already approved)")
 		return
-	
+
 	var json = JSON.new()
 	if json.parse(body.get_string_from_utf8()) != OK:
 		_log("Device code poll: invalid JSON")
 		return
-	
+
 	var response = json.data
-	
+
 	# 428 = authorization_pending (keep polling)
 	if response_code == 428:
 		return
-	
+
 	# 410 = expired
 	if response_code == 410:
 		_log("Device code expired (server confirmed)")
@@ -1186,58 +1317,69 @@ func _handle_device_code_poll_response(result: int, response_code: int, body: Pa
 		_device_user_code = ""
 		device_code_expired.emit()
 		return
-	
+
 	# 200 = approved!
 	if response_code == 200 and response.get("ok", false):
 		_device_code_approved = true
 		_stop_device_code_polling()
-		
+
 		var data = response.get("data", {})
 		var session_id = str(data.get("sessionId", ""))
 		var nickname = str(data.get("nickname", "Player"))
 		var email = str(data.get("email", ""))
-		
+
 		_log("Device code approved! User: %s (%s)" % [nickname, _redact_email(email)])
-		
+
 		# Save anonymous player ID BEFORE switching auth — needed for migration
 		var previous_anonymous_id = _player_id
 		var was_anonymous = _auth_type == "anonymous" and not previous_anonymous_id.is_empty()
-		
+
+		# Fresh-account nickname preservation: if this link CREATED the account
+		# (isNewUser) and the player was anonymous with a chosen name, restore
+		# that name after migration instead of keeping the generated one.
+		# Existing accounts keep their own nickname (merge case) — untouched.
+		var is_new_user: bool = bool(data.get("isNewUser", false))
+		_pending_nickname_restore = ""
+		if was_anonymous and is_new_user and not _nickname.is_empty() and _nickname != nickname:
+			_pending_nickname_restore = _nickname
+			_log("New account created at link time - will restore anon nickname '%s' after migration" % _nickname)
+
 		# Set session state
 		_session_token = session_id
 		_nickname = nickname
-		_auth_type = "google"  # Provider determined by what they chose on the page
-		
+		_auth_type = str(data.get("provider", "google"))  # Real provider from proxy; older proxies omit it
+		_save_session()
+
 		# Clear stale anonymous play session
 		if _play_session_token != "":
 			_log("Clearing stale anonymous play session after device code auth")
 			_play_session_token = ""
-		
+
 		# Cache profile data
 		var game_profile = data.get("gameProfile", null)
 		if game_profile and game_profile is Dictionary:
 			_update_cached_profile({
 				"nickname": nickname,
 				"gameProfile": game_profile,
-			})
+				})
 		else:
 			_cached_profile = {"nickname": nickname}
 			profile_loaded.emit(nickname, 0, 0, [], 0)
-		
+
 		# Clear device code state
 		_device_code = ""
 		_device_user_code = ""
-		
+
 		# Emit both signals so existing login flows work
 		device_code_approved.emit(nickname)
 		login_success.emit(nickname)
-		
+
 		# Auto-migrate anonymous data → new account
 		if was_anonymous:
 			_migrate_anonymous_account(previous_anonymous_id)
-		
+
 		return
-	
+
 	# 404 = invalid code (or already consumed)
 	if response_code == 404:
 		if _device_code_approved or _device_code.is_empty():
@@ -1249,7 +1391,7 @@ func _handle_device_code_poll_response(result: int, response_code: int, body: Pa
 		_device_user_code = ""
 		device_code_error.emit("Invalid or expired code")
 		return
-	
+
 	# Other errors - log but keep polling
 	var error_msg = str(response.get("error", "Unknown error"))
 	_log("Device code poll error (%d): %s" % [response_code, error_msg])
@@ -1261,8 +1403,9 @@ func _handle_device_code_poll_response(result: int, response_code: int, body: Pa
 func _migrate_anonymous_account(anonymous_device_id: String) -> void:
 	if anonymous_device_id.is_empty() or _session_token.is_empty():
 		_log("Migration skipped: missing device ID or session token")
+		account_upgrade_failed.emit("Missing device ID or session token")
 		return
-	
+
 	_log("Migrating anonymous data: %s → authenticated account" % anonymous_device_id)
 	var body = {"deviceId": anonymous_device_id}
 	_make_http_request("/migrate-account", HTTPClient.METHOD_POST, body, "migrate_account")
@@ -1280,15 +1423,15 @@ func submit_score(score: int, streak: int = 0) -> void:
 		_log("Not authenticated, cannot submit")
 		score_error.emit("Not authenticated")
 		return
-	
+
 	if _is_submitting_score:
 		_log("Score submission already in progress")
 		return
-	
+
 	_is_submitting_score = true
 	_pending_score = score
 	_pending_streak = streak
-	
+
 	var body = {
 		"playerId": get_player_id(),
 		"gameId": game_id,
@@ -1312,7 +1455,7 @@ func submit_score_with_achievements(score: int, streak: int, achievements: Array
 	_is_submitting_score = true
 	_pending_score = score
 	_pending_streak = streak
-	
+
 	var ach_ids: Array = []
 	for ach in achievements:
 		if typeof(ach) == TYPE_STRING:
@@ -1321,14 +1464,14 @@ func submit_score_with_achievements(score: int, streak: int, achievements: Array
 			var ach_id = str(ach.get("id", ""))
 			if ach_id != "":
 				ach_ids.append(ach_id)
-	
+
 	_log("Submitting score with %d achievements (HTTP API)" % ach_ids.size())
-	
+
 	# Store achievement IDs - queued AFTER score succeeds
 	_deferred_achievement_ids = ach_ids.duplicate()
 	_deferred_achievements_remaining = 0
 	_deferred_achievements_synced = []
-	
+
 	# Submit score FIRST (creates/updates player profile on backend)
 	var score_body = {
 		"playerId": get_player_id(),
@@ -1342,13 +1485,60 @@ func submit_score_with_achievements(score: int, streak: int, achievements: Array
 	_log("Submitting: score=%d, streak=%d, nickname=%s, gameId=%s, playerId=%s, session=%s" % [score, streak, score_body.nickname, game_id, score_body.playerId, _play_session_token.left(20)])
 	_make_http_request("/scores", HTTPClient.METHOD_POST, score_body, "submit_score")
 
+## Submit a score to ONE specific (targeted) scoreboard, by ID.
+##
+## Unlike submit_score(), this does NOT fan out to your all-time / weekly /
+## daily boards and does NOT update the player's overall profile total. It
+## writes to the named board only. The board must exist AND be configured as
+## a "targeted" board in the dashboard, otherwise the backend returns an error.
+##
+## Use it for per-level, per-mode, or category leaderboards:
+##     CheddaBoards.submit_score_to_board("level-14", score, streak)
+##
+## If the game has time validation enabled, start a play session first
+## (start_play_session) exactly as you would for submit_score — the active
+## play-session token is attached automatically when present.
+##
+## Emits score_submitted_to_board(scoreboard_id, score, streak) on success,
+## or score_error(reason) on failure. Safe to call several times in a row for
+## different boards; each call queues with its own values (it carries score /
+## streak / board id in request meta rather than the shared _pending_* fields,
+## so queued submits don't clobber each other).
+func submit_score_to_board(scoreboard_id: String, score: int, streak: int = 0) -> void:
+	if not is_authenticated():
+		_log("Not authenticated, cannot submit to board")
+		score_error.emit("Not authenticated")
+		return
+
+	if scoreboard_id.is_empty():
+		score_error.emit("scoreboard_id is required")
+		return
+
+	var body = {
+		"playerId": get_player_id(),
+		"gameId": game_id,
+		"score": score,
+		"streak": streak,
+		"nickname": _nickname if _nickname != "" else _get_default_nickname(),
+		"scoreboardId": scoreboard_id
+	}
+	if _play_session_token != "":
+		body["playSessionToken"] = _play_session_token
+
+	_log("Submitting to board '%s': score=%d, streak=%d, player=%s" % [scoreboard_id, score, streak, body.playerId])
+	_make_http_request("/scores", HTTPClient.METHOD_POST, body, "submit_score_to_board", {
+		"scoreboard_id": scoreboard_id,
+		"score": score,
+		"streak": streak
+	})
+
 # ============================================================
 # PUBLIC API - PLAY SESSIONS (Time Validation)
 # ============================================================
 
 func start_play_session() -> void:
 	_play_session_token = ""
-	
+
 	var body = {
 		"gameId": game_id,
 		"playerId": get_player_id()
@@ -1367,7 +1557,7 @@ func end_play_session() -> void:
 		_log("No active server session to end")
 		_play_session_token = ""
 		return
-	
+
 	_log("Ending play session on server: %s" % _play_session_token.left(30))
 	var body = {"playSessionToken": _play_session_token}
 	_make_http_request("/play-sessions/end", HTTPClient.METHOD_POST, body, "end_play_session")
@@ -1419,7 +1609,7 @@ func get_scoreboards(for_game_id: String = "") -> void:
 	if gid.is_empty():
 		scoreboard_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
+
 	var url = "/games/%s/scoreboards" % gid.uri_encode()
 	_make_http_request(url, HTTPClient.METHOD_GET, {}, "list_scoreboards")
 	_log("Scoreboards list requested for game: %s" % gid)
@@ -1429,7 +1619,7 @@ func get_scoreboard(scoreboard_id: String, limit: int = 100, for_game_id: String
 	if gid.is_empty():
 		scoreboard_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
+
 	var url = "/games/%s/scoreboards/%s?limit=%d" % [gid.uri_encode(), scoreboard_id.uri_encode(), limit]
 	_make_http_request(url, HTTPClient.METHOD_GET, {}, "get_scoreboard", {"scoreboard_id": scoreboard_id})
 	_log("Scoreboard '%s' requested (limit: %d)" % [scoreboard_id, limit])
@@ -1439,11 +1629,11 @@ func get_scoreboard_rank(scoreboard_id: String, for_game_id: String = "") -> voi
 	if gid.is_empty():
 		scoreboard_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
-	if _play_session_token.is_empty():
+
+	if _session_token.is_empty():
 		scoreboard_error.emit("Session token required for rank lookup")
 		return
-	
+
 	var url = "/games/%s/scoreboards/%s/rank" % [gid.uri_encode(), scoreboard_id.uri_encode()]
 	_make_http_request(url, HTTPClient.METHOD_GET, {}, "scoreboard_rank", {"scoreboard_id": scoreboard_id})
 	_log("Scoreboard rank requested for '%s'" % scoreboard_id)
@@ -1469,7 +1659,7 @@ func get_scoreboard_archives(scoreboard_id: String, for_game_id: String = "") ->
 	if gid.is_empty():
 		archive_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
+
 	var url = "/games/%s/scoreboards/%s/archives" % [gid.uri_encode(), scoreboard_id.uri_encode()]
 	_make_http_request(url, HTTPClient.METHOD_GET, {}, "list_archives", {"scoreboard_id": scoreboard_id})
 	_log("Archives list requested for '%s'" % scoreboard_id)
@@ -1479,7 +1669,7 @@ func get_last_archived_scoreboard(scoreboard_id: String, limit: int = 100, for_g
 	if gid.is_empty():
 		archive_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
+
 	var url = "/games/%s/scoreboards/%s/archives/latest?limit=%d" % [gid.uri_encode(), scoreboard_id.uri_encode(), limit]
 	_make_http_request(url, HTTPClient.METHOD_GET, {}, "get_last_archive", {"scoreboard_id": scoreboard_id})
 	_log("Last archive requested for '%s'" % scoreboard_id)
@@ -1494,11 +1684,11 @@ func get_archives_in_range(scoreboard_id: String, after_timestamp: int, before_t
 	if gid.is_empty():
 		archive_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
+
 	var url = "/games/%s/scoreboards/%s/archives?after=%d&before=%d" % [
-		gid.uri_encode(), 
-		scoreboard_id.uri_encode(), 
-		after_timestamp, 
+		gid.uri_encode(),
+		scoreboard_id.uri_encode(),
+		after_timestamp,
 		before_timestamp
 	]
 	_make_http_request(url, HTTPClient.METHOD_GET, {}, "list_archives", {"scoreboard_id": scoreboard_id})
@@ -1509,7 +1699,7 @@ func get_archive_stats(for_game_id: String = "") -> void:
 	if gid.is_empty():
 		archive_error.emit("Game ID not set. Call set_game_id() first.")
 		return
-	
+
 	var url = "/games/%s/archives/stats" % gid.uri_encode()
 	_make_http_request(url, HTTPClient.METHOD_GET, {}, "archive_stats")
 	_log("Archive stats requested for game: %s" % gid)
@@ -1539,11 +1729,11 @@ func unlock_achievements_batch(achievement_ids: Array) -> void:
 	"""Unlock multiple achievements in a single request."""
 	if achievement_ids.is_empty():
 		return
-	
+
 	_log("Batch unlocking %d achievements..." % achievement_ids.size())
 	_deferred_achievements_remaining = 1
 	_deferred_achievements_synced = []
-	
+
 	var body = {
 		"playerId": get_player_id(),
 		"achievementIds": achievement_ids
@@ -1564,7 +1754,7 @@ func _flush_deferred_achievements() -> void:
 	_deferred_achievements_remaining = 1
 	_deferred_achievements_synced = []
 	_log("Batch syncing %d achievements..." % count)
-	
+
 	var body = {
 		"playerId": get_player_id(),
 		"achievementIds": _deferred_achievement_ids.duplicate()

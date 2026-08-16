@@ -6,13 +6,7 @@ extends PanelContainer
 @export var score_label : Label
 @export var player_outline : Control
 @export var background : PanelContainer
-@export var rank1_style : StyleBox
-@export var rank2_style : StyleBox
-@export var rank3_style : StyleBox
-@export var even_style : StyleBox
-@export var odd_style : StyleBox
-@export var accent_text_color: Color = Color("f5a623")         # CheddaBoards gold/cheese
-@export var default_text_color: Color = Color("e0e0e0")
+@export var accent_text_color: Color = Color("f5a623")
 @export var dim_text_color: Color = Color("888888")
 
 func set_entry(rank : int, name: String, score: int, is_player: bool):
@@ -35,5 +29,8 @@ func set_entry(rank : int, name: String, score: int, is_player: bool):
 			background.set_theme_type_variation(&"LeaderboardEntryRankEven" if rank % 2 == 0 else &"LeaderboardEntryRankOdd")
 			rank_label.add_theme_color_override("font_color", dim_text_color)
 	
-	name_label.add_theme_color_override("font_color", Color.WHITE if is_player else default_text_color)
-	score_label.add_theme_color_override("font_color", accent_text_color if rank <= 3 else default_text_color)
+	name_label.set_theme_type_variation(&"LeaderboardEntryPlayer" if is_player else &"LeaderboardEntryNotPlayer")
+	if rank <= 3:
+		score_label.add_theme_color_override("font_color", accent_text_color)
+	elif score_label.has_theme_color_override("font_color"):
+		score_label.remove_theme_color_override("font_color")

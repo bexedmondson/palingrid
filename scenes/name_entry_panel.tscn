@@ -23,6 +23,7 @@ anchor_right = 0.75
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_type_variation = &"PanelFloating"
 script = ExtResource("2_p7tcu")
 title_label = NodePath("MarginContainer/VBoxContainer/TitleLabel")
