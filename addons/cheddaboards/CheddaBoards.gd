@@ -802,7 +802,7 @@ func get_nickname() -> String:
 			return profile_nick
 	
 	# Return — callers should show "Guest" for unnamed anonymous players
-	return "Guest"
+	return ""
 
 func get_high_score() -> int:
 	if _cached_profile.is_empty():
