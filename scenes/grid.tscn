@@ -783,10 +783,7 @@ COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 name_change_handler = NodePath("../NameEntryPanel")
 
-[node name="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer" parent_id_path=PackedInt32Array(1948943594, 1091344264) index="0" unique_id=510556136]
-visible = false
-
-[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
+[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1948943594, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 letter_set_generator = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
 
