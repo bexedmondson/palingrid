@@ -6,8 +6,8 @@ extends Control
 @export var slots : Array[DropSlot]
 @export var tiles : Array[DropTile]
 @export var wordScene : InstancePlaceholder
-@export var score : Label
 @export var bestScore : BestScoreIndicator
+@export var gridRotator : GridRotator
 
 signal score_updated(new_score: int)
 
@@ -75,8 +75,10 @@ func _ready() -> void:
 var dash = "-"
 var total = 0
 
-func update(_slot: DropSlot):
-	#push_warning("grid - update from slot " + _slot.name)
+func update():
+	if gridRotator.get_is_rotating():
+		return
+	
 	var words = {}
 	for line in lineSlotIndexes:
 		add_line_words(line, words)
@@ -100,11 +102,6 @@ func update(_slot: DropSlot):
 	total = 0
 	for word in wordInstanceMap:
 		total += wordInstanceMap[word].get_points()
-	
-	if score.text == str(total):
-		return
-	
-	score.text = "SCORE: " + str(total)
 	
 	bestScore.update(total)
 	score_updated.emit(total)
@@ -187,6 +184,9 @@ func filled_slot_count():
 	return letter_count() - tileHolder.tile_count()
 		
 func reset_tiles():
+	if gridRotator.get_is_rotating():
+		return
+	
 	for slot in slots:
 		if slot.slotTile == null:
 			continue

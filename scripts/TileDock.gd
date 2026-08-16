@@ -38,3 +38,11 @@ func get_tile():
 	if tile_count() == 0:
 		return null
 	return get_child(0)
+
+func shuffle_tiles():
+	var tiles = get_children()
+	
+	tiles.shuffle()
+	
+	for new_tile_index in tiles.size():
+		move_child(tiles[new_tile_index], new_tile_index)

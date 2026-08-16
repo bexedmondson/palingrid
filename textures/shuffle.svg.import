@@ -2,27 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkuycxmj6cfv"
-path="res://.godot/imported/return-arrow.svg-96f0816e980832c735115aa2c6b50fce.ctex"
+uid="uid://bfngqcod6xdcb"
+path="res://.godot/imported/shuffle.svg-b55fbc8520babc96a8e1b8239cc46df6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/return-arrow.svg"
-dest_files=["res://.godot/imported/return-arrow.svg-96f0816e980832c735115aa2c6b50fce.ctex"]
+source_file="res://textures/shuffle.svg"
+dest_files=["res://.godot/imported/shuffle.svg-b55fbc8520babc96a8e1b8239cc46df6.ctex"]
 
 [params]
 
 compress/mode=0
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=2
-compress/channel_pack=1
+compress/normal_map=0
+compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
@@ -38,6 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=2.0
+svg/scale=1.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false
