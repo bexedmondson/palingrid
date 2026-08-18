@@ -664,6 +664,7 @@ layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1601090332]
 custom_minimum_size = Vector2(400, 0)
+custom_maximum_size = Vector2(-1, 800)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
