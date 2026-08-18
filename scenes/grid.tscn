@@ -53,7 +53,10 @@
 [ext_resource type="Texture2D" uid="uid://npurgoymbbai" path="res://textures/tutorial_images/score3points.png" id="34_jffns"]
 [ext_resource type="Texture2D" uid="uid://b3qobrpixwagc" path="res://textures/tutorial_images/score1points.png" id="34_lr6w7"]
 [ext_resource type="Texture2D" uid="uid://drb27t610dr7t" path="res://textures/tutorial_images/score2points.png" id="35_x3wu6"]
+[ext_resource type="Script" uid="uid://bc00lqokig03n" path="res://scripts/TwitchButton.gd" id="36_j4jdq"]
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
+[ext_resource type="Texture2D" uid="uid://c87wp8dtwppnn" path="res://textures/website-icon.png" id="37_ttir5"]
+[ext_resource type="Script" uid="uid://dgsnrcmyhgdxu" path="res://scripts/WebsiteButton.gd" id="38_ys0h4"]
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
 [ext_resource type="PackedScene" uid="uid://cpcfskn5ickc2" path="res://scenes/account_popup.tscn" id="48_idbgw"]
@@ -664,6 +667,7 @@ layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1601090332]
 custom_minimum_size = Vector2(400, 0)
+custom_maximum_size = Vector2(-1, 800)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
@@ -779,14 +783,27 @@ icon = ExtResource("14_gsnlb")
 expand_icon = true
 
 [node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
-custom_minimum_size = Vector2(0, 82)
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "watch palingrid 
 development live!"
 icon = ExtResource("32_xvihj")
 flat = true
 autowrap_mode = 2
 expand_icon = true
+script = ExtResource("36_j4jdq")
+
+[node name="WebsiteButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1965649188]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "my website"
+icon = ExtResource("37_ttir5")
+flat = true
+autowrap_mode = 2
+expand_icon = true
+script = ExtResource("38_ys0h4")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=245448147]
 layout_mode = 2
@@ -1156,7 +1173,9 @@ text = "testing 123"
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
-[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" method="on_pressed"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" method="on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]

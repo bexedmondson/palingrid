@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cpcfskn5ickc2"]
 
-[ext_resource type="Theme" uid="uid://dsjemrfw3gdrr" path="res://themes/dark/dark_theme.tres" id="1_2h40v"]
 [ext_resource type="Script" uid="uid://cjb5hurxpbpdp" path="res://scripts/AccountPopup.gd" id="1_2uy5s"]
 [ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="2_2h40v"]
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="3_0yqrv"]
@@ -24,7 +23,6 @@ offset_bottom = 510.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-theme = ExtResource("1_2h40v")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5816i")
 script = ExtResource("1_2uy5s")
 name_label = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
