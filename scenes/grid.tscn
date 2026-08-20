@@ -39,6 +39,7 @@
 [ext_resource type="Script" uid="uid://b28ttolf2qibo" path="res://scripts/GridRotator.gd" id="25_tkjpc"]
 [ext_resource type="Texture2D" uid="uid://dhbutai54wrxf" path="res://textures/tutorial_images/valid_word_placements2.png" id="26_jh3ig"]
 [ext_resource type="Texture2D" uid="uid://bffwwsp5ys3at" path="res://textures/tutorial_images/valid_word_placements3.png" id="27_7swsl"]
+[ext_resource type="Script" uid="uid://b6auyx3uopn0d" path="res://scripts/WordListContainer.gd" id="28_6wmch"]
 [ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://scripts/DebugUtils.gd" id="28_5816i"]
 [ext_resource type="Texture2D" uid="uid://cdxjmnx1yv3ih" path="res://textures/tutorial_images/valid_word_placements4.png" id="28_cl3o7"]
 [ext_resource type="Texture2D" uid="uid://cygs88cfooyw7" path="res://textures/hard-drive-download.svg" id="28_idbgw"]
@@ -286,7 +287,7 @@ custom_minimum_size = Vector2(540, 540)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "bestScore", "gridRotator")]
+[node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "wordListContainer", "bestScore", "gridRotator")]
 z_index = 1
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
@@ -296,6 +297,7 @@ tileHolder = NodePath("../../../TileDockPanel/Tiles")
 slots = [NodePath("VBoxContainer/Row/Cell1"), NodePath("VBoxContainer/Row/Cell2"), NodePath("VBoxContainer/Row/Cell3"), NodePath("VBoxContainer/Row/Cell4"), NodePath("VBoxContainer/Row/Cell5"), NodePath("VBoxContainer/Row2/Cell6"), NodePath("VBoxContainer/Row2/Cell7"), NodePath("VBoxContainer/Row2/Cell8"), NodePath("VBoxContainer/Row2/Cell9"), NodePath("VBoxContainer/Row2/Cell10"), NodePath("VBoxContainer/Row3/Cell11"), NodePath("VBoxContainer/Row3/Cell12"), NodePath("VBoxContainer/Row3/Cell13"), NodePath("VBoxContainer/Row3/Cell14"), NodePath("VBoxContainer/Row3/Cell15"), NodePath("VBoxContainer/Row4/Cell16"), NodePath("VBoxContainer/Row4/Cell17"), NodePath("VBoxContainer/Row4/Cell18"), NodePath("VBoxContainer/Row4/Cell19"), NodePath("VBoxContainer/Row4/Cell20"), NodePath("VBoxContainer/Row5/Cell21"), NodePath("VBoxContainer/Row5/Cell22"), NodePath("VBoxContainer/Row5/Cell23"), NodePath("VBoxContainer/Row5/Cell24"), NodePath("VBoxContainer/Row5/Cell25")]
 tiles = [NodePath("../../../TileDockPanel/Tiles/Tile"), NodePath("../../../TileDockPanel/Tiles/Tile2"), NodePath("../../../TileDockPanel/Tiles/Tile3"), NodePath("../../../TileDockPanel/Tiles/Tile4"), NodePath("../../../TileDockPanel/Tiles/Tile5"), NodePath("../../../TileDockPanel/Tiles/Tile6"), NodePath("../../../TileDockPanel/Tiles/Tile7"), NodePath("../../../TileDockPanel/Tiles/Tile8"), NodePath("../../../TileDockPanel/Tiles/Tile9"), NodePath("../../../TileDockPanel/Tiles/Tile10"), NodePath("../../../TileDockPanel/Tiles/Tile11"), NodePath("../../../TileDockPanel/Tiles/Tile12"), NodePath("../../../TileDockPanel/Tiles/Tile13"), NodePath("../../../TileDockPanel/Tiles/Tile14"), NodePath("../../../TileDockPanel/Tiles/Tile15"), NodePath("../../../TileDockPanel/Tiles/Tile16"), NodePath("../../../TileDockPanel/Tiles/Tile17"), NodePath("../../../TileDockPanel/Tiles/Tile18"), NodePath("../../../TileDockPanel/Tiles/Tile19"), NodePath("../../../TileDockPanel/Tiles/Tile20"), NodePath("../../../TileDockPanel/Tiles/Tile21"), NodePath("../../../TileDockPanel/Tiles/Tile22"), NodePath("../../../TileDockPanel/Tiles/Tile23"), NodePath("../../../TileDockPanel/Tiles/Tile24"), NodePath("../../../TileDockPanel/Tiles/Tile25")]
 wordScene = NodePath("../../../../WordListContainer/ScrollContainer/VBoxContainer/WordPanel")
+wordListContainer = NodePath("../../../../WordListContainer/ScrollContainer")
 bestScore = NodePath("../../../../../../../BestScoreHandler")
 gridRotator = NodePath("GridRotator")
 
@@ -659,7 +661,7 @@ min_size_horizontal_layout = Vector2(250, 50)
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 3
+size_flags_vertical = 0
 theme_type_variation = &"PanelContainerThinMargins"
 
 [node name="Panel" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1892135352]
@@ -671,9 +673,10 @@ custom_maximum_size = Vector2(-1, 800)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
+vertical_scroll_mode = 4
 scroll_deadzone = 10
 scroll_hint_mode = 1
+script = ExtResource("28_6wmch")
 
 [node name="VBoxContainer" type="HFlowContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer" unique_id=815669151]
 custom_minimum_size = Vector2(400, 0)

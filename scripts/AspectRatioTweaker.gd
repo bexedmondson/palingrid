@@ -26,8 +26,6 @@ func tweak():
 	
 	debug_label.text = "v0"+ str(screen_size) + " " + str(get_viewport().size)
 	
-	wordListScroller.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED if is_vertical else ScrollContainer.SCROLL_MODE_RESERVE
-	
 	leftGridSpacer.set_h_size_flags(leftSpacerFlagsVertical if is_vertical else spacerFlagsHorizontal)
 	rightGridSpacer.set_h_size_flags(rightSpacerFlagsVertical if is_vertical else spacerFlagsHorizontal)
 	
