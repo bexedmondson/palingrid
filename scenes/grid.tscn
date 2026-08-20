@@ -517,7 +517,7 @@ mouse_filter = 1
 
 [node name="GridButtonVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer" unique_id=947021112]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 45
 
 [node name="ResetTilesButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=1148351401]
 custom_minimum_size = Vector2(70, 70)
