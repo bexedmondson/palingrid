@@ -141,7 +141,7 @@ func _on_confirm_name_pressed():
 		print("[NameChangeHandler] Entering leaderboard as: %s (ID: %s)" % [loginHandler.nickname, CheddaBoards.get_player_id()])
 
 
-func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
+func _on_profile_loaded(nickname: String, _score: int, _streak: int, _achievements: Array, _play_count: int):
 	if nickname != name_line_edit.text.strip_edges():
 		_on_confirm_name_pressed()
 
@@ -175,7 +175,7 @@ func do_first_score_submit():
 		
 	ScoreSubmitter.submit_score(best_score_indicator.best)
 
-func _on_first_score_submitted(score: int, streak : int):
+func _on_first_score_submitted(_score: int, _streak : int):
 	if CheddaBoards.score_submitted.is_connected(_on_first_score_submitted):
 		CheddaBoards.score_submitted.disconnect(_on_first_score_submitted)
 	if CheddaBoards.score_error.is_connected(_on_first_score_submitted):
@@ -197,7 +197,7 @@ func _on_first_score_submitted(score: int, streak : int):
 	do_hide()
 
 
-func _on_nickname_changed_error(error):
+func _on_nickname_changed_error(_error):
 	confirm_button.disabled = false
 	back_button.disabled = false
 	

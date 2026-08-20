@@ -144,7 +144,7 @@ func on_device_code_expired():
 	link_popup.visible = false
 
 
-func on_device_code_approved(nickname: String):
+func on_device_code_approved(_nickname: String):
 	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
 	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
 	CheddaBoards.device_code_error.disconnect(on_device_code_error)

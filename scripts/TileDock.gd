@@ -25,7 +25,7 @@ func add_tile(tile: DropTile) -> void:
 func tile_count():
 	return self.get_child_count()
 	
-func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 	return true
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
