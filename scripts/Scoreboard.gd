@@ -115,7 +115,7 @@ func on_visibility_changed():
 	setup = true
 
 
-func _on_score_submitted(score: int, streak: int):
+func _on_score_submitted(_score: int, _streak: int):
 	_load_leaderboard()
 
 
@@ -146,7 +146,7 @@ func _load_leaderboard():
 	print("[Scoreboard] Requesting scoreboard '%s'" % scoreboard_id)
 	CheddaBoards.get_scoreboard(scoreboard_id, LEADERBOARD_LIMIT)
 
-func _set_loading(loading: bool, message: String = ""):
+func _set_loading(loading: bool):
 	is_loading = loading
 	refresh_button.disabled = loading
 	change_name_button.disabled = loading
@@ -173,7 +173,7 @@ func _on_name_change_prompt_closed():
 # SIGNAL HANDLERS — SCOREBOARDS
 # ============================================================
 
-func _on_scoreboard_loaded(sb_id: String, config: Dictionary, entries: Array):
+func _on_scoreboard_loaded(sb_id: String, _config: Dictionary, entries: Array):
 	if sb_id != scoreboard_id:
 		return
 	_set_loading(false)
@@ -185,7 +185,7 @@ func _on_scoreboard_error(reason: String):
 	_set_loading(false)
 	_set_status("Error loading leaderboard", true)
 
-func _on_login_success(nickname: String):
+func _on_login_success(_nickname: String):
 	_set_status("")
 
 

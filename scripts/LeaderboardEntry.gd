@@ -9,9 +9,9 @@ extends PanelContainer
 @export var accent_text_color: Color = Color("f5a623")
 @export var dim_text_color: Color = Color("888888")
 
-func set_entry(rank : int, name: String, score: int, is_player: bool):
+func set_entry(rank : int, entry_name: String, score: int, is_player: bool):
 	rank_label.text = "#%d" % rank
-	name_label.text = name
+	name_label.text = entry_name
 	score_label.text = str(score)
 	player_outline.visible = is_player
 	

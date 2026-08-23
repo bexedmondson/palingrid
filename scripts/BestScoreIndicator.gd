@@ -19,7 +19,7 @@ func _ready() -> void:
 	CheddaBoards.score_submitted.connect(_on_score_submitted)
 	CheddaBoards.logout_success.connect(_on_logged_out)
 	
-func _on_score_submitted(score: int, streak: int):
+func _on_score_submitted(score: int, _streak: int):
 	if score < best:
 		ScoreSubmitter.submit_score(best)
 

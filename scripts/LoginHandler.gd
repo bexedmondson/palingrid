@@ -166,7 +166,7 @@ func _request_profile_with_timeout():
 	_start_profile_timeout()
 
 
-func _on_profile_loaded(loaded_nickname: String, score: int, _streak: int, achievements: Array, play_count: int):
+func _on_profile_loaded(loaded_nickname: String, score: int, _streak: int, _achievements: Array, play_count: int):
 	"""Profile loaded from backend.
 
 	SDK v2.2.0+ emits play_count as 5th arg — prefer it over digging into

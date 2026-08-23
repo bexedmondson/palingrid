@@ -7,7 +7,7 @@ var welcomed : bool = false
 func _ready() -> void:
 	CheddaBoards.profile_loaded.connect(_on_profile_loaded)
 
-func _on_profile_loaded(nickname: String, score: int, _streak: int, achievements: Array, play_count: int):
+func _on_profile_loaded(nickname: String, _score: int, _streak: int, _achievements: Array, _play_count: int):
 	if welcomed:
 		return
 	welcomed = true
