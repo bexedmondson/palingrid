@@ -1162,6 +1162,7 @@ claps
 clash
 clasp
 class
+clave
 claw
 claws
 clay
@@ -5347,7 +5348,6 @@ rebel
 rebus
 rebut
 recap
-recd
 recta
 recur
 red
@@ -6012,6 +6012,7 @@ skirt
 skis
 skit
 skits
+skort
 skulk
 skull
 skunk
