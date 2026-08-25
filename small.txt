@@ -1949,7 +1949,6 @@ edict
 edify
 edit
 edits
-eds
 eel
 eels
 eerie
