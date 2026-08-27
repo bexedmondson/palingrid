@@ -143,6 +143,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 2
 theme = ExtResource("1_f2tft")
 theme_type_variation = &"PanelContainerGameBG"
 script = ExtResource("1_7swsl")

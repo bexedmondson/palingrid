@@ -3,6 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://dtd3bxkuvmyt8" path="res://themes/dark/button_disabled_dark.tres" id="1_ljl2v"]
 [ext_resource type="StyleBox" uid="uid://d4augykfae4x6" path="res://themes/dark/button_hover_dark.tres" id="2_75m5w"]
 [ext_resource type="StyleBox" uid="uid://coo5xo2wa67uu" path="res://themes/dark/button_normal_dark.tres" id="3_ldt7e"]
+[ext_resource type="StyleBox" uid="uid://5gvufg31dlk" path="res://themes/generic_focus_outline.tres" id="3_wcw0t"]
 [ext_resource type="StyleBox" uid="uid://1j73y400vwds" path="res://themes/dark/button_pressed_dark.tres" id="4_pw3cf"]
 [ext_resource type="StyleBox" uid="uid://sonrm3hmmtul" path="res://themes/dark/button_secondary_disabled_dark.tres" id="5_gw38e"]
 [ext_resource type="StyleBox" uid="uid://bdi1irermo2md" path="res://themes/dark/button_secondary_hover_dark.tres" id="6_oel2j"]
@@ -58,6 +59,7 @@ Button/colors/icon_pressed_color = Color(0.8, 0.75686276, 0.69411767, 1)
 Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("9_ooi2h")
 Button/styles/disabled = ExtResource("1_ljl2v")
+Button/styles/focus = ExtResource("3_wcw0t")
 Button/styles/hover = ExtResource("2_75m5w")
 Button/styles/normal = ExtResource("3_ldt7e")
 Button/styles/pressed = ExtResource("4_pw3cf")
@@ -75,6 +77,7 @@ ButtonSecondary/colors/icon_hover_pressed_color = Color(0.091, 0.14, 0.13265, 1)
 ButtonSecondary/colors/icon_normal_color = Color(0.15, 0.2, 0.19416668, 0.6117647)
 ButtonSecondary/colors/icon_pressed_color = Color(0.039215688, 0.078431375, 0.07450981, 1)
 ButtonSecondary/styles/disabled = ExtResource("5_gw38e")
+ButtonSecondary/styles/focus = ExtResource("3_wcw0t")
 ButtonSecondary/styles/hover = ExtResource("6_oel2j")
 ButtonSecondary/styles/normal = ExtResource("7_k7cn7")
 ButtonSecondary/styles/pressed = ExtResource("8_7u533")
@@ -86,6 +89,7 @@ FoldableContainer/colors/font_outline_color = Color(1, 1, 1, 1)
 FoldableContainer/colors/hover_font_color = Color(0.9607843, 0.9490196, 0.92941177, 1)
 FoldableContainer/font_sizes/font_size = 20
 FoldableContainer/fonts/font = ExtResource("29_l35dm")
+FoldableContainer/styles/focus = ExtResource("3_wcw0t")
 FoldableContainer/styles/panel = ExtResource("10_sqles")
 FoldableContainer/styles/title_collapsed_hover_panel = ExtResource("22_ajk1w")
 FoldableContainer/styles/title_collapsed_panel = ExtResource("22_ajk1w")
@@ -96,6 +100,7 @@ GridContainer/constants/v_separation = 10
 Label/colors/font_color = Color(0.93, 0.9021, 0.8742, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("9_ooi2h")
+Label/styles/focus = ExtResource("3_wcw0t")
 LabelHeading/base_type = &"Label"
 LabelHeading/colors/font_color = Color(0.9607843, 0.9490196, 0.92941177, 1)
 LabelHeading/font_sizes/font_size = 48
@@ -179,4 +184,5 @@ RichTextLabel/font_sizes/mono_font_size = 24
 RichTextLabel/font_sizes/normal_font_size = 24
 RichTextLabel/fonts/bold_font = ExtResource("10_h77cb")
 RichTextLabel/fonts/normal_font = ExtResource("29_l35dm")
+RichTextLabel/styles/focus = ExtResource("3_wcw0t")
 VBoxContainer/constants/separation = 10

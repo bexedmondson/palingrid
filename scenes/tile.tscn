@@ -9,16 +9,11 @@ offset_bottom = 90.0
 scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 2
 mouse_filter = 1
 theme_type_variation = &"PanelTile"
 script = ExtResource("1_n3f48")
 letter_label = NodePath("TileLetterLabel")
-
-[node name="Button" type="Button" parent="." unique_id=284698249]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-flat = true
 
 [node name="TileLetterLabel" type="Label" parent="." unique_id=1773525463]
 z_index = 2
