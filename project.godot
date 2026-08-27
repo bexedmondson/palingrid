@@ -18,6 +18,10 @@ boot_splash/stretch_mode=0
 boot_splash/image="uid://xof0ydmq2c4x"
 config/icon="uid://xof0ydmq2c4x"
 
+[audio]
+
+driver/driver="Dummy"
+
 [autoload]
 
 CheddaBoards="*res://addons/cheddaboards/CheddaBoards.gd"
