@@ -65,6 +65,7 @@ func _on_sdk_ready():
 	CheddaBoards.no_profile.connect(_on_no_profile)
 	CheddaBoards.nickname_changed.connect(_on_nickname_changed)
 	CheddaBoards.logout_success.connect(_on_logged_out)
+	CheddaBoards.session_expired.connect(_on_logged_out)
 
 
 func _try_get_native_device_id() -> bool:

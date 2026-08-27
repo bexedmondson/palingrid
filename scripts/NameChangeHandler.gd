@@ -172,7 +172,7 @@ func do_first_score_submit():
 		CheddaBoards.score_submitted.connect(_on_first_score_submitted)
 	if !CheddaBoards.score_error.is_connected(_on_first_score_submitted):
 		CheddaBoards.score_error.connect(_on_first_score_submitted)
-		
+	
 	ScoreSubmitter.submit_score(best_score_indicator.best)
 
 func _on_first_score_submitted(_score: int, _streak : int):
