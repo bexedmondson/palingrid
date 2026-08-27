@@ -8,9 +8,13 @@
 [ext_resource type="StyleBox" uid="uid://sonrm3hmmtul" path="res://themes/dark/button_secondary_disabled_dark.tres" id="5_gw38e"]
 [ext_resource type="StyleBox" uid="uid://bdi1irermo2md" path="res://themes/dark/button_secondary_hover_dark.tres" id="6_oel2j"]
 [ext_resource type="StyleBox" uid="uid://dd1j1yaovvd" path="res://themes/dark/button_secondary_normal_dark.tres" id="7_k7cn7"]
+[ext_resource type="StyleBox" uid="uid://hy8wj27magm4" path="res://themes/dark/button_outline_disabled_dark.tres" id="7_xy6g8"]
 [ext_resource type="StyleBox" uid="uid://c7k5nha72hyfs" path="res://themes/dark/button_secondary_pressed_dark.tres" id="8_7u533"]
+[ext_resource type="StyleBox" uid="uid://bq6gre1pyww3k" path="res://themes/dark/button_outline_hover_dark.tres" id="8_kh682"]
+[ext_resource type="StyleBox" uid="uid://ci4lhmmd1f34x" path="res://themes/dark/button_outline_normal_dark.tres" id="9_ln8w0"]
 [ext_resource type="FontFile" uid="uid://fn4x3stk2l3l" path="res://themes/fonts/montserrat/Montserrat-Medium.ttf" id="9_ooi2h"]
 [ext_resource type="FontFile" uid="uid://c8f84nxlvugqk" path="res://themes/fonts/montserrat/Montserrat-Bold.ttf" id="10_h77cb"]
+[ext_resource type="StyleBox" uid="uid://dic7yvsbpne4y" path="res://themes/dark/button_outline_pressed_dark.tres" id="10_lr5tn"]
 [ext_resource type="StyleBox" uid="uid://cihwpxndhrnr4" path="res://themes/dark/foldable_container_panel_dark.tres" id="10_sqles"]
 [ext_resource type="StyleBox" uid="uid://c7vw4sy03w24h" path="res://themes/leaderboard_entry_rank1.tres" id="11_u535x"]
 [ext_resource type="StyleBox" uid="uid://bxapwjhygnybd" path="res://themes/leaderboard_entry_rank2.tres" id="12_82fme"]
@@ -63,6 +67,12 @@ Button/styles/focus = ExtResource("3_wcw0t")
 Button/styles/hover = ExtResource("2_75m5w")
 Button/styles/normal = ExtResource("3_ldt7e")
 Button/styles/pressed = ExtResource("4_pw3cf")
+ButtonOutline/base_type = &"Button"
+ButtonOutline/styles/disabled = ExtResource("7_xy6g8")
+ButtonOutline/styles/focus = ExtResource("3_wcw0t")
+ButtonOutline/styles/hover = ExtResource("8_kh682")
+ButtonOutline/styles/normal = ExtResource("9_ln8w0")
+ButtonOutline/styles/pressed = ExtResource("10_lr5tn")
 ButtonSecondary/base_type = &"Button"
 ButtonSecondary/colors/font_color = Color(0.0896, 0.14, 0.13244, 0.7529412)
 ButtonSecondary/colors/font_disabled_color = Color(0.091, 0.14, 0.13265, 0.76862746)

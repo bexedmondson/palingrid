@@ -12,13 +12,17 @@
 [ext_resource type="StyleBox" uid="uid://h0n8ygc18iba" path="res://themes/light/button_secondary_disabled_light.tres" id="5_ov7us"]
 [ext_resource type="StyleBox" uid="uid://7vqtky7d82gc" path="res://themes/light/panel_cell_highlight_light.tres" id="5_u0swb"]
 [ext_resource type="StyleBox" uid="uid://clwwmv8y57b4c" path="res://themes/light/button_secondary_hover_light.tres" id="6_m7yg3"]
+[ext_resource type="StyleBox" uid="uid://ckprv17nf7ypc" path="res://themes/light/button_outline_disabled_light.tres" id="6_rsb7l"]
+[ext_resource type="StyleBox" uid="uid://ce26y5q73ey6k" path="res://themes/light/button_outline_hover_light.tres" id="7_lx0t5"]
 [ext_resource type="StyleBox" uid="uid://cstx8h8wubtpe" path="res://themes/light/line_edit_normal_light.tres" id="7_tr3sr"]
 [ext_resource type="StyleBox" uid="uid://buryi35mfrk7m" path="res://themes/light/button_secondary_normal_light.tres" id="7_vfvoy"]
 [ext_resource type="StyleBox" uid="uid://dtkjdcvag4s45" path="res://themes/light/line_edit_focus_light.tres" id="7_xyh1g"]
 [ext_resource type="StyleBox" uid="uid://cdtfswg8oe554" path="res://themes/light/line_edit_disabled_light.tres" id="8_aghd6"]
 [ext_resource type="StyleBox" uid="uid://6m62s4m8u1wt" path="res://themes/light/panel_tile_light.tres" id="8_nq408"]
+[ext_resource type="StyleBox" uid="uid://bx7spadpr2tq6" path="res://themes/light/button_outline_normal_light.tres" id="8_ticx0"]
 [ext_resource type="StyleBox" uid="uid://dlsgmlcoklfc3" path="res://themes/light/button_secondary_pressed_light.tres" id="8_yo7ga"]
 [ext_resource type="FontFile" uid="uid://fn4x3stk2l3l" path="res://themes/fonts/montserrat/Montserrat-Medium.ttf" id="9_krt1t"]
+[ext_resource type="StyleBox" uid="uid://dinsjlujll3t2" path="res://themes/light/button_outline_pressed_light.tres" id="9_mwiht"]
 [ext_resource type="FontFile" uid="uid://c8f84nxlvugqk" path="res://themes/fonts/montserrat/Montserrat-Bold.ttf" id="10_krt1t"]
 [ext_resource type="StyleBox" uid="uid://c3qo18mtki70q" path="res://themes/light/foldable_container_panel_light.tres" id="10_mtu13"]
 [ext_resource type="StyleBox" uid="uid://c3yo5kn1rsn0n" path="res://themes/light/panel_floating_light.tres" id="11_1lbab"]
@@ -62,6 +66,12 @@ Button/styles/focus = ExtResource("3_wcw0t")
 Button/styles/hover = ExtResource("2_wj2d4")
 Button/styles/normal = ExtResource("2_nq408")
 Button/styles/pressed = ExtResource("3_rmme2")
+ButtonOutline/base_type = &"Button"
+ButtonOutline/styles/disabled = ExtResource("6_rsb7l")
+ButtonOutline/styles/focus = ExtResource("3_wcw0t")
+ButtonOutline/styles/hover = ExtResource("7_lx0t5")
+ButtonOutline/styles/normal = ExtResource("8_ticx0")
+ButtonOutline/styles/pressed = ExtResource("9_mwiht")
 ButtonSecondary/base_type = &"Button"
 ButtonSecondary/colors/font_color = Color(0.09019608, 0.14117648, 0.13333334, 1)
 ButtonSecondary/colors/font_disabled_color = Color(0.091, 0.14, 0.13265, 1)

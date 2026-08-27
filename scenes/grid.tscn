@@ -1094,26 +1094,38 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="ToastPanelContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/ToastControl" unique_id=1715923839 node_paths=PackedStringArray("label")]
+[node name="ToastPanelContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/ToastControl" unique_id=1715923839 node_paths=PackedStringArray("label", "notYouButton", "accountPopup")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -67.0
-offset_top = -100.0
-offset_right = 67.0
-offset_bottom = -66.0
+offset_left = -102.0
+offset_top = -130.0
+offset_right = 102.0
+offset_bottom = -51.0
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 1)
 theme_type_variation = &"PanelContainerToast"
 script = ExtResource("29_7swsl")
-label = NodePath("WelcomeLabel")
+label = NodePath("VBoxContainer/WelcomeLabel")
+notYouButton = NodePath("VBoxContainer/NotYouButton")
+accountPopup = NodePath("../../AccountPopup")
 
-[node name="WelcomeLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" unique_id=787344731]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" unique_id=241057268]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="WelcomeLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer" unique_id=787344731]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Welcome, !"
 horizontal_alignment = 1
+
+[node name="NotYouButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer" unique_id=1468150353]
+layout_mode = 2
+theme_type_variation = &"ButtonOutline"
+theme_override_font_sizes/font_size = 14
+text = "not you? tap here to login!"
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="." unique_id=1693715868]
 layer = 3
@@ -1163,6 +1175,7 @@ text = "testing 123"
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" method="on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer/NotYouButton" to="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" method="on_account_button_pressed"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]
