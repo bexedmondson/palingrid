@@ -9,7 +9,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5816i"]
 
-[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "link_account_section", "loading_spinner", "link_error_message", "link_popup", "qr_code", "code_label", "logout_section")]
+[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "link_account_section", "loading_spinner", "link_error_message", "logout_section")]
 z_index = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,9 +30,6 @@ connection_warning = NodePath("Panel/AccountPopupScrollContainer/HBoxContainer/C
 link_account_section = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer")
 loading_spinner = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/LoadingSpinnerController")
 link_error_message = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/LinkErrorLabel")
-link_popup = NodePath("LinkQRPopup")
-qr_code = NodePath("LinkQRPopup/PanelContainer/VBoxContainer/TextureRect")
-code_label = NodePath("LinkQRPopup/PanelContainer/VBoxContainer/CodeLabel")
 logout_section = NodePath("Panel/AccountPopupScrollContainer/AccountLogoutFooterContainer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=164429841]
@@ -208,92 +205,7 @@ text = "logout"
 icon_alignment = 1
 expand_icon = true
 
-[node name="LinkQRPopup" type="Panel" parent="." unique_id=1936892041]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"PanelFloating"
-
-[node name="ColorRect" type="ColorRect" parent="LinkQRPopup" unique_id=653648776]
-show_behind_parent = true
-custom_minimum_size = Vector2(3000, 3000)
-propagate_maximum_size = true
-layout_mode = 0
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 2500.0
-offset_bottom = 2500.0
-color = Color(0, 0, 0, 0.21960784)
-
-[node name="PanelContainer" type="PanelContainer" parent="LinkQRPopup" unique_id=1509940560]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -243.0
-offset_right = 155.0
-offset_bottom = 243.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LinkQRPopup/PanelContainer" unique_id=1284695607]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=879165194]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-size_flags_horizontal = 4
-expand_mode = 5
-stretch_mode = 5
-
-[node name="LinkButton" type="Button" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=1330026183]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "or go to link directly (opens a new tab)"
-autowrap_mode = 2
-
-[node name="CodeDescriptionLabel" type="Label" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=1297366355]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "or enter code manually:"
-horizontal_alignment = 1
-
-[node name="CodeLabel" type="Label" parent="LinkQRPopup/PanelContainer/VBoxContainer" unique_id=763109883]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="BackButton" type="Button" parent="LinkQRPopup" unique_id=1490468438]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 70.0
-pivot_offset_ratio = Vector2(1, 1)
-size_flags_horizontal = 8
-size_flags_vertical = 0
-icon = ExtResource("2_2h40v")
-icon_alignment = 1
-expand_icon = true
-
 [connection signal="pressed" from="Panel/AccountPopupScrollContainer/HBoxContainer/BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/NameHBoxContainer/ChangeNameButton" to="." method="on_rename_pressed"]
 [connection signal="pressed" from="Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/Button" to="." method="on_link_account_pressed"]
 [connection signal="pressed" from="Panel/AccountPopupScrollContainer/AccountLogoutFooterContainer/LogoutButton" to="." method="on_logout_button"]
-[connection signal="pressed" from="LinkQRPopup/PanelContainer/VBoxContainer/LinkButton" to="." method="on_verification_link_button"]
-[connection signal="pressed" from="LinkQRPopup/BackButton" to="." method="on_cancel_device_code_button"]

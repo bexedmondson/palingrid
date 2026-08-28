@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d3ous8x3sgirx"]
 
 [ext_resource type="Script" uid="uid://e6haucc6bsdy" path="res://scripts/NameChangeHandler.gd" id="2_p7tcu"]
+[ext_resource type="PackedScene" uid="uid://dcx3d4148bqpv" path="res://scenes/loading_spinner.tscn" id="2_svurx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eilgq"]
 bg_color = Color(1, 1, 1, 1)
@@ -14,7 +15,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="NameEntryPanel" type="Panel" unique_id=1648906337 node_paths=PackedStringArray("title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button", "back_button")]
+[node name="NameEntryPanel" type="Panel" unique_id=1648906337 node_paths=PackedStringArray("title_label", "subtitle_label", "name_line_edit", "name_status_label", "confirm_button", "link_account_section", "link_account_button", "back_button")]
 z_index = 2
 anchors_preset = -1
 anchor_left = 0.25
@@ -31,6 +32,8 @@ subtitle_label = NodePath("MarginContainer/VBoxContainer/SubtitleLabel")
 name_line_edit = NodePath("MarginContainer/VBoxContainer/NameLineEdit")
 name_status_label = NodePath("MarginContainer/VBoxContainer/NameStatusLabel")
 confirm_button = NodePath("MarginContainer/VBoxContainer/ConfirmNameButton")
+link_account_section = NodePath("MarginContainer/VBoxContainer/LinkAccountPanelContainer")
+link_account_button = NodePath("MarginContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/Button")
 back_button = NodePath("MarginContainer/VBoxContainer/CancelNameButton")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1749929732]
@@ -97,14 +100,48 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=750338779]
-custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+
+[node name="LinkAccountPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=277222092]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=1861484039]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=1361543508]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "sign in"
+
+[node name="LinkErrorLabel" type="Label" parent="MarginContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=47538151]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9372549, 0.23137255, 0.18431373, 1)
+theme_override_colors/font_outline_color = Color(0.039215688, 0.078431375, 0.07450981, 1)
+theme_override_constants/outline_size = 3
+text = "error message goes here"
+horizontal_alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="MarginContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer" unique_id=654075517]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+text = "Link your account with our leaderboard provider Cheddaboards to save your progress and use the same login across multiple devices."
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="LoadingSpinnerController" parent="MarginContainer/VBoxContainer/LinkAccountPanelContainer" unique_id=545174538 instance=ExtResource("2_svurx")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
 [node name="ConfirmNameButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2140864133]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_font_sizes/font_size = 26
-text = "LET'S GO!"
+theme_override_font_sizes/font_size = 20
+text = "continue with guest account"
 
 [node name="CancelNameButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=352710823]
 custom_minimum_size = Vector2(0, 40)

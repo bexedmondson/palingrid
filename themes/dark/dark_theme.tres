@@ -49,7 +49,7 @@
 [resource]
 BoxContainer/constants/separation = 10
 Button/colors/font_color = Color(0.93, 0.9021, 0.8742, 1)
-Button/colors/font_disabled_color = Color(0.2627451, 0.3019608, 0.29803923, 1)
+Button/colors/font_disabled_color = Color(0.15, 0.2, 0.19583333, 0.60784316)
 Button/colors/font_focus_color = Color(0.93, 0.9021, 0.8742, 1)
 Button/colors/font_hover_color = Color(0.9607843, 0.9490196, 0.92941177, 1)
 Button/colors/font_hover_pressed_color = Color(0.8, 0.75686276, 0.69411767, 1)

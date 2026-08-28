@@ -8,21 +8,16 @@ extends Control
 @export var connection_warning : Control
 
 @export var link_account_section : Control
+@export var link_popup : LinkQRPopup
 @export var loading_spinner : LoadingSpinnerTweenController
 @export var link_error_message : Label
-@export var link_popup : Control
-@export var qr_code : TextureRect
-@export var code_label : Label
 
 @export var logout_section : Control
-
-var _verification_url : String
 
 var show_hide_tween : Tween
 
 func _enter_tree() -> void:
 	hide()
-	link_popup.visible = false
 
 func do_show():
 	_refresh_ui()
@@ -105,35 +100,7 @@ func on_device_code_received(user_code: String, verification_url: String, qr_dat
 	
 	loading_spinner.stop()
 	link_error_message.visible = false
-	link_popup.visible = true
-	_verification_url = verification_url
-	code_label.text = user_code
-
-	## Decode a base64 PNG data URL onto a TextureRect. Returns true on success.
-	# Strip the "data:image/png;base64," prefix
-	var comma = qr_data_url.find(",")
-	if comma == -1:
-		on_device_code_error("Invalid QR data URL (no comma found)")
-		return
-
-	var b64 = qr_data_url.substr(comma + 1)
-	var raw: PackedByteArray = Marshalls.base64_to_raw(b64)
-	if raw.is_empty():
-		on_device_code_error("Invalid QR data URL (could not convert to bytes)")
-		return
-
-	var img = Image.new()
-	if img.load_png_from_buffer(raw) != OK:
-		on_device_code_error("Invalid QR data URL (image load from buffer failed)")
-		return
-
-	CheddaBoards.device_code_expired.connect(on_device_code_expired)
-	CheddaBoards.device_code_approved.connect(on_device_code_approved)
-
-	qr_code.texture = ImageTexture.create_from_image(img)
-
-func on_verification_link_button():
-	OS.shell_open(_verification_url)
+	link_popup.show_with_code(user_code, verification_url, qr_data_url)
 	
 func on_device_code_expired():
 	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)

@@ -10,6 +10,8 @@ signal on_closed
 @export var name_line_edit : LineEdit
 @export var name_status_label : Label
 @export var confirm_button : Button
+@export var link_account_section : Control
+@export var link_account_button : Button
 @export var back_button : Button
 
 const MIN_NAME_LENGTH: int = 3
@@ -41,6 +43,8 @@ func _show_name_entry_panel(rename: bool = false):
 	show_hide_tween.play()
 	
 	is_rename = rename
+
+	link_account_section.visible = !is_rename
 	
 	if is_rename:
 		if title_label:
@@ -48,7 +52,7 @@ func _show_name_entry_panel(rename: bool = false):
 		if subtitle_label:
 			subtitle_label.text = "This will update the leaderboard too"
 		if confirm_button:
-			confirm_button.text = "SAVE"
+			confirm_button.text = "save"
 		var current_nick = CheddaBoards.get_nickname()
 		if current_nick != "":
 			name_line_edit.text = current_nick
@@ -62,7 +66,7 @@ func _show_name_entry_panel(rename: bool = false):
 		if subtitle_label:
 			subtitle_label.text = "This will appear on the leaderboard"
 		if confirm_button:
-			confirm_button.text = "LET'S GO!"
+			confirm_button.text = "continue with guest account"
 		if not loginHandler.nickname.is_empty():
 			name_line_edit.text = loginHandler.nickname
 		#else:
@@ -72,7 +76,7 @@ func _show_name_entry_panel(rename: bool = false):
 	name_status_label.text = ""
 	
 	self.visible = true
-	
+
 	name_line_edit.grab_focus()
 	_update_confirm_button_state()
 
@@ -95,16 +99,19 @@ func _update_confirm_button_state():
 	if not is_valid_length:
 		name_status_label.text = "Please enter a username between %d and %d characters long" % [MIN_NAME_LENGTH, MAX_NAME_LENGTH]
 		confirm_button.disabled = true
+		link_account_button.disabled = true
 		return
 	
 	for c in name_text:
 		if not valid_chars.has(c):
 			name_status_label.text = "Please enter a username containing only letters, numbers, and/or underscores"
 			confirm_button.disabled = true
+			link_account_button.disabled = true
 			return
 			
 	name_status_label.text = ""
 	confirm_button.disabled = false
+	link_account_button.disabled = false
 
 
 func _on_confirm_name_pressed():

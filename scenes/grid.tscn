@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://k5jcxqfps3fk" path="res://scripts/LightDarkMode.gd" id="9_0enuu"]
 [ext_resource type="Texture2D" uid="uid://cqguhfpbmhth1" path="res://textures/hamburger-menu.svg" id="10_5816i"]
 [ext_resource type="Script" uid="uid://btlh4wrv04rc3" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="11_0g56i"]
+[ext_resource type="Texture2D" uid="uid://b7vxgojlmmja1" path="res://textures/unlink.svg" id="11_wrrb6"]
+[ext_resource type="Script" uid="uid://dxccdi7nj3u03" path="res://scripts/SessionExpiredIndicator.gd" id="12_d50fo"]
 [ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://scripts/Grid.gd" id="12_eudc0"]
 [ext_resource type="Texture2D" uid="uid://d3rshyhu2aee2" path="res://textures/cross.svg" id="12_j4jdq"]
 [ext_resource type="Texture2D" uid="uid://dio3u62awig2g" path="res://textures/podium-complex.svg" id="13_ne81u"]
@@ -61,6 +63,18 @@
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
 [ext_resource type="PackedScene" uid="uid://cpcfskn5ickc2" path="res://scenes/account_popup.tscn" id="48_idbgw"]
+[ext_resource type="PackedScene" uid="uid://dwacnqvja481d" path="res://scenes/link_qr_popup.tscn" id="60_3mjj7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d50fo"]
+bg_color = Color(0.57463753, 0.005738593, 0.13154536, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01tbl"]
 content_margin_left = 30.0
@@ -208,6 +222,33 @@ size_flags_vertical = 4
 icon = ExtResource("10_5816i")
 icon_alignment = 1
 expand_icon = true
+
+[node name="SessionExpiredIndicator" type="TextureRect" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" unique_id=1607791292]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_wrrb6")
+expand_mode = 5
+script = ExtResource("12_d50fo")
+
+[node name="Panel" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/SessionExpiredIndicator" unique_id=155390886]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d50fo")
 
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(400, 79.235)
@@ -1071,11 +1112,12 @@ texture = ExtResource("37_ne81u")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler") instance=ExtResource("48_idbgw")]
+[node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler", "link_popup") instance=ExtResource("48_idbgw")]
 visible = false
 layout_mode = 1
 name_change_handler = NodePath("../NameEntryPanel")
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
+link_popup = NodePath("../LinkQRPopup")
 
 [node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
 visible = false
@@ -1083,6 +1125,10 @@ layout_mode = 1
 grow_horizontal = 1
 loginHandler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 best_score_indicator = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
+
+[node name="LinkQRPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1461475584 instance=ExtResource("60_3mjj7")]
+visible = false
+layout_mode = 1
 
 [node name="ToastControl" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1503642689]
 z_index = 50
