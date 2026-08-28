@@ -4,6 +4,8 @@ extends Control
 @export var qr_code : TextureRect
 @export var code_label : Label
 
+signal cancelled
+
 var _verification_url : String
 
 func _enter_tree() -> void:
@@ -48,6 +50,9 @@ func on_device_code_changed(_data: String = ""):
 
 	self.visible = false
 
+func _on_device_code_cancelled_button():
+	on_device_code_changed()
+	cancelled.emit()
 
 func on_verification_link_button():
 	OS.shell_open(_verification_url)

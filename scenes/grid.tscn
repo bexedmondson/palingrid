@@ -1119,12 +1119,13 @@ name_change_handler = NodePath("../NameEntryPanel")
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 link_popup = NodePath("../LinkQRPopup")
 
-[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
+[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator", "link_popup") instance=ExtResource("29_64acc")]
 visible = false
 layout_mode = 1
 grow_horizontal = 1
 loginHandler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 best_score_indicator = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
+link_popup = NodePath("../LinkQRPopup")
 
 [node name="LinkQRPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1461475584 instance=ExtResource("60_3mjj7")]
 visible = false

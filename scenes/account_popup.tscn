@@ -9,7 +9,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5816i"]
 
-[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "link_account_section", "loading_spinner", "link_error_message", "logout_section")]
+[node name="AccountPopup" type="Panel" unique_id=1748221376 node_paths=PackedStringArray("name_label", "connection_warning", "link_account_section", "link_account_warning", "loading_spinner", "link_error_message", "logout_section")]
 z_index = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,6 +28,7 @@ script = ExtResource("1_2uy5s")
 name_label = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/NameHBoxContainer/NameLabel")
 connection_warning = NodePath("Panel/AccountPopupScrollContainer/HBoxContainer/ConnectionIconTextureRect")
 link_account_section = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer")
+link_account_warning = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/Label2")
 loading_spinner = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/LoadingSpinnerController")
 link_error_message = NodePath("Panel/AccountPopupScrollContainer/AccountMainScrollContainer/VBoxContainer/LinkAccountPanelContainer/VBoxContainer/LinkErrorLabel")
 logout_section = NodePath("Panel/AccountPopupScrollContainer/AccountLogoutFooterContainer")

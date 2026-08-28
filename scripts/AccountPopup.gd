@@ -8,6 +8,7 @@ extends Control
 @export var connection_warning : Control
 
 @export var link_account_section : Control
+@export var link_account_warning : Control
 @export var link_popup : LinkQRPopup
 @export var loading_spinner : LoadingSpinnerTweenController
 @export var link_error_message : Label
@@ -36,6 +37,7 @@ func _refresh_ui():
 	link_popup.visible = false
 	connection_warning.visible = !CheddaBoards.is_logged_in()
 	link_account_section.visible = !CheddaBoards.has_account()
+	link_account_warning.visible = CheddaBoards.get_nickname() != ""
 	logout_section.visible = CheddaBoards.has_account() || CheddaBoards.get_nickname() != ""
 	update_name_label()
 
@@ -74,6 +76,9 @@ func _on_back_pressed():
 func on_link_account_pressed():
 	CheddaBoards.device_code_received.connect(on_device_code_received)
 	CheddaBoards.device_code_error.connect(on_device_code_error)
+
+	if !link_popup.cancelled.is_connected(on_cancel_device_code_button):
+		link_popup.cancelled.connect(on_cancel_device_code_button)
 	
 	link_error_message.visible = false
 	loading_spinner.play()
@@ -123,6 +128,7 @@ func on_cancel_device_code_button():
 	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
 	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
 	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+	link_popup.cancelled.disconnect(on_cancel_device_code_button)
 
 	link_popup.visible = false
 	CheddaBoards.cancel_device_code()

@@ -10,8 +10,12 @@ signal on_closed
 @export var name_line_edit : LineEdit
 @export var name_status_label : Label
 @export var confirm_button : Button
+
 @export var link_account_section : Control
 @export var link_account_button : Button
+@export var link_popup : LinkQRPopup
+@export var loading_spinner : LoadingSpinnerTweenController
+
 @export var back_button : Button
 
 const MIN_NAME_LENGTH: int = 3
@@ -72,7 +76,7 @@ func _show_name_entry_panel(rename: bool = false):
 		#else:
 			#name_line_edit.text = _generate_default_name()
 	
-	name_line_edit.placeholder_text = "Enter your name..."
+	name_line_edit.placeholder_text = "Enter your name"
 	name_status_label.text = ""
 	
 	self.visible = true
@@ -230,3 +234,77 @@ func do_hide():
 	await show_hide_tween.finished
 	self.visible = false
 	on_closed.emit()
+
+
+
+func on_link_account_pressed():
+	CheddaBoards.device_code_received.connect(on_device_code_received)
+	CheddaBoards.device_code_error.connect(on_device_code_error)
+
+	if !link_popup.cancelled.is_connected(on_cancel_device_code_button):
+		link_popup.cancelled.connect(on_cancel_device_code_button)
+
+	name_status_label.visible = false
+	loading_spinner.play()
+	confirm_button.disabled = true
+	link_account_button.disabled = true
+
+	CheddaBoards.login_with_device_code()
+
+func on_device_code_error(reason: String):
+	push_error("[AccountPopup] Device code error: " + reason)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	if CheddaBoards.device_code_received.is_connected(on_device_code_received):
+		CheddaBoards.device_code_received.disconnect(on_device_code_received)
+	if CheddaBoards.device_code_expired.is_connected(on_device_code_expired):
+		CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+
+	loading_spinner.stop()
+	link_popup.visible = false
+	name_status_label.text = "An error occurred when signing in. Please try again."
+	name_status_label.visible = true
+	
+	confirm_button.disabled = false
+	link_account_button.disabled = false
+
+func on_device_code_received(user_code: String, verification_url: String, qr_data_url: String):
+	CheddaBoards.device_code_received.disconnect(on_device_code_received)
+	#note: keep the device code error signal connection here 
+
+	loading_spinner.stop()
+	name_status_label.visible = false
+	link_popup.show_with_code(user_code, verification_url, qr_data_url)
+
+func on_device_code_expired():
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	name_status_label.text = "Code expired. Please try again."
+	name_status_label.visible = true
+	link_popup.visible = false
+
+	confirm_button.disabled = false
+	link_account_button.disabled = false
+	
+
+func on_cancel_device_code_button():
+	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+	link_popup.cancelled.disconnect(on_cancel_device_code_button)
+
+	link_popup.visible = false
+	CheddaBoards.cancel_device_code()
+
+	confirm_button.disabled = false
+	link_account_button.disabled = false
+
+
+func on_device_code_approved(_nickname: String):
+	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	link_popup.visible = false
+	_on_confirm_name_pressed()

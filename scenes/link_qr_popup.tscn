@@ -89,4 +89,4 @@ icon_alignment = 1
 expand_icon = true
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/LinkButton" to="." method="on_verification_link_button"]
-[connection signal="pressed" from="BackButton" to="." method="on_device_code_changed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_device_code_cancelled_button"]

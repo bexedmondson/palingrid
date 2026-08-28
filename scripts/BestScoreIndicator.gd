@@ -90,8 +90,8 @@ func load():
 		if best > 5:
 			had_best_score_at_start_of_session = true
 			
-func _on_logged_in():
-	pass
+func _on_logged_in(nickname: String):
+	pass #TODO somehow retrieve best score from today even if on another device? hmm
 
 func _on_logged_out():
 	best = 0
