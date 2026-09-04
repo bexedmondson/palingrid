@@ -6652,7 +6652,6 @@ teens
 teeny
 tees
 teeth
-tel
 telex
 tell
 tells
@@ -6712,7 +6711,6 @@ think
 thins
 third
 this
-tho
 thong
 thorn
 those
