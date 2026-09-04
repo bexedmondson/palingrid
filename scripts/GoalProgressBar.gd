@@ -49,10 +49,10 @@ func _initialise_bar():
 	#get reasonable highest goal value from predicted top score and halfrange
 	var top_goal = predicted_top_score
 	
-	if model_prediction_halfrange < 1:
-		top_goal -= 1
-	elif model_prediction_halfrange > 5:
-		top_goal -= 5
+	if model_prediction_halfrange < 4:
+		top_goal -= 4
+	elif model_prediction_halfrange > 7:
+		top_goal -= 7
 	
 	#ensure halfrange value isn't disproportionately big or small to ensure tick separation is sensible
 	var tick_diff = round(model_prediction_halfrange)

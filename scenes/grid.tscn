@@ -181,10 +181,11 @@ statsFile = ExtResource("4_docto")
 [node name="DebugLetterSetGenerator" type="Node" parent="MainCanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
 script = ExtResource("7_7wdiv")
 generator = NodePath("..")
-start_day = 3
-start_month = 8
+start_day = 4
+start_month = 9
 is_range = true
-end_month = 8
+end_day = 4
+end_month = 9
 end_year = 2027
 
 [node name="BestScoreHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=1188113161 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
