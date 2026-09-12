@@ -2483,8 +2483,8 @@ fruit
 frump
 fry
 fryer
-fête
-fêtes
+fete
+fetes
 ftp
 ftps
 fuck
@@ -3585,7 +3585,7 @@ kook
 kooks
 kooky
 kopek
-króna
+krona
 krone
 kudos
 kudzu
