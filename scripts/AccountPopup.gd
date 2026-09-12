@@ -32,7 +32,18 @@ func do_show():
 	show_hide_tween.tween_property(self, "scale", Vector2(1,1), 0.2).from(Vector2.ZERO)
 	show_hide_tween.play()
 
+	if !CheddaBoards.login_success.is_connected(_refresh_ui_logged_in):
+		CheddaBoards.login_success.connect(_refresh_ui_logged_in)
+	if !CheddaBoards.account_upgraded.is_connected(_refresh_ui_account_upgraded):
+		CheddaBoards.account_upgraded.connect(_refresh_ui_account_upgraded)
 
+func _refresh_ui_account_upgraded(_profile, _migration):
+	_refresh_ui()
+
+func _refresh_ui_logged_in(_nickname):
+	_refresh_ui()
+	
+	
 func _refresh_ui():
 	link_popup.visible = false
 	connection_warning.visible = !CheddaBoards.is_logged_in()
