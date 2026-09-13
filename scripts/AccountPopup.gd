@@ -8,25 +8,20 @@ extends Control
 @export var connection_warning : Control
 
 @export var link_account_section : Control
+@export var link_account_warning : Control
+@export var link_popup : LinkQRPopup
 @export var loading_spinner : LoadingSpinnerTweenController
 @export var link_error_message : Label
-@export var link_popup : Control
-@export var qr_code : TextureRect
-@export var link_button : LinkButton
-@export var code_label : Label
 
-var _verification_url : String
+@export var logout_section : Control
 
 var show_hide_tween : Tween
 
 func _enter_tree() -> void:
 	hide()
-	link_popup.visible = false
 
 func do_show():
-	connection_warning.visible = !CheddaBoards.is_logged_in()
-	update_name_label()
-	link_account_section.visible = !CheddaBoards.has_account()
+	_refresh_ui()
 	
 	super.show()
 	
@@ -36,7 +31,28 @@ func do_show():
 	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	show_hide_tween.tween_property(self, "scale", Vector2(1,1), 0.2).from(Vector2.ZERO)
 	show_hide_tween.play()
+
+	if !CheddaBoards.login_success.is_connected(_refresh_ui_logged_in):
+		CheddaBoards.login_success.connect(_refresh_ui_logged_in)
+	if !CheddaBoards.account_upgraded.is_connected(_refresh_ui_account_upgraded):
+		CheddaBoards.account_upgraded.connect(_refresh_ui_account_upgraded)
+
+func _refresh_ui_account_upgraded(_profile, _migration):
+	_refresh_ui()
+
+func _refresh_ui_logged_in(_nickname):
+	_refresh_ui()
 	
+	
+func _refresh_ui():
+	link_popup.visible = false
+	connection_warning.visible = !CheddaBoards.is_logged_in()
+	link_account_section.visible = !CheddaBoards.has_account()
+	link_account_warning.visible = CheddaBoards.get_nickname() != ""
+	logout_section.visible = CheddaBoards.has_account() || CheddaBoards.get_nickname() != ""
+	update_name_label()
+
+
 func update_name_label():
 	name_label.text = "Hello %s!" % (login_handler.nickname if login_handler.nickname != "" else "Guest")
 
@@ -71,6 +87,9 @@ func _on_back_pressed():
 func on_link_account_pressed():
 	CheddaBoards.device_code_received.connect(on_device_code_received)
 	CheddaBoards.device_code_error.connect(on_device_code_error)
+
+	if !link_popup.cancelled.is_connected(on_cancel_device_code_button):
+		link_popup.cancelled.connect(on_cancel_device_code_button)
 	
 	link_error_message.visible = false
 	loading_spinner.play()
@@ -97,35 +116,7 @@ func on_device_code_received(user_code: String, verification_url: String, qr_dat
 	
 	loading_spinner.stop()
 	link_error_message.visible = false
-	link_popup.visible = true
-	_verification_url = verification_url
-	code_label.text = user_code
-
-	## Decode a base64 PNG data URL onto a TextureRect. Returns true on success.
-	# Strip the "data:image/png;base64," prefix
-	var comma = qr_data_url.find(",")
-	if comma == -1:
-		on_device_code_error("Invalid QR data URL (no comma found)")
-		return
-
-	var b64 = qr_data_url.substr(comma + 1)
-	var raw: PackedByteArray = Marshalls.base64_to_raw(b64)
-	if raw.is_empty():
-		on_device_code_error("Invalid QR data URL (could not convert to bytes)")
-		return
-
-	var img = Image.new()
-	if img.load_png_from_buffer(raw) != OK:
-		on_device_code_error("Invalid QR data URL (image load from buffer failed)")
-		return
-
-	CheddaBoards.device_code_expired.connect(on_device_code_expired)
-	CheddaBoards.device_code_approved.connect(on_device_code_approved)
-
-	qr_code.texture = ImageTexture.create_from_image(img)
-
-func on_verification_link_button():
-	OS.shell_open(_verification_url)
+	link_popup.show_with_code(user_code, verification_url, qr_data_url)
 	
 func on_device_code_expired():
 	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
@@ -136,18 +127,26 @@ func on_device_code_expired():
 	link_popup.visible = false
 
 
-func on_device_code_approved(nickname: String):
+func on_device_code_approved(_nickname: String):
 	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
 	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
 	CheddaBoards.device_code_error.disconnect(on_device_code_error)
 
 	link_popup.visible = false
-	update_name_label()
+	_refresh_ui()
 
 func on_cancel_device_code_button():
 	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
 	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
 	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+	link_popup.cancelled.disconnect(on_cancel_device_code_button)
 
 	link_popup.visible = false
 	CheddaBoards.cancel_device_code()
+	
+func on_logout_button():
+	CheddaBoards.logout_success.connect(_on_logged_out)
+	CheddaBoards.logout()
+	
+func _on_logged_out():
+	_refresh_ui()

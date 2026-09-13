@@ -6,6 +6,7 @@ extends Control
 @export var slots : Array[DropSlot]
 @export var tiles : Array[DropTile]
 @export var wordScene : InstancePlaceholder
+@export var wordListContainer : WordListContainer
 @export var bestScore : BestScoreIndicator
 @export var gridRotator : GridRotator
 
@@ -75,8 +76,10 @@ func _ready() -> void:
 var dash = "-"
 var total = 0
 
-func update(_slot: DropSlot):
-	#push_warning("grid - update from slot " + _slot.name)
+func update():
+	if gridRotator.get_is_rotating():
+		return
+	
 	var words = {}
 	for line in lineSlotIndexes:
 		add_line_words(line, words)
@@ -173,6 +176,7 @@ func make_word(word: String, indexes: Array[int]):
 	var wordInstance : Word = wordScene.create_instance()
 	wordInstance.set_word(word, indexes, self)
 	wordInstanceMap[word] = wordInstance
+	wordListContainer.on_words_updated()
 
 func highlight(indexes):
 	for index in indexes:

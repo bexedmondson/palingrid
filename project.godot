@@ -18,6 +18,10 @@ boot_splash/stretch_mode=0
 boot_splash/image="uid://xof0ydmq2c4x"
 config/icon="uid://xof0ydmq2c4x"
 
+[audio]
+
+driver/driver="Dummy"
+
 [autoload]
 
 CheddaBoards="*res://addons/cheddaboards/CheddaBoards.gd"
@@ -52,3 +56,5 @@ rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_s3tc_bptc=true
+reflections/sky_reflections/texture_array_reflections=false
+reflections/specular_occlusion/enabled=false

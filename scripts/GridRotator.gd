@@ -17,13 +17,16 @@ var rotatedSlotIndexMap = [
 # TODO stop the grid from rechecking for words until all tiles have been removed and replaced
 
 var _rotate_tween : Tween
+var _is_rotating : bool = false
 
 func _ready() -> void:
 	gridInputBlocker.visible = false
 
 func rotate():
-	if get_is_rotating():
+	if _is_rotating:
 		return
+	
+	_is_rotating = true
 	
 	var cells = grid.slots
 	
@@ -38,6 +41,10 @@ func rotate():
 		tileToCellIndexMap[cell.slotTile] = index
 		tileToOriginalGlobalPositionMap[cell.slotTile] = cell.slotTile.global_position
 		cell.remove_tile(cell.slotTile)
+	
+	if tileToCellIndexMap.size() == 0:
+		_is_rotating = false
+		return
 	
 	for tile in tileToCellIndexMap:
 		var currentCellIndex = tileToCellIndexMap[tile]
@@ -70,8 +77,10 @@ func on_end_of_frame():
 
 
 func on_rotate_finished():
+	_is_rotating = false
 	gridInputBlocker.visible = false
+	grid.update()
 	
 
 func get_is_rotating():
-	return _rotate_tween != null && _rotate_tween.is_valid()
+	return _is_rotating

@@ -433,6 +433,8 @@ bank
 banks
 banns
 bans
+bap
+baps
 bar
 barb
 barbs
@@ -1162,6 +1164,7 @@ claps
 clash
 clasp
 class
+clave
 claw
 claws
 clay
@@ -1762,6 +1765,7 @@ dots
 dotty
 doubt
 dough
+doula
 dour
 douse
 dove
@@ -1947,7 +1951,6 @@ edict
 edify
 edit
 edits
-eds
 eel
 eels
 eerie
@@ -2480,8 +2483,8 @@ fruit
 frump
 fry
 fryer
-fête
-fêtes
+fete
+fetes
 ftp
 ftps
 fuck
@@ -3577,11 +3580,12 @@ knows
 koala
 koan
 koans
+koi
 kook
 kooks
 kooky
 kopek
-króna
+krona
 krone
 kudos
 kudzu
@@ -5345,7 +5349,6 @@ rebel
 rebus
 rebut
 recap
-recd
 recta
 recur
 red
@@ -6002,6 +6005,7 @@ skim
 skimp
 skims
 skin
+skink
 skins
 skip
 skips
@@ -6009,6 +6013,7 @@ skirt
 skis
 skit
 skits
+skort
 skulk
 skull
 skunk
@@ -6647,7 +6652,6 @@ teens
 teeny
 tees
 teeth
-tel
 telex
 tell
 tells
@@ -6707,7 +6711,6 @@ think
 thins
 third
 this
-tho
 thong
 thorn
 those

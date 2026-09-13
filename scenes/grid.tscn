@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://k5jcxqfps3fk" path="res://scripts/LightDarkMode.gd" id="9_0enuu"]
 [ext_resource type="Texture2D" uid="uid://cqguhfpbmhth1" path="res://textures/hamburger-menu.svg" id="10_5816i"]
 [ext_resource type="Script" uid="uid://btlh4wrv04rc3" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="11_0g56i"]
+[ext_resource type="Texture2D" uid="uid://b7vxgojlmmja1" path="res://textures/unlink.svg" id="11_wrrb6"]
+[ext_resource type="Script" uid="uid://dxccdi7nj3u03" path="res://scripts/SessionExpiredIndicator.gd" id="12_d50fo"]
 [ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://scripts/Grid.gd" id="12_eudc0"]
 [ext_resource type="Texture2D" uid="uid://d3rshyhu2aee2" path="res://textures/cross.svg" id="12_j4jdq"]
 [ext_resource type="Texture2D" uid="uid://dio3u62awig2g" path="res://textures/podium-complex.svg" id="13_ne81u"]
@@ -39,6 +41,7 @@
 [ext_resource type="Script" uid="uid://b28ttolf2qibo" path="res://scripts/GridRotator.gd" id="25_tkjpc"]
 [ext_resource type="Texture2D" uid="uid://dhbutai54wrxf" path="res://textures/tutorial_images/valid_word_placements2.png" id="26_jh3ig"]
 [ext_resource type="Texture2D" uid="uid://bffwwsp5ys3at" path="res://textures/tutorial_images/valid_word_placements3.png" id="27_7swsl"]
+[ext_resource type="Script" uid="uid://b6auyx3uopn0d" path="res://scripts/WordListContainer.gd" id="28_6wmch"]
 [ext_resource type="Script" uid="uid://c1scc34c3vey2" path="res://scripts/DebugUtils.gd" id="28_5816i"]
 [ext_resource type="Texture2D" uid="uid://cdxjmnx1yv3ih" path="res://textures/tutorial_images/valid_word_placements4.png" id="28_cl3o7"]
 [ext_resource type="Texture2D" uid="uid://cygs88cfooyw7" path="res://textures/hard-drive-download.svg" id="28_idbgw"]
@@ -53,10 +56,25 @@
 [ext_resource type="Texture2D" uid="uid://npurgoymbbai" path="res://textures/tutorial_images/score3points.png" id="34_jffns"]
 [ext_resource type="Texture2D" uid="uid://b3qobrpixwagc" path="res://textures/tutorial_images/score1points.png" id="34_lr6w7"]
 [ext_resource type="Texture2D" uid="uid://drb27t610dr7t" path="res://textures/tutorial_images/score2points.png" id="35_x3wu6"]
+[ext_resource type="Script" uid="uid://bc00lqokig03n" path="res://scripts/TwitchButton.gd" id="36_j4jdq"]
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
+[ext_resource type="Texture2D" uid="uid://c87wp8dtwppnn" path="res://textures/website-icon.png" id="37_ttir5"]
+[ext_resource type="Script" uid="uid://dgsnrcmyhgdxu" path="res://scripts/WebsiteButton.gd" id="38_ys0h4"]
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
 [ext_resource type="PackedScene" uid="uid://cpcfskn5ickc2" path="res://scenes/account_popup.tscn" id="48_idbgw"]
+[ext_resource type="PackedScene" uid="uid://dwacnqvja481d" path="res://scenes/link_qr_popup.tscn" id="60_3mjj7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d50fo"]
+bg_color = Color(0.57463753, 0.005738593, 0.13154536, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01tbl"]
 content_margin_left = 30.0
@@ -139,6 +157,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 2
 theme = ExtResource("1_f2tft")
 theme_type_variation = &"PanelContainerGameBG"
 script = ExtResource("1_7swsl")
@@ -146,7 +165,7 @@ wordListScroller = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFl
 leftGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridLeftBalanceContainer")
 rightGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer")
 kofiButton = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton")
-cell = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell1")
+cell = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell1")
 debug_label = NodePath("../../DebugCanvasLayer/DebugButton/Label")
 
 [node name="LoginHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=961667201]
@@ -162,10 +181,11 @@ statsFile = ExtResource("4_docto")
 [node name="DebugLetterSetGenerator" type="Node" parent="MainCanvasLayer/PanelContainer/LetterSetGenerator" unique_id=572275658 node_paths=PackedStringArray("generator")]
 script = ExtResource("7_7wdiv")
 generator = NodePath("..")
-start_day = 3
-start_month = 8
+start_day = 4
+start_month = 9
 is_range = true
-end_month = 8
+end_day = 4
+end_month = 9
 end_year = 2027
 
 [node name="BestScoreHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=1188113161 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
@@ -204,6 +224,33 @@ icon = ExtResource("10_5816i")
 icon_alignment = 1
 expand_icon = true
 
+[node name="SessionExpiredIndicator" type="TextureRect" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" unique_id=1607791292]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_wrrb6")
+expand_mode = 5
+script = ExtResource("12_d50fo")
+
+[node name="Panel" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/SessionExpiredIndicator" unique_id=155390886]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d50fo")
+
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(400, 79.235)
 layout_mode = 2
@@ -240,6 +287,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="HowToPlayButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer" unique_id=2028854943]
+visible = false
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -282,16 +330,17 @@ custom_minimum_size = Vector2(540, 540)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "bestScore", "gridRotator")]
+[node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "wordListContainer", "bestScore", "gridRotator")]
 z_index = 1
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 script = ExtResource("12_eudc0")
 generator = NodePath("../../../../../../../LetterSetGenerator")
 tileHolder = NodePath("../../../TileDockPanel/Tiles")
-slots = [NodePath("VBoxContainer/Row/Cell1"), NodePath("VBoxContainer/Row/Cell2"), NodePath("VBoxContainer/Row/Cell3"), NodePath("VBoxContainer/Row/Cell4"), NodePath("VBoxContainer/Row/Cell5"), NodePath("VBoxContainer/Row2/Cell6"), NodePath("VBoxContainer/Row2/Cell7"), NodePath("VBoxContainer/Row2/Cell8"), NodePath("VBoxContainer/Row2/Cell9"), NodePath("VBoxContainer/Row2/Cell10"), NodePath("VBoxContainer/Row3/Cell11"), NodePath("VBoxContainer/Row3/Cell12"), NodePath("VBoxContainer/Row3/Cell13"), NodePath("VBoxContainer/Row3/Cell14"), NodePath("VBoxContainer/Row3/Cell15"), NodePath("VBoxContainer/Row4/Cell16"), NodePath("VBoxContainer/Row4/Cell17"), NodePath("VBoxContainer/Row4/Cell18"), NodePath("VBoxContainer/Row4/Cell19"), NodePath("VBoxContainer/Row4/Cell20"), NodePath("VBoxContainer/Row5/Cell21"), NodePath("VBoxContainer/Row5/Cell22"), NodePath("VBoxContainer/Row5/Cell23"), NodePath("VBoxContainer/Row5/Cell24"), NodePath("VBoxContainer/Row5/Cell25")]
+slots = [NodePath("GridContainer/Cell1"), NodePath("GridContainer/Cell2"), NodePath("GridContainer/Cell3"), NodePath("GridContainer/Cell4"), NodePath("GridContainer/Cell5"), NodePath("GridContainer/Cell6"), NodePath("GridContainer/Cell7"), NodePath("GridContainer/Cell8"), NodePath("GridContainer/Cell9"), NodePath("GridContainer/Cell10"), NodePath("GridContainer/Cell11"), NodePath("GridContainer/Cell12"), NodePath("GridContainer/Cell13"), NodePath("GridContainer/Cell14"), NodePath("GridContainer/Cell15"), NodePath("GridContainer/Cell16"), NodePath("GridContainer/Cell17"), NodePath("GridContainer/Cell18"), NodePath("GridContainer/Cell19"), NodePath("GridContainer/Cell20"), NodePath("GridContainer/Cell21"), NodePath("GridContainer/Cell22"), NodePath("GridContainer/Cell23"), NodePath("GridContainer/Cell24"), NodePath("GridContainer/Cell25")]
 tiles = [NodePath("../../../TileDockPanel/Tiles/Tile"), NodePath("../../../TileDockPanel/Tiles/Tile2"), NodePath("../../../TileDockPanel/Tiles/Tile3"), NodePath("../../../TileDockPanel/Tiles/Tile4"), NodePath("../../../TileDockPanel/Tiles/Tile5"), NodePath("../../../TileDockPanel/Tiles/Tile6"), NodePath("../../../TileDockPanel/Tiles/Tile7"), NodePath("../../../TileDockPanel/Tiles/Tile8"), NodePath("../../../TileDockPanel/Tiles/Tile9"), NodePath("../../../TileDockPanel/Tiles/Tile10"), NodePath("../../../TileDockPanel/Tiles/Tile11"), NodePath("../../../TileDockPanel/Tiles/Tile12"), NodePath("../../../TileDockPanel/Tiles/Tile13"), NodePath("../../../TileDockPanel/Tiles/Tile14"), NodePath("../../../TileDockPanel/Tiles/Tile15"), NodePath("../../../TileDockPanel/Tiles/Tile16"), NodePath("../../../TileDockPanel/Tiles/Tile17"), NodePath("../../../TileDockPanel/Tiles/Tile18"), NodePath("../../../TileDockPanel/Tiles/Tile19"), NodePath("../../../TileDockPanel/Tiles/Tile20"), NodePath("../../../TileDockPanel/Tiles/Tile21"), NodePath("../../../TileDockPanel/Tiles/Tile22"), NodePath("../../../TileDockPanel/Tiles/Tile23"), NodePath("../../../TileDockPanel/Tiles/Tile24"), NodePath("../../../TileDockPanel/Tiles/Tile25")]
 wordScene = NodePath("../../../../WordListContainer/ScrollContainer/VBoxContainer/WordPanel")
+wordListContainer = NodePath("../../../../WordListContainer/ScrollContainer")
 bestScore = NodePath("../../../../../../../BestScoreHandler")
 gridRotator = NodePath("GridRotator")
 
@@ -342,153 +391,134 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hsp7l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=34194217]
+[node name="GridContainer" type="GridContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" unique_id=611424261]
 layout_mode = 2
+columns = 5
 
-[node name="Row" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=598198550]
+[node name="Cell1" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=674933640 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-size_flags_vertical = 3
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell1" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=674933640 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell2" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1589804460 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell2" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1589804460 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell3" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1378148359 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell3" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1378148359 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell4" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=82060689 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell4" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=82060689 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell5" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1187800220 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell5" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row" unique_id=1187800220 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell6" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1087957608 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Row2" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=11786437]
+[node name="Cell7" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=416817530 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-size_flags_vertical = 3
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell6" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=1087957608 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell8" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=567893328 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell7" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=416817530 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell9" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=78142548 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell8" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=567893328 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell10" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=862521856 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell9" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=78142548 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell11" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1830825577 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell10" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2" unique_id=862521856 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell12" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=826390687 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Row3" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=277426052]
+[node name="Cell13" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1818558605 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-size_flags_vertical = 3
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell11" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1830825577 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell14" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=254345781 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell12" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=826390687 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell15" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1411561183 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell13" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1818558605 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell16" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=502066842 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell14" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=254345781 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell17" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=238257597 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell15" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3" unique_id=1411561183 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell18" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=530629099 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Row4" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1018981240]
+[node name="Cell19" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=565569600 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-size_flags_vertical = 3
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell16" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=502066842 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell20" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=935044488 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell17" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=238257597 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell21" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1671868116 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell18" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=530629099 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell22" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1521650677 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell19" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=565569600 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell23" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=2113745849 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Cell20" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4" unique_id=935044488 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell24" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=1189544423 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
-[node name="Row5" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer" unique_id=1458008159]
+[node name="Cell25" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=66712526 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Cell21" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1671868116 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell22" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1521650677 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell23" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=2113745849 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell24" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=1189544423 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
-
-[node name="Cell25" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5" unique_id=66712526 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
-layout_mode = 2
-resizeReference = NodePath("../../../../..")
-tileDock = NodePath("../../../../../../TileDockPanel/Tiles")
+resizeReference = NodePath("../../../..")
+tileDock = NodePath("../../../../../TileDockPanel/Tiles")
 
 [node name="GridRippleAnimator" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=881408362 node_paths=PackedStringArray("grid", "grid_bg", "grid_glow", "confetti")]
 layout_mode = 2
@@ -511,7 +541,7 @@ mouse_filter = 1
 
 [node name="GridButtonVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer" unique_id=947021112]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 45
 
 [node name="ResetTilesButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer" unique_id=1148351401]
 custom_minimum_size = Vector2(70, 70)
@@ -547,7 +577,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("21_7wdiv")
 tiles = [NodePath("Tiles/Tile"), NodePath("Tiles/Tile2"), NodePath("Tiles/Tile3"), NodePath("Tiles/Tile4"), NodePath("Tiles/Tile5"), NodePath("Tiles/Tile6"), NodePath("Tiles/Tile7"), NodePath("Tiles/Tile8"), NodePath("Tiles/Tile9"), NodePath("Tiles/Tile10"), NodePath("Tiles/Tile11"), NodePath("Tiles/Tile12"), NodePath("Tiles/Tile13"), NodePath("Tiles/Tile14"), NodePath("Tiles/Tile15"), NodePath("Tiles/Tile16"), NodePath("Tiles/Tile17"), NodePath("Tiles/Tile18"), NodePath("Tiles/Tile19"), NodePath("Tiles/Tile20"), NodePath("Tiles/Tile21"), NodePath("Tiles/Tile22"), NodePath("Tiles/Tile23"), NodePath("Tiles/Tile24"), NodePath("Tiles/Tile25")]
-cells = [NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell1"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell2"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell3"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell4"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row/Cell5"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2/Cell6"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2/Cell7"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2/Cell8"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2/Cell9"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row2/Cell10"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3/Cell11"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3/Cell12"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3/Cell13"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3/Cell14"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row3/Cell15"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4/Cell16"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4/Cell17"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4/Cell18"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4/Cell19"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row4/Cell20"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5/Cell21"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5/Cell22"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5/Cell23"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5/Cell24"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/VBoxContainer/Row5/Cell25")]
+cells = [NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell1"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell2"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell3"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell4"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell5"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell6"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell7"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell8"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell9"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell10"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell11"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell12"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell13"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell14"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell15"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell16"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell17"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell18"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell19"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell20"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell21"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell22"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell23"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell24"), NodePath("../GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell25")]
 referenceControl = NodePath("../../../../..")
 tiledock = NodePath("Tiles")
 
@@ -655,21 +685,22 @@ min_size_horizontal_layout = Vector2(250, 50)
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 3
+size_flags_vertical = 0
 theme_type_variation = &"PanelContainerThinMargins"
 
 [node name="Panel" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1892135352]
-visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer" unique_id=1601090332]
 custom_minimum_size = Vector2(400, 0)
+custom_maximum_size = Vector2(-1, 800)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
+vertical_scroll_mode = 4
 scroll_deadzone = 10
 scroll_hint_mode = 1
+script = ExtResource("28_6wmch")
 
 [node name="VBoxContainer" type="HFlowContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/WordListContainer/ScrollContainer" unique_id=815669151]
 custom_minimum_size = Vector2(400, 0)
@@ -771,15 +802,35 @@ text = "account"
 icon = ExtResource("17_ttir5")
 expand_icon = true
 
-[node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+[node name="HowToPlayButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1952138461]
 custom_minimum_size = Vector2(0, 82)
 layout_mode = 2
+text = "how to play"
+icon = ExtResource("14_gsnlb")
+expand_icon = true
+
+[node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "watch palingrid 
 development live!"
 icon = ExtResource("32_xvihj")
 flat = true
 autowrap_mode = 2
 expand_icon = true
+script = ExtResource("36_j4jdq")
+
+[node name="WebsiteButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1965649188]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "my website"
+icon = ExtResource("37_ttir5")
+flat = true
+autowrap_mode = 2
+expand_icon = true
+script = ExtResource("38_ys0h4")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=245448147]
 layout_mode = 2
@@ -803,13 +854,14 @@ script = ExtResource("24_02pyl")
 min_size_vertical_layout = Vector2(356, 72)
 min_size_horizontal_layout = Vector2(356, 72)
 
-[node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler") instance=ExtResource("21_aktff")]
+[node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler", "best_score_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 1
 COLOR_TEXT = Color(0.3254902, 0.8156863, 0.7607843, 1)
 COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 name_change_handler = NodePath("../NameEntryPanel")
+best_score_handler = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
 
 [node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1948943594, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
 grid = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
@@ -1061,18 +1113,24 @@ texture = ExtResource("37_ne81u")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler") instance=ExtResource("48_idbgw")]
+[node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler", "link_popup") instance=ExtResource("48_idbgw")]
 visible = false
 layout_mode = 1
 name_change_handler = NodePath("../NameEntryPanel")
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
+link_popup = NodePath("../LinkQRPopup")
 
-[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator") instance=ExtResource("29_64acc")]
+[node name="NameEntryPanel" parent="PopupCanvasLayer/PopupThemeController" unique_id=1358472709 node_paths=PackedStringArray("loginHandler", "best_score_indicator", "link_popup") instance=ExtResource("29_64acc")]
 visible = false
 layout_mode = 1
 grow_horizontal = 1
 loginHandler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 best_score_indicator = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
+link_popup = NodePath("../LinkQRPopup")
+
+[node name="LinkQRPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1461475584 instance=ExtResource("60_3mjj7")]
+visible = false
+layout_mode = 1
 
 [node name="ToastControl" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1503642689]
 z_index = 50
@@ -1080,29 +1138,43 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
+offset_top = 25.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="ToastPanelContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/ToastControl" unique_id=1715923839 node_paths=PackedStringArray("label")]
+[node name="ToastPanelContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/ToastControl" unique_id=1715923839 node_paths=PackedStringArray("label", "notYouButton", "accountPopup")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -67.0
-offset_top = -100.0
-offset_right = 67.0
-offset_bottom = -66.0
+offset_left = -102.0
+offset_top = -130.0
+offset_right = 102.0
+offset_bottom = -51.0
 grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 1)
 theme_type_variation = &"PanelContainerToast"
 script = ExtResource("29_7swsl")
-label = NodePath("WelcomeLabel")
+label = NodePath("VBoxContainer/WelcomeLabel")
+notYouButton = NodePath("VBoxContainer/NotYouButton")
+accountPopup = NodePath("../../AccountPopup")
 
-[node name="WelcomeLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" unique_id=787344731]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" unique_id=241057268]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="WelcomeLabel" type="Label" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer" unique_id=787344731]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Welcome, !"
 horizontal_alignment = 1
+
+[node name="NotYouButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer" unique_id=1468150353]
+layout_mode = 2
+theme_type_variation = &"ButtonOutline"
+theme_override_font_sizes/font_size = 14
+text = "not you? tap here to login!"
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="." unique_id=1693715868]
 layer = 3
@@ -1144,10 +1216,15 @@ text = "testing 123"
 [connection signal="toggled" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton" method="_on_toggled"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
-[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" method="on_pressed"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" method="on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MarginContainer/KofiButton" method="_on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/HowToPlay/Panel/HowToPlayMarginContainer/ScrollContainer/VBoxContainer/TitleLabel/BackButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_hide"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer/NotYouButton" to="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" method="on_account_button_pressed"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]

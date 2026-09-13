@@ -1,6 +1,6 @@
 class_name DropSlot extends Control
 
-signal tile_changed(slot: DropSlot)
+signal tile_changed
 
 @export var circle: Control
 @export var container: Container
@@ -18,7 +18,7 @@ func remove_tile(tile: DropTile) -> void:
 	slotTile.swapped.disconnect(swapped_for)
 	slotTile.quick_move_to_dock.disconnect(quick_move_tile_to_dock)
 	slotTile = null
-	tile_changed.emit(self)
+	tile_changed.emit()
 
 func dragged_away(tile: DropTile) -> void:
 	#push_warning(self.name + " " + tile.name + " draggedaway, current " + ((slotTile.name if slotTile != null else "null") if slotTile != null else "null"))
@@ -36,15 +36,14 @@ func add_tile(tile: DropTile) -> void:
 	tile.quick_move_to_dock.connect(quick_move_tile_to_dock)
 	tile.reparent(container)
 	slotTile = tile
-	tile_changed.emit(self)
+	tile_changed.emit()
 
 func quick_move_tile_to_dock(tile: DropTile) -> void:
 	#push_warning(self.name + " " + tile.name + " quick move")
 	remove_tile(tile)
 	tileDock.add_tile(tile)
 
-func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	# TODO prevent dropping during rotate animation
+func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 	return true
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:

@@ -28,6 +28,7 @@ const SCOREBOARD_DAILY: String = "daily" ## Scoreboard IDs — update these to m
 
 @export var login_handler : LoginHandler
 @export var name_change_handler : NameChangeHandler
+@export var best_score_handler : BestScoreIndicator
 @export var margin_container: MarginContainer
 @export var title_label: Label
 @export var refresh_button: Button
@@ -68,6 +69,8 @@ var show_hide_tween : Tween
 # ============================================================
 
 func _enter_tree() -> void:
+	CheddaBoards.logout_success.connect(_on_logged_out)
+	CheddaBoards.session_expired.connect(_on_logged_out)
 	hide()
 
 func _ready() -> void:
@@ -92,12 +95,6 @@ func on_visibility_changed():
 		status_label.text = "Connecting to leaderboard provider CheddaBoards..."
 		await CheddaBoards.wait_until_ready()
 	
-	# Connect other buttons
-	if not refresh_button.pressed.is_connected(_on_refresh_pressed):
-		refresh_button.pressed.connect(_on_refresh_pressed)
-	if not back_button.pressed.is_connected(_on_back_pressed):
-		back_button.pressed.connect(_on_back_pressed)
-	
 	# Connect CheddaBoards signals
 	if not CheddaBoards.scoreboard_loaded.is_connected(_on_scoreboard_loaded):
 		CheddaBoards.scoreboard_loaded.connect(_on_scoreboard_loaded)
@@ -120,7 +117,7 @@ func on_visibility_changed():
 	setup = true
 
 
-func _on_score_submitted(score: int, streak: int):
+func _on_score_submitted(_score: int, _streak: int):
 	_load_leaderboard()
 
 
@@ -151,7 +148,7 @@ func _load_leaderboard():
 	print("[Scoreboard] Requesting scoreboard '%s'" % scoreboard_id)
 	CheddaBoards.get_scoreboard(scoreboard_id, LEADERBOARD_LIMIT)
 
-func _set_loading(loading: bool, message: String = ""):
+func _set_loading(loading: bool):
 	is_loading = loading
 	refresh_button.disabled = loading
 	change_name_button.disabled = loading
@@ -178,9 +175,10 @@ func _on_name_change_prompt_closed():
 # SIGNAL HANDLERS — SCOREBOARDS
 # ============================================================
 
-func _on_scoreboard_loaded(sb_id: String, config: Dictionary, entries: Array):
+func _on_scoreboard_loaded(sb_id: String, _config: Dictionary, entries: Array):
 	if sb_id != scoreboard_id:
 		return
+	_set_loading(false)
 	_display_entries(entries)
 
 func _on_scoreboard_error(reason: String):
@@ -189,7 +187,7 @@ func _on_scoreboard_error(reason: String):
 	_set_loading(false)
 	_set_status("Error loading leaderboard", true)
 
-func _on_login_success(nickname: String):
+func _on_login_success(_nickname: String):
 	_set_status("")
 
 
@@ -303,7 +301,6 @@ func _format_score(value: int) -> String:
 # ============================================================
 
 func on_rename_pressed():
-	refresh_button.disabled = true
 	_clear_leaderboard()
 	status_label.text = "Loading..."
 	status_label.add_theme_color_override("font_color", COLOR_TEXT)
@@ -315,7 +312,37 @@ func on_rename_pressed():
 	name_change_handler._show_name_entry_panel(true)
 
 func _on_refresh_pressed():
+	if !CheddaBoards.score_submitted.is_connected(_on_score_resubmitted_success):
+		CheddaBoards.score_submitted.connect(_on_score_resubmitted_success)
+	if !CheddaBoards.score_error.is_connected(_on_score_resubmitted_failure):
+		CheddaBoards.score_error.connect(_on_score_resubmitted_failure)
+
+	_set_loading(true)
+
+	# following line is a massive hack - set_loading sets is_loading to true, but
+	# when we later call _load_leaderboard, it needs to have is_loading set to false to run correctly
+	is_loading = false 
+	
+	ScoreSubmitter.submit_score(best_score_handler.best)
+
+func _on_score_resubmitted_success():
+	if !CheddaBoards.score_submitted.is_connected(_on_score_resubmitted_success):
+		CheddaBoards.score_submitted.disconnect(_on_score_resubmitted_success)
+	if !CheddaBoards.score_error.is_connected(_on_score_resubmitted_failure):
+		CheddaBoards.score_error.disconnect(_on_score_resubmitted_failure)
+	
 	_load_leaderboard()
+	
+func _on_score_resubmitted_failure():
+	if !CheddaBoards.score_submitted.is_connected(_on_score_resubmitted_success):
+		CheddaBoards.score_submitted.disconnect(_on_score_resubmitted_success)
+	if !CheddaBoards.score_error.is_connected(_on_score_resubmitted_failure):
+		CheddaBoards.score_error.disconnect(_on_score_resubmitted_failure)
+
+	_set_loading(false)
+	status_label.text = "Score failed to submit — tap refresh to retry"
+	status_label.add_theme_color_override("font_color", Color.RED)
+
 
 func _on_back_pressed():
 	if show_hide_tween != null and show_hide_tween.is_valid():
@@ -329,6 +356,8 @@ func _on_back_pressed():
 	
 	self.visible = false;
 
+func _on_logged_out():
+	has_shown_set_name_prompt = false
 
 # ============================================================
 # TIMEOUT
@@ -352,7 +381,7 @@ func _clear_load_timeout():
 func _on_load_timeout():
 	if is_loading:
 		_set_loading(false)
-		status_label.text = "Timed out — tap Refresh to retry"
+		status_label.text = "Timed out — tap refresh to retry"
 		status_label.add_theme_color_override("font_color", Color.RED)
 
 # ============================================================

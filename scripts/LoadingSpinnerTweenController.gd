@@ -55,8 +55,6 @@ func play():
 		_node_show_state_before_play[to_show] = to_show.visible
 	for to_hide in to_hide_when_playing:
 		_node_show_state_before_play[to_hide] = to_hide.visible
-		
-	print(str(_node_show_state_before_play))
 	
 	for to_show in to_show_when_playing:
 		to_show.visible = true
@@ -73,7 +71,6 @@ func stop():
 	
 	_is_playing = false
 
-	print(str(_node_show_state_before_play))
 	for to_show in to_show_when_playing:
 		to_show.visible = _node_show_state_before_play[to_show]
 	for to_hide in to_hide_when_playing:

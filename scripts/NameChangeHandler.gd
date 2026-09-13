@@ -10,15 +10,21 @@ signal on_closed
 @export var name_line_edit : LineEdit
 @export var name_status_label : Label
 @export var confirm_button : Button
+
+@export var link_account_section : Control
+@export var link_account_button : Button
+@export var link_popup : LinkQRPopup
+@export var loading_spinner : LoadingSpinnerTweenController
+
 @export var back_button : Button
 
-const MIN_NAME_LENGTH: int = 2
+const MIN_NAME_LENGTH: int = 3
 const MAX_NAME_LENGTH: int = 16
 
 const valid_chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-				'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-				'0','1','2','3','4','5','6','7','8','9',
-				'_']
+					'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+					'0','1','2','3','4','5','6','7','8','9',
+					'_']
 
 var is_rename = false
 
@@ -41,6 +47,8 @@ func _show_name_entry_panel(rename: bool = false):
 	show_hide_tween.play()
 	
 	is_rename = rename
+
+	link_account_section.visible = !is_rename
 	
 	if is_rename:
 		if title_label:
@@ -48,7 +56,7 @@ func _show_name_entry_panel(rename: bool = false):
 		if subtitle_label:
 			subtitle_label.text = "This will update the leaderboard too"
 		if confirm_button:
-			confirm_button.text = "SAVE"
+			confirm_button.text = "save"
 		var current_nick = CheddaBoards.get_nickname()
 		if current_nick != "":
 			name_line_edit.text = current_nick
@@ -62,17 +70,17 @@ func _show_name_entry_panel(rename: bool = false):
 		if subtitle_label:
 			subtitle_label.text = "This will appear on the leaderboard"
 		if confirm_button:
-			confirm_button.text = "LET'S GO!"
+			confirm_button.text = "continue with guest account"
 		if not loginHandler.nickname.is_empty():
 			name_line_edit.text = loginHandler.nickname
 		#else:
 			#name_line_edit.text = _generate_default_name()
 	
-	name_line_edit.placeholder_text = "Enter your name..."
+	name_line_edit.placeholder_text = "Enter your name"
 	name_status_label.text = ""
 	
 	self.visible = true
-	
+
 	name_line_edit.grab_focus()
 	_update_confirm_button_state()
 
@@ -95,16 +103,19 @@ func _update_confirm_button_state():
 	if not is_valid_length:
 		name_status_label.text = "Please enter a username between %d and %d characters long" % [MIN_NAME_LENGTH, MAX_NAME_LENGTH]
 		confirm_button.disabled = true
+		link_account_button.disabled = true
 		return
 	
 	for c in name_text:
 		if not valid_chars.has(c):
 			name_status_label.text = "Please enter a username containing only letters, numbers, and/or underscores"
 			confirm_button.disabled = true
+			link_account_button.disabled = true
 			return
 			
 	name_status_label.text = ""
 	confirm_button.disabled = false
+	link_account_button.disabled = false
 
 
 func _on_confirm_name_pressed():
@@ -141,7 +152,7 @@ func _on_confirm_name_pressed():
 		print("[NameChangeHandler] Entering leaderboard as: %s (ID: %s)" % [loginHandler.nickname, CheddaBoards.get_player_id()])
 
 
-func _on_profile_loaded(nickname: String, score: int, streak: int, achievements: Array, play_count: int):
+func _on_profile_loaded(nickname: String, _score: int, _streak: int, _achievements: Array, _play_count: int):
 	if nickname != name_line_edit.text.strip_edges():
 		_on_confirm_name_pressed()
 
@@ -160,22 +171,22 @@ func _on_nickname_change_success(new_nickname: String):
 	if is_rename:
 		print("[NameChangeHandler] Renamed successfully to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
 		do_hide()
+		confirm_button.disabled = false
+		back_button.disabled = false
 	else:
 		print("[NameChangeHandler] Starting game successfully as: %s (loginHandler nickname: %s) (cheddaboards nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards._nickname, CheddaBoards.get_player_id()])
 		do_first_score_submit()
 	
-	confirm_button.disabled = false
-	back_button.disabled = false
 
 func do_first_score_submit():
 	if !CheddaBoards.score_submitted.is_connected(_on_first_score_submitted):
 		CheddaBoards.score_submitted.connect(_on_first_score_submitted)
 	if !CheddaBoards.score_error.is_connected(_on_first_score_submitted):
 		CheddaBoards.score_error.connect(_on_first_score_submitted)
-		
+	
 	ScoreSubmitter.submit_score(best_score_indicator.best)
 
-func _on_first_score_submitted():
+func _on_first_score_submitted(_score: int, _streak : int):
 	if CheddaBoards.score_submitted.is_connected(_on_first_score_submitted):
 		CheddaBoards.score_submitted.disconnect(_on_first_score_submitted)
 	if CheddaBoards.score_error.is_connected(_on_first_score_submitted):
@@ -184,18 +195,20 @@ func _on_first_score_submitted():
 	name_status_label.text = "Setting up profile..."
 
 	CheddaBoards.refresh_profile()
-	await CheddaBoards.profile_loaded
+	await CheddaBoards.profile_loaded #TODO handle failures here!
 
 	name_status_label.text = "Finalising..."
 
 	CheddaBoards.change_nickname(new_set_nickname)
 	await CheddaBoards.nickname_changed
+	
+	confirm_button.disabled = false
+	back_button.disabled = false
 
-	#TODO close
 	do_hide()
 
 
-func _on_nickname_changed_error(error):
+func _on_nickname_changed_error(_error):
 	confirm_button.disabled = false
 	back_button.disabled = false
 	
@@ -221,3 +234,77 @@ func do_hide():
 	await show_hide_tween.finished
 	self.visible = false
 	on_closed.emit()
+
+
+
+func on_link_account_pressed():
+	CheddaBoards.device_code_received.connect(on_device_code_received)
+	CheddaBoards.device_code_error.connect(on_device_code_error)
+
+	if !link_popup.cancelled.is_connected(on_cancel_device_code_button):
+		link_popup.cancelled.connect(on_cancel_device_code_button)
+
+	name_status_label.visible = false
+	loading_spinner.play()
+	confirm_button.disabled = true
+	link_account_button.disabled = true
+
+	CheddaBoards.login_with_device_code()
+
+func on_device_code_error(reason: String):
+	push_error("[AccountPopup] Device code error: " + reason)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	if CheddaBoards.device_code_received.is_connected(on_device_code_received):
+		CheddaBoards.device_code_received.disconnect(on_device_code_received)
+	if CheddaBoards.device_code_expired.is_connected(on_device_code_expired):
+		CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+
+	loading_spinner.stop()
+	link_popup.visible = false
+	name_status_label.text = "An error occurred when signing in. Please try again."
+	name_status_label.visible = true
+	
+	confirm_button.disabled = false
+	link_account_button.disabled = false
+
+func on_device_code_received(user_code: String, verification_url: String, qr_data_url: String):
+	CheddaBoards.device_code_received.disconnect(on_device_code_received)
+	#note: keep the device code error signal connection here 
+
+	loading_spinner.stop()
+	name_status_label.visible = false
+	link_popup.show_with_code(user_code, verification_url, qr_data_url)
+
+func on_device_code_expired():
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	name_status_label.text = "Code expired. Please try again."
+	name_status_label.visible = true
+	link_popup.visible = false
+
+	confirm_button.disabled = false
+	link_account_button.disabled = false
+	
+
+func on_cancel_device_code_button():
+	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+	link_popup.cancelled.disconnect(on_cancel_device_code_button)
+
+	link_popup.visible = false
+	CheddaBoards.cancel_device_code()
+
+	confirm_button.disabled = false
+	link_account_button.disabled = false
+
+
+func on_device_code_approved(_nickname: String):
+	CheddaBoards.device_code_approved.disconnect(on_device_code_approved)
+	CheddaBoards.device_code_expired.disconnect(on_device_code_expired)
+	CheddaBoards.device_code_error.disconnect(on_device_code_error)
+
+	link_popup.visible = false
+	_on_confirm_name_pressed()

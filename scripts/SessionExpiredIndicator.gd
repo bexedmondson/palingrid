@@ -1,0 +1,23 @@
+extends Node
+
+
+func _ready() -> void:
+	self.visible = false
+	CheddaBoards.session_expired.connect(_on_session_expired)
+
+
+func _on_session_expired():
+	self.visible = true
+	CheddaBoards.session_expired.disconnect(_on_session_expired)
+	CheddaBoards.login_success.connect(_on_logged_in)
+	CheddaBoards.account_upgraded.connect(_on_account_upgraded)
+	
+func _on_logged_in(_nickname):
+	CheddaBoards.login_success.disconnect(_on_logged_in)
+	CheddaBoards.account_upgraded.disconnect(_on_account_upgraded)
+	self.visible = false
+
+func _on_account_upgraded(_profile, _migration):
+	CheddaBoards.login_success.disconnect(_on_logged_in)
+	CheddaBoards.account_upgraded.disconnect(_on_account_upgraded)
+	self.visible = false
