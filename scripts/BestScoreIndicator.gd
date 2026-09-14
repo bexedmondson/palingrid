@@ -4,14 +4,14 @@ extends Node
 @export var gridAnimationPlayer : GridRippleAnimator 
 @export var dailyGenerator : DailyLetterSetGenerator
 @export var grid : Grid
-@export var scoreboard : Scoreboard
+@export var summaryPopup : SummaryPopup
 @export var saveFileHandler : SaveFileHandler
 @export var lightDarkMode : LightDarkMode
 
 var allScores : Dictionary = {}
 var best : int = 0
 var session_done_anim : bool = false
-var has_filled_board_this_session : bool = false
+var has_filled_board_today : bool = false
 var had_best_score_at_start_of_session : bool = false
 var font_color_flash_tween : Tween
 
@@ -26,38 +26,49 @@ func _on_score_submitted(score: int, _streak: int):
 		ScoreSubmitter.submit_score(best)
 
 func update(current: int) -> void:
-	if best > current:
+	# if we're filling the board for the first time that day then we should show the celebration
+	if not has_filled_board_today and grid.filled_slot_count() >= grid.letter_count():
+		saveFileHandler.update_int_and_save_all_flags(SaveFileHandler.SaveType.GRIDFILL, dailyGenerator.daySeed)
+		has_filled_board_today = true
+		if best < current:
+			best = current
+			save(current)
+		show_summary(current)
 		return
-		
-	if best == current:
-		if not had_best_score_at_start_of_session and not has_filled_board_this_session and grid.filled_slot_count() >= grid.letter_count():
-			has_filled_board_this_session = true
-			show_scoreboard(current)
+	
+	if best >= current:
 		return
 	
 	best = current
 	save(current)
+
+	ScoreSubmitter.submit_score(best)
 	
 	# in these specific circumstances, even though this is your best score we DON'T want to trigger the big celebration
 	# - basically when you're filling in the grid for the first time, we don't want to celebrate every move
-	if grid.filled_slot_count() == grid.letter_count() or has_filled_board_this_session:
+	if grid.filled_slot_count() == grid.letter_count() or has_filled_board_today:
 		gridAnimationPlayer.do()
 		session_done_anim = true
 		
-	if has_filled_board_this_session or grid.filled_slot_count() < grid.letter_count():
+	if has_filled_board_today or grid.filled_slot_count() < grid.letter_count():
 		return	
 	
-	has_filled_board_this_session = true
+	has_filled_board_today = true
 
-func show_scoreboard(score: int):
+func show_summary(score: int):
 	if !CheddaBoards.is_authenticated():
 		print("[BestScoreIndicator] waiting for leaderboard load")
 		CheddaBoards.leaderboard_loaded.connect(submit)
 	else:	
 		print("[BestScoreIndicator] submitting score as already authenticated")
 		ScoreSubmitter.submit_score(score)
-	
-	scoreboard.show()
+
+	gridAnimationPlayer.do()
+	gridAnimationPlayer.tween.finished.connect(show_summary_popup)
+
+func show_summary_popup():
+	gridAnimationPlayer.tween.finished.disconnect(show_summary_popup)
+	summaryPopup.do_show()
 
 func submit(_entries):
 	if CheddaBoards.leaderboard_loaded.is_connected(submit):
@@ -79,11 +90,15 @@ func save(score : int):
 	saveFileHandler.update_save_data(SaveFileHandler.SaveType.SCORE, allScores)
 
 func load():
-	var result = saveFileHandler.request_load(SaveFileHandler.SaveType.SCORE)
-	if not result[0]:
+	var resultBoard = saveFileHandler.request_load(SaveFileHandler.SaveType.GRIDFILL)
+	if resultBoard[0]:
+		has_filled_board_today = dailyGenerator.daySeed == resultBoard[1]
+	
+	var resultScore = saveFileHandler.request_load(SaveFileHandler.SaveType.SCORE)
+	if not resultScore[0]:
 		return
 	
-	allScores = result[1]
+	allScores = resultScore[1]
 	
 	if allScores.has(dailyGenerator.daySeed):
 		best = allScores[dailyGenerator.daySeed]
@@ -95,5 +110,7 @@ func _on_logged_in(nickname: String):
 
 func _on_logged_out():
 	best = 0
+	has_filled_board_today = false
+	had_best_score_at_start_of_session = false
 	grid.update()
 	

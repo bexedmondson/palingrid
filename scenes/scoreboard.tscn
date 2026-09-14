@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="2_fpta5"]
 [ext_resource type="Texture2D" uid="uid://66nf847ass0e" path="res://textures/tool-pencil.svg" id="3_fpta5"]
 [ext_resource type="Texture2D" uid="uid://cjbg431jpbvuo" path="res://textures/arrow-left.svg" id="4_fpta5"]
-[ext_resource type="Script" uid="uid://ce2oky6y0w4rh" path="res://scripts/ShareButton.gd" id="6_a2dux"]
-[ext_resource type="Texture2D" uid="uid://d34l53rv62v85" path="res://textures/share.svg" id="6_ocx8i"]
 [ext_resource type="PackedScene" uid="uid://dcx3d4148bqpv" path="res://scenes/loading_spinner.tscn" id="7_7acvr"]
+[ext_resource type="PackedScene" uid="uid://dyr0xv2pq707f" path="res://scenes/share_button.tscn" id="7_a2dux"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bqgu"]
 
@@ -166,14 +165,12 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="ShareButton" type="Button" parent="Panel/LeaderboardMarginContainer/VBoxContainer" unique_id=805629620]
+[node name="ShareButton2" parent="Panel/LeaderboardMarginContainer/VBoxContainer" unique_id=1068528396 instance=ExtResource("7_a2dux")]
+custom_minimum_size = Vector2(280, 70)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "SHARE
-YOUR GRID"
-icon = ExtResource("6_ocx8i")
+size_flags_vertical = 1
 icon_alignment = 2
-script = ExtResource("6_a2dux")
 
 [node name="LoadingSpinnerController" parent="Panel/LeaderboardMarginContainer" unique_id=545174538 node_paths=PackedStringArray("to_show_when_playing") instance=ExtResource("7_7acvr")]
 layout_mode = 2
@@ -202,4 +199,3 @@ vertical_alignment = 1
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/RefreshButton" to="." method="_on_refresh_pressed"]
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/ChangeNameButton" to="." method="on_rename_pressed"]
 [connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/TitleLabel/BackButton" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" to="Panel/LeaderboardMarginContainer/VBoxContainer/ShareButton" method="on_pressed"]

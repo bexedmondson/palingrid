@@ -164,6 +164,17 @@ func get_bar_proportion(amount):
 	return (x_proportion_before_lowest_goal + x_proportion_after_lowest_goal) * scale_for_best_higher_than_top_goal + x_proportion_after_highest_goal
 
 func on_goal_reached(goal_index: int):
-	var animation = goal_name_animator_scene.instantiate()
-	goal_name_animator_container.add_child(animation)
-	animation.animate_word(goal_names[goal_index])
+	pass
+	#var animation = goal_name_animator_scene.instantiate()
+	#goal_name_animator_container.add_child(animation)
+	#animation.animate_word(goal_names[goal_index])
+	
+func get_current_goal_name():
+	var goalIndex = 0;
+	for i in range(all_ticks.size()):
+		if all_ticks[i].target_amount <= grid.bestScore.best:
+			goalIndex = i
+		else:
+			break;
+	
+	return goal_names[goalIndex]

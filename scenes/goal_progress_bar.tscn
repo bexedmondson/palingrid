@@ -25,7 +25,7 @@ best_label = NodePath("ProgressBar/BestPointer/BestPointerBGPanelContainer/BestP
 best_pointer = NodePath("ProgressBar/BestPointer")
 score_label = NodePath("ProgressBar/ScorePointer/ScorePointerBGPanelContainer/ScorePointerLabel")
 score_pointer = NodePath("ProgressBar/ScorePointer")
-goal_names = Array[String](["good", "solid", "great", "brilliant", "spectacular"])
+goal_names = Array[String](["good", "nice", "great", "brilliant", "spectacular"])
 goal_name_animator_scene = ExtResource("3_tsakl")
 goal_name_animator_container = NodePath("GoalNameContainer")
 
