@@ -325,7 +325,7 @@ func _on_refresh_pressed():
 	
 	ScoreSubmitter.submit_score(best_score_handler.best)
 
-func _on_score_resubmitted_success():
+func _on_score_resubmitted_success(_pending_score, _pending_streak):
 	if !CheddaBoards.score_submitted.is_connected(_on_score_resubmitted_success):
 		CheddaBoards.score_submitted.disconnect(_on_score_resubmitted_success)
 	if !CheddaBoards.score_error.is_connected(_on_score_resubmitted_failure):

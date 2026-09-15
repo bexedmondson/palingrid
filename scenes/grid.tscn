@@ -20,10 +20,12 @@
 [ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://scripts/Grid.gd" id="12_eudc0"]
 [ext_resource type="Texture2D" uid="uid://d3rshyhu2aee2" path="res://textures/cross.svg" id="12_j4jdq"]
 [ext_resource type="Texture2D" uid="uid://dio3u62awig2g" path="res://textures/podium-complex.svg" id="13_ne81u"]
+[ext_resource type="Script" uid="uid://c5j4nrvc11o8q" path="res://scripts/LinkAccountPrompt.gd" id="13_t1s6d"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://themes/text_shine.tres" id="13_xfqe3"]
 [ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="14_gsnlb"]
 [ext_resource type="PackedScene" uid="uid://dm0m1523pll6l" path="res://scenes/goal_progress_bar.tscn" id="14_x36ys"]
 [ext_resource type="PackedScene" uid="uid://ciooiwey7meeq" path="res://scenes/cell.tscn" id="15_01tbl"]
+[ext_resource type="Script" uid="uid://fwx731u56u12" path="res://scripts/LeaderboardPrompt.gd" id="15_wltrv"]
 [ext_resource type="Script" uid="uid://c0b511a45ynhg" path="res://scripts/GridRippleAnimator.gd" id="16_tvpgl"]
 [ext_resource type="Texture2D" uid="uid://drou0ud8fjy2n" path="res://textures/person.svg" id="17_ttir5"]
 [ext_resource type="Script" uid="uid://jmwyascgmuo4" path="res://scripts/TileDock.gd" id="19_x36ys"]
@@ -60,6 +62,7 @@
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
 [ext_resource type="Texture2D" uid="uid://c87wp8dtwppnn" path="res://textures/website-icon.png" id="37_ttir5"]
 [ext_resource type="Script" uid="uid://dgsnrcmyhgdxu" path="res://scripts/WebsiteButton.gd" id="38_ys0h4"]
+[ext_resource type="PackedScene" uid="uid://fln4lx81scda" path="res://scenes/summary_popup.tscn" id="42_xs43x"]
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
 [ext_resource type="PackedScene" uid="uid://cpcfskn5ickc2" path="res://scenes/account_popup.tscn" id="48_idbgw"]
@@ -149,7 +152,7 @@ size_flags_vertical = 3
 
 [node name="MainCanvasLayer" type="CanvasLayer" parent="." unique_id=1550155891]
 
-[node name="PanelContainer" type="PanelContainer" parent="MainCanvasLayer" unique_id=1632390155 node_paths=PackedStringArray("wordListScroller", "leftGridSpacer", "rightGridSpacer", "kofiButton", "cell", "debug_label")]
+[node name="PanelContainer" type="PanelContainer" parent="MainCanvasLayer" unique_id=1632390155 node_paths=PackedStringArray("wordListScroller", "leftGridSpacer", "rightGridSpacer", "kofiButton", "debug_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -165,7 +168,6 @@ wordListScroller = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFl
 leftGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridLeftBalanceContainer")
 rightGridSpacer = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer")
 kofiButton = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/MarginContainer/KofiButton")
-cell = NodePath("FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer/Cell1")
 debug_label = NodePath("../../DebugCanvasLayer/DebugButton/Label")
 
 [node name="LoginHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=961667201]
@@ -188,12 +190,12 @@ end_day = 4
 end_month = 9
 end_year = 2027
 
-[node name="BestScoreHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=1188113161 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "grid", "scoreboard", "saveFileHandler", "lightDarkMode")]
+[node name="BestScoreHandler" type="Node" parent="MainCanvasLayer/PanelContainer" unique_id=1188113161 node_paths=PackedStringArray("gridAnimationPlayer", "dailyGenerator", "grid", "summaryPopup", "saveFileHandler", "lightDarkMode")]
 script = ExtResource("6_2bxyt")
 gridAnimationPlayer = NodePath("../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/GridRippleAnimator")
 dailyGenerator = NodePath("../LetterSetGenerator")
 grid = NodePath("../FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-scoreboard = NodePath("../../../PopupCanvasLayer/PopupThemeController/Scoreboard")
+summaryPopup = NodePath("../../../PopupCanvasLayer/PopupThemeController/SummaryPopup")
 saveFileHandler = NodePath("../SaveFileHandler")
 lightDarkMode = NodePath("../../../PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton")
 
@@ -251,6 +253,100 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d50fo")
 
+[node name="PromptAnchor" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" unique_id=1034183315]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LinkAccountPromptPanelContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor" unique_id=2096996573 node_paths=PackedStringArray("bestScoreHandler", "dailyGenerator", "saveFileHandler")]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+offset_top = 25.0
+offset_right = 228.0
+offset_bottom = 178.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(0.16, -0.2)
+theme_type_variation = &"PanelContainerLeaderboardPrompt"
+script = ExtResource("13_t1s6d")
+bestScoreHandler = NodePath("../../../../../../BestScoreHandler")
+dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
+saveFileHandler = NodePath("../../../../../../SaveFileHandler")
+
+[node name="PointerContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=2084873234]
+show_behind_parent = true
+layout_mode = 2
+
+[node name="PromptPointerArrow" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/PointerContainer" unique_id=622935509]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.0
+offset_top = -25.0
+offset_right = -64.0
+offset_bottom = -5.000004
+grow_horizontal = 2
+theme_type_variation = &"PanelPointerArrow"
+
+[node name="Label" type="Label" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=402591289]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "link your account to save your progress!
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=768640804]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="PromptCloseButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/CloseContainer" unique_id=403534756]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_right = -10.0
+offset_bottom = 35.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+icon = ExtResource("12_j4jdq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ReminderToggleContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=1501298951]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="CheckButton" type="CheckButton" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/ReminderToggleContainer" unique_id=158431256]
+self_modulate = Color(1, 1, 1, 0.73333335)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.699
+offset_top = -23.732
+offset_right = 28.699005
+offset_bottom = 18.268
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "don't show again"
+flat = true
+alignment = 1
+
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(400, 79.235)
 layout_mode = 2
@@ -272,6 +368,7 @@ layout_mode = 2
 size_flags_vertical = 0
 grid = NodePath("../../../MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
 light_dark_mode = NodePath("../../../../../../../PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/MenuHeaderHBoxContainer/MarginContainer/LightDarkModeButton")
+goal_names = Array[String](["good", "nice", "solid", "great", "amazing"])
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1462982208]
 layout_mode = 2
@@ -283,6 +380,73 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 icon = ExtResource("13_ne81u")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PromptAnchor" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" unique_id=1034792966]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeaderboardPromptPanelContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor" unique_id=1705747269 node_paths=PackedStringArray("bestScoreHandler", "dailyGenerator", "saveFileHandler")]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -241.0
+offset_top = 25.0
+offset_bottom = 95.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(0.83, -0.2)
+theme_type_variation = &"PanelContainerLeaderboardPrompt"
+script = ExtResource("15_wltrv")
+bestScoreHandler = NodePath("../../../../../../../BestScoreHandler")
+dailyGenerator = NodePath("../../../../../../../LetterSetGenerator")
+saveFileHandler = NodePath("../../../../../../../SaveFileHandler")
+
+[node name="PointerContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" unique_id=1913340725]
+show_behind_parent = true
+layout_mode = 2
+
+[node name="PromptPointerArrow" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer/PointerContainer" unique_id=788211040]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 70.5
+offset_top = -25.0
+offset_right = 90.5
+offset_bottom = -5.000004
+grow_horizontal = 2
+theme_type_variation = &"PanelPointerArrow"
+
+[node name="Label" type="Label" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" unique_id=169181059]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "add your score to 
+the leaderboard!"
+horizontal_alignment = 1
+
+[node name="CloseContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" unique_id=1727644100]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="PromptCloseButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer/CloseContainer" unique_id=157709658]
+layout_mode = 1
+offset_left = 10.0
+offset_right = 45.0
+offset_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+icon = ExtResource("12_j4jdq")
 icon_alignment = 1
 expand_icon = true
 
@@ -300,15 +464,18 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/h_separation = 50
 
 [node name="GameVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer" unique_id=420867560]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+mouse_filter = 2
 
 [node name="GridHBoxContainer" type="HBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer" unique_id=902300252]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="GridLeftBalanceContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer" unique_id=1229187910]
@@ -316,7 +483,7 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_01tbl")
 
 [node name="SpacerControl" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridLeftBalanceContainer" unique_id=1487371906]
@@ -329,6 +496,7 @@ size_flags_vertical = 0
 custom_minimum_size = Vector2(540, 540)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Grid" type="MarginContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer" unique_id=1783420053 node_paths=PackedStringArray("generator", "tileHolder", "slots", "tiles", "wordScene", "wordListContainer", "bestScore", "gridRotator")]
 z_index = 1
@@ -395,7 +563,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hsp7l")
 layout_mode = 2
 columns = 5
 
-[node name="Cell1" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=674933640 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
+[node name="Cell1" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridContainer" unique_id=655647732 node_paths=PackedStringArray("resizeReference", "tileDock") instance=ExtResource("15_01tbl")]
 layout_mode = 2
 resizeReference = NodePath("../../../..")
 tileDock = NodePath("../../../../../TileDockPanel/Tiles")
@@ -810,6 +978,7 @@ icon = ExtResource("14_gsnlb")
 expand_icon = true
 
 [node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+visible = false
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -854,6 +1023,21 @@ script = ExtResource("24_02pyl")
 min_size_vertical_layout = Vector2(356, 72)
 min_size_horizontal_layout = Vector2(356, 72)
 
+[node name="SummaryPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("grid", "scoreboard", "goalProgressBar", "bestScoreHandler") instance=ExtResource("42_xs43x")]
+visible = false
+custom_minimum_size = Vector2(950, 1080)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_bottom = 1020.0
+grow_vertical = 1
+grid = NodePath("../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+scoreboard = NodePath("../Scoreboard")
+goalProgressBar = NodePath("../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar")
+bestScoreHandler = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
+
 [node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler", "best_score_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 1
@@ -862,10 +1046,6 @@ COLOR_TEXT_DIM = Color(0.1298, 0.59, 0.57466, 1)
 login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 name_change_handler = NodePath("../NameEntryPanel")
 best_score_handler = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
-
-[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1948943594, 510556136) index="4" unique_id=805629620 node_paths=PackedStringArray("grid", "letter_set_generator")]
-grid = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-letter_set_generator = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
 
 [node name="HowToPlay" type="Panel" parent="PopupCanvasLayer/PopupThemeController" unique_id=118921594 node_paths=PackedStringArray("saveFileHandler")]
 visible = false
@@ -886,14 +1066,18 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_5816i")
 script = ExtResource("23_1s87h")
 saveFileHandler = NodePath("../../../MainCanvasLayer/PanelContainer/SaveFileHandler")
 
-[node name="ColorRect" type="ColorRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay" unique_id=1395169183]
-custom_minimum_size = Vector2(3000, 3000)
+[node name="ColorRect" type="ColorRect" parent="PopupCanvasLayer/PopupThemeController/HowToPlay" unique_id=1536284951]
 propagate_maximum_size = true
-layout_mode = 0
-offset_left = -500.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1200.0
 offset_top = -500.0
-offset_right = 1500.0
-offset_bottom = 1500.0
+offset_right = 780.0
+offset_bottom = 1480.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.21960784)
 
 [node name="Panel" type="Panel" parent="PopupCanvasLayer/PopupThemeController/HowToPlay" unique_id=1927383268]
@@ -949,6 +1133,8 @@ expand_icon = true
 layout_mode = 2
 bbcode_enabled = true
 text = "
+Tackle a fresh challenge every day with a brand new set of letters!
+
 [font_size=32][b]GAMEPLAY[/b][/font_size]
 [p]
 Drag letters onto the grid and form words to score.
@@ -1113,7 +1299,7 @@ texture = ExtResource("37_ne81u")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("name_change_handler", "login_handler", "link_popup") instance=ExtResource("48_idbgw")]
+[node name="AccountPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1300629961 node_paths=PackedStringArray("name_change_handler", "login_handler", "link_popup") instance=ExtResource("48_idbgw")]
 visible = false
 layout_mode = 1
 name_change_handler = NodePath("../NameEntryPanel")
@@ -1206,7 +1392,10 @@ theme_override_fonts/font = ExtResource("45_quncq")
 text = "testing 123"
 
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="open"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/CloseContainer/PromptCloseButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" method="do_hide"]
+[connection signal="toggled" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/ReminderToggleContainer/CheckButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" method="on_toggle_hide_forever"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="PopupCanvasLayer/PopupThemeController/Scoreboard" method="show"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer/CloseContainer/PromptCloseButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" method="do_hide"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/ResetTilesButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid" method="reset_tiles"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridButtonContainer/GridButtonVBoxContainer/RotateGridButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid/GridRotator" method="rotate"]

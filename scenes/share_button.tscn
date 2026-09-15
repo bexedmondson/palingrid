@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dyr0xv2pq707f"]
+
+[ext_resource type="Texture2D" uid="uid://d34l53rv62v85" path="res://textures/share.svg" id="1_qqect"]
+[ext_resource type="Script" uid="uid://ce2oky6y0w4rh" path="res://scripts/ShareButton.gd" id="2_hd1el"]
+
+[node name="ShareButton" type="Button" unique_id=1068528396]
+custom_minimum_size = Vector2(64, 64)
+size_flags_vertical = 4
+text = "share your grid"
+icon = ExtResource("1_qqect")
+expand_icon = true
+script = ExtResource("2_hd1el")
+
+[connection signal="pressed" from="." to="." method="on_pressed"]

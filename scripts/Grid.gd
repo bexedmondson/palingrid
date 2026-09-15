@@ -202,3 +202,12 @@ func get_empty_slot() -> DropSlot:
 			return slot
 			
 	return null
+
+func count_used_tiles():
+	var used = []
+	for word in wordInstanceMap:
+		var wordInstance = wordInstanceMap[word]
+		for index in wordInstance.indexes:
+			if not used.has(index):
+				used.append(index)
+	return used.size()
