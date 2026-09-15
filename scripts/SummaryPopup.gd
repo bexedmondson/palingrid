@@ -31,11 +31,7 @@ func do_show():
 	bestWordLabel.text = ""#"best word:\n%s - %d" % []
 	rankLabel.text = ""#"[img height=1.25em align=top,top]res://textures/podium-complex.svg[/img]" # "leaderboard rank: %d" % Cheddaboards.get_leaderboard_rank()
 
-	if show_hide_tween != null and show_hide_tween.is_valid():
-		show_hide_tween.kill()
-	show_hide_tween = create_tween()
-	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	show_hide_tween.tween_property(self, "scale", Vector2(1,1), 0.2).from(Vector2.ZERO)
+	show_hide_tween = TweenLibrary.popup_in(show_hide_tween, self)
 	show_hide_tween.play()
 	
 	show_hide_tween.finished.connect(do_word_animation)
@@ -67,11 +63,7 @@ func hide_self():
 	#wordAnimInstance.queue_free() #<- will do this itself, no need to do it here
 	wordAnimInstance = null
 	
-	if show_hide_tween != null and show_hide_tween.is_valid():
-		show_hide_tween.kill()
-	show_hide_tween = create_tween()
-	show_hide_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	show_hide_tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
+	show_hide_tween = TweenLibrary.popup_out(show_hide_tween, self)
 	show_hide_tween.play()
 
 	await show_hide_tween.finished
