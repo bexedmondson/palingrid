@@ -306,17 +306,21 @@ autowrap_mode = 2
 [node name="CloseContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=768640804]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 8
+size_flags_vertical = 0
 
 [node name="PromptCloseButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/CloseContainer" unique_id=403534756]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -45.0
+offset_top = -30.0
 offset_right = -10.0
-offset_bottom = 35.0
+offset_bottom = 5.0
 grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 icon = ExtResource("12_j4jdq")
@@ -437,13 +441,18 @@ horizontal_alignment = 1
 [node name="CloseContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" unique_id=1727644100]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 8
+size_flags_vertical = 0
 
 [node name="PromptCloseButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer/CloseContainer" unique_id=157709658]
 layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 10.0
+offset_top = -30.0
 offset_right = 45.0
-offset_bottom = 35.0
+offset_bottom = 5.0
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 icon = ExtResource("12_j4jdq")
