@@ -6,7 +6,10 @@ enum SaveType
 	SCORE = 1,
 	HOWTOPLAY = 2,
 	LIGHTDARK = 3,
-	GRIDFILL = 4
+	GRIDFILL = 4,
+	LEADERBOARD_PROMPT = 5,
+	LINKACCOUNT_PROMPT = 6,
+	LINKACCOUNT_PREVENT = 7
 }
 
 const saveTypeToFilePathMap : Dictionary = { 
@@ -56,7 +59,7 @@ func _parse_settings_config_file(filePath: String, saveType : SaveType) -> bool:
 	
 	for flagKey in configFile.get_section_keys(flagSectionName):
 		var flagSaveType = int(flagKey) as SaveType
-		if flagSaveType == SaveType.GRIDFILL:
+		if flagSaveType == SaveType.GRIDFILL or flagSaveType == SaveType.LEADERBOARD_PROMPT or flagSaveType == SaveType.LINKACCOUNT_PROMPT:
 			loadedSaveDatas[flagSaveType] = int(configFile.get_value(flagSectionName, flagKey))
 		else:
 			loadedSaveDatas[flagSaveType] = bool(configFile.get_value(flagSectionName, flagKey))

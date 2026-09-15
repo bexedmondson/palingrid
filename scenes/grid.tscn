@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://dowj7bwof7pgr" path="res://scripts/Grid.gd" id="12_eudc0"]
 [ext_resource type="Texture2D" uid="uid://d3rshyhu2aee2" path="res://textures/cross.svg" id="12_j4jdq"]
 [ext_resource type="Texture2D" uid="uid://dio3u62awig2g" path="res://textures/podium-complex.svg" id="13_ne81u"]
+[ext_resource type="Script" uid="uid://c5j4nrvc11o8q" path="res://scripts/LinkAccountPrompt.gd" id="13_t1s6d"]
 [ext_resource type="Material" uid="uid://v1xr7j7a0je0" path="res://themes/text_shine.tres" id="13_xfqe3"]
 [ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="14_gsnlb"]
 [ext_resource type="PackedScene" uid="uid://dm0m1523pll6l" path="res://scenes/goal_progress_bar.tscn" id="14_x36ys"]
@@ -252,6 +253,100 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d50fo")
 
+[node name="PromptAnchor" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" unique_id=1034183315]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LinkAccountPromptPanelContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor" unique_id=2096996573 node_paths=PackedStringArray("bestScoreHandler", "dailyGenerator", "saveFileHandler")]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+offset_top = 25.0
+offset_right = 228.0
+offset_bottom = 178.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(0.16, -0.2)
+theme_type_variation = &"PanelContainerLeaderboardPrompt"
+script = ExtResource("13_t1s6d")
+bestScoreHandler = NodePath("../../../../../../BestScoreHandler")
+dailyGenerator = NodePath("../../../../../../LetterSetGenerator")
+saveFileHandler = NodePath("../../../../../../SaveFileHandler")
+
+[node name="PointerContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=2084873234]
+show_behind_parent = true
+layout_mode = 2
+
+[node name="PromptPointerArrow" type="Panel" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/PointerContainer" unique_id=622935509]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.0
+offset_top = -25.0
+offset_right = -64.0
+offset_bottom = -5.000004
+grow_horizontal = 2
+theme_type_variation = &"PanelPointerArrow"
+
+[node name="Label" type="Label" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=402591289]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "link your account to save your progress!
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=768640804]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="PromptCloseButton" type="Button" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/CloseContainer" unique_id=403534756]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_right = -10.0
+offset_bottom = 35.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+icon = ExtResource("12_j4jdq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ReminderToggleContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" unique_id=1501298951]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="CheckButton" type="CheckButton" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/ReminderToggleContainer" unique_id=158431256]
+self_modulate = Color(1, 1, 1, 0.73333335)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.699
+offset_top = -23.732
+offset_right = 28.699005
+offset_bottom = 18.268
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "don't show again"
+flat = true
+alignment = 1
+
 [node name="ScoreVBoxContainer" type="VBoxContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer" unique_id=1727399492]
 custom_minimum_size = Vector2(400, 79.235)
 layout_mode = 2
@@ -297,7 +392,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="LeaderboardPromptPanelContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor" unique_id=1705747269]
+[node name="LeaderboardPromptPanelContainer" type="PanelContainer" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor" unique_id=1705747269 node_paths=PackedStringArray("bestScoreHandler", "dailyGenerator", "saveFileHandler")]
 z_index = 5
 layout_mode = 1
 anchors_preset = -1
@@ -310,6 +405,9 @@ grow_horizontal = 0
 pivot_offset_ratio = Vector2(0.83, -0.2)
 theme_type_variation = &"PanelContainerLeaderboardPrompt"
 script = ExtResource("15_wltrv")
+bestScoreHandler = NodePath("../../../../../../../BestScoreHandler")
+dailyGenerator = NodePath("../../../../../../../LetterSetGenerator")
+saveFileHandler = NodePath("../../../../../../../SaveFileHandler")
 
 [node name="PointerContainer" type="Control" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" unique_id=1913340725]
 show_behind_parent = true
@@ -330,6 +428,7 @@ theme_type_variation = &"PanelPointerArrow"
 
 [node name="Label" type="Label" parent="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" unique_id=169181059]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "add your score to 
 the leaderboard!"
@@ -876,6 +975,7 @@ icon = ExtResource("14_gsnlb")
 expand_icon = true
 
 [node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+visible = false
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -1030,6 +1130,8 @@ expand_icon = true
 layout_mode = 2
 bbcode_enabled = true
 text = "
+Tackle a fresh challenge every day with a brand new set of letters!
+
 [font_size=32][b]GAMEPLAY[/b][/font_size]
 [p]
 Drag letters onto the grid and form words to score.
@@ -1287,6 +1389,8 @@ theme_override_fonts/font = ExtResource("45_quncq")
 text = "testing 123"
 
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="open"]
+[connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/CloseContainer/PromptCloseButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" method="do_hide"]
+[connection signal="toggled" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer/ReminderToggleContainer/CheckButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/OpenMenuButton/PromptAnchor/LinkAccountPromptPanelContainer" method="on_toggle_hide_forever"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton" to="PopupCanvasLayer/PopupThemeController/Scoreboard" method="show"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer/CloseContainer/PromptCloseButton" to="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/LeaderboardButton/PromptAnchor/LeaderboardPromptPanelContainer" method="do_hide"]
 [connection signal="pressed" from="MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ButtonHBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
