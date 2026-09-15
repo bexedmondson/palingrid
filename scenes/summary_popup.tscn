@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b2rcfdcyx28s3" path="res://textures/icon_repeat_light.svg" id="3_c53ep"]
 [ext_resource type="Texture2D" uid="uid://bm6rji8jklpxg" path="res://textures/question-mark.svg" id="4_2jdmm"]
 [ext_resource type="FontFile" uid="uid://c8f84nxlvugqk" path="res://themes/fonts/montserrat/Montserrat-Bold.ttf" id="5_t7eoe"]
+[ext_resource type="PackedScene" uid="uid://bmrvnau6866mx" path="res://scenes/next_day_timer_label.tscn" id="6_x0uq6"]
 [ext_resource type="PackedScene" uid="uid://dyr0xv2pq707f" path="res://scenes/share_button.tscn" id="7_x0uq6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5816i"]
@@ -161,6 +162,11 @@ size_flags_horizontal = 3
 text = "leaderboard: 
 #000"
 scroll_active = false
+horizontal_alignment = 1
+
+[node name="NextDayTimerLabel" parent="Panel/PanelContainer/SummaryPopupVBoxContainer/VBoxContainer" unique_id=147652634 instance=ExtResource("6_x0uq6")]
+layout_mode = 2
+size_flags_horizontal = 4
 horizontal_alignment = 1
 
 [node name="LeaderboardButton" type="Button" parent="Panel/PanelContainer/SummaryPopupVBoxContainer/VBoxContainer" unique_id=912943777]

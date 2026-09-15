@@ -1,6 +1,8 @@
 class_name BestScoreIndicator
 extends Node
 
+signal new_best_reached
+
 @export var gridAnimationPlayer : GridRippleAnimator 
 @export var dailyGenerator : DailyLetterSetGenerator
 @export var grid : Grid
@@ -31,6 +33,7 @@ func update(current: int) -> void:
 		saveFileHandler.update_int_and_save_all_flags(SaveFileHandler.SaveType.GRIDFILL, dailyGenerator.daySeed)
 		has_filled_board_today = true
 		if best < current:
+			new_best_reached.emit()
 			best = current
 			save(current)
 		show_summary(current)
@@ -42,6 +45,7 @@ func update(current: int) -> void:
 	best = current
 	save(current)
 
+	new_best_reached.emit()
 	ScoreSubmitter.submit_score(best)
 	
 	# in these specific circumstances, even though this is your best score we DON'T want to trigger the big celebration

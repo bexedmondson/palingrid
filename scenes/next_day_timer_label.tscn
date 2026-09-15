@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bmrvnau6866mx"]
+
+[ext_resource type="Script" uid="uid://cnarmkg335mln" path="res://scripts/NextDayTimer.gd" id="1_y5rr0"]
+
+[node name="NextDayTimerLabel" type="Label" unique_id=147652634]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = 21.0
+offset_bottom = -18.999992
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "new challenge available in 00:00:00"
+horizontal_alignment = 2
+script = ExtResource("1_y5rr0")

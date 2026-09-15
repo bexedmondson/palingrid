@@ -1,6 +1,8 @@
 @tool
 class_name DailyLetterSetGenerator extends Node
 
+signal set_generated
+
 @export var statsFile : JSON
 
 var today_dict
@@ -52,6 +54,7 @@ func gen_date(count, day, month, year):
 						vowel_count += 1
 					break
 	
+	set_generated.emit()
 	return generated_set
 
 

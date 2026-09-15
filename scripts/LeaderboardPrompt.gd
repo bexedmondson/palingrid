@@ -15,14 +15,15 @@ func _enter_tree() -> void:
 	self.scale = Vector2.ZERO
 	self.visible = false
 
-func ready():
-	var resultPrompt = saveFileHandler.request_load(SaveFileHandler.SaveType.LEADERBOARD_PROMPT)
-	if resultPrompt[0] && resultPrompt[1] == dailyGenerator.daySeed:
-		shouldShow = false
-		return
+	dailyGenerator.set_generated.connect(setup)
 	
-	CheddaBoards.profile_loaded.connect(try_show)
-	CheddaBoards.score_submitted.connect(try_show)
+func setup():
+	bestScoreHandler.new_best_reached.connect(try_show)
+	
+	var resultPrompt = saveFileHandler.request_load(SaveFileHandler.SaveType.LEADERBOARD_PROMPT)
+	if resultPrompt[0]  or resultPrompt[1] == null:
+		shouldShow = true if resultPrompt[1] == null else (resultPrompt[1] != dailyGenerator.daySeed)
+		return
 	
 func try_show():
 	if shouldShow and !self.visible and !CheddaBoards.has_account() and bestScoreHandler.has_filled_board_today:

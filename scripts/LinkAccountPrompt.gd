@@ -14,20 +14,23 @@ var shouldShow : bool = false
 func _enter_tree() -> void:
 	self.scale = Vector2.ZERO
 	self.visible = false
+	
+	dailyGenerator.set_generated.connect(setup)
 
-func ready():
+func setup():
+	bestScoreHandler.new_best_reached.connect(try_show)
+
 	var resultPrevent = saveFileHandler.request_load(SaveFileHandler.SaveType.LINKACCOUNT_PREVENT)
-	if resultPrevent[0] && resultPrevent[1]:
-		shouldShow = false
-		return
+	if resultPrevent[0] or resultPrevent[1] == null:
+		shouldShow = true if resultPrevent[1] == null else (not resultPrevent[1])
+		if not shouldShow:
+			return
 	
 	var resultPrompt = saveFileHandler.request_load(SaveFileHandler.SaveType.LINKACCOUNT_PROMPT)
-	if resultPrompt[0] && resultPrompt[1] == dailyGenerator.daySeed:
-		shouldShow = false
+	if resultPrompt[0] or resultPrompt[1] == null:
+		shouldShow = true if resultPrompt[1] == null else (resultPrompt[1] != dailyGenerator.daySeed)
 		return
 
-	CheddaBoards.profile_loaded.connect(try_show)
-	CheddaBoards.score_submitted.connect(try_show)
 
 func try_show():
 	if shouldShow and !self.visible and !CheddaBoards.is_logged_in() and bestScoreHandler.best >= 25:

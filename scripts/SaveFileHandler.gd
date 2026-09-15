@@ -16,7 +16,10 @@ const saveTypeToFilePathMap : Dictionary = {
 	SaveType.SCORE: "user://score.dat",
 	SaveType.HOWTOPLAY: "user://flags.cfg",
 	SaveType.LIGHTDARK: "user://flags.cfg",
-	SaveType.GRIDFILL: "user://flags.cfg"
+	SaveType.GRIDFILL: "user://flags.cfg",
+	SaveType.LEADERBOARD_PROMPT: "user://flags.cfg",
+	SaveType.LINKACCOUNT_PROMPT: "user://flags.cfg",
+	SaveType.LINKACCOUNT_PREVENT: "user://flags.cfg"
 }
 
 var flagSectionName = "flags"
