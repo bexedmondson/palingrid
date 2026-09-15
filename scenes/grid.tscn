@@ -1047,6 +1047,10 @@ scoreboard = NodePath("../Scoreboard")
 goalProgressBar = NodePath("../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar")
 bestScoreHandler = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
 
+[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/SummaryPopup/Panel/PanelContainer/SummaryPopupVBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(1748221376, 1885997408) index="3" unique_id=1068528396 node_paths=PackedStringArray("grid", "letter_set_generator")]
+grid = NodePath("../../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+letter_set_generator = NodePath("../../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
+
 [node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler", "best_score_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 1
@@ -1425,5 +1429,6 @@ text = "testing 123"
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer/NotYouButton" to="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" method="on_account_button_pressed"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
+[editable path="PopupCanvasLayer/PopupThemeController/SummaryPopup"]
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/LoadingSpinnerController"]
