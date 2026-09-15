@@ -1060,6 +1060,10 @@ login_handler = NodePath("../../../MainCanvasLayer/PanelContainer/LoginHandler")
 name_change_handler = NodePath("../NameEntryPanel")
 best_score_handler = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
 
+[node name="ShareButton2" parent="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1948943594, 510556136) index="4" unique_id=1068528396 node_paths=PackedStringArray("grid", "letter_set_generator")]
+grid = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+letter_set_generator = NodePath("../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
+
 [node name="HowToPlay" type="Panel" parent="PopupCanvasLayer/PopupThemeController" unique_id=118921594 node_paths=PackedStringArray("saveFileHandler")]
 visible = false
 z_index = 2
