@@ -62,9 +62,14 @@
 [ext_resource type="Texture2D" uid="uid://d4fecsop2ipf5" path="res://textures/tutorial_images/duplicateword.png" id="37_ne81u"]
 [ext_resource type="Texture2D" uid="uid://c87wp8dtwppnn" path="res://textures/website-icon.png" id="37_ttir5"]
 [ext_resource type="Script" uid="uid://dgsnrcmyhgdxu" path="res://scripts/WebsiteButton.gd" id="38_ys0h4"]
+[ext_resource type="Texture2D" uid="uid://d23q50s3nu3te" path="res://textures/triangle-alert.svg" id="40_1isgw"]
+[ext_resource type="Texture2D" uid="uid://cd8qx7ppukbe0" path="res://textures/reddit.svg" id="42_t3gi4"]
 [ext_resource type="PackedScene" uid="uid://fln4lx81scda" path="res://scenes/summary_popup.tscn" id="42_xs43x"]
+[ext_resource type="Texture2D" uid="uid://dmeu8ww4ltacn" path="res://textures/discord-icon.svg" id="43_rfpl5"]
+[ext_resource type="Script" uid="uid://3bwkd6hjhhqv" path="res://scripts/RedditButton.gd" id="43_wx4ni"]
 [ext_resource type="Script" uid="uid://c7bu2tx6k8joy" path="res://scripts/DebugButton.gd" id="44_tvpgl"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="45_quncq"]
+[ext_resource type="Script" uid="uid://bd4ailonf7h8i" path="res://scripts/DiscordButton.gd" id="45_x8cb4"]
 [ext_resource type="PackedScene" uid="uid://cpcfskn5ickc2" path="res://scenes/account_popup.tscn" id="48_idbgw"]
 [ext_resource type="PackedScene" uid="uid://dwacnqvja481d" path="res://scenes/link_qr_popup.tscn" id="60_3mjj7"]
 
@@ -259,6 +264,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -986,13 +993,45 @@ text = "how to play"
 icon = ExtResource("14_gsnlb")
 expand_icon = true
 
-[node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
-visible = false
+[node name="DiscordButtonHelp" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=987127349]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_type_variation = &"ButtonSecondary"
+text = "report a problem"
+icon = ExtResource("40_1isgw")
+autowrap_mode = 2
+expand_icon = true
+script = ExtResource("36_j4jdq")
+
+[node name="RedditButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1027401111]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "reddit
+r/palingrid"
+icon = ExtResource("42_t3gi4")
+flat = true
+autowrap_mode = 2
+expand_icon = true
+script = ExtResource("43_wx4ni")
+
+[node name="DiscordButtonDefault" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=1694805717]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "join the conversation on discord"
+icon = ExtResource("43_rfpl5")
+flat = true
+autowrap_mode = 2
+expand_icon = true
+script = ExtResource("45_x8cb4")
+
+[node name="TwitchButton" type="Button" parent="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer" unique_id=595569430]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "watch palingrid 
-development live!"
+development live"
 icon = ExtResource("32_xvihj")
 flat = true
 autowrap_mode = 2
@@ -1424,6 +1463,12 @@ text = "testing 123"
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/AccountButton" to="PopupCanvasLayer/PopupThemeController/AccountPopup" method="do_show"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/HowToPlayButton" to="PopupCanvasLayer/PopupThemeController/HowToPlay" method="do_show"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/DiscordButtonHelp" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/DiscordButtonHelp" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/DiscordButtonHelp" method="on_pressed"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/RedditButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/RedditButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/RedditButton" method="on_pressed"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/DiscordButtonDefault" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
+[connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/DiscordButtonDefault" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/DiscordButtonDefault" method="on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/TwitchButton" method="on_pressed"]
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer/MenuVBoxContainer/WebsiteButton" to="PopupCanvasLayer/PopupThemeController/MenuCollapsibleContainer" method="close"]
