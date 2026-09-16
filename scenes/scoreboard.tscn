@@ -170,6 +170,7 @@ custom_minimum_size = Vector2(280, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
+text = "share your palingrid"
 icon_alignment = 2
 
 [node name="LoadingSpinnerController" parent="Panel/LeaderboardMarginContainer" unique_id=545174538 node_paths=PackedStringArray("to_show_when_playing") instance=ExtResource("7_7acvr")]

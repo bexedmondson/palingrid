@@ -188,6 +188,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"ButtonSecondary"
 theme_override_font_sizes/font_size = 22
+text = "share your palingrid"
 
 [connection signal="pressed" from="Panel/PanelContainer/SummaryPopupVBoxContainer/HBoxContainer/BackButton" to="." method="do_hide"]
 [connection signal="pressed" from="Panel/PanelContainer/SummaryPopupVBoxContainer/VBoxContainer/LeaderboardButton" to="." method="do_hide"]
