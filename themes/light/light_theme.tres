@@ -40,6 +40,7 @@
 [ext_resource type="StyleBox" uid="uid://c1vcmfrd2vceh" path="res://themes/light/panel_container_score_pointer_light.tres" id="29_jam87"]
 [ext_resource type="FontFile" uid="uid://dtr8klxffs4se" path="res://themes/fonts/montserrat/Montserrat-Regular.ttf" id="29_l35dm"]
 [ext_resource type="StyleBox" uid="uid://1smleun01y7i" path="res://themes/goal_progress_bar_fill.tres" id="33_12gmn"]
+[ext_resource type="StyleBox" uid="uid://b2mxhnmorp3l0" path="res://themes/light/panel_container_floating_prompt_light.tres" id="33_lx0t5"]
 [ext_resource type="StyleBox" uid="uid://db361meglfku" path="res://themes/light/goal_progress_bar_bg_light.tres" id="34_2ihl8"]
 [ext_resource type="StyleBox" uid="uid://8w2i3xllspcm" path="res://themes/light/panel_pointer_arrow_light.tres" id="34_jhrgo"]
 [ext_resource type="StyleBox" uid="uid://cw36c4h5qm20r" path="res://themes/goal_progress_bar_best_fill.tres" id="35_50rey"]
@@ -61,6 +62,7 @@ Button/colors/icon_hover_pressed_color = Color(0.091, 0.14, 0.13265, 1)
 Button/colors/icon_normal_color = Color(0.15, 0.2, 0.19416668, 1)
 Button/colors/icon_pressed_color = Color(0.091, 0.14, 0.13265, 1)
 Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("9_krt1t")
 Button/styles/disabled = ExtResource("1_u0swb")
 Button/styles/focus = ExtResource("3_wcw0t")
 Button/styles/hover = ExtResource("2_wj2d4")
@@ -144,6 +146,7 @@ LineEdit/colors/font_selected_color = Color(0.93, 0.9021, 0.8742, 1)
 LineEdit/colors/font_uneditable_color = Color(0.8, 0.75686276, 0.69411767, 1)
 LineEdit/colors/selection_color = Color(0.1298, 0.59, 0.57466, 1)
 LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("9_krt1t")
 LineEdit/styles/focus = ExtResource("7_xyh1g")
 LineEdit/styles/normal = ExtResource("7_tr3sr")
 LineEdit/styles/read_only = ExtResource("8_aghd6")
@@ -163,6 +166,8 @@ PanelContainerGameBG/base_type = &"PanelContainer"
 PanelContainerGameBG/styles/panel = ExtResource("3_tvg4m")
 PanelContainerInset/base_type = &"PanelContainer"
 PanelContainerInset/styles/panel = ExtResource("11_jnuea")
+PanelContainerLeaderboardPrompt/base_type = &"PanelContainer"
+PanelContainerLeaderboardPrompt/styles/panel = ExtResource("33_lx0t5")
 PanelContainerMenuExpandMargins/base_type = &"PanelContainer"
 PanelContainerMenuExpandMargins/styles/panel = ExtResource("26_tq8i7")
 PanelContainerScorePointer/base_type = &"PanelContainer"

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="word-grid"
+config/version="1.0.0.0"
 run/main_scene="uid://28x1mc1dnjtv"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0.14901961, 0.2, 0.19607843, 1)
