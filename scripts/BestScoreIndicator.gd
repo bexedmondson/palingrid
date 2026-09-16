@@ -61,10 +61,12 @@ func update(current: int) -> void:
 
 func show_summary(score: int):
 	if !CheddaBoards.is_authenticated():
-		print("[BestScoreIndicator] waiting for leaderboard load")
+		if !IsProdBuild.isProd:
+			print("[BestScoreIndicator] waiting for leaderboard load")
 		CheddaBoards.leaderboard_loaded.connect(submit)
-	else:	
-		print("[BestScoreIndicator] submitting score as already authenticated")
+	else:
+		if !IsProdBuild.isProd:
+			print("[BestScoreIndicator] submitting score as already authenticated")
 		ScoreSubmitter.submit_score(score)
 
 	gridAnimationPlayer.do()
@@ -77,12 +79,14 @@ func show_summary_popup():
 func submit(_entries):
 	if CheddaBoards.leaderboard_loaded.is_connected(submit):
 		CheddaBoards.leaderboard_loaded.disconnect(submit)
-	
-	print("[BestScoreIndicator] Submitting score after leaderboard load: " + str(best))
+
+	if !IsProdBuild.isProd:
+		print("[BestScoreIndicator] Submitting score after leaderboard load: " + str(best))
 	ScoreSubmitter.submit_score(best)
 
 func save(score : int):
-	print("[BestScoreIndicator] Submitting score: " + str(score))
+	if !IsProdBuild.isProd:
+		print("[BestScoreIndicator] Submitting score: " + str(score))
 	ScoreSubmitter.submit_score(score)
 	
 	allScores[dailyGenerator.daySeed] = score

@@ -29,6 +29,7 @@ Achievements="*res://autoloads/Achievements.gd"
 MobileUI="*res://autoloads/MobileUI.gd"
 TweenLibrary="*uid://bcaank0w1rbgd"
 ScoreSubmitter="*uid://cknb6hmvsqb8h"
+IsProdBuild="*uid://bh1u1ml4svmky"
 
 [display]
 

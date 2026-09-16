@@ -127,7 +127,8 @@ func _on_score_submitted(_score: int, _streak: int):
 
 func _load_leaderboard():
 	if is_loading:
-		print("[Scoreboard] already loading, exiting load request early")
+		if !IsProdBuild.isProd:
+			print("[Scoreboard] already loading, exiting load request early")
 		return
 	
 	_clear_leaderboard()
@@ -144,8 +145,9 @@ func _load_leaderboard():
 	
 	_set_loading(true)
 	_start_load_timeout()
-	
-	print("[Scoreboard] Requesting scoreboard '%s'" % scoreboard_id)
+
+	if !IsProdBuild.isProd:
+		print("[Scoreboard] Requesting scoreboard '%s'" % scoreboard_id)
 	CheddaBoards.get_scoreboard(scoreboard_id, LEADERBOARD_LIMIT)
 
 func _set_loading(loading: bool):

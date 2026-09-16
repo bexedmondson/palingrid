@@ -45,14 +45,18 @@ func _on_sdk_ready():
 		CheddaBoards.sdk_ready.disconnect(_on_sdk_ready)
 
 	var device_id_found = _try_get_native_device_id()
-	
-	print("[LoginHandler] found device id? " + str(device_id_found))
+
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] found device id? " + str(device_id_found))
 	if not device_id_found:
-		print("[LoginHandler] creating new device id")
+		if !IsProdBuild.isProd:
+			print("[LoginHandler] creating new device id")
 		_create_new_device_id()
 
 	var has_data = _try_load_player_data()
-	print("[LoginHandler] found local data? %s - anon? %s, auth? %s" % [str(has_data), str(CheddaBoards.is_anonymous()), str(CheddaBoards.has_account())])
+	if !IsProdBuild.isProd:
+		if !IsProdBuild.isProd:
+			print("[LoginHandler] found local data? %s - anon? %s, auth? %s" % [str(has_data), str(CheddaBoards.is_anonymous()), str(CheddaBoards.has_account())])
 	
 	local_state = PlayerInfo.State.EXISTS if has_data else PlayerInfo.State.NONE_FOUND
 	
@@ -71,7 +75,8 @@ func _on_sdk_ready():
 func _try_get_native_device_id() -> bool:
 	"""Get existing device ID, if it exists"""
 	if !FileAccess.file_exists(deviceIdFile):
-		print("[LoginHandler] device id file not found " + deviceIdFile)
+		if !IsProdBuild.isProd:
+			print("[LoginHandler] device id file not found " + deviceIdFile)
 		return false
 
 	var file = FileAccess.open(deviceIdFile, FileAccess.READ)
@@ -110,7 +115,8 @@ func _try_load_player_data() -> bool:
 
 		if data is Dictionary:
 			nickname = data.get("nickname", "")
-			print("[LoginHandler] Loaded profile data: nickname='%s'" % [nickname])
+			if !IsProdBuild.isProd:
+				print("[LoginHandler] Loaded profile data: nickname='%s'" % [nickname])
 			return true
 	
 	return false
@@ -126,7 +132,8 @@ func _save_player_data():
 		}
 		file.store_var(data)
 		file.close()
-		print("[LoginHandler] Saved player data")
+		if !IsProdBuild.isProd:
+			print("[LoginHandler] Saved player data")
 	
 	local_state = PlayerInfo.State.EXISTS
 
@@ -142,18 +149,22 @@ func _on_logged_out():
 
 func _load_profile():
 	"""Load and display stats for player from CheddaBoards API"""
-	print("[LoginHandler] Loading profile...")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] Loading profile...")
 
 	var profile = CheddaBoards.get_cached_profile()
 
 	if not profile.is_empty():
-		print("[LoginHandler] Found cached profile")
+		if !IsProdBuild.isProd:
+			print("[LoginHandler] Found cached profile")
 		return
 	else:
-		print("[LoginHandler] No cached profile")
+		if !IsProdBuild.isProd:
+			print("[LoginHandler] No cached profile")
 
-	print("[LoginHandler] Profile status: anonymous? %s, has account? %s" % [str(CheddaBoards.is_anonymous()), str(CheddaBoards.has_account())])
-	print("[LoginHandler] Requesting profile refresh...")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] Profile status: anonymous? %s, has account? %s" % [str(CheddaBoards.is_anonymous()), str(CheddaBoards.has_account())])
+		print("[LoginHandler] Requesting profile refresh...")
 	_request_profile_with_timeout()
 
 # ============================================================
@@ -173,14 +184,16 @@ func _on_profile_loaded(loaded_nickname: String, score: int, _streak: int, _achi
 	SDK v2.2.0+ emits play_count as 5th arg — prefer it over digging into
 	the cached profile dict, which can be stale or inconsistently shaped
 	between session-auth and API-key paths."""
-	print("[LoginHandler] Profile loaded: %s (weekly score: %d, plays: %d)" % [loaded_nickname, score, play_count])
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] Profile loaded: %s (weekly score: %d, plays: %d)" % [loaded_nickname, score, play_count])
 	
 	remote_state = PlayerInfo.State.EXISTS
 	
 	if not loaded_nickname.is_empty():
 		# If backend has different nickname (e.g. auto-suffixed), update local storage
 		if nickname != loaded_nickname or local_state == PlayerInfo.State.NONE_FOUND or local_state == PlayerInfo.State.CHECK_FAILED:
-			print("[LoginHandler] Updating local nickname: '%s' -> '%s' (backend sync)" % [nickname if not nickname.is_empty() else "[none]", loaded_nickname])
+			if !IsProdBuild.isProd:
+				print("[LoginHandler] Updating local nickname: '%s' -> '%s' (backend sync)" % [nickname if not nickname.is_empty() else "[none]", loaded_nickname])
 			local_state = PlayerInfo.State.EXISTS
 			nickname = loaded_nickname
 			_save_player_data()
@@ -191,7 +204,8 @@ func _on_profile_loaded(loaded_nickname: String, score: int, _streak: int, _achi
 
 func _on_no_profile():
 	"""No profile found"""
-	print("[LoginHandler] No remote profile found")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] No remote profile found")
 	
 	remote_state = PlayerInfo.State.NONE_FOUND
 	
@@ -205,7 +219,8 @@ func _on_no_profile():
 func _start_profile_polling():
 	"""Start polling for profile"""
 	_stop_profile_polling()
-	print("[LoginHandler] beginning profile poll")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] beginning profile poll")
 	profile_poll_timer = Timer.new()
 	profile_poll_timer.wait_time = POLL_INTERVAL
 	profile_poll_timer.timeout.connect(_check_profile_poll)
@@ -216,13 +231,15 @@ func _start_profile_polling():
 
 func _check_profile_poll():
 	"""Check if profile has loaded"""
-	print("[LoginHandler] doing profile check")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] doing profile check")
 	profile_poll_attempts += 1
 
 	var profile = CheddaBoards.get_cached_profile()
 
 	if not profile.is_empty() and waiting_for_profile:
-		print("[LoginHandler] Profile found via polling")
+		if !IsProdBuild.isProd:
+			print("[LoginHandler] Profile found via polling")
 		_clear_profile_timeout()
 		_stop_profile_polling()
 		waiting_for_profile = false
@@ -234,7 +251,8 @@ func _check_profile_poll():
 
 func _stop_profile_polling():
 	"""Stop polling"""
-	print("[LoginHandler] stopping profile poll")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] stopping profile poll")
 	if profile_poll_timer:
 		profile_poll_timer.stop()
 		profile_poll_timer.queue_free()
@@ -247,7 +265,8 @@ func _stop_profile_polling():
 func _start_profile_timeout():
 	"""Start timeout for profile loading"""
 	_clear_profile_timeout()
-	print("[LoginHandler] starting profile poll timeout")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] starting profile poll timeout")
 
 	profile_timeout_timer = Timer.new()
 	profile_timeout_timer.wait_time = PROFILE_TIMEOUT_DURATION
@@ -259,7 +278,8 @@ func _start_profile_timeout():
 
 func _clear_profile_timeout():
 	"""Clear profile timeout"""
-	print("[LoginHandler] clearing profile poll timeout")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] clearing profile poll timeout")
 	if profile_timeout_timer:
 		profile_timeout_timer.stop()
 		profile_timeout_timer.queue_free()
@@ -270,7 +290,8 @@ func _on_profile_timeout():
 	"""Handle profile timeout"""
 	if not waiting_for_profile:
 		return
-	print("[LoginHandler] profile poll timeout check")
+	if !IsProdBuild.isProd:
+		print("[LoginHandler] profile poll timeout check")
 
 	profile_load_attempts += 1
 	push_warning("Profile timeout (attempt %d/%d)" % [profile_load_attempts, MAX_PROFILE_LOAD_ATTEMPTS])

@@ -216,4 +216,5 @@ func folding_preset_selected(button : TextureButton) -> void:
 # Called when full_rect button is pressed. 
 # Future: this button should probably be re-labelled as the "TIPS" button.
 func _on_full_rect_pressed() -> void:
-	print(full_rect.get_tooltip())
+	if !IsProdBuild.isProd:
+		print(full_rect.get_tooltip())

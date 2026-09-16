@@ -54,7 +54,8 @@ func _ready() -> void:
 	generator.generate(letter_count())
 	
 	generator.generated_set.shuffle()
-	print(generator.generated_set)
+	if !IsProdBuild.isProd:
+		print(generator.generated_set)
 	
 	bestScore.load()
 	

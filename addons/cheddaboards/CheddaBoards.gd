@@ -175,7 +175,7 @@ signal device_code_error(reason: String)
 ##     CheddaBoards.debug_logging = true
 ## All _log() calls are gated by this flag; push_error / push_warning for
 ## genuine failures fire regardless.
-var debug_logging: bool = true
+var debug_logging: bool = false
 
 ## HTTP API Configuration
 const API_BASE_URL = "https://api.cheddaboards.com"

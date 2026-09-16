@@ -121,10 +121,11 @@ func _update_confirm_button_state():
 func _on_confirm_name_pressed():
 	"""Confirm name - behaviour depends on _name_entry_mode"""
 	var name_text = name_line_edit.text.strip_edges()
-	
-	print("=== NAME CONFIRMATION (mode: %s) ===" % "rename" if is_rename else "first time")
-	print("Entered name: '%s'" % name_text)
-	print("Player ID: '%s'" % CheddaBoards.get_player_id())
+
+	if !IsProdBuild.isProd:
+		print("=== NAME CONFIRMATION (mode: %s) ===" % "rename" if is_rename else "first time")
+		print("Entered name: '%s'" % name_text)
+		print("Player ID: '%s'" % CheddaBoards.get_player_id())
 	
 	if name_text.length() < MIN_NAME_LENGTH:
 		name_status_label.text = "Name too short (min %d characters)" % MIN_NAME_LENGTH
@@ -145,11 +146,12 @@ func _on_confirm_name_pressed():
 	back_button.disabled = true
 	
 	loginHandler.update_nickname(name_text)
-	
-	if is_rename:
-		print("[NameChangeHandler] Renaming to: %s" % name_text)
-	else:                                                                  
-		print("[NameChangeHandler] Entering leaderboard as: %s (ID: %s)" % [loginHandler.nickname, CheddaBoards.get_player_id()])
+
+	if !IsProdBuild.isProd:
+		if is_rename:
+			print("[NameChangeHandler] Renaming to: %s" % name_text)
+		else:                                                                  
+			print("[NameChangeHandler] Entering leaderboard as: %s (ID: %s)" % [loginHandler.nickname, CheddaBoards.get_player_id()])
 
 
 func _on_profile_loaded(nickname: String, _score: int, _streak: int, _achievements: Array, _play_count: int):
@@ -169,12 +171,14 @@ func _on_nickname_change_success(new_nickname: String):
 	#await CheddaBoards.profile_loaded
 	
 	if is_rename:
-		print("[NameChangeHandler] Renamed successfully to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
+		if !IsProdBuild.isProd:
+			print("[NameChangeHandler] Renamed successfully to: %s (loginHandler nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards.get_player_id()])
 		do_hide()
 		confirm_button.disabled = false
 		back_button.disabled = false
 	else:
-		print("[NameChangeHandler] Starting game successfully as: %s (loginHandler nickname: %s) (cheddaboards nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards._nickname, CheddaBoards.get_player_id()])
+		if !IsProdBuild.isProd:
+			print("[NameChangeHandler] Starting game successfully as: %s (loginHandler nickname: %s) (cheddaboards nickname: %s) (ID: %s)" % [new_nickname, loginHandler.nickname, CheddaBoards._nickname, CheddaBoards.get_player_id()])
 		do_first_score_submit()
 	
 
