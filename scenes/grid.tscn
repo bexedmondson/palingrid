@@ -72,6 +72,7 @@
 [ext_resource type="Script" uid="uid://bd4ailonf7h8i" path="res://scripts/DiscordButton.gd" id="45_x8cb4"]
 [ext_resource type="PackedScene" uid="uid://cpcfskn5ickc2" path="res://scenes/account_popup.tscn" id="48_idbgw"]
 [ext_resource type="PackedScene" uid="uid://dwacnqvja481d" path="res://scenes/link_qr_popup.tscn" id="60_3mjj7"]
+[ext_resource type="Script" uid="uid://dlmlxa6yup3js" path="res://scripts/IntroAnim.gd" id="70_vsm1w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d50fo"]
 bg_color = Color(0.57463753, 0.005738593, 0.13154536, 1)
@@ -1417,6 +1418,46 @@ layout_mode = 2
 theme_type_variation = &"ButtonOutline"
 theme_override_font_sizes/font_size = 14
 text = "not you? tap here to login!"
+
+[node name="IntroAnim" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1539977897 node_paths=PackedStringArray("wordAnimation")]
+layout_mode = 1
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 0.3
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("70_vsm1w")
+wordAnimation = NodePath("PanelContainer/WordAnimation")
+
+[node name="ColorRect" type="ColorRect" parent="PopupCanvasLayer/PopupThemeController/IntroAnim" unique_id=388361972]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1835.0
+offset_top = -1591.0
+offset_right = 3245.0
+offset_bottom = 2670.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.21960784)
+
+[node name="PanelContainer" type="PanelContainer" parent="PopupCanvasLayer/PopupThemeController/IntroAnim" unique_id=306739555]
+self_modulate = Color(1, 1, 1, 0.67058825)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelContainerInset"
+
+[node name="WordAnimation" parent="PopupCanvasLayer/PopupThemeController/IntroAnim/PanelContainer" unique_id=453700686 instance_placeholder="res://scenes/word_animation.tscn"]
+layout_mode = 2
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="." unique_id=1693715868]
 layer = 3
