@@ -30,7 +30,8 @@ var loadInProgress: bool = false
 
 func request_load(saveType : SaveType):
 	if loadedSaveDatas.has(saveType):
-		push_warning("SaveFileHandler already has loaded data for save file type " + str(saveType) + ", exiting without attempting load")
+		if !IsProdBuild.isProd:
+			push_warning("SaveFileHandler already has loaded data for save file type " + str(saveType) + ", exiting without attempting load")
 		return [true, loadedSaveDatas[saveType]]
 	
 	var savePath = saveTypeToFilePathMap[saveType]

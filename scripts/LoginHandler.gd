@@ -105,7 +105,8 @@ func _create_new_device_id() -> void:
 func _try_load_player_data() -> bool:
 	"""Trying to load saved player data (e.g. nickname)"""
 	if not FileAccess.file_exists(leaderboardInfoFile):
-		push_warning("[LoginHandler] No save file found")
+		if !IsProdBuild.isProd:
+			push_warning("[LoginHandler] No save file found")
 		return false
 
 	var file = FileAccess.open(leaderboardInfoFile, FileAccess.READ)
@@ -294,12 +295,14 @@ func _on_profile_timeout():
 		print("[LoginHandler] profile poll timeout check")
 
 	profile_load_attempts += 1
-	push_warning("Profile timeout (attempt %d/%d)" % [profile_load_attempts, MAX_PROFILE_LOAD_ATTEMPTS])
+	if !IsProdBuild.isProd:
+		push_warning("Profile timeout (attempt %d/%d)" % [profile_load_attempts, MAX_PROFILE_LOAD_ATTEMPTS])
 
 	if profile_load_attempts < MAX_PROFILE_LOAD_ATTEMPTS:
 		_request_profile_with_timeout()
 	else:
-		push_warning("[LoginHandler] ending profile polling due to max attempts reached")
+		if !IsProdBuild.isProd:
+			push_warning("[LoginHandler] ending profile polling due to max attempts reached")
 		_clear_profile_timeout()
 		_stop_profile_polling()
 		waiting_for_profile = false
