@@ -1423,6 +1423,7 @@ theme_override_font_sizes/font_size = 14
 text = "not you? tap here to login!"
 
 [node name="IntroAnim" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1539977897 node_paths=PackedStringArray("wordAnimation")]
+z_index = 1000
 layout_mode = 1
 anchor_top = 0.3
 anchor_right = 1.0
