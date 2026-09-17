@@ -1075,25 +1075,6 @@ script = ExtResource("24_02pyl")
 min_size_vertical_layout = Vector2(356, 72)
 min_size_horizontal_layout = Vector2(356, 72)
 
-[node name="SummaryPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("grid", "scoreboard", "goalProgressBar", "bestScoreHandler") instance=ExtResource("42_xs43x")]
-visible = false
-custom_minimum_size = Vector2(950, 1080)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-offset_bottom = 1020.0
-grow_vertical = 1
-grid = NodePath("../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-scoreboard = NodePath("../Scoreboard")
-goalProgressBar = NodePath("../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar")
-bestScoreHandler = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
-
-[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/SummaryPopup/Panel/PanelContainer/SummaryPopupVBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(1748221376, 1885997408) index="3" unique_id=1068528396 node_paths=PackedStringArray("grid", "letter_set_generator")]
-grid = NodePath("../../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
-letter_set_generator = NodePath("../../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
-
 [node name="Scoreboard" parent="PopupCanvasLayer/PopupThemeController" unique_id=1948943594 node_paths=PackedStringArray("login_handler", "name_change_handler", "best_score_handler") instance=ExtResource("21_aktff")]
 visible = false
 layout_mode = 1
@@ -1378,6 +1359,27 @@ link_popup = NodePath("../LinkQRPopup")
 visible = false
 layout_mode = 1
 
+[node name="SummaryPopup" parent="PopupCanvasLayer/PopupThemeController" unique_id=1748221376 node_paths=PackedStringArray("grid", "scoreboard", "goalProgressBar", "bestScoreHandler") instance=ExtResource("42_xs43x")]
+visible = false
+custom_minimum_size = Vector2(950, 1080)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -475.0
+offset_right = 475.0
+offset_bottom = 1080.0
+grow_vertical = 1
+grid = NodePath("../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+scoreboard = NodePath("../Scoreboard")
+goalProgressBar = NodePath("../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/HeaderMarginContainer/ScoreVBoxContainer/GoalProgressBar")
+bestScoreHandler = NodePath("../../../MainCanvasLayer/PanelContainer/BestScoreHandler")
+
+[node name="ShareButton" parent="PopupCanvasLayer/PopupThemeController/SummaryPopup/Panel/PanelContainer/SummaryPopupVBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(1748221376, 1885997408) index="3" unique_id=1068528396 node_paths=PackedStringArray("grid", "letter_set_generator")]
+grid = NodePath("../../../../../../../../MainCanvasLayer/PanelContainer/FullScreenScrollContainer/VBoxContainer/MainBodyHFlowContainer/GameVBoxContainer/GridHBoxContainer/GridAspectRatioContainer/Grid")
+letter_set_generator = NodePath("../../../../../../../../MainCanvasLayer/PanelContainer/LetterSetGenerator")
+
 [node name="ToastControl" type="Control" parent="PopupCanvasLayer/PopupThemeController" unique_id=1503642689]
 z_index = 50
 layout_mode = 1
@@ -1523,6 +1525,6 @@ text = "testing 123"
 [connection signal="pressed" from="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer/VBoxContainer/NotYouButton" to="PopupCanvasLayer/PopupThemeController/ToastControl/ToastPanelContainer" method="on_account_button_pressed"]
 [connection signal="pressed" from="DebugCanvasLayer/DebugButton" to="DebugCanvasLayer/DebugButton" method="on_click"]
 
-[editable path="PopupCanvasLayer/PopupThemeController/SummaryPopup"]
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard"]
 [editable path="PopupCanvasLayer/PopupThemeController/Scoreboard/Panel/LeaderboardMarginContainer/LoadingSpinnerController"]
+[editable path="PopupCanvasLayer/PopupThemeController/SummaryPopup"]

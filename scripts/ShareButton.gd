@@ -3,6 +3,8 @@ extends Button
 @export var grid : Grid
 @export var letter_set_generator : DailyLetterSetGenerator
 
+@export var copy_indicator : Control
+
 const map = {
 	"a": "𝙰",
 	"b": "𝙱",
@@ -33,6 +35,9 @@ const map = {
 	"-": "_ "
 }
 
+func _enter_tree() -> void:
+	copy_indicator.modulate.a = 0;
+
 func on_pressed():
 	var date = Time.get_date_string_from_unix_time(letter_set_generator.daySeed)
 	var share = "Palingrid %s: %d points" % [ date, grid.total ]
@@ -45,4 +50,10 @@ func on_pressed():
 		share += map[slot.letter()] + " "
 	
 	DisplayServer.clipboard_set(share)
+	
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(copy_indicator, "modulate:a", 0, 0.6).from(1)
+	tween.play()
 	
