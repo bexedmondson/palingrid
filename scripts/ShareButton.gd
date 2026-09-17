@@ -56,6 +56,6 @@ func on_pressed():
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(copy_indicator, "modulate:a", 0, 0.6).from(1)
+	tween.tween_property(copy_indicator, "modulate:a", 0, 1).from(1)
 	tween.play()
 	
