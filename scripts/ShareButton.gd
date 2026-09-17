@@ -48,6 +48,8 @@ func on_pressed():
 			share += "\n"
 		count += 1
 		share += map[slot.letter()] + " "
+		
+	share += "\n\nhttps://bexmakesgames.itch.io/palingrid/"
 	
 	DisplayServer.clipboard_set(share)
 	
