@@ -70,6 +70,10 @@ func rotate():
 	
 	##TODO to get tiles moving in arcs around the center point, consider offsetting to have the pivot at the grid centre and then rotating around maybe? but keeping y up obvs
 
+	#sort all tiles above grid for duration of rotation - they get set back in on_rotate_finished
+	for tile in grid.tiles:
+		tile.z_index = 1
+	
 	_rotate_tween.finished.connect(on_rotate_finished)
 	_rotate_tween.play()
 
@@ -79,6 +83,9 @@ func on_end_of_frame():
 
 
 func on_rotate_finished():
+	#resetting tile sorting
+	for tile in grid.tiles:
+		tile.z_index = 0
 	_is_rotating = false
 	gridInputBlocker.visible = false
 	grid.update()
