@@ -212,3 +212,11 @@ func count_used_tiles():
 			if not used.has(index):
 				used.append(index)
 	return used.size()
+
+func on_grid_rotated(rotatedSlotIndexMap):
+	for word in wordInstanceMap:
+		var wordInstance = wordInstanceMap[word]
+		var newIndexes = []
+		for index in wordInstance.indexes:
+			newIndexes.append(rotatedSlotIndexMap[index])
+		wordInstance.indexes = newIndexes
