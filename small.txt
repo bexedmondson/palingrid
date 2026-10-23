@@ -1179,7 +1179,6 @@ clew
 clews
 click
 cliff
-clii
 climb
 clime
 cling
@@ -1189,7 +1188,6 @@ clips
 clipt
 clit
 clits
-clix
 cloak
 clock
 clod
@@ -2024,6 +2022,7 @@ envoy
 envy
 eon
 eons
+epee
 epic
 epics
 epoch
@@ -3284,7 +3283,6 @@ idyls
 iffy
 ifs
 igloo
-iii
 ikon
 ikons
 ilk
@@ -3749,6 +3747,7 @@ lever
 levy
 lewd
 lexer
+ley
 liar
 liars
 lib
@@ -3772,7 +3771,6 @@ lifer
 lift
 lifts
 light
-lii
 like
 liked
 liken
@@ -3829,9 +3827,9 @@ liven
 liver
 lives
 livid
-lix
 llama
 llano
+loach
 load
 loads
 loaf
@@ -4306,8 +4304,6 @@ mowed
 mower
 mown
 mows
-mpg
-mph
 much
 muck
 mucks
@@ -4550,7 +4546,6 @@ obey
 obeys
 obit
 obits
-obj
 oboe
 oboes
 occur
@@ -4792,7 +4787,6 @@ payed
 payee
 payer
 pays
-epee
 pea
 peace
 peach
@@ -6502,6 +6496,7 @@ sway
 sways
 swear
 sweat
+swede
 sweep
 sweet
 swell
